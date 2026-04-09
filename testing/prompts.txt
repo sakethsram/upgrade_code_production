@@ -1,0 +1,670 @@
+Objective
+Modify my existing codebase to implement a structured pre-check workflow with a wrapper function for parsing commands.Current Repository Structure
+text
+saketh@saketh-T480:~/.../upgrade$ tree
+.
+├──   logging
+├── NCS-5501_show_command 1 (1)
+├── README.md
+├── __pycache__
+│   ├── mock_outputs.cpython-312.pyc
+│   ├── prechecks.cpython-312.pyc
+│   └── temp.cpython-312.pyc
+├── cmd_oupts (1).txt
+├── inputs
+│   ├── deviceDetails.yaml
+│   └── show_cmd_list.yaml
+├── lib
+│   ├── __pycache__
+│   │   └── utilities.cpython-312.pyc
+│   └── utilities.py
+├── logging
+│   ├── __2026-02-06_10-25-14.log
+│   ├── __2026-02-09_07-10-32.log
+│   ├── juniper_mx204_2026-02-09_09-34-51.log
+│   ├── juniper_mx204_2026-02-09_09-36-41.log
+│   ├── juniper_mx204_2026-02-09_09-47-32.log
+│   ├── logs___.log
+│   └── logs_juniper_mx204_.log
+├── main.py
+├── mock_outputs.py
+├── models
+│   ├── cisco
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   ├── __init__.cpython-38.pyc
+│   │   │   └── cisco_ncs5501.cpython-38.pyc
+│   │   ├── cisco_asr9910.py
+│   │   └── cisco_ncs5501.py
+│   └── junos
+│       ├── __pycache__
+│       │   └── junos_mx80.cpython-312.pyc
+│       └── junos_mx80.py
+├── output
+│   ├── cisco_ncs5501_timestamp.txt
+│   └── juniper_mx204.txt
+├── outputs
+│   ├── juniper_mx204_2026-02-04_09-50-55.log
+│   ├── juniper_mx204_2026-02-06_10-25-14.log
+│   ├── juniper_mx204_2026-02-06_10-32-16.log
+│   ├── juniper_mx204_2026-02-06_10-33-12.log
+│   ├── juniper_mx204_2026-02-09_09-36-41.log
+│   └── juniper_mx204_2026-02-09_09-47-32.log
+├── parsers
+│   ├── __pycache__
+│   │   └── junos_wrapper.cpython-312.pyc
+│   ├── cisco
+│   │   ├── __pycache__
+│   │   │   └── cisco_ncs5501.cpython-38.pyc
+│   │   ├── cisco_asr9910.py
+│   │   └── cisco_ncs5501.py
+│   ├── junos
+│   │   ├── __pycache__
+│   │   │   ├── junos_mx204.cpython-312.pyc
+│   │   │   └── junos_mx80.cpython-312.pyc
+│   │   ├── junos_mx204.py
+│   │   └── junos_mx80.py
+│   └── junos_wrapper.py
+├── postchecks.py
+├── precheck_jsons
+│   ├── cisco_ncs5501_20260123_170005.json
+│   └── juniper_mx80_.json
+├── prechecks.py
+├── temp.py
+├── test_main.py
+├── testing
+│   ├── __pycache__
+│   │   ├── temp.cpython-312.pyc
+│   │   └── test_main.cpython-312.pyc
+│   └── prompts.txt
+├── upgrade.py
+├── workflow_report.html
+└── workflow_report_generator.py
+
+23 directories, 55 files
+saketh@saketh-T480:~/.../upgrade$
+Required Changes
+1. Restructure Pre-check Global Variable
+Change the current pre-check global variable to store command execution results in this format:
+
+text
+precheck_results = [
+    {
+        "command": "show version",           # Command from YAML file
+        "output": "raw CLI output here",      # Netmiko command output
+        "json_output": {}                      # Parsed JSON output (initially empty)
+    },
+    ...
+]
+2. Create a Wrapper Function
+Create a new wrapper function in an appropriate location (suggest where) that:
+
+Takes one parameter: check_type (either "pre" or "post")
+
+Accesses the corresponding global variable (precheck_results or postcheck_results)
+
+Iterates through each command entry
+
+For entries with populated output field:
+
+Calls the appropriate parser function based on device type
+
+Stores the returned JSON in the json_output field
+
+Includes try-except blocks for error handling
+
+3. Modify execute_commands Function
+Update the command execution section in prechecks.py:
+
+Current code (around lines where commands are executed):
+
+python
+commands = load_yaml("show_cmd_list.yaml")
+print(f"Executing show commands: {commands}")
+logger.info("Executing show commands")
+cmd_result = execute_command(conn, commands, device_type, host,
+                             username, password, model, logger)
+New implementation should:
+
+Store each command and its output in the restructured global variable
+
+After storing outputs, call the wrapper function to parse all commands
+
+Test this with at least 2 parsers initially
+
+Specific Deliverables
+Wrapper function code - Complete function with try-except blocks
+
+Global variable restructuring - Show the new structure
+
+execute_commands modifications - Show only the changed sections
+
+File location suggestion - Where to place the wrapper function
+
+Guidelines
+Show complete functions for major changes
+
+Show only relevant sections for minor modifications
+
+Keep code modular and maintainable
+
+Include proper error handling (try-except)
+
+Currently focus only on pre-checks (post-checks later)
+
+
+there is a test_main.py where most of this is implemented , i want yout o change the Prechecks.py and the postchecks.py 
+should be populated and with the mock outputs fro, the file that i give you
+you should also tell me the places to place the testing folder's contents at , tell me a better naming nomenclatre to sore these 
+outputs at , 
+change the places each of the varaible place at 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=========================================================================================
+Here's the full descriptive breakdown — everything your manager needs to understand.
+
+What the system does (big picture)
+This is a network device upgrade automation tool. Before upgrading a router's OS, the tool runs a series of pre-checks — it SSHs into the device, runs a bunch of show commands, backs up config, checks storage, validates the image checksum, and disables a firewall filter. All of this happens in main.py inside a function called run_prechecks().
+
+The pre-existing flow (before our changes)
+When the tool connected to a device and ran show commands, here's what happened:
+1. YAML files drove everything. Two YAML files live in the inputs/ folder — deviceDetails.yaml (has the device IP, credentials, vendor, model) and show_cmd_list.yaml (has the list of CLI commands to run, organized by vendor and model).
+2. Commands were executed via execute_command() in utilities.py. This function took the command list from the YAML, looped through each command, sent it to the device via Netmiko (the SSH library), and got back raw CLI text output — the kind of thing you'd see if you were sitting at the terminal.
+3. Outputs were stored in a flat, unstructured dict. The results went into global_config.pre_output which was just a plain dictionary — key was the command string, value was a nested dict with the device name and the raw output text. Something like:
+{
+  "show arp no-resolve": { "device": "juniper_mx204", "output": "...raw text..." },
+  "show vrrp summary":   { "device": "juniper_mx204", "output": "...raw text..." }
+}
+4. Parsers existed but were disconnected. There was already a parsers/ folder with parser functions — for example parse_show_arp_no_resolve() in parsers/junos/junos_mx204.py. These parsers took raw CLI text and returned clean structured JSON (a list of ARP entries with MAC, IP, interface, flags). But — and this is the key problem — nobody was calling them during the pre-check workflow. They existed as standalone functions that were never wired into the main flow. The raw output was collected and just... sat there.
+5. Data models existed too. There's a models/ folder with dataclasses like ShowArpNoResolve, ShowArpNoResolveEntry, ShowVrrpSummary etc. These defined the schema for what parsed output should look like. Again — existed, but weren't being used in the workflow.
+
+What the problems were
+
+After running pre-checks, you had raw CLI text sitting in a dict. If you wanted to compare pre and post-upgrade states (e.g., did the ARP table change?), you had no structured data to compare — just two blobs of text.
+The parsers were written but never invoked automatically. Someone would have to manually call them, know which parser maps to which command, pass the right output in — it was all manual and error-prone.
+There was no consistent structure — some parts of the code stored output one way, other parts another way. execute_command_test() (a test version of the function) stored things differently from execute_command().
+Adding a new parser meant digging into multiple files to wire it up. There was no central place that said "this command uses this parser."
+
+
+What we changed and added
+Change 1 — Restructured the global storage
+We changed GlobalConfig in utilities.py. Instead of pre_output being a flat dict, we introduced precheck_results as a list of structured entries. Every command now gets stored as:
+python{
+    "command":     "show arp no-resolve | no-more",   # the command that was run
+    "output":      "...raw CLI text from device...",   # what the router returned
+    "json_output": {}                                  # placeholder for parsed data
+}
+json_output starts empty. It gets filled in later by the parser. This means every command's raw output and parsed output travel together in one object — no cross-referencing between different dicts, no mismatch.
+Same structure exists for postcheck_results for post-upgrade checks (wired up later).
+
+Change 2 — Modified execute_command() in utilities.py
+The function still does what it did — loops through commands from the YAML and sends them to the device. But now instead of dumping output into the old flat dict, it:
+
+Resets global_config.precheck_results to an empty list at the start of each run (clean slate)
+For each command, builds one of those structured entries
+If the command succeeds, output gets the CLI text
+If the command fails, output stays empty and json_output gets an error message
+Appends the entry to precheck_results
+Returns the full list at the end
+
+So after execute_command() runs, you have a clean list of every command with its raw output, ready to be parsed.
+
+Change 3 — New file: parsers/parser_wrapper.py
+This is the biggest addition. We created a new file that acts as the bridge between command execution and parsing. It has two things:
+The registry — a dictionary called PARSER_REGISTRY that maps a tuple of (vendor_model, command_string) to the actual parser function:
+pythonPARSER_REGISTRY = {
+    ("juniper_mx204", "show arp no-resolve | no-more"): parse_show_arp_no_resolve,
+    ("juniper_mx204", "show vrrp summary | no-more"):   parse_show_vrrp_summary,
+}
+```
+
+This is the central lookup table. If you add a new parser tomorrow, you add one line here. Nothing else changes.
+
+**The wrapper function `run_parsers(check_type)`** — takes either `"pre"` or `"post"` as input, picks the right results list (`precheck_results` or `postcheck_results`), and then:
+
+- Loops through every entry in that list
+- Skips entries where output is empty (command failed, nothing to parse)
+- Looks up `(vendor_model, command)` in the registry
+- If a parser is found — calls it, takes the returned JSON, stores it in `entry["json_output"]`
+- If no parser is found — logs a warning and moves on (non-fatal, workflow doesn't die)
+- If the parser itself throws an exception — catches it, stores the error in `json_output`, logs it, and continues
+
+So after `run_parsers("pre")` runs, every entry in `precheck_results` that has a registered parser now has structured JSON sitting in `json_output`.
+
+---
+
+### Change 4 — Wired it all together in `run_prechecks()` in `main.py`
+
+In the pre-check orchestration function, Step 3 now does this in sequence:
+
+1. Load the YAML command list
+2. Call `execute_command()` → fills `precheck_results` with raw outputs
+3. Immediately call `run_parsers("pre")` → fills in `json_output` for every parseable command
+4. Log a debug line per command showing what was captured and what keys came back from parsing
+5. Continue to backup, checksum, storage, filter steps as before
+
+If parsing partially fails (one parser errors out), the workflow **does not abort** — it logs a warning and continues. Parsing failure is non-fatal because the raw output is still there. If command execution itself fails, that's fatal and triggers `_abort()`.
+
+---
+
+## The folder structure after changes
+```
+├── main.py                          # run_prechecks() wires everything together
+├── prechecks.py                     # PreCheck class — connect, backup, checksum etc.
+├── lib/
+│   └── utilities.py                 # GlobalConfig restructured, execute_command() updated
+├── parsers/
+│   ├── parser_wrapper.py            # NEW — registry + run_parsers()
+│   └── junos/
+│       └── junos_mx204.py           # existing parsers — unchanged, just now actually called
+├── models/
+│   └── junos/
+│       └── junos_mx80.py            # existing dataclasses — unchanged
+└── inputs/
+    ├── deviceDetails.yaml
+    └── show_cmd_list.yaml
+
+The before vs after in one line each
+Before: Run commands → dump raw text into a flat dict → parsers exist but are never called → no structured data available.
+After: Run commands → store each as {command, output, json_output} → wrapper automatically calls the right parser for each command → structured JSON lives alongside raw output in the same object → adding new parsers needs one line in one file.
+=========================================================================================
+START
+   ↓
+Load Device Details (deviceDetails.yaml)
+   ↓
+Load Show Commands (show_cmd_list.yaml)
+   ↓
+execute_command()
+   ↓
+Store results in:
+[
+  {
+    command,
+    output,
+    json_output
+  }
+]
+   ↓
+run_parsers("pre")
+   ↓
+Match (vendor_model, command)
+   ↓
+Call Registered Parser
+   ↓
+Store structured JSON in json_output
+   ↓
+Continue other Prechecks (backup, checksum, storage, etc.)
+   ↓
+END
+1️⃣ main.py → Orchestrator Layer
+Function: run_prechecks()
+Responsibility:
+
+Controls the entire pre-check workflow.
+
+Step-by-step:
+
+Loads device information from YAML.
+
+Loads command list from YAML.
+
+Calls execute_command() → executes CLI commands.
+
+Calls run_parsers("pre") → parses command outputs.
+
+Continues other upgrade validations.
+
+Why This Is Clean:
+
+Main function does orchestration only.
+
+No parsing logic here.
+
+No command execution logic here.
+
+Just flow control.
+
+✔ Separation of concerns achieved.
+
+
+2️⃣ utilities.py → Command Execution Layer
+Global Structure Change
+
+Before:
+
+pre_output = {
+  "command": { "device": "...", "output": "raw text" }
+}
+
+
+After:
+
+precheck_results = [
+  {
+    "command": "...",
+    "output": "...raw CLI...",
+    "json_output": {}
+  }
+]
+
+Function: execute_command()
+Responsibility:
+
+SSH into device
+
+Run commands
+
+Collect raw CLI output
+
+Store structured entries
+
+Flow:
+Reset precheck_results = []
+For each command:
+    Try:
+        Send command via Netmiko
+        Capture output
+    Except:
+        Store error
+    Append structured entry to list
+Return list
+
+Why This Is Better:
+
+✔ Raw output and parsed output travel together
+✔ No cross-dictionary lookup
+✔ Easier debugging
+✔ Ready for future comparisons (pre vs post)
+
+3️⃣ parsers/parser_wrapper.py → Parsing Layer
+
+This is the bridge layer between raw output and structured data.
+
+🔹 PARSER_REGISTRY
+PARSER_REGISTRY = {
+    ("juniper_mx204", "show arp no-resolve | no-more"): parse_show_arp_no_resolve,
+    ("juniper_mx204", "show vrrp summary | no-more"): parse_show_vrrp_summary,
+}
+
+Purpose:
+
+Central mapping of:
+
+(vendor_model, command) → parser_function
+
+Why This Is Powerful:
+
+Adding new parser = 1 line change
+
+No modification in main.py
+
+No modification in utilities.py
+
+Central control point
+
+🔹 Function: run_parsers(check_type)
+Responsibility:
+
+Take "pre" or "post"
+
+Select correct results list
+
+Loop through each entry
+
+Match parser from registry
+
+Call parser
+
+Store JSON in json_output
+
+Flow:
+Select results list (precheck_results)
+
+For each entry:
+    If output empty → skip
+    Lookup (vendor_model, command)
+    If parser exists:
+        Try:
+            parsed_data = parser(output)
+            entry["json_output"] = parsed_data
+        Except:
+            Store error in json_output
+    Else:
+        Log warning
+
+Design Characteristics:
+
+✔ Non-fatal parsing
+✔ Raw output always preserved
+✔ Parser failure does not stop workflow
+✔ Clean error isolation
+
+📁 Final Folder Architecture (LLD View)
+main.py
+  └── run_prechecks()
+        ├── execute_command()
+        ├── run_parsers("pre")
+        └── other validation steps
+
+lib/utilities.py
+  ├── GlobalConfig
+  └── execute_command()
+
+parsers/
+  ├── parser_wrapper.py   ← Registry + parsing controller
+  └── junos/
+        └── junos_mx204.py ← Actual parser implementations
+
+models/
+  └── Dataclasses (schema definitions)
+
+inputs/
+  ├── deviceDetails.yaml
+  └── show_cmd_list.yaml
+
+🔄 Before vs After (Simple View)
+❌ Before
+Run commands
+   ↓
+Store raw text in dict
+   ↓
+Parsers exist but unused
+   ↓
+No structured data
+
+✅ After
+Run commands
+   ↓
+Store {command, output, json_output}
+   ↓
+Auto-call parser from registry
+   ↓
+Structured JSON stored alongside raw output
+   ↓
+Ready for comparison (pre vs post)
+
+🎯 Design Improvements Achieved
+Improvement	Explanation
+Structured Storage	Every command has consistent format
+Parser Integration	Parsers now part of workflow
+Central Registry	One place to map command → parser
+Fault Isolation	Parser failure doesn't break workflow
+Extensibility	Add parser with 1 line change
+Clean Architecture	Execution, parsing, orchestration separated
+🧠 Architectural Pattern Used
+
+This design loosely follows:
+
+Orchestrator Pattern → run_prechecks()
+
+Registry Pattern → PARSER_REGISTRY
+
+Pipeline Pattern → Execute → Parse → Validate
+
+Separation of Concerns
+
+🚀 Final One-Line Summary (LLD Perspective)
+
+You converted a raw text collection system into a structured, extensible, parser-driven automation pipeline with clear separation between execution, parsing, and orchestration layers.
+
+
+
+
+
+Task: Create a test_main.py for validating parser functionality without actual network connections
+
+Objective: Build a test script that simulates the entire parsing workflow using pre-collected command outputs instead of live device connections.
+
+Requirements:
+
+Setup and Initialization
+
+Import all necessary modules from the main codebase
+
+Set up logging configuration (same as production)
+
+Load device details from existing source (same as main script)
+
+Connection Override
+
+Mock/skip all actual device connections
+
+Instead of sending commands, use static strings containing the pre-collected outputs:
+
+ARP command output (from parse_arp_output.txt)
+
+VRRP summary output (from vrrp_summary_output.txt)
+
+Store these static outputs in the global config structure as if they came from the device
+
+Parser Execution
+
+Call the wrapper function run_parsers("pre")
+
+This should process both static outputs through their respective parsers
+
+Store the parsed results in the global config
+
+Key Features
+
+Should abort/exit if any prechecks fail (same as production)
+
+Log all steps for debugging
+
+No actual network connections should be attempted
+
+Validate that parsers work correctly with the sample data
+
+Expected Behavior
+
+Script runs without attempting any SSH/Telnet connections
+
+Both parsers process the static outputs
+
+Global config contains parsed data from both sources
+
+All logging works as expected
+
+Sample Structure:
+
+python
+# Import statements
+# Logger setup
+# Load device details
+# Override connection logic with static outputs
+# Store outputs in global config
+# Run run_parsers("pre")
+# Optional: Print/verify results
+Deliverable: A complete test_main.py file that can be run standalone to validate parser functionality using the provided sample outputs.
+
+
+
+Architecture & Structure
+
+For the Cisco wrapper, should it live at parsers/cisco_wrapper.py (mirroring parsers/junos_wrapper.py)?
+Should the Cisco parser files go in parsers/cisco/cisco_ncs5501.py and parsers/cisco/cisco_asr9910.py (these already exist — should I add to them or are they empty)?
+For the PARSER_REGISTRY in junos_wrapper.py, you want the key to change from ("juniper_mx204", cmd) to ("juniper", "mx204", cmd) — or just restructure to ("juniper", "mx204") as a nested dict? What exact key format do you want?
+
+Cisco Parsers
+4. For cisco_ncs5501, which commands from the mock outputs should I write parsers for? From mock_outputs.py I see show version and show isis adjacency — are these the only two, or do you want me to cover more from the commented list?
+5. Same for cisco_asr9910 — no mock outputs exist for it yet. Should I add mock outputs to mock_outputs.py for it, or skip parsers for ASR9K for now?
+6. The temp.py already has show_version() and show_isis_adjacency() for Cisco — should I reuse/move this code into the Cisco parser files?
+Mock Connections
+7. Currently MockConnection lives in lib/utilities.py. Should it stay there, or move it to a dedicated lib/mock.py?
+8. In prechecks.py connect(), should I add a flag like test_mode=False to the PreCheck.__init__ or connect() method to switch between real and mock? Or read from an env variable / config?
+9. Same for postchecks.py — same flag approach?
+10. In test_main.py, you said it should be "just the orchestrator" — should it still set global_config fields (vendor, model, timestamp) or should that move into PreCheck.__init__?
+Wrapper Dispatch Logic
+11. Where should the vendor dispatch logic live — in test_main.py, or in a new central function (e.g., run_parsers() in a top-level parsers/__init__.py)?
+12. Should prechecks.py call run_parsers("pre") internally, or should test_main.py still call it explicitly after prechecks runs?
+13. Same for postchecks.py — should it call run_parsers("post") internally?
+main.py (the real one)
+14. Should main.py also be updated to use the same vendor dispatch, or are we only touching test_main.py for now?
+PostChecks
+15. postShowCommands in postchecks.py currently references self.vendor and self.device_type but these aren't set in PostCheck.__init__ — should I fix these bugs too as part of this work?
+16. For postchecks mock connection, should it use the same device_key as prechecks (i.e., juniper_mx204 or cisco_ncs5501)?
+MOCK_OUTPUTS
+17. The current MOCK_OUTPUTS keys are "juniper_mx204" and "cisco_ncs5501" — should these stay as-is (since that's what execute_command uses as device_name)?
+18. Should I add mock outputs for cisco_asr9910 even if we're not writing parsers for it yet?
+Workflow & Reporting
+19. Should log_task / workflow_tracker calls be added to the new Cisco parser flow, or leave that for later?
+20. workflow_report_generator.py — should I touch it at all, or leave it completely alone?
+
+
+
+
+
+
+
+
+Here's the checklist based on what show_cmd_list.yaml has — 2 commands per vendor:
+
+Juniper (show arp no-resolve | no-more)
+
+ entries list is present and not empty
+ each entry has mac_address, ip_address, interface, flags
+ total_entries matches the count in entries list
+ pre vs post total_entries are different (proving different mock data injected)
+
+Juniper (show lldp neighbors | no-more)
+
+ entries list is present and not empty
+ each entry has local_interface, parent_interface, chassis_id, port_info, system_name
+ pre vs post entries count are different
+
+Cisco (show route summary)
+
+ result is a list, not a dict
+ contains rows for: local, local LSPV, local PM, connected, static, isis COLT, te-client, bgp 8220, dagr, Total
+ each row has routeSource, routes, backup, deleted, memory
+ pre vs post Total routes are different
+ cisco_asr9910 and cisco_ncs5501 pre values are different from each other (proving device-specific mock injection)
+
+Cisco (show isis adjacency)
+
+ result is a list with one dict
+ that dict has totalAdjacency, ISISColtAdjacencyLevel, adjacencies
+ adjacencies list is not empty
+ each adjacency has systemID, interface, SNPA, state, hold, changed, NSF, ipv4BFD, ipv6BFD
+ totalAdjacency and ISISColtAdjacencyLevel are currently 0 — known bug, regex fix pending
+
+Structure checks (apply to all devices)
+
+ top level keys are cisco_asr9910, cisco_ncs5501, juniper_mx204
+ each device has both pre and post keys
+ each phase has exactly 2 command entries
+ no json_output is an empty dict {}
+ no json_output contains an error key
+ output field is never an empty string

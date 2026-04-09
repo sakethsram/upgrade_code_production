@@ -1,0 +1,396 @@
+2026-04-08_21:10:03 - INFO - [THREAD-133684770203328] [10_80_109_249_cisco_ncs5501] Pipeline started at 2026-04-08 21:10:03.413891
+2026-04-08_21:10:03 - INFO - [10_80_109_249_cisco_ncs5501] Connecting to 10.80.109.249
+2026-04-08_21:10:03 - INFO - Connecting to 10.80.109.249 using Netmiko...
+2026-04-08_21:10:04 - INFO - Login successful to 10.80.109.249
+2026-04-08_21:10:04 - INFO - [10_80_109_249_cisco_ncs5501] Connected successfully to 10.80.109.249
+2026-04-08_21:10:04 - INFO - [10_80_109_249_cisco_ncs5501] Connected to 10.80.109.249
+2026-04-08_21:10:04 - INFO - [10_80_109_249_cisco_ncs5501] ── PHASE 1 PRE-CHECKS starting
+2026-04-08_21:10:04 - INFO - models: [{'asr9k': ['asr9901', 'asr9006']}, {'ncs': ['ncs5501']}, {'single_re_junos': ['mx204']}, {'double_re_junos': ['mx240', 'mx480']}] and type: <class 'list'>
+2026-04-08_21:10:04 - INFO - [THREAD-133684770203328] [10_80_109_249_cisco_ncs5501] Prechecks started at 2026-04-08 21:10:04.445738
+2026-04-08_21:10:04 - INFO - [10_80_109_249_cisco_ncs5501] : Validating the device input file
+2026-04-08_21:10:04 - INFO - [10_80_109_249_cisco_ncs5501] : Dictionary input validated successfully 
+2026-04-08_21:10:04 - INFO - [10_80_109_249_cisco_ncs5501] Executing show commands
+2026-04-08_21:10:04 - INFO - [load_commands] Loaded 21 commands for 'cisco_ncs5501'
+2026-04-08_21:10:04 - INFO - [10_80_109_249_cisco_ncs5501] collect_outputs — 21 command(s), check_type=pre
+2026-04-08_21:10:04 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show version'
+2026-04-08_21:10:04 - INFO - [10_80_109_249_cisco_ncs5501] 'show version' collected=True (449 chars)
+2026-04-08_21:10:04 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show inventory'
+2026-04-08_21:10:05 - INFO - [10_80_109_249_cisco_ncs5501] 'show inventory' collected=True (1376 chars)
+2026-04-08_21:10:05 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show platform'
+2026-04-08_21:10:06 - INFO - [10_80_109_249_cisco_ncs5501] 'show platform' collected=True (593 chars)
+2026-04-08_21:10:06 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show install active summary'
+2026-04-08_21:10:07 - INFO - [10_80_109_249_cisco_ncs5501] 'show install active summary' collected=True (537 chars)
+2026-04-08_21:10:07 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show install committed summary'
+2026-04-08_21:10:09 - INFO - [10_80_109_249_cisco_ncs5501] 'show install committed summary' collected=True (540 chars)
+2026-04-08_21:10:09 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show media'
+2026-04-08_21:10:09 - INFO - [10_80_109_249_cisco_ncs5501] 'show media' collected=True (620 chars)
+2026-04-08_21:10:09 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show hw-module fpd'
+2026-04-08_21:10:10 - INFO - [10_80_109_249_cisco_ncs5501] 'show hw-module fpd' collected=True (767 chars)
+2026-04-08_21:10:10 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show route summary'
+2026-04-08_21:10:11 - INFO - [10_80_109_249_cisco_ncs5501] 'show route summary' collected=True (828 chars)
+2026-04-08_21:10:11 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show watchdog memory-state location all'
+2026-04-08_21:10:11 - INFO - [10_80_109_249_cisco_ncs5501] 'show watchdog memory-state location all' collected=True (303 chars)
+2026-04-08_21:10:11 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show controllers npu resources all location all'
+2026-04-08_21:10:12 - INFO - [10_80_109_249_cisco_ncs5501] 'show controllers npu resources all location all' collected=True (17539 chars)
+2026-04-08_21:10:12 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show ipv4 vrf all interface brief'
+2026-04-08_21:10:12 - INFO - [10_80_109_249_cisco_ncs5501] 'show ipv4 vrf all interface brief' collected=True (4806 chars)
+2026-04-08_21:10:12 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show bgp l2vpn evpn summary'
+2026-04-08_21:10:13 - INFO - [10_80_109_249_cisco_ncs5501] 'show bgp l2vpn evpn summary' collected=True (63 chars)
+2026-04-08_21:10:13 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show isis adjacency'
+2026-04-08_21:10:13 - INFO - [10_80_109_249_cisco_ncs5501] 'show isis adjacency' collected=True (768 chars)
+2026-04-08_21:10:13 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show mpls forwarding summary'
+2026-04-08_21:10:14 - INFO - [10_80_109_249_cisco_ncs5501] 'show mpls forwarding summary' collected=True (630 chars)
+2026-04-08_21:10:14 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show bfd session detail'
+2026-04-08_21:10:14 - INFO - [10_80_109_249_cisco_ncs5501] 'show bfd session detail' collected=True (27 chars)
+2026-04-08_21:10:14 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show l2vpn xconnect summary'
+2026-04-08_21:10:15 - INFO - [10_80_109_249_cisco_ncs5501] 'show l2vpn xconnect summary' collected=True (662 chars)
+2026-04-08_21:10:15 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show lldp neighbors'
+2026-04-08_21:10:16 - INFO - [10_80_109_249_cisco_ncs5501] 'show lldp neighbors' collected=True (652 chars)
+2026-04-08_21:10:16 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show interface description'
+2026-04-08_21:10:16 - INFO - [10_80_109_249_cisco_ncs5501] 'show interface description' collected=True (2941 chars)
+2026-04-08_21:10:16 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show proc cpu'
+2026-04-08_21:10:17 - INFO - [10_80_109_249_cisco_ncs5501] 'show proc cpu' collected=True (15033 chars)
+2026-04-08_21:10:17 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'sh l2vpn flexible-xconnect-service'
+2026-04-08_21:10:17 - INFO - [10_80_109_249_cisco_ncs5501] 'sh l2vpn flexible-xconnect-service' collected=True (27 chars)
+2026-04-08_21:10:17 - INFO - [10_80_109_249_cisco_ncs5501] Sending: 'show  bgp  l2vpn  evpn advertised'
+2026-04-08_21:10:18 - INFO - [10_80_109_249_cisco_ncs5501] 'show  bgp  l2vpn  evpn advertised' collected=True (63 chars)
+2026-04-08_21:10:18 - INFO - [10_80_109_249_cisco_ncs5501] collect_outputs done — 21 entries stored
+2026-04-08_21:10:18 - ERROR - [10_80_109_249_cisco_ncs5501] parser failed for 'show version':
+NoneType: None
+
+2026-04-08_21:10:18 - INFO - [10_80_109_249_cisco_ncs5501] execute_show_commands OK
+2026-04-08_21:10:18 - INFO - [10_80_109_249_cisco_ncs5501] get_show_version — phase=pre, sending 'show version'
+2026-04-08_21:10:19 - INFO - [10_80_109_249_cisco_ncs5501] [pre] show_version parsed — hostname=  model=  version=7.11.2
+2026-04-08_21:10:19 - INFO - [10.80.109.249] preBackup — vendor: cisco
+2026-04-08_21:10:25 - INFO - [10_80_109_249_cisco_ncs5501] backup config OK
+2026-04-08_21:10:25 - INFO - Starting Cisco FPD version verification...
+2026-04-08_21:10:25 - INFO - Up-to-date → 0/RP0 MB-MIFPGA
+2026-04-08_21:10:25 - INFO - Up-to-date → 0/RP0 Bootloader
+2026-04-08_21:10:25 - INFO - Up-to-date → 0/RP0 CPU-IOFPGA
+2026-04-08_21:10:25 - INFO - Up-to-date → 0/RP0 MB-IOFPGA
+2026-04-08_21:10:25 - INFO - All FPDs are up-to-date
+2026-04-08_21:10:25 - INFO - 10.80.109.249: Checking Auto FPD (Cisco XR)
+2026-04-08_21:10:26 - INFO - 10.80.109.249: Auto FPD already enabled in XR mode
+2026-04-08_21:10:26 - INFO - [10_80_109_249_cisco_ncs5501] Auto FPD enabled: OK
+2026-04-08_21:10:26 - INFO - [THREAD-133684770203328] [10_80_109_249_cisco_ncs5501] All pre-checks passed
+2026-04-08_21:10:26 - INFO - [10_80_109_249_cisco_ncs5501] ── PHASE 1 COMPLETE — starting Phase 2
+2026-04-08_21:10:26 - INFO - [THREAD-133684770203328] [10_80_109_249_cisco_ncs5501] Upgrade started at 2026-04-08 21:10:26.243524
+2026-04-08_21:10:26 - INFO - [10_80_109_249_cisco_ncs5501] run_upgrade — host=10.80.109.249, vendor=cisco, model=ncs5501, curr_os=7.11.2, total_hops=3
+2026-04-08_21:10:26 - DEBUG - [10_80_109_249_cisco_ncs5501] Rollback chain seeded — image=ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso, os=7.11.2
+2026-04-08_21:10:26 - INFO - Intermediate release is there. Checking the intermediate image details has been provided or not
+2026-04-08_21:10:26 - INFO - [10_80_109_249_cisco_ncs5501]: Intermediate image details are provided. 
+2026-04-08_21:10:26 - INFO - [10_80_109_249_cisco_ncs5501] ── Hop [0/2] ── image=ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso, expected_os=7.7.2
+2026-04-08_21:10:26 - INFO - [10_80_109_249_cisco_ncs5501] Hop [0] — image=ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso, expected_os=7.7.2
+2026-04-08_21:10:26 - INFO - [cisco_ncs5501] checkStorage — vendor: cisco
+2026-04-08_21:10:26 - INFO - [cisco_ncs5501] checkStorage — 3.6 G available
+2026-04-08_21:10:26 - INFO - [cisco_ncs5501] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_21:10:26 - INFO - [10_80_109_249_cisco_ncs5501] storage OK
+2026-04-08_21:10:26 - INFO - 10.80.109.249: Modifying LPTS policer
+2026-04-08_21:10:31 - INFO - LPTS modified successfully
+2026-04-08_21:10:31 - INFO - [10_80_109_249_cisco_ncs5501] Change LPTS Rate OK
+2026-04-08_21:10:31 - INFO - [10.80.109.249] transferImage — ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso, vendor: cisco
+2026-04-08_21:10:31 - INFO - [10.80.109.249] scpFile — colt@10.80.109.133:/home/colt/backup/gimages/ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso → /misc/disk1/
+2026-04-08_21:11:51 - INFO - [10.80.109.249] scpFile — transfer complete
+2026-04-08_21:11:51 - INFO - [10.80.109.249] transferImage — ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso transferred to /misc/disk1/
+2026-04-08_21:11:51 - INFO - [10_80_109_249_cisco_ncs5501]  transfer image OK
+2026-04-08_21:11:51 - INFO - [10.80.109.249] verifyChecksum — image: ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso, vendor: cisco
+2026-04-08_21:11:51 - INFO - 10.80.109.249: Executing 'show md5 file /harddisk:/ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso'
+2026-04-08_21:11:59 - INFO - [10.80.109.249] verifyChecksum — match: OK
+2026-04-08_21:11:59 - INFO - [10_80_109_249_cisco_ncs5501]  [0] checksum OK — ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso
+2026-04-08_21:11:59 - INFO - [cisco_ncs5501] checkStorage — vendor: cisco
+2026-04-08_21:11:59 - INFO - [cisco_ncs5501] checkStorage — 3.4 G available
+2026-04-08_21:11:59 - INFO - [cisco_ncs5501] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_21:11:59 - INFO - [10_80_109_249_cisco_ncs5501] storage OK
+2026-04-08_21:12:01 - INFO - [10_80_109_249_cisco_ncs5501]: ISIS overload bit set
+2026-04-08_21:12:01 - INFO - [10_80_109_249_cisco_ncs5501]  Overload bit Set OK
+2026-04-08_21:12:01 - INFO - [10_80_109_249_cisco_ncs5501]  Committed packages are provide for both XR and admin
+2026-04-08_21:12:01 - INFO - [10_80_109_249_cisco_ncs5501] Starting Image Upgrade 
+2026-04-08_21:12:01 - INFO - [10_80_109_249_cisco_ncs5501]:: [imageUpgrade] Starting — hop_index=0, target_image=ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso, expected_os=7.7.2
+2026-04-08_21:12:01 - INFO - [10_80_109_249_cisco_ncs5501]:: current version -> 7.11.2
+2026-04-08_21:12:01 - DEBUG - [10_80_109_249_cisco_ncs5501]:: [imageUpgrade] Version check — curr=7.11.2, expected=7.7.2
+2026-04-08_21:12:01 - INFO - [10_80_109_249_cisco_ncs5501]:: Installing device image: ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso
+2026-04-08_21:34:40 - INFO - upgrade: 
+Wed Apr  8 15:49:35.465 UTC
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-04-08 15:49:47 Install operation 386 started by admin:
+2026-04-08 15:49:47   install replace source /misc/app_host/ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso noprompt force commit
+2026-04-08 15:49:52 No install operation in progress at this moment
+2026-04-08 15:49:52 Checking system is ready for install operation
+2026-04-08 15:49:52 'install replace' in progress
+2026-04-08 15:49:52 Install replace with commit option is triggered
+2026-04-08 15:49:52 Install replace with force option is triggered
+2026-04-08 15:49:52 Label = NCS5501_772
+2026-04-08 15:49:52 ISO ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso in input package list. Going to upgrade the system to version 7.7.2.
+********************************************************************************
+                                   WARNING !!!                                  
+    With 'force' option:                                                        
+i.  Auto-recovery is enabled. In the scenario of auto-recovery of any node(s)
+    debuggability data will be lost if the node(s) are re-imaged/reloaded for 
+    auto-recovery
+ii. Upgrade matrix check is not enforced.
+    In the scenario of an unsupported upgrade/downgrade, the install operation
+    may result in errors.
+********************************************************************************
+
+
+WARNING: Commit option is used. This will auto commit the software after the install activation completes successfully.
+However, if any login failures are seen after the reload, rollback would be possible with USB/PXE boot or appropriate workaround.
+
+2026-04-08 15:50:03 Scheme : localdisk
+2026-04-08 15:50:03 Hostname : localhost
+2026-04-08 15:50:03 Username : None
+2026-04-08 15:50:03 SourceDir : /misc/app_host
+2026-04-08 15:50:03 Collecting software state..
+2026-04-08 15:50:04 Getting platform
+2026-04-08 15:50:04 Getting supported architecture
+2026-04-08 15:50:04 Getting active packages from XR
+2026-04-08 15:50:05 Getting inactive packages from XR
+2026-04-08 15:50:14 Getting list of RPMs in local repo
+2026-04-08 15:50:15 Getting list of provides of all active packages
+2026-04-08 15:50:15 Getting provides of each rpm in repo
+2026-04-08 15:50:15 Getting requires of each rpm in repo
+2026-04-08 15:50:15 Fetching .... ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso
+2026-04-08 15:50:47 Adding packages 
+	ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso
+2026-04-08 15:50:47 Allocated operation ID 387 for install add
+2026-04-08 15:51:28 Activating ncs5500-goldenk9-x-7.7.2-NCS5501_772
+2026-04-08 15:51:31 Optimized list to prepare after sanitizing input list for superseded packages:
+	ncs5500-goldenk9-x-7.7.2-NCS5501_772
+2026-04-08 15:51:31 Package list:
+2026-04-08 15:51:31 	ncs5500-goldenk9-x-7.7.2-NCS5501_772
+2026-04-08 15:51:31 The operation is past point-of-no-return and can no longer be stopped!
+2026-04-08 15:51:31 Action 1: install prepare action started
+2026-04-08 15:51:31 Triggering prepare operation.
+This may take a while...
+2026-04-08 15:56:50 Action 1: install prepare action completed successfully
+2026-04-08 15:56:52 Prepare operation completed. Trigger activate.
+This may take a while...
+2026-04-08 15:56:52 Prepare completed. Operation ID 386 will be taken up for activate operation
+2026-04-08 15:56:52 Autorecover marker file created
+2026-04-08 15:56:54 Activate operation ID is: 386 for 'install source' ID:386
+2026-04-08 15:56:56 Install operation 386 started:
+  install activate replace noprompt synchronous 
+2026-04-08 15:56:58 Action 1: install activate action started
+2026-04-08 15:56:58 The software will be activated with reload upgrade
+2026-04-08 15:57:00 Following nodes are available for System Upgrade activate:
+2026-04-08 15:57:00  0/RP0 
+2026-04-08 15:59:26 Action 1: install activate action completed successfully
+2026-04-08 15:59:42 Install operation 386 finished successfully
+2026-04-08 15:59:43 Ending operation 386
+
+2026-04-08_21:34:40 - INFO - [10_80_109_249_cisco_ncs5501] : [imageUpgrade] Install completed, initiating reboot
+2026-04-08_21:34:40 - INFO - [10_80_109_249_cisco_ncs5501]:: Waiting for reboot after upgrade
+2026-04-08_21:34:40 - INFO - [10_80_109_249_cisco_ncs5501]:: Device rebooted, waiting for SSH to come back
+2026-04-08_21:34:40 - INFO - [10_80_109_249_cisco_ncs5501]:: [reconnect_and_verify] Starting — hop_index=0, max_retries=6, wait_time=30s
+2026-04-08_21:34:40 - INFO - [10_80_109_249_cisco_ncs5501]:: Starting ping check after reboot
+2026-04-08_21:34:40 - DEBUG - 10.80.109.249: [pingDevice] count=2, packet_size=5, timeout=2s
+2026-04-08_21:34:40 - INFO - 10.80.109.249: Waiting for device via continuous ping...
+2026-04-08_21:34:41 - INFO - 10.80.109.249: Still waiting for ping...
+2026-04-08_21:34:41 - INFO - 10.80.109.249: [pingDevice] Host is reachable (rc=0)
+2026-04-08_21:34:41 - INFO - [10_80_109_249_cisco_ncs5501]:: Device is reachable after reboot
+2026-04-08_21:34:41 - INFO - Logout successful from 10.80.109.249
+2026-04-08_21:34:41 - INFO - [10_80_109_249_cisco_ncs5501] Disconnected from 10.80.109.249
+2026-04-08_21:34:41 - INFO - [10_80_109_249_cisco_ncs5501]:: Reconnect attempt 1/6
+2026-04-08_21:34:41 - INFO - [10_80_109_249_cisco_ncs5501]:: [connect] Connecting to device
+2026-04-08_21:34:41 - DEBUG - [10_80_109_249_cisco_ncs5501]:: [connect] device_type=cisco_xr, username=admin
+2026-04-08_21:34:41 - DEBUG - [10_80_109_249_cisco_ncs5501]:: [connect] Session log -> /home/colt/Documents/ncs_testing/cisco_testing/outputs/10_80_109_249_cisco_ncs5501_2026-04-08_session.txt
+2026-04-08_21:34:41 - INFO - [10_80_109_249_cisco_ncs5501]: Session log file exists -- /home/colt/Documents/ncs_testing/cisco_testing/outputs/10_80_109_249_cisco_ncs5501_2026-04-08_session.txt
+2026-04-08_21:34:42 - INFO - [10_80_109_249_cisco_ncs5501]:: [Upgrade.connect] Connected successfully
+2026-04-08_21:34:42 - INFO - [10_80_109_249_cisco_ncs5501]:: SSH ready, got version output
+2026-04-08_21:34:42 - INFO - [10_80_109_249_cisco_ncs5501]: running 'install commit' to commit the ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso packages
+2026-04-08_21:36:42 - INFO - [10_80_109_249_cisco_ncs5501]:: install commit output -> 
+Wed Apr  8 16:12:07.969 UTC
+2026-04-08 16:12:11 Install operation 390 started by admin:
+  install commit 
+2026-04-08 16:12:13 Install operation will continue in the background
+RP/0/RP0/CPU0:ar3.BLB#2026-04-08 16:12:35 Install operation 390 finished successfully
+
+2026-04-08_21:36:42 - INFO - The image is upgraded. Removing the file from /misc/app_host/
+2026-04-08_21:36:42 - INFO - [10_80_109_249_cisco_ncs5501]: Validating the device upgrade 
+2026-04-08_21:36:42 - INFO - [10_80_109_249_cisco_ncs5501]: Running 'show install active summary' in xr mode
+2026-04-08_21:36:43 - INFO - [10_80_109_249_cisco_ncs5501]: Running 'admin show install active summary' in admin mode
+2026-04-08_21:36:48 - INFO - admin: <re.Match object; span=(84, 97), match='version=7.7.2'>
+2026-04-08_21:36:48 - INFO - [10_80_109_249_cisco_ncs5501] version in XR mode: 7.7.2
+2026-04-08_21:36:48 - INFO - [10_80_109_249_cisco_ncs5501] version in ADMIN mode: 7.7.2
+2026-04-08_21:36:48 - INFO - [10_80_109_249_cisco_ncs5501]: Validating the device upgrade 
+2026-04-08_21:36:48 - INFO - [10_80_109_249_cisco_ncs5501]: Running 'show install committed summary' in xr mode
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-isis-2.1.0.0-r772 is committed
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-mgbl-3.0.0.0-r772 is committed
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-mcast-3.0.0.0-r772 is committed
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-li-1.0.0.0-r772 is committed
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-eigrp-1.0.0.0-r772 is committed
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-k9sec-3.1.0.0-r772 is committed
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-ospf-2.0.0.0-r772 is committed
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-mpls-2.1.0.0-r772 is committed
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-mpls-te-rsvp-3.1.0.0-r772 is committed
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-lictrl-1.0.0.0-r772 is committed
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501]: Packages are committed in XR mode
+2026-04-08_21:36:49 - INFO - [10_80_109_249_cisco_ncs5501]: Running 'admin show install committed summary' in admin mode
+2026-04-08_21:36:55 - INFO - [10_80_109_249_cisco_ncs5501] : admin ncs5500-sysadmin-7.7.2 is committed
+2026-04-08_21:36:55 - INFO - [10_80_109_249_cisco_ncs5501]: Packages are committed in Admin mode
+2026-04-08_21:36:55 - DEBUG - [10_80_109_249_cisco_ncs5501]:: [imageUpgrade] Version regex matched — new_version=7.7.2
+2026-04-08_21:36:55 - INFO - [10_80_109_249_cisco_ncs5501]:: Version information retrieved
+2026-04-08_21:36:55 - INFO - [10_80_109_249_cisco_ncs5501]:: New Version -> 7.7.2
+2026-04-08_21:36:55 - INFO - [10_80_109_249_cisco_ncs5501]:: Upgrade hop SUCCESS — 7.7.2
+2026-04-08_21:36:55 - INFO - [10_80_109_249_cisco_ncs5501] Hop [0] succeeded — rollback chain now 2 entries
+2026-04-08_21:36:55 - INFO - [10_80_109_249_cisco_ncs5501] ── Hop [1/2] ── image=ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso, expected_os=7.11.2
+2026-04-08_21:36:55 - INFO - [10_80_109_249_cisco_ncs5501] Hop [1] — image=ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso, expected_os=7.11.2
+2026-04-08_21:36:55 - INFO - [cisco_ncs5501] checkStorage — vendor: cisco
+2026-04-08_21:36:55 - INFO - [cisco_ncs5501] checkStorage — 5.3 G available
+2026-04-08_21:36:55 - INFO - [cisco_ncs5501] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_21:36:55 - INFO - [10_80_109_249_cisco_ncs5501] storage OK
+2026-04-08_21:36:55 - INFO - 10.80.109.249: Modifying LPTS policer
+2026-04-08_21:37:00 - INFO - LPTS modified successfully
+2026-04-08_21:37:00 - INFO - [10_80_109_249_cisco_ncs5501] Change LPTS Rate OK
+2026-04-08_21:37:00 - INFO - [10.80.109.249] transferImage — ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso, vendor: cisco
+2026-04-08_21:37:00 - INFO - [10.80.109.249] scpFile — colt@10.80.109.133:/home/colt/backup/gimages/ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso → /misc/disk1/
+2026-04-08_21:38:23 - INFO - [10.80.109.249] scpFile — transfer complete
+2026-04-08_21:38:23 - INFO - [10.80.109.249] transferImage — ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso transferred to /misc/disk1/
+2026-04-08_21:38:23 - INFO - [10_80_109_249_cisco_ncs5501]  transfer image OK
+2026-04-08_21:38:23 - INFO - [10.80.109.249] verifyChecksum — image: ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso, vendor: cisco
+2026-04-08_21:38:23 - INFO - 10.80.109.249: Executing 'show md5 file /harddisk:/ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso'
+2026-04-08_21:38:32 - INFO - [10.80.109.249] verifyChecksum — match: OK
+2026-04-08_21:38:32 - INFO - [10_80_109_249_cisco_ncs5501]  [1] checksum OK — ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
+2026-04-08_21:38:32 - INFO - [cisco_ncs5501] checkStorage — vendor: cisco
+2026-04-08_21:38:32 - INFO - [cisco_ncs5501] checkStorage — 3.2 G available
+2026-04-08_21:38:32 - INFO - [cisco_ncs5501] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_21:38:32 - INFO - [10_80_109_249_cisco_ncs5501] storage OK
+2026-04-08_21:38:33 - INFO - [10_80_109_249_cisco_ncs5501]: ISIS overload bit set
+2026-04-08_21:38:33 - INFO - [10_80_109_249_cisco_ncs5501]  Overload bit Set OK
+2026-04-08_21:38:33 - INFO - [10_80_109_249_cisco_ncs5501]  Committed packages are provide for both XR and admin
+2026-04-08_21:38:33 - INFO - [10_80_109_249_cisco_ncs5501] Starting Image Upgrade 
+2026-04-08_21:38:33 - INFO - [10_80_109_249_cisco_ncs5501]:: [imageUpgrade] Starting — hop_index=1, target_image=ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso, expected_os=7.11.2
+2026-04-08_21:38:33 - INFO - [10_80_109_249_cisco_ncs5501]:: current version -> 7.7.2
+2026-04-08_21:38:33 - DEBUG - [10_80_109_249_cisco_ncs5501]:: [imageUpgrade] Version check — curr=7.7.2, expected=7.11.2
+2026-04-08_21:38:33 - INFO - [10_80_109_249_cisco_ncs5501]:: Installing device image: ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
+2026-04-08_22:01:13 - INFO - upgrade: 
+Wed Apr  8 16:16:08.133 UTC
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-04-08 16:16:20 Install operation 391 started by admin:
+2026-04-08 16:16:20   install replace source /misc/app_host/ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso noprompt force commit
+2026-04-08 16:16:24 No install operation in progress at this moment
+2026-04-08 16:16:24 Checking system is ready for install operation
+2026-04-08 16:16:25 'install replace' in progress
+2026-04-08 16:16:25 Install replace with commit option is triggered
+2026-04-08 16:16:25 Install replace with force option is triggered
+2026-04-08 16:16:25 Label = NCS5501_7112
+2026-04-08 16:16:25 ISO ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso in input package list. Going to upgrade the system to version 7.11.2.
+********************************************************************************
+                                   WARNING !!!                                  
+    With 'force' option:                                                        
+i.  Auto-recovery is enabled. In the scenario of auto-recovery of any node(s)
+    debuggability data will be lost if the node(s) are re-imaged/reloaded for 
+    auto-recovery
+ii. Upgrade matrix check is not enforced.
+    In the scenario of an unsupported upgrade/downgrade, the install operation
+    may result in errors.
+********************************************************************************
+
+
+WARNING: Commit option is used. This will auto commit the software after the install activation completes successfully.
+However, if any login failures are seen after the reload, rollback would be possible with USB/PXE boot or appropriate workaround.
+
+2026-04-08 16:16:34 Scheme : localdisk
+2026-04-08 16:16:34 Hostname : localhost
+2026-04-08 16:16:34 Username : None
+2026-04-08 16:16:34 SourceDir : /misc/app_host
+2026-04-08 16:16:34 Collecting software state..
+2026-04-08 16:16:34 Getting platform
+2026-04-08 16:16:34 Getting supported architecture
+2026-04-08 16:16:34 Getting active packages from XR
+2026-04-08 16:16:35 Getting inactive packages from XR
+2026-04-08 16:16:41 Getting list of RPMs in local repo
+2026-04-08 16:16:42 Getting list of provides of all active packages
+2026-04-08 16:16:42 Getting provides of each rpm in repo
+2026-04-08 16:16:42 Getting requires of each rpm in repo
+2026-04-08 16:16:42 Fetching .... ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
+2026-04-08 16:17:20 Adding packages 
+	ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
+2026-04-08 16:17:20 Allocated operation ID 392 for install add
+2026-04-08 16:18:09 Activating ncs5500-goldenk9-x-7.11.2-NCS5501_7112
+2026-04-08 16:18:12 Optimized list to prepare after sanitizing input list for superseded packages:
+	ncs5500-goldenk9-x-7.11.2-NCS5501_7112
+2026-04-08 16:18:12 Package list:
+2026-04-08 16:18:12 	ncs5500-goldenk9-x-7.11.2-NCS5501_7112
+2026-04-08 16:18:12 The operation is past point-of-no-return and can no longer be stopped!
+2026-04-08 16:18:12 Action 1: install prepare action started
+2026-04-08 16:18:12 Triggering prepare operation.
+This may take a while...
+2026-04-08 16:23:03 Action 1: install prepare action completed successfully
+2026-04-08 16:23:05 Prepare operation completed. Trigger activate.
+This may take a while...
+2026-04-08 16:23:05 Prepare completed. Operation ID 391 will be taken up for activate operation
+2026-04-08 16:23:05 Autorecover marker file created
+2026-04-08 16:23:07 Activate operation ID is: 391 for 'install source' ID:391
+2026-04-08 16:23:09 Install operation 391 started:
+  install activate replace noprompt synchronous 
+2026-04-08 16:23:10 Action 1: install activate action started
+2026-04-08 16:23:11 The software will be activated with reload upgrade
+2026-04-08 16:23:13 Following nodes are available for System Upgrade activate:
+2026-04-08 16:23:13  0/RP0 
+2026-04-08 16:26:00 Action 1: install activate action completed successfully
+2026-04-08 16:26:17 Install operation 391 finished successfully
+2026-04-08 16:26:17 Ending operation 391
+
+2026-04-08_22:01:13 - INFO - [10_80_109_249_cisco_ncs5501] : [imageUpgrade] Install completed, initiating reboot
+2026-04-08_22:01:13 - INFO - [10_80_109_249_cisco_ncs5501]:: Waiting for reboot after upgrade
+2026-04-08_22:01:13 - INFO - [10_80_109_249_cisco_ncs5501]:: Device rebooted, waiting for SSH to come back
+2026-04-08_22:01:13 - INFO - [10_80_109_249_cisco_ncs5501]:: [reconnect_and_verify] Starting — hop_index=1, max_retries=6, wait_time=30s
+2026-04-08_22:01:13 - INFO - [10_80_109_249_cisco_ncs5501]:: Starting ping check after reboot
+2026-04-08_22:01:13 - DEBUG - 10.80.109.249: [pingDevice] count=2, packet_size=5, timeout=2s
+2026-04-08_22:01:13 - INFO - 10.80.109.249: Waiting for device via continuous ping...
+2026-04-08_22:01:14 - INFO - 10.80.109.249: Still waiting for ping...
+2026-04-08_22:01:14 - INFO - 10.80.109.249: [pingDevice] Host is reachable (rc=0)
+2026-04-08_22:01:14 - INFO - [10_80_109_249_cisco_ncs5501]:: Device is reachable after reboot
+2026-04-08_22:01:14 - INFO - Logout successful from 10.80.109.249
+2026-04-08_22:01:14 - INFO - [10_80_109_249_cisco_ncs5501] Disconnected from 10.80.109.249
+2026-04-08_22:01:14 - INFO - [10_80_109_249_cisco_ncs5501]:: Reconnect attempt 1/6
+2026-04-08_22:01:14 - INFO - [10_80_109_249_cisco_ncs5501]:: [connect] Connecting to device
+2026-04-08_22:01:14 - DEBUG - [10_80_109_249_cisco_ncs5501]:: [connect] device_type=cisco_xr, username=admin
+2026-04-08_22:01:14 - DEBUG - [10_80_109_249_cisco_ncs5501]:: [connect] Session log -> /home/colt/Documents/ncs_testing/cisco_testing/outputs/10_80_109_249_cisco_ncs5501_2026-04-08_session.txt
+2026-04-08_22:01:14 - INFO - [10_80_109_249_cisco_ncs5501]: Session log file exists -- /home/colt/Documents/ncs_testing/cisco_testing/outputs/10_80_109_249_cisco_ncs5501_2026-04-08_session.txt
+2026-04-08_22:01:15 - INFO - [10_80_109_249_cisco_ncs5501]:: [Upgrade.connect] Connected successfully
+2026-04-08_22:01:15 - INFO - [10_80_109_249_cisco_ncs5501]:: SSH ready, got version output
+2026-04-08_22:01:15 - INFO - [10_80_109_249_cisco_ncs5501]: running 'install commit' to commit the ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso packages
+2026-04-08_22:03:15 - INFO - [10_80_109_249_cisco_ncs5501]:: install commit output -> 
+Wed Apr  8 16:38:40.200 UTC
+2026-04-08 16:38:44 Install operation 395 started by admin:
+  install commit 
+2026-04-08 16:38:46 Install operation will continue in the background
+RP/0/RP0/CPU0:ar3.BLB#2026-04-08 16:39:09 Install operation 395 finished successfully
+
+2026-04-08_22:03:15 - INFO - The image is upgraded. Removing the file from /misc/app_host/
+2026-04-08_22:03:15 - INFO - [10_80_109_249_cisco_ncs5501]: Validating the device upgrade 
+2026-04-08_22:03:15 - INFO - [10_80_109_249_cisco_ncs5501]: Running 'show install active summary' in xr mode
+2026-04-08_22:03:17 - INFO - [10_80_109_249_cisco_ncs5501]: Running 'admin show install active summary' in admin mode
+2026-04-08_22:03:18 - INFO - admin: <re.Match object; span=(85, 99), match='version=7.11.2'>
+2026-04-08_22:03:18 - INFO - [10_80_109_249_cisco_ncs5501] version in XR mode: 7.11.2
+2026-04-08_22:03:18 - INFO - [10_80_109_249_cisco_ncs5501] version in ADMIN mode: 7.11.2
+2026-04-08_22:03:18 - INFO - [10_80_109_249_cisco_ncs5501]: Validating the device upgrade 
+2026-04-08_22:03:18 - INFO - [10_80_109_249_cisco_ncs5501]: Running 'show install committed summary' in xr mode
+2026-04-08_22:03:19 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-isis-1.0.0.0-r7112 is committed
+2026-04-08_22:03:19 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-k9sec-1.0.0.0-r7112 is committed
+2026-04-08_22:03:19 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-li-1.0.0.0-r7112 is committed
+2026-04-08_22:03:19 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-lictrl-1.0.0.0-r7112 is committed
+2026-04-08_22:03:19 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-mcast-1.0.0.0-r7112 is committed
+2026-04-08_22:03:19 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-mgbl-1.0.0.0-r7112 is committed
+2026-04-08_22:03:19 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-mpls-1.0.0.0-r7112 is committed
+2026-04-08_22:03:19 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-mpls-te-rsvp-1.0.0.0-r7112 is committed
+2026-04-08_22:03:19 - INFO - [10_80_109_249_cisco_ncs5501] : ncs5500-ospf-1.0.0.0-r7112 is committed
+2026-04-08_22:03:19 - INFO - [10_80_109_249_cisco_ncs5501]: Packages are committed in XR mode
+2026-04-08_22:03:19 - INFO - [10_80_109_249_cisco_ncs5501]: Running 'admin show install committed summary' in admin mode
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501] : admin ncs5500-sysadmin-7.11.2 is committed
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501]: Packages are committed in Admin mode
+2026-04-08_22:03:21 - DEBUG - [10_80_109_249_cisco_ncs5501]:: [imageUpgrade] Version regex matched — new_version=7.11.2
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501]:: Version information retrieved
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501]:: New Version -> 7.11.2
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501]:: Upgrade hop SUCCESS — 7.11.2
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501] Hop [1] succeeded — rollback chain now 3 entries
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501] All 3 upgrade hop(s) successful
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501] ── PHASE 2 COMPLETE — starting Phase 3
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501] ── PHASE 4 DIFF starting
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501] ── PHASE 4 COMPLETE — 21 command(s) with changes
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501] HTML report exported
+2026-04-08_22:03:21 - INFO - Logout successful from 10.80.109.249
+2026-04-08_22:03:21 - INFO - [10_80_109_249_cisco_ncs5501] Disconnected from 10.80.109.249
+2026-04-08_22:03:21 - INFO - [THREAD-133684770203328] [10_80_109_249_cisco_ncs5501] Pipeline finished at 2026-04-08 22:03:21.082865

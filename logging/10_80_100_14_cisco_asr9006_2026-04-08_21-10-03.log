@@ -1,0 +1,466 @@
+2026-04-08_21:10:03 - INFO - [THREAD-133684778596032] [10_80_100_14_cisco_asr9006] Pipeline started at 2026-04-08 21:10:03.410138
+2026-04-08_21:10:03 - INFO - [10_80_100_14_cisco_asr9006] Connecting to 10.80.100.14
+2026-04-08_21:10:03 - INFO - Connecting to 10.80.100.14 using Netmiko...
+2026-04-08_21:10:14 - INFO - Login successful to 10.80.100.14
+2026-04-08_21:10:14 - INFO - [10_80_100_14_cisco_asr9006] Connected successfully to 10.80.100.14
+2026-04-08_21:10:14 - INFO - [10_80_100_14_cisco_asr9006] Connected to 10.80.100.14
+2026-04-08_21:10:14 - INFO - [10_80_100_14_cisco_asr9006] ── PHASE 1 PRE-CHECKS starting
+2026-04-08_21:10:14 - INFO - models: [{'asr9k': ['asr9901', 'asr9006']}, {'ncs': ['ncs5501']}, {'single_re_junos': ['mx204']}, {'double_re_junos': ['mx240', 'mx480']}] and type: <class 'list'>
+2026-04-08_21:10:14 - INFO - [THREAD-133684778596032] [10_80_100_14_cisco_asr9006] Prechecks started at 2026-04-08 21:10:14.867667
+2026-04-08_21:10:14 - INFO - [10_80_100_14_cisco_asr9006] : Validating the device input file
+2026-04-08_21:10:14 - INFO - [10_80_100_14_cisco_asr9006] : Dictionary input validated successfully 
+2026-04-08_21:10:14 - INFO - [10_80_100_14_cisco_asr9006] Executing show commands
+2026-04-08_21:10:14 - INFO - [load_commands] Loaded 22 commands for 'cisco_asr9006'
+2026-04-08_21:10:14 - INFO - [10_80_100_14_cisco_asr9006] collect_outputs — 22 command(s), check_type=pre
+2026-04-08_21:10:14 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show install active summary'
+2026-04-08_21:10:16 - INFO - [10_80_100_14_cisco_asr9006] 'show install active summary' collected=True (518 chars)
+2026-04-08_21:10:16 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show isis adjacency'
+2026-04-08_21:10:17 - INFO - [10_80_100_14_cisco_asr9006] 'show isis adjacency' collected=True (1257 chars)
+2026-04-08_21:10:17 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show bfd session'
+2026-04-08_21:10:18 - INFO - [10_80_100_14_cisco_asr9006] 'show bfd session' collected=True (1045 chars)
+2026-04-08_21:10:18 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show route summary'
+2026-04-08_21:10:18 - INFO - [10_80_100_14_cisco_asr9006] 'show route summary' collected=True (1126 chars)
+2026-04-08_21:10:18 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show bgp all all summary'
+2026-04-08_21:10:19 - INFO - [10_80_100_14_cisco_asr9006] 'show bgp all all summary' collected=True (14375 chars)
+2026-04-08_21:10:19 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show bgp vrf all summary'
+2026-04-08_21:10:28 - INFO - [10_80_100_14_cisco_asr9006] 'show bgp vrf all summary' collected=True (652765 chars)
+2026-04-08_21:10:28 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show ipv4 vrf all interface brief'
+2026-04-08_21:10:29 - INFO - [10_80_100_14_cisco_asr9006] 'show ipv4 vrf all interface brief' collected=True (98082 chars)
+2026-04-08_21:10:29 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show mpls ldp neighbor'
+2026-04-08_21:10:30 - INFO - [10_80_100_14_cisco_asr9006] 'show mpls ldp neighbor' collected=True (810 chars)
+2026-04-08_21:10:30 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show pim neighbor'
+2026-04-08_21:10:30 - INFO - [10_80_100_14_cisco_asr9006] 'show pim neighbor' collected=True (1011 chars)
+2026-04-08_21:10:30 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show pfm location all'
+2026-04-08_21:10:31 - INFO - [10_80_100_14_cisco_asr9006] 'show pfm location all' collected=True (2179 chars)
+2026-04-08_21:10:31 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show processes cpu'
+2026-04-08_21:10:32 - INFO - [10_80_100_14_cisco_asr9006] 'show processes cpu' collected=True (20613 chars)
+2026-04-08_21:10:32 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show watchdog memory-state location all'
+2026-04-08_21:10:32 - INFO - [10_80_100_14_cisco_asr9006] 'show watchdog memory-state location all' collected=True (556 chars)
+2026-04-08_21:10:32 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show redundancy'
+2026-04-08_21:10:33 - INFO - [10_80_100_14_cisco_asr9006] 'show redundancy' collected=True (891 chars)
+2026-04-08_21:10:33 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show interface description'
+2026-04-08_21:10:35 - INFO - [10_80_100_14_cisco_asr9006] 'show interface description' collected=True (51358 chars)
+2026-04-08_21:10:35 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show filesystem'
+2026-04-08_21:10:36 - INFO - [10_80_100_14_cisco_asr9006] 'show filesystem' collected=True (518 chars)
+2026-04-08_21:10:36 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show msdp peer'
+2026-04-08_21:10:36 - INFO - [10_80_100_14_cisco_asr9006] 'show msdp peer' collected=True (6430 chars)
+2026-04-08_21:10:36 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show l2vpn xconnect brief'
+2026-04-08_21:10:37 - INFO - [10_80_100_14_cisco_asr9006] 'show l2vpn xconnect brief' collected=True (697 chars)
+2026-04-08_21:10:37 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show hw-module fpd'
+2026-04-08_21:10:38 - INFO - [10_80_100_14_cisco_asr9006] 'show hw-module fpd' collected=True (5982 chars)
+2026-04-08_21:10:38 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show platform'
+2026-04-08_21:10:38 - INFO - [10_80_100_14_cisco_asr9006] 'show platform' collected=True (639 chars)
+2026-04-08_21:10:38 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show media'
+2026-04-08_21:10:39 - INFO - [10_80_100_14_cisco_asr9006] 'show media' collected=True (730 chars)
+2026-04-08_21:10:39 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'sh version'
+2026-04-08_21:10:39 - INFO - [10_80_100_14_cisco_asr9006] 'sh version' collected=True (417 chars)
+2026-04-08_21:10:39 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show interfaces'
+2026-04-08_21:10:50 - ERROR - [10_80_100_14_cisco_asr9006] 'show interfaces' send_command raised:
+Traceback (most recent call last):
+  File "/home/colt/Documents/ncs_testing/cisco_testing/lib/utilities.py", line 403, in collect_outputs
+    output = conn.send_command(cmd)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/colt/Documents/MS1Automation/venv/lib/python3.12/site-packages/netmiko/base_connection.py", line 111, in wrapper_decorator
+    return_val = func(self, *args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/colt/Documents/MS1Automation/venv/lib/python3.12/site-packages/netmiko/utilities.py", line 667, in wrapper_decorator
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/colt/Documents/MS1Automation/venv/lib/python3.12/site-packages/netmiko/base_connection.py", line 1841, in send_command
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+Pattern not detected: 'RP/0/RSP0/CPU0:sr6\\.BLB\\#' in output.
+
+Things you might try to fix this:
+1. Explicitly set your pattern using the expect_string argument.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+
+2026-04-08_21:10:50 - INFO - [10_80_100_14_cisco_asr9006] 'show interfaces' collected=False (0 chars)
+2026-04-08_21:10:50 - INFO - [10_80_100_14_cisco_asr9006] collect_outputs done — 22 entries stored
+2026-04-08_21:10:50 - ERROR - [10_80_100_14_cisco_asr9006] parser returned empty result 'show msdp peer':
+NoneType: None
+
+2026-04-08_21:10:50 - INFO - [10_80_100_14_cisco_asr9006] execute_show_commands OK
+2026-04-08_21:10:50 - INFO - [10_80_100_14_cisco_asr9006] get_show_version — phase=pre, sending 'show version'
+2026-04-08_21:10:51 - INFO - [10_80_100_14_cisco_asr9006] [pre] show_version parsed — hostname=  model=  version=7.11.21
+2026-04-08_21:10:51 - INFO - [10.80.100.14] preBackup — vendor: cisco
+2026-04-08_21:10:51 - INFO - 10_80_100_14_cisco_asr9006: active RSP :0/RSP0/CPU0
+2026-04-08_21:11:08 - INFO - [10_80_100_14_cisco_asr9006] backup config OK
+2026-04-08_21:11:08 - INFO - Starting Cisco FPD version verification...
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP0 TimingIC-A
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP0 Aldrin-0-FPGA
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP0 Beta-FPGA
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP0 CBC
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP0 IPU-DDR4
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP0 Orion-FPGA
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP0 Primary-BIOS
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP0 Sigma
+2026-04-08_21:11:08 - INFO - Skipping 0/RSP0 SSDa-MICRON: ATR status N/A
+2026-04-08_21:11:08 - INFO - Skipping 0/RSP0 SSDb-MICRON: ATR status N/A
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP0 TamFW-Sigma
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP0 Zenith-FPGA
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP1 TimingIC-A
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP1 Aldrin-0-FPGA
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP1 Beta-FPGA
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP1 CBC
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP1 IPU-DDR4
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP1 Orion-FPGA
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP1 Primary-BIOS
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP1 Sigma
+2026-04-08_21:11:08 - INFO - Skipping 0/RSP1 SSDa-MICRON: ATR status N/A
+2026-04-08_21:11:08 - INFO - Skipping 0/RSP1 SSDb-MICRON: ATR status N/A
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP1 TamFW-Sigma
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/RSP1 Zenith-FPGA
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/FT0 CBC
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/FT1 CBC
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/0 CBC
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/0 Dalla
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/0 IPU-FPGA
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/0 IPU-FSBL
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/0 IPU-Linux
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/0 Meldun-0
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/0 Meldun-1
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/0 Primary-BIOS
+2026-04-08_21:11:08 - INFO - Skipping 0/0 SSDa-SMART: ATR status N/A
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 TimingIC-A
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 TimingIC-B
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 Aldrin-FPGA
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 CBC
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 IPU-DDR4
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 Primary-BIOS
+2026-04-08_21:11:08 - INFO - Skipping 0/2 SSDa-INTEL: ATR status N/A
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 Sunstreaker
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 TAMFW-Sunstreaker
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 Trailbreaker-0
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 Trailbreaker-1
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 Windcharger-0
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/2 Windcharger-1
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/BPID0 CBC
+2026-04-08_21:11:08 - INFO - Skipping 0/PT0 PM0-EM-PriMCU: ATR status N/A
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/PT0 PM0-EM-Sec54vMCU
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/PT0 PM0-EM-Sec5vMCU
+2026-04-08_21:11:08 - INFO - Skipping 0/PT0 PM1-EM-PriMCU: ATR status N/A
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/PT0 PM1-EM-Sec54vMCU
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/PT0 PM1-EM-Sec5vMCU
+2026-04-08_21:11:08 - INFO - Skipping 0/PT0 PM2-EM-PriMCU: ATR status N/A
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/PT0 PM2-EM-Sec54vMCU
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/PT0 PM2-EM-Sec5vMCU
+2026-04-08_21:11:08 - INFO - Skipping 0/PT0 PM3-EM-PriMCU: ATR status N/A
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/PT0 PM3-EM-Sec54vMCU
+2026-04-08_21:11:08 - INFO - Up-to-date → 0/PT0 PM3-EM-Sec5vMCU
+2026-04-08_21:11:08 - INFO - All FPDs are up-to-date
+2026-04-08_21:11:08 - INFO - 10.80.100.14: Checking Auto FPD (Cisco XR)
+2026-04-08_21:11:12 - INFO - 10.80.100.14: Auto FPD already enabled in XR mode
+2026-04-08_21:11:12 - INFO - [10_80_100_14_cisco_asr9006] Auto FPD enabled: OK
+2026-04-08_21:11:12 - INFO - [THREAD-133684778596032] [10_80_100_14_cisco_asr9006] All pre-checks passed
+2026-04-08_21:11:12 - INFO - [10_80_100_14_cisco_asr9006] ── PHASE 1 COMPLETE — starting Phase 2
+2026-04-08_21:11:12 - INFO - [THREAD-133684778596032] [10_80_100_14_cisco_asr9006] Upgrade started at 2026-04-08 21:11:12.206917
+2026-04-08_21:11:12 - INFO - [10_80_100_14_cisco_asr9006] run_upgrade — host=10.80.100.14, vendor=cisco, model=asr9006, curr_os=7.6.2, total_hops=3
+2026-04-08_21:11:12 - DEBUG - [10_80_100_14_cisco_asr9006] Rollback chain seeded — image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, os=7.6.2
+2026-04-08_21:11:12 - INFO - Intermediate release is there. Checking the intermediate image details has been provided or not
+2026-04-08_21:11:12 - INFO - [10_80_100_14_cisco_asr9006]: Intermediate image details are provided. 
+2026-04-08_21:11:12 - INFO - [10_80_100_14_cisco_asr9006] ── Hop [0/2] ── image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, expected_os=7.6.2
+2026-04-08_21:11:12 - INFO - [10_80_100_14_cisco_asr9006] Hop [0] — image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, expected_os=7.6.2
+2026-04-08_21:11:12 - INFO - [cisco_asr9006] checkStorage — vendor: cisco
+2026-04-08_21:11:12 - INFO - [cisco_asr9006] checkStorage — 16 G available
+2026-04-08_21:11:12 - INFO - [cisco_asr9006] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_21:11:12 - INFO - [10_80_100_14_cisco_asr9006] storage OK
+2026-04-08_21:11:12 - INFO - 10.80.100.14: Modifying LPTS policer
+2026-04-08_21:11:17 - INFO - LPTS modified successfully
+2026-04-08_21:11:17 - INFO - [10_80_100_14_cisco_asr9006] Change LPTS Rate OK
+2026-04-08_21:11:17 - INFO - [10.80.100.14] transferImage — asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, vendor: cisco
+2026-04-08_21:11:17 - INFO - [10.80.100.14] scpFile — colt@10.80.109.133:/home/colt/Documents/asr_testing/asr9006_images/asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso → /harddisk:
+2026-04-08_21:11:29 - INFO - [10.80.100.14] scpFile — transfer complete
+2026-04-08_21:11:29 - INFO - [10.80.100.14] transferImage — asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso transferred to /harddisk:
+2026-04-08_21:11:29 - INFO - [10_80_100_14_cisco_asr9006]  transfer image OK
+2026-04-08_21:11:29 - INFO - [10.80.100.14] verifyChecksum — image: asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, vendor: cisco
+2026-04-08_21:11:29 - INFO - 10.80.100.14: Executing 'show md5 file /harddisk:/asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso'
+2026-04-08_21:11:45 - INFO - [10.80.100.14] verifyChecksum — match: OK
+2026-04-08_21:11:45 - INFO - [10_80_100_14_cisco_asr9006]  [0] checksum OK — asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso
+2026-04-08_21:11:45 - INFO - [cisco_asr9006] checkStorage — vendor: cisco
+2026-04-08_21:11:45 - INFO - [cisco_asr9006] checkStorage — 16 G available
+2026-04-08_21:11:45 - INFO - [cisco_asr9006] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_21:11:45 - INFO - [10_80_100_14_cisco_asr9006] storage OK
+2026-04-08_21:11:46 - INFO - Hostname->RP/0/RSP0/CPU0:sr6.BLB
+2026-04-08_21:11:46 - INFO - Hostname does not contain OSA or TYO
+2026-04-08_21:11:46 - INFO - route-policy created
+2026-04-08_21:11:47 - INFO - [10_80_100_14_cisco_asr9006]:: Detected BGP ASN -> 8220
+2026-04-08_21:11:47 - INFO - [10_80_100_14_cisco_asr9006]:: Starting deny-any policy for ASN 8220
+2026-04-08_21:11:52 - INFO - [10_80_100_14_cisco_asr9006]:: Applied DENY-ANY policy to PEER group
+2026-04-08_21:11:52 - INFO - [10_80_100_14_cisco_asr9006]:: Waiting 5 minutes for traffic drain
+2026-04-08_21:17:04 - INFO - [10_80_100_14_cisco_asr9006]: ISIS overload bit set
+2026-04-08_21:17:04 - INFO - [10_80_100_14_cisco_asr9006]  Overload bit Set OK
+2026-04-08_21:17:04 - INFO - [10_80_100_14_cisco_asr9006]  Committed packages are provide for both XR and admin
+2026-04-08_21:17:04 - INFO - [10_80_100_14_cisco_asr9006] Starting Image Upgrade 
+2026-04-08_21:17:04 - INFO - [10_80_100_14_cisco_asr9006]:: [imageUpgrade] Starting — hop_index=0, target_image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, expected_os=7.6.2
+2026-04-08_21:17:04 - INFO - [10_80_100_14_cisco_asr9006]:: current version -> 7.11.21
+2026-04-08_21:17:04 - DEBUG - [10_80_100_14_cisco_asr9006]:: [imageUpgrade] Version check — curr=7.11.21, expected=7.6.2
+2026-04-08_21:17:04 - INFO - [10_80_100_14_cisco_asr9006]:: Installing device image: asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso
+2026-04-08_21:39:34 - INFO - upgrade: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-04-08 15:50:08 Install operation 555 started by iqnet-local:
+2026-04-08 15:50:08   install replace source harddisk:/asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso noprompt commit
+2026-04-08 15:50:13 No install operation in progress at this moment
+2026-04-08 15:50:13 Checking system is ready for install operation
+2026-04-08 15:50:14 'install replace' in progress
+2026-04-08 15:50:14 Install replace with commit option is triggered
+2026-04-08 15:50:14 Label = BASE_SMU_V1
+2026-04-08 15:50:14 ISO asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso in input package list. Going to upgrade the system to version 7.6.2.
+
+WARNING: Commit option is used. This will auto commit the software after the install activation completes successfully.
+However, if any login failures are seen after the reload, rollback would be possible with USB/PXE boot or appropriate workaround.
+
+2026-04-08 15:50:19 Scheme : localdisk
+2026-04-08 15:50:19 Hostname : localhost
+2026-04-08 15:50:19 Username : None
+2026-04-08 15:50:19 SourceDir : harddisk:/
+2026-04-08 15:50:19 Collecting software state..
+2026-04-08 15:50:19 Getting platform
+2026-04-08 15:50:19 Getting supported architecture
+2026-04-08 15:50:19 Getting active packages from XR
+2026-04-08 15:50:19 Getting inactive packages from XR
+2026-04-08 15:50:27 Getting list of RPMs in local repo
+2026-04-08 15:50:27 Getting list of provides of all active packages
+2026-04-08 15:50:27 Getting provides of each rpm in repo
+2026-04-08 15:50:27 Getting requires of each rpm in repo
+2026-04-08 15:50:28 Fetching .... asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso
+2026-04-08 15:50:50 Adding packages 
+	asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso
+2026-04-08 15:50:50 Allocated operation ID 556 for install add
+2026-04-08 15:51:20 Activating asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1
+2026-04-08 15:51:24 Optimized list to prepare after sanitizing input list for superseded packages:
+	asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1
+2026-04-08 15:51:24 Package list:
+2026-04-08 15:51:24 	asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1
+2026-04-08 15:51:24 The operation is past point-of-no-return and can no longer be stopped!
+2026-04-08 15:51:24 Action 1: install prepare action started
+2026-04-08 15:51:24 Triggering prepare operation.
+This may take a while...
+2026-04-08 15:59:46 Action 1: install prepare action completed successfully
+2026-04-08 15:59:49 Prepare operation completed. Trigger activate.
+This may take a while...
+2026-04-08 15:59:49 Prepare completed. Operation ID 555 will be taken up for activate operation
+2026-04-08 15:59:51 Activate operation ID is: 555 for 'install source' ID:555
+2026-04-08 15:59:53 Install operation 555 started:
+  install activate replace noprompt synchronous 
+2026-04-08 15:59:55 Action 1: install activate action started
+2026-04-08 15:59:55 The software will be activated with reload upgrade
+2026-04-08 15:59:57 Following nodes are available for System Upgrade activate:
+2026-04-08 15:59:57  0/0 0/2 0/RSP0 0/RSP1 
+2026-04-08 16:03:45 Action 1: install activate action completed successfully
+2026-04-08 16:04:07 Install operation 555 finished successfully
+2026-04-08 16:04:08 Ending operation 555
+2026-04-08_21:39:34 - INFO - 10.80.100.14: Install command accepted, router will reload automatically
+2026-04-08_21:39:34 - INFO - [10_80_100_14_cisco_asr9006] : [imageUpgrade] Install completed, initiating reboot
+2026-04-08_21:39:34 - INFO - [10_80_100_14_cisco_asr9006]:: Waiting for reboot after upgrade
+2026-04-08_21:39:34 - INFO - [10_80_100_14_cisco_asr9006]:: Device rebooted, waiting for SSH to come back
+2026-04-08_21:39:34 - INFO - [10_80_100_14_cisco_asr9006]:: [reconnect_and_verify] Starting — hop_index=0, max_retries=6, wait_time=30s
+2026-04-08_21:39:34 - INFO - [10_80_100_14_cisco_asr9006]:: Starting ping check after reboot
+2026-04-08_21:39:34 - DEBUG - 10.80.100.14: [pingDevice] count=2, packet_size=5, timeout=2s
+2026-04-08_21:39:34 - INFO - 10.80.100.14: Waiting for device via continuous ping...
+2026-04-08_21:39:38 - INFO - 10.80.100.14: Still waiting for ping...
+2026-04-08_21:41:41 - INFO - 10.80.100.14: Still waiting for ping...
+2026-04-08_21:45:42 - INFO - 10.80.100.14: Still waiting for ping...
+2026-04-08_21:45:42 - INFO - 10.80.100.14: [pingDevice] Host is reachable (rc=0)
+2026-04-08_21:45:42 - INFO - [10_80_100_14_cisco_asr9006]:: Device is reachable after reboot
+2026-04-08_21:45:42 - INFO - Logout successful from 10.80.100.14
+2026-04-08_21:45:42 - INFO - [10_80_100_14_cisco_asr9006] Disconnected from 10.80.100.14
+2026-04-08_21:45:42 - INFO - [10_80_100_14_cisco_asr9006]:: Reconnect attempt 1/6
+2026-04-08_21:45:42 - INFO - [10_80_100_14_cisco_asr9006]:: [connect] Connecting to device
+2026-04-08_21:45:42 - DEBUG - [10_80_100_14_cisco_asr9006]:: [connect] device_type=cisco_xr, username=iqnet-local
+2026-04-08_21:45:42 - DEBUG - [10_80_100_14_cisco_asr9006]:: [connect] Session log -> /home/colt/Documents/ncs_testing/cisco_testing/outputs/10_80_100_14_cisco_asr9006_2026-04-08_session.txt
+2026-04-08_21:45:42 - INFO - [10_80_100_14_cisco_asr9006]: Session log file exists -- /home/colt/Documents/ncs_testing/cisco_testing/outputs/10_80_100_14_cisco_asr9006_2026-04-08_session.txt
+2026-04-08_21:45:44 - INFO - [10_80_100_14_cisco_asr9006]:: [Upgrade.connect] Connected successfully
+2026-04-08_21:45:44 - INFO - [10_80_100_14_cisco_asr9006]:: SSH ready, got version output
+2026-04-08_21:45:44 - INFO - [10_80_100_14_cisco_asr9006]: running 'install commit' to commit the asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso packages
+2026-04-08_21:47:45 - INFO - [10_80_100_14_cisco_asr9006]:: install commit output -> 
+Could not start this install operation. Install operation 558 is still in progress
+2026-04-08_21:47:45 - INFO - [10_80_100_14_cisco_asr9006]: Validating the device upgrade 
+2026-04-08_21:47:45 - INFO - [10_80_100_14_cisco_asr9006]: Running 'show install active summary' in xr mode
+2026-04-08_21:47:47 - INFO - [10_80_100_14_cisco_asr9006]: Running 'admin show install active summary' in admin mode
+2026-04-08_21:47:53 - INFO - admin: <re.Match object; span=(54, 67), match='version=7.6.2'>
+2026-04-08_21:47:53 - INFO - [10_80_100_14_cisco_asr9006] version in XR mode: 7.6.2
+2026-04-08_21:47:53 - INFO - [10_80_100_14_cisco_asr9006] version in ADMIN mode: 7.6.2
+2026-04-08_21:47:53 - INFO - [10_80_100_14_cisco_asr9006]: Validating the device upgrade 
+2026-04-08_21:47:53 - INFO - [10_80_100_14_cisco_asr9006]: Running 'show install committed summary' in xr mode
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-mgbl-x64-2.0.0.0-r762 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-mpls-x64-2.0.0.0-r762 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-mpls-te-rsvp-x64-2.1.0.0-r762 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-services-x64-1.0.0.0-r762 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-mcast-x64-2.0.0.0-r762 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-m2m-x64-2.0.0.0-r762 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-optic-x64-1.0.0.0-r762 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-k9sec-x64-2.1.0.0-r762 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-iosxr-routing-64-1.0.0.1-r762.CSCwd14969 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-iosxr-fwding-64-1.1.0.8-r762.CSCwc81922 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-iosxr-infra-64-2.0.0.1-r762.CSCwc94082 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-gcp-fwding-64-1.0.0.2-r762.CSCwd13786 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-os-supp-64-4.0.0.2-r762.CSCwc87977 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-fwding-64-4.0.0.3-r762.CSCwd22196 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-base-64-4.0.0.2-r762.CSCwc47668 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-isis-x64-1.1.0.3-r762.CSCwe22538 is committed
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006]: Packages are committed in XR mode
+2026-04-08_21:47:55 - INFO - [10_80_100_14_cisco_asr9006]: Running 'admin show install committed summary' in admin mode
+2026-04-08_21:48:00 - INFO - [10_80_100_14_cisco_asr9006] : admin asr9k-sysadmin-shared-7.6.2.1-r762.CSCwd16969 is committed
+2026-04-08_21:48:00 - INFO - [10_80_100_14_cisco_asr9006] : admin asr9k-sysadmin-asr9k-7.6.2.3-r762.CSCwc84823 is committed
+2026-04-08_21:48:00 - INFO - [10_80_100_14_cisco_asr9006]: Packages are committed in Admin mode
+2026-04-08_21:48:00 - DEBUG - [10_80_100_14_cisco_asr9006]:: [imageUpgrade] Version regex matched — new_version=7.6.2
+2026-04-08_21:48:00 - INFO - [10_80_100_14_cisco_asr9006]:: Version information retrieved
+2026-04-08_21:48:00 - INFO - [10_80_100_14_cisco_asr9006]:: New Version -> 7.6.2
+2026-04-08_21:48:00 - INFO - [10_80_100_14_cisco_asr9006]:: Upgrade hop SUCCESS — 7.6.2
+2026-04-08_21:48:00 - INFO - [10_80_100_14_cisco_asr9006] Hop [0] succeeded — rollback chain now 2 entries
+2026-04-08_21:48:00 - INFO - [10_80_100_14_cisco_asr9006] ── Hop [1/2] ── image=asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso, expected_os=7.11.21
+2026-04-08_21:48:00 - INFO - [10_80_100_14_cisco_asr9006] Hop [1] — image=asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso, expected_os=7.11.21
+2026-04-08_21:48:00 - INFO - [cisco_asr9006] checkStorage — vendor: cisco
+2026-04-08_21:48:00 - INFO - [cisco_asr9006] checkStorage — 16 G available
+2026-04-08_21:48:00 - INFO - [cisco_asr9006] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_21:48:00 - INFO - [10_80_100_14_cisco_asr9006] storage OK
+2026-04-08_21:48:00 - INFO - 10.80.100.14: Modifying LPTS policer
+2026-04-08_21:48:07 - INFO - LPTS modified successfully
+2026-04-08_21:48:07 - INFO - [10_80_100_14_cisco_asr9006] Change LPTS Rate OK
+2026-04-08_21:48:07 - INFO - [10.80.100.14] transferImage — asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso, vendor: cisco
+2026-04-08_21:48:07 - INFO - [10.80.100.14] scpFile — colt@10.80.109.133:/home/colt/Documents/asr_testing/asr9006_images/asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso → /harddisk:
+2026-04-08_21:48:19 - INFO - [10.80.100.14] scpFile — transfer complete
+2026-04-08_21:48:19 - INFO - [10.80.100.14] transferImage — asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso transferred to /harddisk:
+2026-04-08_21:48:19 - INFO - [10_80_100_14_cisco_asr9006]  transfer image OK
+2026-04-08_21:48:19 - INFO - [10.80.100.14] verifyChecksum — image: asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso, vendor: cisco
+2026-04-08_21:48:19 - INFO - 10.80.100.14: Executing 'show md5 file /harddisk:/asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso'
+2026-04-08_21:48:24 - INFO - [10.80.100.14] verifyChecksum — match: OK
+2026-04-08_21:48:24 - INFO - [10_80_100_14_cisco_asr9006]  [1] checksum OK — asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso
+2026-04-08_21:48:24 - INFO - [cisco_asr9006] checkStorage — vendor: cisco
+2026-04-08_21:48:25 - INFO - [cisco_asr9006] checkStorage — 16 G available
+2026-04-08_21:48:25 - INFO - [cisco_asr9006] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_21:48:25 - INFO - [10_80_100_14_cisco_asr9006] storage OK
+2026-04-08_21:48:25 - INFO - Hostname->RP/0/RSP0/CPU0:sr6.BLB
+2026-04-08_21:48:25 - INFO - Hostname does not contain OSA or TYO
+2026-04-08_21:48:26 - INFO - route-policy created
+2026-04-08_21:48:26 - INFO - [10_80_100_14_cisco_asr9006]:: Detected BGP ASN -> 8220
+2026-04-08_21:48:26 - INFO - [10_80_100_14_cisco_asr9006]:: Starting deny-any policy for ASN 8220
+2026-04-08_21:48:31 - INFO - [10_80_100_14_cisco_asr9006]:: Applied DENY-ANY policy to PEER group
+2026-04-08_21:48:31 - INFO - [10_80_100_14_cisco_asr9006]:: Waiting 5 minutes for traffic drain
+2026-04-08_21:53:44 - INFO - [10_80_100_14_cisco_asr9006]: ISIS overload bit set
+2026-04-08_21:53:44 - INFO - [10_80_100_14_cisco_asr9006]  Overload bit Set OK
+2026-04-08_21:53:44 - INFO - [10_80_100_14_cisco_asr9006]  Committed packages are provide for both XR and admin
+2026-04-08_21:53:44 - INFO - [10_80_100_14_cisco_asr9006] Starting Image Upgrade 
+2026-04-08_21:53:44 - INFO - [10_80_100_14_cisco_asr9006]:: [imageUpgrade] Starting — hop_index=1, target_image=asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso, expected_os=7.11.21
+2026-04-08_21:53:44 - INFO - [10_80_100_14_cisco_asr9006]:: current version -> 7.6.2
+2026-04-08_21:53:44 - DEBUG - [10_80_100_14_cisco_asr9006]:: [imageUpgrade] Version check — curr=7.6.2, expected=7.11.21
+2026-04-08_21:53:44 - INFO - [10_80_100_14_cisco_asr9006]:: Installing device image: asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso
+2026-04-08_22:16:14 - INFO - upgrade: 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-04-08 16:26:54 Install operation 560 started by iqnet-local:
+2026-04-08 16:26:54   install replace source harddisk:/asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso noprompt commit
+2026-04-08 16:27:00 No install operation in progress at this moment
+2026-04-08 16:27:00 Checking system is ready for install operation
+2026-04-08 16:27:04 'install replace' in progress
+2026-04-08 16:27:04 Install replace with commit option is triggered
+2026-04-08 16:27:04 Label = BASE_SMU_V1
+2026-04-08 16:27:04 ISO asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso in input package list. Going to upgrade the system to version 7.11.21.
+
+WARNING: Commit option is used. This will auto commit the software after the install activation completes successfully.
+However, if any login failures are seen after the reload, rollback would be possible with USB/PXE boot or appropriate workaround.
+
+2026-04-08 16:27:09 Scheme : localdisk
+2026-04-08 16:27:09 Hostname : localhost
+2026-04-08 16:27:09 Username : None
+2026-04-08 16:27:09 SourceDir : harddisk:/
+2026-04-08 16:27:09 Collecting software state..
+2026-04-08 16:27:09 Getting platform
+2026-04-08 16:27:09 Getting supported architecture
+2026-04-08 16:27:09 Getting active packages from XR
+2026-04-08 16:27:09 Getting inactive packages from XR
+2026-04-08 16:27:20 Getting list of RPMs in local repo
+2026-04-08 16:27:21 Getting list of provides of all active packages
+2026-04-08 16:27:21 Getting provides of each rpm in repo
+2026-04-08 16:27:21 Getting requires of each rpm in repo
+2026-04-08 16:27:21 Fetching .... asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso
+2026-04-08 16:27:44 Adding packages 
+	asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso
+2026-04-08 16:27:44 Allocated operation ID 561 for install add
+2026-04-08 16:28:16 Activating asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1
+2026-04-08 16:28:22 Optimized list to prepare after sanitizing input list for superseded packages:
+	asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1
+2026-04-08 16:28:22 Package list:
+2026-04-08 16:28:22 	asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1
+2026-04-08 16:28:22 The operation is past point-of-no-return and can no longer be stopped!
+2026-04-08 16:28:22 Action 1: install prepare action started
+2026-04-08 16:28:22 Triggering prepare operation.
+This may take a while...
+2026-04-08 16:35:40 Action 1: install prepare action completed successfully
+2026-04-08 16:35:43 Prepare operation completed. Trigger activate.
+This may take a while...
+2026-04-08 16:35:43 Prepare completed. Operation ID 560 will be taken up for activate operation
+2026-04-08 16:35:46 Activate operation ID is: 560 for 'install source' ID:560
+2026-04-08 16:35:48 Install operation 560 started:
+  install activate replace noprompt synchronous 
+2026-04-08 16:35:50 Action 1: install activate action started
+2026-04-08 16:35:50 The software will be activated with reload upgrade
+2026-04-08 16:35:53 Following nodes are available for System Upgrade activate:
+2026-04-08 16:35:53  0/0 0/2 0/RSP0 0/RSP1 
+2026-04-08 16:38:49 Action 1: install activate action completed successfully
+2026-04-08 16:39:12 Install operation 560 finished successfully
+2026-04-08 16:39:13 Ending operation 560
+
+2026-04-08_22:16:14 - INFO - 10.80.100.14: Install command accepted, router will reload automatically
+2026-04-08_22:16:14 - INFO - [10_80_100_14_cisco_asr9006] : [imageUpgrade] Install completed, initiating reboot
+2026-04-08_22:16:14 - INFO - [10_80_100_14_cisco_asr9006]:: Waiting for reboot after upgrade
+2026-04-08_22:16:14 - INFO - [10_80_100_14_cisco_asr9006]:: Device rebooted, waiting for SSH to come back
+2026-04-08_22:16:14 - INFO - [10_80_100_14_cisco_asr9006]:: [reconnect_and_verify] Starting — hop_index=1, max_retries=6, wait_time=30s
+2026-04-08_22:16:14 - INFO - [10_80_100_14_cisco_asr9006]:: Starting ping check after reboot
+2026-04-08_22:16:14 - DEBUG - 10.80.100.14: [pingDevice] count=2, packet_size=5, timeout=2s
+2026-04-08_22:16:14 - INFO - 10.80.100.14: Waiting for device via continuous ping...
+2026-04-08_22:16:17 - INFO - 10.80.100.14: Still waiting for ping...
+2026-04-08_22:18:18 - INFO - 10.80.100.14: Still waiting for ping...
+2026-04-08_22:18:18 - INFO - 10.80.100.14: [pingDevice] Host is reachable (rc=0)
+2026-04-08_22:18:18 - INFO - [10_80_100_14_cisco_asr9006]:: Device is reachable after reboot
+2026-04-08_22:18:18 - INFO - Logout successful from 10.80.100.14
+2026-04-08_22:18:18 - INFO - [10_80_100_14_cisco_asr9006] Disconnected from 10.80.100.14
+2026-04-08_22:18:18 - INFO - [10_80_100_14_cisco_asr9006]:: Reconnect attempt 1/6
+2026-04-08_22:18:18 - INFO - [10_80_100_14_cisco_asr9006]:: [connect] Connecting to device
+2026-04-08_22:18:18 - DEBUG - [10_80_100_14_cisco_asr9006]:: [connect] device_type=cisco_xr, username=iqnet-local
+2026-04-08_22:18:18 - DEBUG - [10_80_100_14_cisco_asr9006]:: [connect] Session log -> /home/colt/Documents/ncs_testing/cisco_testing/outputs/10_80_100_14_cisco_asr9006_2026-04-08_session.txt
+2026-04-08_22:18:18 - INFO - [10_80_100_14_cisco_asr9006]: Session log file exists -- /home/colt/Documents/ncs_testing/cisco_testing/outputs/10_80_100_14_cisco_asr9006_2026-04-08_session.txt
+2026-04-08_22:18:20 - INFO - [10_80_100_14_cisco_asr9006]:: [Upgrade.connect] Connected successfully
+2026-04-08_22:18:20 - INFO - [10_80_100_14_cisco_asr9006]:: SSH ready, got version output
+2026-04-08_22:18:20 - INFO - [10_80_100_14_cisco_asr9006]: running 'install commit' to commit the asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso packages
+2026-04-08_22:19:20 - INFO - [10_80_100_14_cisco_asr9006]:: install commit output -> 
+Autocommit precheck for the single command is in progress. Operation cannot be started
+2026-04-08_22:19:20 - INFO - [10_80_100_14_cisco_asr9006]: Validating the device upgrade 
+2026-04-08_22:19:20 - INFO - [10_80_100_14_cisco_asr9006]: Running 'show install active summary' in xr mode
+2026-04-08_22:19:22 - INFO - [10_80_100_14_cisco_asr9006]: Running 'admin show install active summary' in admin mode
+2026-04-08_22:19:23 - INFO - admin: <re.Match object; span=(56, 71), match='version=7.11.21'>
+2026-04-08_22:19:23 - INFO - [10_80_100_14_cisco_asr9006] version in XR mode: 7.11.21
+2026-04-08_22:19:23 - INFO - [10_80_100_14_cisco_asr9006] version in ADMIN mode: 7.11.21
+2026-04-08_22:19:23 - INFO - [10_80_100_14_cisco_asr9006]: Validating the device upgrade 
+2026-04-08_22:19:23 - INFO - [10_80_100_14_cisco_asr9006]: Running 'show install committed summary' in xr mode
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-mcast-x64-1.0.0.0-r71121 is committed
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-mgbl-x64-1.0.0.0-r71121 is committed
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-optic-x64-1.0.0.0-r71121 is committed
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-services-x64-1.0.0.0-r71121 is committed
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-isis-x64-1.0.0.0-r71121 is committed
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-mpls-x64-1.0.0.0-r71121 is committed
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-mpls-te-rsvp-x64-1.0.0.0-r71121 is committed
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-m2m-x64-1.0.0.0-r71121 is committed
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-k9sec-x64-1.0.0.0-r71121 is committed
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006] : asr9k-iosxr-fwding-64-1.0.0.1-r71121.CSCwn19162 is committed
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006]: Packages are committed in XR mode
+2026-04-08_22:19:25 - INFO - [10_80_100_14_cisco_asr9006]: Running 'admin show install committed summary' in admin mode
+2026-04-08_22:19:26 - INFO - [10_80_100_14_cisco_asr9006] : admin asr9k-sysadmin-7.11.21 is committed
+2026-04-08_22:19:26 - INFO - [10_80_100_14_cisco_asr9006]: Packages are committed in Admin mode
+2026-04-08_22:19:26 - DEBUG - [10_80_100_14_cisco_asr9006]:: [imageUpgrade] Version regex matched — new_version=7.11.21
+2026-04-08_22:19:26 - INFO - [10_80_100_14_cisco_asr9006]:: Version information retrieved
+2026-04-08_22:19:26 - INFO - [10_80_100_14_cisco_asr9006]:: New Version -> 7.11.21
+2026-04-08_22:19:26 - INFO - [10_80_100_14_cisco_asr9006]:: Upgrade hop SUCCESS — 7.11.21
+2026-04-08_22:19:26 - INFO - [10_80_100_14_cisco_asr9006] Hop [1] succeeded — rollback chain now 3 entries
+2026-04-08_22:19:26 - INFO - [10_80_100_14_cisco_asr9006] All 3 upgrade hop(s) successful
+2026-04-08_22:19:26 - INFO - [10_80_100_14_cisco_asr9006] ── PHASE 2 COMPLETE — starting Phase 3
+2026-04-08_22:19:26 - INFO - [10_80_100_14_cisco_asr9006] ── PHASE 4 DIFF starting
+2026-04-08_22:19:26 - INFO - [10_80_100_14_cisco_asr9006] ── PHASE 4 COMPLETE — 21 command(s) with changes
+2026-04-08_22:19:27 - INFO - [10_80_100_14_cisco_asr9006] HTML report exported
+2026-04-08_22:19:27 - INFO - Logout successful from 10.80.100.14
+2026-04-08_22:19:27 - INFO - [10_80_100_14_cisco_asr9006] Disconnected from 10.80.100.14
+2026-04-08_22:19:27 - INFO - [THREAD-133684778596032] [10_80_100_14_cisco_asr9006] Pipeline finished at 2026-04-08 22:19:27.236314

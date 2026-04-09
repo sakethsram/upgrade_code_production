@@ -1,0 +1,51 @@
+2026-04-08_18:46:02 - INFO - [THREAD-136532217304768] [10_80_71_56_juniper_mx240] Pipeline started at 2026-04-08 18:46:02.122211
+2026-04-08_18:46:02 - INFO - [10_80_71_56_juniper_mx240] Connecting to 10.80.71.56
+2026-04-08_18:46:02 - INFO - Connecting to 10.80.71.56 using Netmiko...
+2026-04-08_18:46:08 - INFO - Login successful to 10.80.71.56
+2026-04-08_18:46:08 - INFO - [10_80_71_56_juniper_mx240] Connected successfully to 10.80.71.56
+2026-04-08_18:46:08 - INFO - [10_80_71_56_juniper_mx240] Connected to 10.80.71.56
+2026-04-08_18:46:08 - INFO - [10_80_71_56_juniper_mx240] ── PHASE 1 COMPLETE — starting Phase 2
+2026-04-08_18:46:08 - INFO - [THREAD-136532217304768] [10_80_71_56_juniper_mx240] Upgrade started at 2026-04-08 18:46:08.182500
+2026-04-08_18:46:08 - INFO - [10_80_71_56_juniper_mx240] run_upgrade — host=10.80.71.56, vendor=juniper, model=mx240, curr_os=22.2R3-S2.8, total_hops=1
+2026-04-08_18:46:08 - DEBUG - [10_80_71_56_juniper_mx240] Rollback chain seeded — image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, os=22.2R3-S2.8
+2026-04-08_18:46:08 - INFO - [10_80_71_56_juniper_mx240] ── Hop [0/0] ── image=junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz, expected_os=23.4R2-S3.9
+2026-04-08_18:46:08 - INFO - [10_80_71_56_juniper_mx240] Hop [0] — image=junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz, expected_os=23.4R2-S3.9
+2026-04-08_18:46:08 - INFO - [10_80_71_56_juniper_mx240] dual-RE model (mx240): checkStorageDualRE()
+2026-04-08_18:46:08 - INFO - [10.80.71.56] checkStorageDualRE — vendor: juniper
+2026-04-08_18:46:08 - INFO - [10.80.71.56] checkStorageDualRE — querying RE0
+2026-04-08_18:46:08 - INFO - [10.80.71.56] checkStorageDualRE — RE0 available: 4.90 GB
+2026-04-08_18:46:08 - INFO - [10.80.71.56] checkStorageDualRE — querying RE1
+2026-04-08_18:46:08 - INFO - [10.80.71.56] checkStorageDualRE — RE1 available: 5.10 GB
+2026-04-08_18:46:08 - ERROR - [10.80.71.56] : Not enough storage to transfer the image. Please do the device cleanup
+2026-04-08_18:46:08 - INFO - [juniper_mx240] checkStorage — vendor: juniper
+2026-04-08_18:46:08 - INFO - [10.80.71.56] checkStorage — 4.90 GB available
+2026-04-08_18:46:08 - INFO - [juniper_mx240] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_18:46:08 - INFO - [10_80_71_56_juniper_mx240] storage OK
+2026-04-08_18:46:08 - INFO - [10.80.71.56] transferImage — junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz, vendor: juniper
+2026-04-08_18:46:08 - INFO - [10.80.71.56] scpFile — colt@10.80.109.133:/home/colt/backup/junos/MX240/junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz → /var/tmp/
+2026-04-08_18:46:31 - INFO - [10.80.71.56] scpFile — transfer complete
+2026-04-08_18:46:31 - INFO - [10.80.71.56] transferImage — junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz transferred to /var/tmp/
+2026-04-08_18:46:31 - INFO - [10_80_71_56_juniper_mx240]  transfer image OK
+2026-04-08_18:46:31 - INFO - [10.80.71.56] verifyChecksum — image: junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz, vendor: juniper
+2026-04-08_18:46:49 - INFO - [10.80.71.56] verifyChecksum — match: OK
+2026-04-08_18:46:49 - INFO - [10_80_71_56_juniper_mx240]  [0] checksum OK — junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz
+2026-04-08_18:46:49 - INFO - [10_80_71_56_juniper_mx240] dual-RE model (mx240): checkStorageDualRE()
+2026-04-08_18:46:49 - INFO - [10.80.71.56] checkStorageDualRE — vendor: juniper
+2026-04-08_18:46:49 - INFO - [10.80.71.56] checkStorageDualRE — querying RE0
+2026-04-08_18:46:49 - INFO - [10.80.71.56] checkStorageDualRE — RE0 available: 4.90 GB
+2026-04-08_18:46:49 - INFO - [10.80.71.56] checkStorageDualRE — querying RE1
+2026-04-08_18:46:49 - INFO - [10.80.71.56] checkStorageDualRE — RE1 available: 5.10 GB
+2026-04-08_18:46:49 - INFO - [10.80.71.56] checkStorageDualRE — both REs OK: {'status': 'ok', 'exception': '', 'sufficient': True, 're0_space': 4.9, 're1_space': 5.1}
+2026-04-08_18:46:49 - INFO - [juniper_mx240] checkStorage — vendor: juniper
+2026-04-08_18:46:49 - INFO - [10.80.71.56] checkStorage — 4.90 GB available
+2026-04-08_18:46:49 - INFO - [juniper_mx240] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_18:46:49 - INFO - [10_80_71_56_juniper_mx240] storage OK
+2026-04-08_18:46:49 - INFO - [10_80_71_56_juniper_mx240] Hop [0] succeeded — rollback chain now 2 entries
+2026-04-08_18:46:49 - INFO - [10_80_71_56_juniper_mx240] All 1 upgrade hop(s) successful
+2026-04-08_18:46:49 - INFO - [10_80_71_56_juniper_mx240] ── PHASE 2 COMPLETE — starting Phase 3
+2026-04-08_18:46:49 - INFO - [10_80_71_56_juniper_mx240] ── PHASE 4 DIFF starting
+2026-04-08_18:46:49 - INFO - [10_80_71_56_juniper_mx240] ── PHASE 4 COMPLETE — 0 command(s) with changes
+2026-04-08_18:46:49 - INFO - [10_80_71_56_juniper_mx240] HTML report exported
+2026-04-08_18:46:49 - INFO - Logout successful from 10.80.71.56
+2026-04-08_18:46:49 - INFO - [10_80_71_56_juniper_mx240] Disconnected from 10.80.71.56
+2026-04-08_18:46:49 - INFO - [THREAD-136532217304768] [10_80_71_56_juniper_mx240] Pipeline finished at 2026-04-08 18:46:49.561921

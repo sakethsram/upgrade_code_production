@@ -1,0 +1,3351 @@
+Last login: Wed Apr  8 15:39:42 2026 from 10.80.109.133
+--- JUNOS 23.4R2-S3.9 Kernel 64-bit  JNPR-12.1-20240604.39c9257_buil
+
+lab@EFFPER02> 
+
+lab@EFFPER02> 
+
+lab@EFFPER02> set cli screen-width 511 
+Screen width set to 511
+
+lab@EFFPER02> set cli complete-on-space off 
+Disabling complete-on-space
+
+lab@EFFPER02> set cli screen-length 0 
+Screen length set to 0
+
+lab@EFFPER02> 
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show services sessions | no-more 
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show services nat pool brief | no-more 
+Interface: ms-2/0/0, Service set: CUST-GCP_SX06046-LSEG_MEC-UCAST
+NAT pool          Type    Address                         Port        Ports used
+CUST-GCP_SX06046-LSEG_MEC-17718266_2661 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718266_2668 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718266_2673 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718267_2658 NAPT-44 213.86.88.130-213.86.88.130 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718267_2662 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718267_2669 NAPT-44 213.86.88.130-213.86.88.130 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718267_2670 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718267_2674 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718268_2659 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718268_2664 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718268_2671 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718269_2559 NAPT-44 213.86.88.130-213.86.88.130 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718269_2660 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718269_2665 NAPT-44 213.86.88.130-213.86.88.130 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718269_2666 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+CUST-GCP_SX06046-LSEG_MEC-17718269_2672 NAPT-44 213.86.88.2-213.86.88.2 1024-65535 0         
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show services flows brief | no-more 
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show services service-sets cpu-usage | no-more 
+                                                                       CPU
+Interface   Service Set(or system category)                        Utilization
+ms-2/0/0    CUST-GCP_SX06046-LSEG_MEC-UCAST                             0.00 %
+ms-2/0/0    System                                                      1.23 %
+ms-2/0/0    Idle                                                       98.76 %
+ms-2/0/0    Receive                                                     0.00 %
+ms-2/0/0    Transmit                                                    0.00 %
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show services service-sets memory-usage | no-more 
+Interface   Service Set                                              Bytes Used
+ms-2/0/0    system                                                     1598864736
+ms-2/0/0    CUST-GCP_SX06046-LSEG_MEC-UCAST                                 16384
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show services service-sets summary | no-more 
+             Service sets                                           CPU   
+Interface    configured             Bytes used   Policy bytes used  utilization
+ms-2/0/0           3  1598880992      (13.85%)    3738080 ( 0.34%)  1.23 %
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show chassis routing-engine | no-more 
+Routing Engine status:
+  Slot 0:
+    Current state                  Master
+    Election priority              Master (default)
+    Temperature                 39 degrees C / 102 degrees F
+    CPU temperature             61 degrees C / 141 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           5 percent
+    5 sec CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     2 percent
+      Interrupt                  0 percent
+      Idle                      97 percent
+    1 min CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     2 percent
+      Interrupt                  0 percent
+      Idle                      97 percent
+    5 min CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     2 percent
+      Interrupt                  0 percent
+      Idle                      97 percent
+    15 min CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     2 percent
+      Interrupt                  0 percent
+      Idle                      97 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7380
+    Start time                     2026-04-06 06:45:07 UTC
+    Uptime                         2 days, 8 hours, 57 minutes, 45 seconds
+    Last reboot reason             0x2000:hypervisor reboot
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.36       0.38       0.34
+Routing Engine status:
+  Slot 1:
+    Current state                  Backup
+    Election priority              Backup (default)
+    Temperature                 37 degrees C / 98 degrees F
+    CPU temperature             53 degrees C / 127 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           4 percent
+    5 sec CPU utilization:
+      User                       0 percent
+      Background                 0 percent
+      Kernel                     0 percent
+      Interrupt                  0 percent
+      Idle                      99 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7430
+    Start time                     2026-04-08 02:55:53 UTC
+    Uptime                         12 hours, 46 minutes, 41 seconds
+    Last reboot reason             0x1:power cycle/failure
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.14       0.13       0.14
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show arp no-resolve | no-more 
+MAC Address       Address         Interface                Flags
+02:01:00:00:00:05 10.0.0.5        igb0.0                   none
+c4:7e:e0:16:2c:03 10.0.0.10       xe-2/2/2.0               none
+00:15:ad:5c:54:88 10.0.0.31       xe-1/0/1.0               permanent
+94:33:d8:ae:3b:03 10.80.70.1      fxp0.0                   none
+20:ed:47:f7:0d:fc 10.80.71.54     fxp0.0                   none
+00:00:5e:00:01:01 100.0.0.254     ae2.1151                 permanent published
+c8:fe:6a:82:8c:50 109.74.16.89    xe-1/0/1.0               none
+02:01:00:00:00:05 128.0.0.5       igb0.0                   none
+02:01:00:00:00:05 128.0.0.6       igb0.0                   none
+02:00:00:00:00:11 128.0.0.17      ixlv0.0                  none
+02:00:00:00:00:12 128.0.0.18      ixlv0.0                  none
+02:00:10:00:01:12 128.0.1.18      ixlv0.0                  none
+80:71:1f:76:ec:69 169.254.146.81  ge-1/2/9.100             none
+80:71:1f:76:eb:c9 169.254.146.82  ge-1/3/9.100             none
+fe:54:00:1b:ac:3d 192.168.1.2     em0.32768                none
+00:00:5e:00:01:02 200.0.0.254     ae2.1152                 permanent published
+80:71:1f:76:eb:c8 213.86.204.113  ge-1/3/8.3400            none
+80:71:1f:76:ec:68 213.86.204.114  ge-1/2/8.3400            none
+Total entries: 18
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show lldp neighbors | no-more 
+Local Interface    Parent Interface    Chassis Id                               Port info          System Name
+ge-1/3/0           -                   C091-0012                                PORT-7              C091-0012           
+xe-1/0/9           ae3                 1c:9c:8c:f8:ba:c0                        512                 EFFNAT02            
+xe-2/2/5           ae2                 3c:8c:93:ec:39:c8                        764                 IXLPER02            
+xe-2/2/4           -                   70:6d:15:74:de:79                        Ethernet1/18        EFFLLN01-LAB.prizmnet.colt.net
+ge-1/3/8           -                   80:71:1f:76:ef:c0                        825                 EFFPER02            
+ge-1/3/9           -                   80:71:1f:76:ef:c0                        827                 EFFPER02            
+ge-1/2/8           -                   80:71:1f:76:ef:c0                        853                 EFFPER02            
+ge-1/2/9           -                   80:71:1f:76:ef:c0                        854                 EFFPER02            
+xe-1/0/3           ae4                 84:03:28:21:e0:00                        xe-0/0/43           EFFPES02            
+xe-2/2/2           -                   c4:7e:e0:16:2c:00                        Te0/0/3             ESLPRR01.prizmnet.colt.net
+xe-1/0/1           -                   c8:fe:6a:82:90:34                        746                 EFFPER01.prizmnet.colt.net
+xe-2/2/6           ae10                e4:1f:7b:27:7f:c6                        Ethernet1/31        ASRLLN02            
+xe-2/2/8           ae10                e4:1f:7b:27:7f:c7                        Ethernet1/32        ASRLLN02            
+fxp0               -                   ec:38:73:d6:f7:80                        502                 BLRMGN02            
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show system uptime | no-more 
+Current time: 2026-04-08 15:42:55 UTC
+Time Source:  LOCAL CLOCK 
+System booted: 2026-04-06 06:45:07 UTC (2d 08:57 ago)
+Protocols started: 2026-04-06 06:52:56 UTC (2d 08:49 ago)
+Last configured: 2026-04-06 06:47:15 UTC (2d 08:55 ago) by root
+ 3:42PM  up 2 days,  8:58, 2 users, load averages: 0.36, 0.38, 0.34
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show ntp associations no-resolve | no-more 
+     remote               refid           auth  st  t  when  poll reach  delay     offset   jitter rootdelay rootdisp
+=====================================================================================================================
+ 10.91.141.57           .INIT.               -  16  u     -  1024    0    0.000    +0.000    0.000    0.000    0.000
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show chassis hardware | no-more 
+Hardware inventory:
+Item             Version  Part number  Serial number     Description
+Chassis                                JN112AF0AAFC      MX240
+Midplane         REV 07   760-021404   ACAA9640          MX240 Backplane
+FPM Board        REV 04   760-021392   YE1346            Front Panel Display
+PEM 0            Rev 03   740-027736   QCS1009T010       DC 2.4kW Power Entry Module
+PEM 1            Rev 03   740-027736   QCS1009T0BM       DC 2.4kW Power Entry Module
+Routing Engine 0 REV 21   750-054758   CASF7380          RE-S-2X00x6
+Routing Engine 1 REV 21   750-054758   CASF7430          RE-S-2X00x6
+CB 0             REV 12   750-062572   CAMS2089          Enhanced MX SCB 2
+CB 1             REV 12   750-062572   CAMS2097          Enhanced MX SCB 2
+  Xcvr 0        
+  Xcvr 1        
+FPC 1            REV 20   750-063181   CAPZ5194          MPC3E NG PQ & Flex Q
+  CPU            REV 13   711-045719   CAPZ1532          RMPC PMB
+  MIC 0          REV 14   750-033307   CALN8053          10X10GE SFPP
+    PIC 0                 BUILTIN      BUILTIN           10X10GE SFPP
+      Xcvr 0     REV 01   740-031980   A1JA16T           SFP+-10G-SR
+      Xcvr 1     REV 01   740-021308   A3RA937           SFP+-10G-SR
+      Xcvr 2     REV 01   740-031980   AA1833315L2       SFP+-10G-SR
+      Xcvr 3              NON-JNPR     L1909160209       SFP+-10G-SR
+      Xcvr 4     REV 01   740-031980   AD184530UK3       SFP+-10G-SR
+      Xcvr 5              NON-JNPR     L1909160232       SFP+-10G-SR
+      Xcvr 7              NON-JNPR     X2003030442       SFP+-10G-LR
+      Xcvr 8     REV 01   740-031981   GDA2002646        SFP+-10G-LR
+      Xcvr 9     REV 01   740-021308   A4NBZFX           SFP+-10G-SR
+  MIC 1          REV 36   750-028392   CAJR2486          3D 20x 1GE(LAN) SFP
+    PIC 2                 BUILTIN      BUILTIN           10x 1GE(LAN) SFP
+      Xcvr 8     REV 01   740-031851   N69DLWS           SFP-SX
+      Xcvr 9     REV 01   740-031851   N0KA67V           SFP-SX
+    PIC 3                 BUILTIN      BUILTIN           10x 1GE(LAN) SFP
+      Xcvr 0     x(B      NON-JNPR     XMD1447523BB      SFP-T
+      Xcvr 8     REV 01   740-031851   N3ACACV           SFP-SX
+      Xcvr 9     REV 01   740-031851   N3BA0CP           SFP-SX
+FPC 2            REV 27   750-063181   CASV4706          MPC3E NG PQ & Flex Q
+  CPU            REV 13   711-045719   CASV2670          RMPC PMB
+  MIC 0          REV 02   750-061622   CAPR0097          MS-MIC-16G
+    PIC 0                 BUILTIN      BUILTIN           MS-MIC-16G
+  MIC 1          REV 14   750-033307   CAPS7679          10X10GE SFPP
+    PIC 2                 BUILTIN      BUILTIN           10X10GE SFPP
+      Xcvr 0     REV 01   740-031981   GDA2014116        SFP+-10G-LR
+      Xcvr 1     REV 01   740-021309   1G2CT8A9230DH     SFP+-10G-LR
+      Xcvr 2     REV 01   740-031980   AA173030655       SFP+-10G-SR
+      Xcvr 3     REV 01   740-031981   HC22008955        SFP+-10G-LR
+      Xcvr 4     REV 01   740-021309   1G2CT8A9240L1     SFP+-10G-LR
+      Xcvr 5     REV 01   740-031980   AA1832315AP       SFP+-10G-SR
+      Xcvr 6     REV 01   740-021309   1W1CT8A9371LE     SFP+-10G-LR
+      Xcvr 7     REV 01   740-031981   IBR2010535        SFP+-10G-LR
+      Xcvr 8     REV 01   740-021309   2016091J0404604   SFP+-10G-LR
+Fan Tray 0       REV 01   710-030216   YA3977            Enhanced Fan Tray
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show chassis fpc detail | no-more 
+Slot 1 information:
+  State                               Online    
+  Temperature                      45 degrees C / 113 degrees F
+  Total CPU DRAM                 3584 MB
+  Total RLDRAM                    259 MB
+  Total DDR DRAM                 20352 MB
+  FIPS Capable                        False 
+  FIPS Mode                           False 
+  Start time                          2026-04-08 02:54:26 UTC
+  Uptime                              12 hours, 48 minutes, 30 seconds
+  Max MPC base power consumption   376 Watts
+  Max MIC0 power consumption        30 Watts
+  Max MIC1 power consumption        37 Watts
+  Max MPC total power consumption  443 Watts
+Slot 2 information:
+  State                               Online    
+  Temperature                      50 degrees C / 122 degrees F
+  Total CPU DRAM                 3584 MB
+  Total RLDRAM                    259 MB
+  Total DDR DRAM                 20352 MB
+  FIPS Capable                        False 
+  FIPS Mode                           False 
+  Start time                          2026-04-06 06:53:36 UTC
+  Uptime                              2 days, 8 hours, 49 minutes, 20 seconds
+  Max MPC base power consumption   376 Watts
+  Max MIC0 power consumption        60 Watts
+  Max MIC1 power consumption        30 Watts
+  Max MPC total power consumption  466 Watts
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show chassis alarms | no-more 
+No alarms currently active
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show system alarms | no-more 
+No alarms currently active
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show chassis environment | no-more 
+Class Item                           Status     Measurement
+Temp  PEM 0                          OK         45 degrees C / 113 degrees F
+      PEM 1                          OK         45 degrees C / 113 degrees F
+      PEM 2                          Absent    
+      PEM 3                          Absent    
+      Routing Engine 0               OK         39 degrees C / 102 degrees F
+      Routing Engine 0 CPU           OK         61 degrees C / 141 degrees F
+      Routing Engine 1               OK         37 degrees C / 98 degrees F
+      Routing Engine 1 CPU           OK         52 degrees C / 125 degrees F
+      CB 0 Intake                    OK         42 degrees C / 107 degrees F
+      CB 0 Exhaust A                 OK         39 degrees C / 102 degrees F
+      CB 0 Exhaust B                 OK         49 degrees C / 120 degrees F
+      CB 0 ACBC                      OK         46 degrees C / 114 degrees F
+      CB 0 XF A                      OK         59 degrees C / 138 degrees F
+      CB 0 XF B                      OK         56 degrees C / 132 degrees F
+      CB 1 Intake                    OK         44 degrees C / 111 degrees F
+      CB 1 Exhaust A                 OK         39 degrees C / 102 degrees F
+      CB 1 Exhaust B                 OK         51 degrees C / 123 degrees F
+      CB 1 ACBC                      OK         48 degrees C / 118 degrees F
+      CB 1 XF A                      OK         60 degrees C / 140 degrees F
+      CB 1 XF B                      OK         58 degrees C / 136 degrees F
+      FPC 1 Intake                   OK         55 degrees C / 131 degrees F
+      FPC 1 Exhaust A                OK         45 degrees C / 113 degrees F
+      FPC 1 Exhaust B                OK         69 degrees C / 156 degrees F
+      FPC 1 XL TSen                  OK         79 degrees C / 174 degrees F
+      FPC 1 XL Chip                  OK         71 degrees C / 159 degrees F
+      FPC 1 XL_XR0 TSen              OK         79 degrees C / 174 degrees F
+      FPC 1 XL_XR0 Chip              OK         75 degrees C / 167 degrees F
+      FPC 1 XL_XR1 TSen              OK         79 degrees C / 174 degrees F
+      FPC 1 XL_XR1 Chip              OK         77 degrees C / 170 degrees F
+      FPC 1 XQ TSen                  OK         79 degrees C / 174 degrees F
+      FPC 1 XQ Chip                  OK         62 degrees C / 143 degrees F
+      FPC 1 XQ_XR0 TSen              OK         79 degrees C / 174 degrees F
+      FPC 1 XQ_XR0 Chip              OK         63 degrees C / 145 degrees F
+      FPC 1 XM TSen                  OK         79 degrees C / 174 degrees F
+      FPC 1 XM Chip                  OK         83 degrees C / 181 degrees F
+      FPC 1 XF TSen                  OK         79 degrees C / 174 degrees F
+      FPC 1 XF Chip                  OK         91 degrees C / 195 degrees F
+      FPC 1 PLX PCIe Switch TSen     OK         58 degrees C / 136 degrees F
+      FPC 1 PLX PCIe Switch Chip     OK         58 degrees C / 136 degrees F
+      FPC 1 Aloha FPGA 0 TSen        OK         58 degrees C / 136 degrees F
+      FPC 1 Aloha FPGA 0 Chip        OK         69 degrees C / 156 degrees F
+      FPC 1 Aloha FPGA 1 TSen        OK         58 degrees C / 136 degrees F
+      FPC 1 Aloha FPGA 1 Chip        OK         81 degrees C / 177 degrees F
+      FPC 2 Intake                   OK         53 degrees C / 127 degrees F
+      FPC 2 Exhaust A                OK         50 degrees C / 122 degrees F
+      FPC 2 Exhaust B                OK         73 degrees C / 163 degrees F
+      FPC 2 XL TSen                  OK         79 degrees C / 174 degrees F
+      FPC 2 XL Chip                  OK         76 degrees C / 168 degrees F
+      FPC 2 XL_XR0 TSen              OK         79 degrees C / 174 degrees F
+      FPC 2 XL_XR0 Chip              OK         80 degrees C / 176 degrees F
+      FPC 2 XL_XR1 TSen              OK         79 degrees C / 174 degrees F
+      FPC 2 XL_XR1 Chip              OK         82 degrees C / 179 degrees F
+      FPC 2 XQ TSen                  OK         79 degrees C / 174 degrees F
+      FPC 2 XQ Chip                  OK         62 degrees C / 143 degrees F
+      FPC 2 XQ_XR0 TSen              OK         79 degrees C / 174 degrees F
+      FPC 2 XQ_XR0 Chip              OK         64 degrees C / 147 degrees F
+      FPC 2 XM TSen                  OK         79 degrees C / 174 degrees F
+      FPC 2 XM Chip                  OK         90 degrees C / 194 degrees F
+      FPC 2 XF TSen                  OK         79 degrees C / 174 degrees F
+      FPC 2 XF Chip                  OK         94 degrees C / 201 degrees F
+      FPC 2 PLX PCIe Switch TSen     OK         58 degrees C / 136 degrees F
+      FPC 2 PLX PCIe Switch Chip     OK         60 degrees C / 140 degrees F
+      FPC 2 Aloha FPGA 0 TSen        OK         58 degrees C / 136 degrees F
+      FPC 2 Aloha FPGA 0 Chip        OK         65 degrees C / 149 degrees F
+      FPC 2 Aloha FPGA 1 TSen        OK         58 degrees C / 136 degrees F
+      FPC 2 Aloha FPGA 1 Chip        OK         84 degrees C / 183 degrees F
+Fans  Front Fan                      OK         Spinning at intermediate-speed
+      Middle Fan                     OK         Spinning at intermediate-speed
+      Rear Fan                       OK         Spinning at intermediate-speed
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show system resource-monitor fpc | no-more 
+FPC Resource Usage Summary
+
+Free Heap Mem Watermark         : 20  %
+Free NH Mem Watermark           : 20  %
+Free Filter Mem Watermark       : 20  %       
+
+* - Watermark reached
+
+
+Slot #         % Heap Free        RTT      Average RTT
+     1             90
+
+                 PFE #      % ENCAP mem Free      % NH mem Free      % FW mem Free         
+                    0              NA                 87                 99
+
+Slot #         % Heap Free        RTT      Average RTT
+     2             91
+
+                 PFE #      % ENCAP mem Free      % NH mem Free      % FW mem Free         
+                    0              NA                 87                 99
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show system processes extensive | match rpd | no-more 
+40736 root         20    0   954M   149M kqread   2   2:28   0.00% rpd{TraceThread}
+40734 root         20    0   946M   146M kqread   3   2:28   0.00% rpd{TraceThread}
+40740 root         20    0   946M   146M kqread   0   2:27   0.00% rpd{TraceThread}
+40738 root         20    0   946M   146M kqread   3   2:27   0.00% rpd{TraceThread}
+40735 root         20    0   958M   150M kqread   0   2:27   0.00% rpd{TraceThread}
+40741 root         20    0   946M   146M kqread   1   2:27   0.00% rpd{TraceThread}
+40739 root         20    0   946M   146M kqread   0   2:26   0.00% rpd{TraceThread}
+40696 root         20    0  1174M   263M kqread   3   2:02   0.00% rpd{TraceThread}
+40696 root         20    0  1174M   263M kqread   1   1:41   0.00% rpd{rpd}
+40741 root         20    0   946M   146M kqread   1   0:27   0.00% rpd{rpd}
+40735 root         20    0   958M   150M kqread   2   0:27   0.00% rpd{rpd}
+40736 root         20    0   954M   149M kqread   2   0:27   0.00% rpd{rpd}
+40740 root         20    0   946M   146M kqread   1   0:27   0.00% rpd{rpd}
+40739 root         20    0   946M   146M kqread   1   0:27   0.00% rpd{rpd}
+40738 root         20    0   946M   146M kqread   0   0:25   0.00% rpd{rpd}
+40734 root         20    0   946M   146M kqread   0   0:25   0.00% rpd{rpd}
+40696 root         20    0  1174M   263M kqread   1   0:11   0.00% rpd{rsvp-io}
+40696 root         20    0  1174M   263M kqread   0   0:06   0.00% rpd{bgpio-0-th}
+38433 root         20    0   723M    14M select   3   0:04   0.00% vrrpd
+40736 root         20    0   954M   149M kqread   1   0:02   0.00% rpd{bgpio-0-th}
+40735 root         20    0   958M   150M kqread   2   0:02   0.00% rpd{bgpio-0-th}
+40731 root         20    0   799M    19M kqread   1   0:02   0.00% rpdtmd
+40696 root         20    0  1174M   263M kqread   3   0:01   0.00% rpd{krtio-th}
+40735 root         20    0   958M   150M kqread   0   0:01   0.00% rpd{krtio-th}
+40741 root         20    0   946M   146M kqread   3   0:01   0.00% rpd{krtio-th}
+40736 root         20    0   954M   149M kqread   1   0:01   0.00% rpd{krtio-th}
+40738 root         20    0   946M   146M kqread   3   0:01   0.00% rpd{krtio-th}
+40739 root         20    0   946M   146M kqread   0   0:01   0.00% rpd{krtio-th}
+40740 root         20    0   946M   146M kqread   3   0:01   0.00% rpd{krtio-th}
+40734 root         20    0   946M   146M kqread   3   0:01   0.00% rpd{krtio-th}
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show interface terse | no-more 
+Interface               Admin Link Proto    Local                 Remote
+lc-1/0/0                up    up
+lc-1/0/0.32769          up    up   vpls    
+pfe-1/0/0               up    up
+pfe-1/0/0.16383         up    up   inet    
+                                   inet6   
+pfh-1/0/0               up    up
+pfh-1/0/0.16383         up    up   inet    
+pfh-1/0/0.16384         up    up   inet    
+si-1/0/0                up    up
+xe-1/0/0                up    down
+xe-1/0/0.32767          up    down multiservice
+xe-1/0/1                up    up
+xe-1/0/1.0              up    up   inet     10.0.0.30/31    
+                                            109.74.16.90/30 
+                                   iso     
+                                   mpls    
+                                   multiservice
+xe-1/0/2                up    down
+xe-1/0/2.131            up    down inet     192.168.131.254/24
+                                   multiservice
+xe-1/0/2.132            up    down inet     192.168.132.254/24
+                                   multiservice
+xe-1/0/2.189            up    down inet     192.168.189.250/24
+                                   multiservice
+xe-1/0/2.2117           up    down inet     192.168.17.254/24
+                                   multiservice
+xe-1/0/2.32767          up    down multiservice
+xe-1/0/3                up    up
+xe-1/0/3.4001           up    up   aenet    --> ae4.4001
+xe-1/0/3.4002           up    up   aenet    --> ae4.4002
+xe-1/0/3.32767          up    up   aenet    --> ae4.32767
+xe-1/0/4                up    down
+xe-1/0/4.0              up    down inet     109.74.16.93/30 
+                                   iso     
+                                   mpls    
+                                   multiservice
+xe-1/0/5                up    down
+xe-1/0/5.0              up    down inet     109.74.16.97/30 
+                                   iso     
+                                   mpls    
+                                   multiservice
+xe-1/0/6                up    down
+xe-1/0/6.0              up    down inet     105.105.105.1/24
+                                   multiservice
+xe-1/0/6.32767          up    down multiservice
+xe-1/0/7                down  down
+xe-1/0/7.0              up    down inet     10.54.4.236/31  
+                                   multiservice
+xe-1/0/8                up    down
+xe-1/0/8.0              up    down inet     109.74.16.41/30 
+                                   iso     
+                                   mpls    
+                                   multiservice
+xe-1/0/9                up    up
+xe-1/0/9.101            up    up   aenet    --> ae3.101
+xe-1/0/9.32767          up    up   aenet    --> ae3.32767
+ge-1/2/0                up    down
+ge-1/2/0.0              up    down inet     65.0.0.2/24     
+                                   iso     
+                                   mpls    
+                                   multiservice
+ge-1/2/1                up    down
+ge-1/2/1.0              up    down inet     6.8.68.8/24     
+                                   iso      49.0008.0000.0000.0008
+                                   mpls    
+                                   multiservice
+ge-1/2/1.32767          up    down multiservice
+ge-1/2/2                up    down
+ge-1/2/2.16386          up    down
+ge-1/2/3                up    down
+ge-1/2/3.16386          up    down
+ge-1/2/4                up    down
+ge-1/2/4.16386          up    down
+ge-1/2/5                up    down
+ge-1/2/5.16386          up    down
+ge-1/2/6                up    down
+ge-1/2/6.16386          up    down
+ge-1/2/7                up    down
+ge-1/2/7.16386          up    down
+ge-1/2/8                up    up
+ge-1/2/8.3400           up    up   inet     213.86.204.113/30
+                                   multiservice
+ge-1/2/8.32767          up    up   multiservice
+ge-1/2/9                up    up
+ge-1/2/9.100            up    up   inet     169.254.146.82/29
+                                   multiservice
+ge-1/2/9.32767          up    up   multiservice
+ge-1/3/0                up    up
+ge-1/3/0.603            up    up   inet     192.168.86.33/28
+                                            192.168.86.34/28
+                                   multiservice
+ge-1/3/0.604            up    up   inet     10.60.0.65/28   
+                                            10.60.0.67/28   
+                                   multiservice
+ge-1/3/0.2016           up    up   inet     100.96.160.214/30
+                                   multiservice
+ge-1/3/0.32767          up    up   multiservice
+ge-1/3/1                up    down
+ge-1/3/1.16386          up    down
+ge-1/3/2                up    down
+ge-1/3/2.16386          up    down
+ge-1/3/3                up    down
+ge-1/3/3.16386          up    down
+ge-1/3/4                up    down
+ge-1/3/4.16386          up    down
+ge-1/3/5                up    down
+ge-1/3/5.16386          up    down
+ge-1/3/6                up    down
+ge-1/3/6.16386          up    down
+ge-1/3/7                up    down
+ge-1/3/7.0              up    down inet     10.1.1.5/30     
+                                   multiservice
+ge-1/3/8                up    up
+ge-1/3/8.3400           up    up   inet     213.86.204.114/30
+                                   multiservice
+ge-1/3/8.32767          up    up   multiservice
+ge-1/3/9                up    up
+ge-1/3/9.100            up    up   inet     169.254.146.81/29
+                                   multiservice
+ge-1/3/9.32767          up    up   multiservice
+lc-2/0/0                up    up
+lc-2/0/0.32769          up    up   vpls    
+mams-2/0/0              up    up
+ms-2/0/0                up    up
+ms-2/0/0.3              up    up   inet    
+ms-2/0/0.4              up    up   inet    
+pc-2/0/0                up    up
+pc-2/0/0.16383          up    up   inet    
+pc-2/0/0.16384          up    up   inet     20.0.0.1            --> 20.0.0.48
+pfe-2/0/0               up    up
+pfe-2/0/0.16383         up    up   inet    
+                                   inet6   
+pfh-2/0/0               up    up
+pfh-2/0/0.16383         up    up   inet    
+pfh-2/0/0.16384         up    up   inet    
+gr-2/1/0                up    up
+ip-2/1/0                up    up
+lt-2/1/0                up    up
+lt-2/1/0.0              up    down inet     20.0.0.1/24     
+lt-2/1/0.1              up    down ccc     
+lt-2/1/0.32767          up    up  
+mt-2/1/0                up    up
+pd-2/1/0                up    up
+pd-2/1/0.32773          up    up   inet    
+pe-2/1/0                up    up
+pe-2/1/0.32769          up    down inet    
+pe-2/1/0.32770          up    up   inet    
+pe-2/1/0.32772          up    down inet    
+ud-2/1/0                up    up
+ut-2/1/0                up    up
+vt-2/1/0                up    up
+vt-2/1/0.2117           up    up   inet    
+vt-2/1/0.2097152        up    up   inet    
+                                   mpls    
+xe-2/2/0                up    down
+xe-2/2/0.0              up    down aenet    --> ae11.0
+xe-2/2/1                up    down
+xe-2/2/1.0              up    down aenet    --> ae11.0
+xe-2/2/2                up    up
+xe-2/2/2.0              up    up   inet     10.0.0.2/24     
+                                   multiservice
+xe-2/2/3                up    down
+xe-2/2/3.0              up    down inet     10.10.2.2/30    
+                                   multiservice
+xe-2/2/4                up    up
+xe-2/2/4.16386          up    up  
+xe-2/2/5                up    up
+xe-2/2/5.44             up    up   aenet    --> ae2.44
+xe-2/2/5.1000           up    up   aenet    --> ae2.1000
+xe-2/2/5.1001           up    up   aenet    --> ae2.1001
+xe-2/2/5.1002           up    up   aenet    --> ae2.1002
+xe-2/2/5.1003           up    up   aenet    --> ae2.1003
+xe-2/2/5.1151           up    up   aenet    --> ae2.1151
+xe-2/2/5.1152           up    up   aenet    --> ae2.1152
+xe-2/2/5.2671           up    up   aenet    --> ae2.2671
+xe-2/2/5.2891           up    up   aenet    --> ae2.2891
+xe-2/2/5.3005           up    up   aenet    --> ae2.3005
+xe-2/2/5.32767          up    up   aenet    --> ae2.32767
+xe-2/2/6                up    up
+xe-2/2/6.0              up    up   aenet    --> ae10.0
+xe-2/2/6.32767          up    up   aenet    --> ae10.32767
+xe-2/2/7                up    down
+xe-2/2/7.0              up    down inet     10.10.1.2/30    
+                                   multiservice
+xe-2/2/8                up    up
+xe-2/2/8.0              up    up   aenet    --> ae10.0
+xe-2/2/8.32767          up    up   aenet    --> ae10.32767
+xe-2/2/9                up    down
+xe-2/2/9.12             up    down inet     12.0.0.2/24     
+                                   multiservice
+xe-2/2/9.23             up    down inet     23.0.0.1/24     
+                                   multiservice
+xe-2/2/9.34             up    down inet     34.0.0.2/24     
+                                   multiservice
+xe-2/2/9.32767          up    down multiservice
+ae0                     up    down
+ae0.106                 up    down inet     10.10.106.1/30  
+                                   multiservice
+ae0.107                 up    down inet     10.10.107.1/30  
+                                   multiservice
+ae0.32767               up    down multiservice
+ae2                     up    up
+ae2.44                  up    up   inet     44.0.0.2/24     
+                                            44.0.0.254/24   
+                                   multiservice
+ae2.1000                up    up   inet     101.0.0.2/24    
+                                            101.0.0.254/24  
+                                   multiservice
+ae2.1001                up    up   inet     102.0.0.2/24    
+                                            102.0.0.254/24  
+                                   multiservice
+ae2.1002                up    up   inet     103.0.0.2/24    
+                                            103.0.0.254/24  
+                                   multiservice
+ae2.1003                up    up   inet     104.0.0.2/24    
+                                            104.0.0.254/24  
+                                   multiservice
+ae2.1151                up    up   inet     100.0.0.2/24    
+                                   multiservice
+ae2.1152                up    up   inet     200.0.0.2/24    
+                                   multiservice
+ae2.2671                up    up   inet     26.0.0.1/24     
+                                   multiservice
+ae2.2891                up    up   inet     28.0.0.1/24     
+                                   multiservice
+ae2.3005                up    up   inet     35.1.1.1/30     
+                                   multiservice
+ae2.32767               up    up   multiservice
+ae3                     up    up
+ae3.101                 up    up   inet     101.101.101.26/30
+                                   multiservice
+ae3.32767               up    up   multiservice
+ae4                     up    up
+ae4.4001                up    up   inet     41.1.1.1/30     
+                                   multiservice
+ae4.4002                up    up   inet     42.1.1.1/30     
+                                   multiservice
+ae4.32767               up    up   multiservice
+ae10                    up    up
+ae10.0                  up    up   bridge  
+ae10.32767              up    up   multiservice
+ae11                    up    down
+ae11.0                  up    down inet     192.168.78.129/31
+                                   multiservice
+cbp0                    up    up
+demux0                  up    up
+dsc                     up    up
+em0                     up    up
+em0.32768               up    up   inet     192.168.1.1/24  
+esi                     up    up
+fti0                    up    up
+fti1                    up    up
+fti2                    up    up
+fti3                    up    up
+fti4                    up    up
+fti5                    up    up
+fti6                    up    up
+fti7                    up    up
+fxp0                    up    up
+fxp0.0                  up    up   inet     10.80.71.56/23  
+gre                     up    up
+igb0                    up    up
+igb0.0                  up    up   inet     10.0.0.4/8      
+                                            128.0.0.1/2     
+                                            128.0.0.4/2     
+                                   inet6    fe80::200:1ff:fe00:4/64
+                                            fec0::a:0:0:4/64
+                                   tnp      0x4             
+ipip                    up    up
+irb                     up    up
+ixlv0                   up    up
+ixlv0.0                 up    up   inet     10.0.0.4/8      
+                                            128.0.0.1/2     
+                                            128.0.0.4/2     
+                                   inet6    fe80::200:ff:fe00:4/64
+                                            fec0::a:0:0:4/64
+                                   tnp      0x4             
+jsrv                    up    up
+jsrv.1                  up    up   inet     128.0.0.127/2   
+lo0                     up    up
+lo0.0                   up    up   inet     109.74.16.9         --> 0/0
+                                            194.180.107.6       --> 0/0
+                                   iso      49.0001.1090.7401.6009
+lo0.1                   up    up   inet     1.1.1.1             --> 0/0
+lo0.2                   up    up   inet     1.1.1.2             --> 0/0
+lo0.3                   up    up   inet     1.1.1.3             --> 0/0
+lo0.4                   up    up   inet     1.1.1.4             --> 0/0
+lo0.11                  up    up   inet     207.251.255.112     --> 0/0
+lo0.1000                up    up   inet     15.0.0.1            --> 0/0
+lo0.16384               up    up   inet     127.0.0.1           --> 0/0
+lo0.16385               up    up   inet    
+lsi                     up    up
+lsi.0                   up    up   inet    
+                                   iso     
+                                   inet6   
+lsi.1                   up    up   inet    
+                                   iso     
+                                   inet6   
+lsi.2                   up    up   inet    
+                                   iso     
+                                   inet6   
+lsi.3                   up    up   inet    
+                                   iso     
+                                   inet6   
+lsi.4                   up    up   inet    
+                                   iso     
+                                   inet6   
+lsi.5                   up    up   inet    
+                                   iso     
+                                   inet6   
+lsi.6                   up    up   inet    
+                                   iso     
+                                   inet6   
+lsi.7                   up    up   inet    
+                                   iso     
+                                   inet6   
+lsi.8                   up    up   inet    
+                                   iso     
+                                   inet6   
+lsi.9                   up    up   inet    
+                                   iso     
+                                   inet6   
+lsi.10                  up    up   inet    
+                                   iso     
+                                   inet6   
+mif                     up    up
+mtun                    up    up
+pimd                    up    up
+pime                    up    up
+pip0                    up    up
+pp0                     up    up
+rbeb                    up    up
+tap                     up    up
+vtep                    up    up
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show oam ethernet connectivity-fault-management interfaces extensive | no-more 
+warning: ethernet-connectivity-fault-management subsystem not running - not needed by configuration.
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show vrrp summary | no-more 
+Interface     State       Group   VR state       VR Mode    Type   Address 
+ae2.44        up              1   master          Active    lcl    44.0.0.2           
+                                                            vip    44.0.0.254         
+ae2.1151      up              1   master          Active    lcl    100.0.0.2          
+                                                            vip    100.0.0.254        
+ae2.1152      up              2   master          Active    lcl    200.0.0.2          
+                                                            vip    200.0.0.254        
+ae2.1000      up              3   master          Active    lcl    101.0.0.2          
+                                                            vip    101.0.0.254        
+ae2.1001      up              4   master          Active    lcl    102.0.0.2          
+                                                            vip    102.0.0.254        
+ae2.1002      up              5   master          Active    lcl    103.0.0.2          
+                                                            vip    103.0.0.254        
+ae2.1003      up              6   master          Active    lcl    104.0.0.2          
+                                                            vip    104.0.0.254        
+ge-1/3/0.603  up              1   master          Active    lcl    192.168.86.34      
+                                                            vip    192.168.86.33      
+ge-1/3/0.604  up              2   master          Active    lcl    10.60.0.67         
+                                                            vip    10.60.0.65         
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show bfd session | no-more 
+                                                  Detect   Transmit
+Address                  State     Interface      Time     Interval  Multiplier
+109.74.16.89             Up        xe-1/0/1.0     0.300     0.100        3   
+169.254.146.81           Down      ge-1/2/9.100   0.000     2.000        5   
+213.86.204.114           Down      ge-1/2/8.3400  0.000     2.000        3   
+
+3 sessions, 3 clients
+Cumulative transmit rate 11.0 pps, cumulative receive rate 10.0 pps
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show rsvp neighbor | no-more 
+RSVP neighbor: 2 learned
+Address            Idle Up/Dn LastChange HelloInt HelloTx/Rx MsgRcvd
+194.180.107.5         0  1/0     4:56:03        9 22179/21854 0
+109.74.16.89          0  1/0     4:56:21        9 21451/21444 829
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show rsvp session | no-more 
+Ingress RSVP: 1 sessions
+To              From            State   Rt Style Labelin Labelout LSPname 
+194.180.107.5   109.74.16.9     Up       0  1 SE       -        3 EFF02-EFF01
+Total 1 displayed, Up 1, Down 0
+
+Egress RSVP: 3 sessions
+To              From            State   Rt Style Labelin Labelout LSPname 
+109.74.16.9     109.74.16.0     Up       0  1 SE     188        3 109.74.16.9:49959:110121111:mvpn:PROV1-JAG-MIG-MCAST-ESL01-new
+109.74.16.9     109.74.16.1     Up       0  1 SE       3        - 109.74.16.9:4:12:mvpn:CE12-JAG
+109.74.16.9     194.180.107.5   Up       0  1 SE       3        - EFF01-EFF02
+Total 3 displayed, Up 3, Down 0
+
+Transit RSVP: 0 sessions
+Total 0 displayed, Up 0, Down 0
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show route table inet.0 | no-more 
+
+inet.0: 79 destinations, 94 routes (79 active, 0 holddown, 0 hidden)
+@ = Routing Use Only, # = Forwarding Use Only
++ = Active Route, - = Last Active, * = Both
+
+6.8.68.8/32        *[Local/0] 12:46:09
+                       Reject
+10.0.0.0/8         *[Static/5] 2d 06:45:47
+                    >  to 10.80.70.1 via fxp0.0
+10.0.0.0/30        *[IS-IS/18] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0
+10.0.0.0/31        *[IS-IS/18] 04:55:28, metric 1050
+                    >  to 109.74.16.89 via xe-1/0/1.0
+10.0.0.4/30        *[IS-IS/18] 04:55:28, metric 1100
+                    >  to 109.74.16.89 via xe-1/0/1.0
+10.0.0.5/32        *[IS-IS/18] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0
+10.0.0.8/30        *[IS-IS/18] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0
+10.0.0.10/31       *[IS-IS/18] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0
+10.0.0.20/31       *[IS-IS/18] 04:55:28, metric 950
+                    >  to 109.74.16.89 via xe-1/0/1.0
+10.0.0.30/31       *[Direct/0] 04:56:25
+                    >  via xe-1/0/1.0
+10.0.0.30/32       *[Local/0] 04:56:25
+                       Local via xe-1/0/1.0
+10.0.0.50/31       *[IS-IS/18] 04:55:28, metric 610
+                    >  to 109.74.16.89 via xe-1/0/1.0
+10.0.0.100/31      *[IS-IS/18] 04:55:28, metric 610
+                    >  to 109.74.16.89 via xe-1/0/1.0
+10.1.1.5/32        *[Local/0] 12:46:09
+                       Reject
+10.10.223.8/30     *[IS-IS/18] 04:55:38, metric 1300
+                    >  to 109.74.16.89 via xe-1/0/1.0
+10.54.4.236/32     *[Local/0] 12:46:13
+                       Reject
+10.60.0.64/28      *[Direct/0] 12:45:58
+                    >  via ge-1/3/0.604
+10.60.0.65/32      *[Local/0] 12:45:51
+                       Local via ge-1/3/0.604
+10.60.0.67/32      *[Local/0] 12:45:58
+                       Local via ge-1/3/0.604
+10.80.70.0/23      *[Direct/0] 2d 06:45:47
+                    >  via fxp0.0
+10.80.71.56/32     *[Local/0] 2d 06:45:47
+                       Local via fxp0.0
+26.0.0.0/24        *[Direct/0] 2d 07:23:47
+                    >  via ae2.2671
+26.0.0.1/32        *[Local/0] 2d 07:23:47
+                       Local via ae2.2671
+28.0.0.0/24        *[Direct/0] 2d 07:23:47
+                    >  via ae2.2891
+28.0.0.1/32        *[Local/0] 2d 07:23:47
+                       Local via ae2.2891
+35.1.1.0/30        *[Direct/0] 2d 07:23:47
+                    >  via ae2.3005
+35.1.1.1/32        *[Local/0] 2d 07:23:47
+                       Local via ae2.3005
+41.1.1.0/30        *[Direct/0] 12:46:05
+                    >  via ae4.4001
+41.1.1.1/32        *[Local/0] 12:46:05
+                       Local via ae4.4001
+42.1.1.0/30        *[Direct/0] 12:46:05
+                    >  via ae4.4002
+42.1.1.1/32        *[Local/0] 12:46:05
+                       Local via ae4.4002
+65.0.0.2/32        *[Local/0] 12:46:09
+                       Reject
+100.96.160.212/30  *[Direct/0] 12:45:58
+                    >  via ge-1/3/0.2016
+100.96.160.214/32  *[Local/0] 12:45:58
+                       Local via ge-1/3/0.2016
+101.101.101.0/30   *[IS-IS/18] 04:55:28, metric 610
+                    >  to 109.74.16.89 via xe-1/0/1.0
+101.101.101.24/30  *[Direct/0] 12:45:56
+                    >  via ae3.101
+101.101.101.26/32  *[Local/0] 12:45:56
+                       Local via ae3.101
+101.101.101.104/30 *[IS-IS/18] 04:55:28, metric 610
+                    >  to 109.74.16.89 via xe-1/0/1.0
+105.105.105.1/32   *[Local/0] 12:46:13
+                       Reject
+109.74.16.0/32     @[IS-IS/18] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0
+                   #[L-ISIS/6] 04:55:43, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 163001
+                    [LDP/9] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+109.74.16.1/32     @[IS-IS/18] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0
+                   #[L-ISIS/6] 04:55:43, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 163002
+                    [LDP/9] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+109.74.16.2/32     @[IS-IS/18] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0
+                   #[L-ISIS/6] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 100003
+                    [LDP/9] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+109.74.16.3/32     @[IS-IS/18] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0
+                   #[L-ISIS/6] 04:55:38, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 163004
+                    [LDP/9] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+109.74.16.9/32     *[Direct/0] 2d 08:50:04
+                    >  via lo0.0
+109.74.16.41/32    *[Local/0] 12:46:13
+                       Reject
+109.74.16.44/30    *[IS-IS/18] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0
+109.74.16.64/30    *[IS-IS/18] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0
+109.74.16.66/32    *[IS-IS/18] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0
+109.74.16.72/30    *[IS-IS/18] 04:55:28, metric 610
+                    >  to 109.74.16.89 via xe-1/0/1.0
+109.74.16.84/30    *[IS-IS/18] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0
+109.74.16.88/30    *[Direct/0] 04:56:25
+                    >  via xe-1/0/1.0
+109.74.16.90/32    *[Local/0] 04:56:25
+                       Local via xe-1/0/1.0
+109.74.16.93/32    *[Local/0] 12:46:13
+                       Reject
+109.74.16.96/30    *[IS-IS/18] 04:55:38, metric 1300
+                    >  to 109.74.16.89 via xe-1/0/1.0
+109.74.16.97/32    *[Local/0] 12:46:13
+                       Reject
+109.74.16.100/30   *[IS-IS/18] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0
+109.74.16.128/30   *[IS-IS/18] 04:55:28, metric 1300
+                    >  to 109.74.16.89 via xe-1/0/1.0
+109.74.16.129/32   *[IS-IS/18] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0
+109.74.16.172/30   *[IS-IS/18] 04:55:38, metric 880
+                    >  to 109.74.16.89 via xe-1/0/1.0
+109.74.16.246/31   *[IS-IS/18] 04:55:38, metric 940
+                    >  to 109.74.16.89 via xe-1/0/1.0
+109.74.16.248/32   *[IS-IS/18] 04:55:38, metric 880
+                    >  to 109.74.16.89 via xe-1/0/1.0
+192.168.86.32/28   *[Direct/0] 12:45:58
+                    >  via ge-1/3/0.603
+192.168.86.33/32   *[Local/0] 12:45:51
+                       Local via ge-1/3/0.603
+192.168.86.34/32   *[Local/0] 12:45:58
+                       Local via ge-1/3/0.603
+194.180.106.168/31 *[IS-IS/18] 04:55:28, metric 1400
+                    >  to 109.74.16.89 via xe-1/0/1.0
+194.180.106.170/31 *[IS-IS/18] 04:55:38, metric 1300
+                    >  to 109.74.16.89 via xe-1/0/1.0
+194.180.106.172/31 *[IS-IS/18] 04:55:28, metric 950
+                    >  to 109.74.16.89 via xe-1/0/1.0
+194.180.106.174/31 *[IS-IS/18] 04:55:28, metric 1300
+                    >  to 109.74.16.89 via xe-1/0/1.0
+194.180.106.175/32 *[IS-IS/18] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0
+194.180.107.0/32   *[IS-IS/18] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0
+194.180.107.2/32   *[IS-IS/18] 04:55:28, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0
+194.180.107.3/32   @[IS-IS/18] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0
+                   #[LDP/9] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+194.180.107.4/32   *[IS-IS/18] 04:55:38, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0
+194.180.107.5/32   @[IS-IS/18] 04:55:28, metric 250
+                    >  to 109.74.16.89 via xe-1/0/1.0
+                   #[L-ISIS/6] 04:55:28, metric 250
+                    >  to 109.74.16.89 via xe-1/0/1.0
+                    [RSVP/7/1] 04:55:43, metric 250
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+                    [LDP/9] 04:55:28, metric 250
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+194.180.107.6/32   *[Direct/0] 2d 08:50:04
+                    >  via lo0.0
+194.180.107.48/32  @[IS-IS/18] 04:55:43, metric 950
+                    >  to 109.74.16.89 via xe-1/0/1.0
+                   #[L-ISIS/6] 04:55:43, metric 950
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 163048
+194.180.107.49/32  @[IS-IS/18] 04:55:28, metric 1300
+                    >  to 109.74.16.89 via xe-1/0/1.0
+                   #[L-ISIS/6] 04:55:28, metric 1300
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 163049
+194.180.107.131/32 @[IS-IS/18] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0
+                   #[LDP/9] 04:55:28, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+224.0.0.2/32       *[LDP/9] 2d 08:50:04, metric 1
+                       MultiRecv
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show route table inet.3 | no-more 
+
+inet.3: 41 destinations, 56 routes (9 active, 0 holddown, 41 hidden)
++ = Active Route, - = Last Active, * = Both
+
+109.74.16.0/32     @[L-ISIS/6] 04:55:44, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 163001
+                   #[LDP/9] 04:55:29, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+109.74.16.1/32     @[L-ISIS/6] 04:55:44, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 163002
+                   #[LDP/9] 04:55:29, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+109.74.16.2/32     @[L-ISIS/6] 04:55:29, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 100003
+                   #[LDP/9] 04:55:29, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+109.74.16.3/32     @[L-ISIS/6] 04:55:39, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 163004
+                   #[LDP/9] 04:55:29, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+194.180.107.3/32   *[LDP/9] 04:55:29, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+194.180.107.5/32   @[L-ISIS/6] 04:55:29, metric 250
+                    >  to 109.74.16.89 via xe-1/0/1.0
+                   #[RSVP/7/1] 04:55:44, metric 250
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+                    [LDP/9] 04:55:29, metric 250
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+194.180.107.48/32  *[L-ISIS/6] 04:55:44, metric 950
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 163048
+194.180.107.49/32  *[L-ISIS/6] 04:55:29, metric 1300
+                    >  to 109.74.16.89 via xe-1/0/1.0, Push 163049
+194.180.107.131/32 *[LDP/9] 04:55:29, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show route table mpls.0 | no-more 
+
+mpls.0: 39 destinations, 39 routes (39 active, 0 holddown, 0 hidden)
++ = Active Route, - = Last Active, * = Both
+
+0                  *[MPLS/0] 2d 08:50:06, metric 1
+                       to table inet.0
+0(S=0)             *[MPLS/0] 2d 08:50:06, metric 1
+                       to table mpls.0
+1                  *[MPLS/0] 2d 08:50:06, metric 1
+                       Receive
+2                  *[MPLS/0] 2d 08:50:06, metric 1
+                       to table inet6.0
+2(S=0)             *[MPLS/0] 2d 08:50:06, metric 1
+                       to table mpls.0
+13                 *[MPLS/0] 2d 08:50:06, metric 1
+                       Receive
+16                 *[VPN/0] 2d 08:50:05
+                    >  via lsi.0 (CE15-JAG), Pop      
+17                 *[VPN/0] 2d 08:50:05
+                    >  via lsi.1 (CUST-GCP_SX06046-LSEG_MEC-UCAST-EFF02), Pop      
+18                 *[VPN/0] 2d 08:50:05
+                    >  via lsi.2 (CUST-GCP_SX06046-LSEG_MEC-UCAST-inside-EFF02), Pop      
+19                 *[VPN/0] 2d 08:50:05
+                    >  via lsi.3 (CUST-GCP_SX06046-LSEG_MEC-UCAST-outside-EFF02), Pop      
+20                 *[VPN/0] 2d 08:50:05
+                    >  via lsi.4 (CUST-JAG-C2B1-MCAST-EFF02), Pop      
+21                 *[VPN/0] 2d 08:50:05
+                    >  via lsi.5 (CUST-JAG-C2B1-UCAST-EFF02), Pop      
+22                 *[VPN/0] 2d 08:50:05
+                    >  via lsi.6 (CUST-JAG-C2B1-UCAST-inside-EFF02), Pop      
+23                 *[VPN/0] 2d 08:50:05
+                    >  via lsi.7 (CUST-JAG-C2B1-UCAST-outside-EFF02), Pop      
+24                 *[VPN/0] 2d 08:50:05
+                    >  via lsi.8 (CUST2-JAG-MIG-MCAST-EFF02-new), Pop      
+25                 *[VPN/0] 2d 08:50:05
+                    >  via lsi.9 (PROV-C-JAG-QOS-EFF02), Pop      
+26                 *[VPN/0] 2d 08:50:05
+                    >  via lsi.10 (PROV-LSEG-EFF02), Pop      
+29                 *[VPN/0] 2d 08:47:02
+                    >  via vt-2/1/0.2117, Pop      
+185                *[L-ISIS/6] 04:55:46, metric 0
+                    >  to 109.74.16.89 via xe-1/0/1.0, Pop      
+185(S=0)           *[L-ISIS/6] 04:56:09, metric 0
+                    >  to 109.74.16.89 via xe-1/0/1.0, Pop      
+186                *[L-ISIS/6] 04:56:09, metric 0
+                    >  to 109.74.16.89 via xe-1/0/1.0, Pop      
+186(S=0)           *[L-ISIS/6] 04:56:09, metric 0
+                    >  to 109.74.16.89 via xe-1/0/1.0, Pop      
+187                *[LDP/9] 04:55:29, metric 1
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+187(S=0)           *[LDP/9] 04:55:29, metric 1
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+188                *[RSVP/7/2] 04:55:37, metric 1
+                    >  via vt-2/1/0.2117, Pop      
+189                *[LDP/9] 04:55:29, metric 1
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+190                *[LDP/9] 04:55:29, metric 1
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+191                *[LDP/9] 04:55:29, metric 1
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+192                *[LDP/9] 04:55:29, metric 1
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+193                *[LDP/9] 04:55:29, metric 1
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+194                *[LDP/9] 04:55:29, metric 1
+                    >  to 109.74.16.89 via xe-1/0/1.0, label-switched-path EFF02-EFF01
+100003             *[L-ISIS/6] 04:55:29, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, Swap 100003
+163001             *[L-ISIS/6] 04:55:44, metric 600
+                    >  to 109.74.16.89 via xe-1/0/1.0, Swap 163001
+163002             *[L-ISIS/6] 04:55:44, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0, Swap 163002
+163004             *[L-ISIS/6] 04:55:39, metric 850
+                    >  to 109.74.16.89 via xe-1/0/1.0, Swap 163004
+163009             *[L-ISIS/6] 04:55:29, metric 250
+                    >  to 109.74.16.89 via xe-1/0/1.0, Pop      
+163009(S=0)        *[L-ISIS/6] 04:55:46, metric 250
+                    >  to 109.74.16.89 via xe-1/0/1.0, Pop      
+163048             *[L-ISIS/6] 04:55:44, metric 950
+                    >  to 109.74.16.89 via xe-1/0/1.0, Swap 163048
+163049             *[L-ISIS/6] 04:55:29, metric 1300
+                    >  to 109.74.16.89 via xe-1/0/1.0, Swap 163049
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show mpls interface | no-more 
+Interface        State       Administrative groups (x: extended)
+xe-1/0/8.0       Dn          SHUNT
+fxp0.0           Dn         <none>
+ge-1/2/0.0       Dn         <none>
+ge-1/2/1.0       Dn         <none>
+ge-1/3/0.603     Dn         <none>
+ge-1/3/0.604     Dn         <none>
+ge-1/3/0.2016    Dn         <none>
+ae2.2671         Dn         <none>
+ae2.2891         Dn         <none>
+ae2.3005         Dn         <none>
+ae3.101          Dn         <none>
+ae4.4001         Dn         <none>
+ae4.4002         Dn         <none>
+vt-2/1/0.2097152 Up         <none>
+xe-1/0/1.0       Up          SHUNT
+xe-1/0/4.0       Dn          RED
+xe-1/0/5.0       Dn          RED
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show mpls lsp | no-more 
+Ingress LSP: 4 sessions
+To              From            State Rt P     ActivePath       LSPname
+109.74.16.52    0.0.0.0         Dn     0       -                EFF02-ASR9k02
+194.180.107.5   109.74.16.9     Up     0 *     EFF02-EFF01-pri  EFF02-EFF01
+109.74.16.1     0.0.0.0         Dn     0       -                EFF02-ESL02
+109.74.16.3     0.0.0.0         Dn     0       -                EFF02-IXL02
+Total 4 displayed, Up 1, Down 3
+
+Egress LSP: 3 sessions
+To              From            State   Rt Style Labelin Labelout LSPname 
+109.74.16.9     109.74.16.0     Up       0  1 SE     188        3 109.74.16.9:49959:110121111:mvpn:PROV1-JAG-MIG-MCAST-ESL01-new
+109.74.16.9     109.74.16.1     Up       0  1 SE       3        - 109.74.16.9:4:12:mvpn:CE12-JAG
+109.74.16.9     194.180.107.5   Up       0  1 SE       3        - EFF01-EFF02
+Total 3 displayed, Up 3, Down 0
+
+Transit LSP: 0 sessions
+Total 0 displayed, Up 0, Down 0
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show mpls lsp p2mp | no-more 
+Ingress LSP: 0 sessions
+Total 0 displayed, Up 0, Down 0
+
+Egress LSP: 3 sessions
+P2MP name: 49959:110121111:mvpn:PROV1-JAG-MIG-MCAST-ESL01-new, P2MP branch count: 1
+To              From            State   Rt Style Labelin Labelout LSPname 
+109.74.16.9     109.74.16.0     Up       0  1 SE     188        3 109.74.16.9:49959:110121111:mvpn:PROV1-JAG-MIG-MCAST-ESL01-new
+P2MP name: 4:12:mvpn:CE12-JAG, P2MP branch count: 1
+To              From            State   Rt Style Labelin Labelout LSPname 
+109.74.16.9     109.74.16.1     Up       0  1 SE       3        - 109.74.16.9:4:12:mvpn:CE12-JAG
+Total 2 displayed, Up 2, Down 0
+
+Transit LSP: 0 sessions
+Total 0 displayed, Up 0, Down 0
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show bgp summary | no-more 
+Threading mode: BGP I/O
+Default eBGP mode: advertise - accept, receive - accept
+Groups: 15 Peers: 20 Down peers: 15
+Table          Tot Paths  Act Paths Suppressed    History Damp State    Pending
+inet.0               
+                       0          0          0          0          0          0
+bgp.l3vpn.0          
+                    1292       1291          0          0          0          0
+bgp.mvpn.0           
+                       4          4          0          0          0          0
+lsdist.0             
+                       0          0          0          0          0          0
+bgp.l2vpn.0          
+                       1          1          0          0          0          0
+bgp.evpn.0           
+                       0          0          0          0          0          0
+Peer                     AS      InPkt     OutPkt    OutQ   Flaps Last Up/Dwn State|#Active/Received/Accepted/Damped...
+10.0.0.10              8220       7352       7393       0       1  2d 8:09:16 Establ
+  CUST-SMART-TRIAL.inet.0: 0/0/0/0
+10.1.1.2               8220          0          0       0       0  2d 8:50:08 Idle  
+10.1.1.6               8220          0          0       0       0  2d 8:50:08 Idle  
+10.10.1.1             20309          0          0       0       0  2d 8:50:08 Active
+10.10.2.1             20309          0          0       0       0  2d 8:50:08 Active
+10.10.106.2            8220          0          0       0       0  2d 8:50:08 Active
+10.91.126.140          8220          0          0       0       0  2d 8:50:08 Connect
+10.91.126.231          8220          0          0       0       0  2d 8:50:08 Active
+10.91.151.115          8220          0          0       0       0  2d 8:50:08 Idle  
+10.91.151.119          8220          0          0       0       0  2d 8:50:08 Idle  
+109.74.16.248          8220       1061        665       0      13     4:55:39 Establ
+  bgp.l3vpn.0: 1291/1292/1292/0
+  bgp.mvpn.0: 4/4/4/0
+  CE15-JAG.inet.0: 3/3/3/0
+  CUST-JAG-C2B1-MCAST-EFF02.inet.0: 3/3/3/0
+  CUST-JAG-C2B1-UCAST-inside-EFF02.inet.0: 1/1/1/0
+  CUST2-JAG-MIG-MCAST-EFF02-new.inet.0: 3/3/3/0
+  CUST-GCP_SX06046-LSEG_MEC-UCAST-inside-EFF02.inet.0: 1/1/1/0
+  CUST-GCP_SX06046-LSEG_MEC-UCAST-outside-EFF02.inet.0: 0/36/36/0
+  CUST-JAG-C2B1-UCAST-outside-EFF02.inet.0: 2/2/2/0
+  CE15-JAG.mvpn.0: 1/1/1/0
+  CUST-JAG-C2B1-MCAST-EFF02.mvpn.0: 1/1/1/0
+  CUST2-JAG-MIG-MCAST-EFF02-new.mvpn.0: 1/1/1/0
+  PROV-C-JAG-QOS-EFF02.mvpn.0: 1/1/1/0
+109.74.16.249          8220          0          0       0       0  2d 8:50:08 Active
+169.254.146.81        16550       1705       1682       0       1    12:46:01 Establ
+  CUST-GCP_SX06046-LSEG_MEC-UCAST-EFF02.inet.0: 0/1/0/0
+192.168.17.20           200          0          0       0       0  2d 8:50:08 Idle  
+192.168.78.128         8220          0          0       0       0  2d 8:50:08 Idle  
+192.168.130.20          200          0          0       0       0  2d 8:50:08 Idle  
+192.168.131.20          200          0          0       0       0  2d 8:50:08 Idle  
+192.168.189.254        8448          0          0       0       0  2d 8:50:08 Idle  
+194.180.107.5          8220        648        651       0      12     4:55:54 Establ
+  bgp.l2vpn.0: 1/1/1/0
+  bgp.evpn.0: 0/0/0/0
+  l2vpn-inst1-eff02.l2vpn.0: 1/1/1/0
+213.86.204.114         8718       1705       1683       0       1    12:46:01 Establ
+  PROV-LSEG-EFF02.inet.0: 377/377/377/0
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show bgp neighbor | no-more 
+Peer: 10.0.0.10+26367 AS 8220  Local: 10.0.0.2+179 AS 8220 
+  Group: CUST-SMART-TRIAL      Routing-Instance: CUST-SMART-TRIAL
+  Forwarding routing-instance: CUST-SMART-TRIAL  
+  Type: Internal    State: Established    Flags: <Sync>
+  Last State: OpenConfirm   Last Event: RecvKeepAlive
+  Last Error: Cease
+  Options: <LogUpDown Refresh>
+  Options: <GracefulShutdownRcv>
+  Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 1
+  Last flap event: InterfaceAddrDeleted
+  Receive eBGP Origin Validation community: Accept
+  Error: 'Cease' Sent: 1 Recv: 0
+  Peer ID: 109.74.16.248   Local ID: 10.0.0.2          Active Holdtime: 90
+  Keepalive Interval: 30         Group index: 10   Peer index: 0    SNMP index: 14    
+  I/O Session Thread: bgpio-0 State: Enabled
+  BFD: disabled, down
+  NLRI for restart configured on peer: inet-unicast
+  NLRI advertised by peer: inet-unicast
+  NLRI for this session: inet-unicast
+  Peer supports Refresh capability (2)
+  Stale routes from peer are kept for: 300
+  Peer does not support Restarter functionality
+  NLRI of received end-of-rib markers: inet-unicast
+  NLRI of all end-of-rib markers sent: inet-unicast
+  Peer does not support Receiver functionality
+  Peer does not support LLGR Restarter or Receiver functionality
+  Peer supports 4 byte AS extension (peer-as 8220)
+  Peer does not support Addpath
+  Table CUST-SMART-TRIAL.inet.0 Bit: d0000
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: in sync
+    Active prefixes:              0
+    Received prefixes:            0
+    Accepted prefixes:            0
+    Suppressed due to damping:    0
+    Advertised prefixes:          0
+  Last traffic (seconds): Received 17   Sent 18   Checked 202157
+  Input messages:  Total 7352	Updates 1	Refreshes 0	Octets 139730
+  Output messages: Total 7393	Updates 0	Refreshes 0	Octets 140471
+  Output Queue[12]: 0           (CUST-SMART-TRIAL.inet.0, inet-unicast)
+Peer: 10.1.1.2 AS 8220         Local: 10.1.1.1 AS 8220 
+  Group: IBGP                  Routing-Instance: master
+  Forwarding routing-instance: master  
+  Type: Internal    State: Idle         (route reflector client)Flags: <PeerInterfaceUnknown>
+  Last State: NoState       Last Event: NoEvent
+  Last Error: None
+  Options: <LocalAddress LogUpDown Cluster AddressFamily PeerAS Rib-group Refresh>
+  Options: <GracefulShutdownRcv>
+  Address families configured: inet-unicast inet-vpn-unicast
+  Local Address: 10.1.1.1 Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Accept
+Peer: 10.1.1.6 AS 8220         Local: 10.1.1.1 AS 8220 
+  Group: IBGP                  Routing-Instance: master
+  Forwarding routing-instance: master  
+  Type: Internal    State: Idle         (route reflector client)Flags: <PeerInterfaceUnknown>
+  Last State: NoState       Last Event: NoEvent
+  Last Error: None
+  Options: <LocalAddress LogUpDown Cluster AddressFamily PeerAS Rib-group Refresh>
+  Options: <GracefulShutdownRcv>
+  Address families configured: inet-unicast inet-vpn-unicast
+  Local Address: 10.1.1.1 Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Accept
+Peer: 10.10.1.1 AS 20309       Local: unspecified AS 20309
+  Group: ibgp                  Routing-Instance: NASDAQ_DR
+  Forwarding routing-instance: NASDAQ_DR  
+  Type: Internal    State: Active         Flags: <>
+  Last State: Idle          Last Event: Start
+  Last Error: None
+  Options: <PeerAS Refresh>
+  Options: <GracefulShutdownRcv>
+  Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Accept
+Peer: 10.10.2.1 AS 20309       Local: unspecified AS 20309
+  Group: ibgp                  Routing-Instance: NASDAQ_DR
+  Forwarding routing-instance: NASDAQ_DR  
+  Type: Internal    State: Active         Flags: <>
+  Last State: Idle          Last Event: Start
+  Last Error: None
+  Options: <PeerAS Refresh>
+  Options: <GracefulShutdownRcv>
+  Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Accept
+Peer: 10.10.106.2 AS 8220      Local: unspecified AS 8220 
+  Group: INSIDE-BGP            Routing-Instance: CUST-JAG-C2B1-UCAST-inside-EFF02
+  Forwarding routing-instance: CUST-JAG-C2B1-UCAST-inside-EFF02  
+  Type: Internal    State: Active         Flags: <>
+  Last State: Idle          Last Event: Start
+  Last Error: None
+  Options: <Refresh>
+  Options: <GracefulShutdownRcv>
+  Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Accept
+Peer: 10.91.126.140+179 AS 8220 Local: 10.80.71.56+64970 AS 8220 
+  Group: BGP-LS-PRIZMNET       Routing-Instance: master
+  Forwarding routing-instance: master  
+  Type: Internal    State: Connect        Flags: <>
+  Last State: Active        Last Event: ConnectRetry
+  Last Error: None
+  Export: [ bgp-ls ] 
+  Options: <AuthKey LogUpDown AddressFamily Refresh>
+  Options: <GracefulShutdownRcv>
+  Authentication key is configured
+  Address families configured: te-unicast
+  Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Accept
+Peer: 10.91.126.231 AS 8220    Local: unspecified AS 8220 
+  Group: BGP-LS-PRIZMNET       Routing-Instance: master
+  Forwarding routing-instance: master  
+  Type: Internal    State: Active         Flags: <>
+  Last State: Idle          Last Event: Start
+  Last Error: None
+  Export: [ bgp-ls ] 
+  Options: <AuthKey LogUpDown AddressFamily Refresh>
+  Options: <GracefulShutdownRcv>
+  Authentication key is configured
+  Address families configured: te-unicast
+  Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Accept
+Peer: 10.91.151.115 AS 8220    Local: 10.54.4.236 AS 8220 
+  Group: BGP-LS-PRIZMNET-PLA   Routing-Instance: master
+  Forwarding routing-instance: master  
+  Type: Internal    State: Idle           Flags: <PeerInterfaceUnknown>
+  Last State: NoState       Last Event: NoEvent
+  Last Error: None
+  Export: [ bgp-ls ] 
+  Options: <LocalAddress LogUpDown AddressFamily Refresh>
+  Options: <GracefulShutdownRcv>
+  Address families configured: te-unicast
+  Local Address: 10.54.4.236 Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Accept
+Peer: 10.91.151.119 AS 8220    Local: 10.54.4.236 AS 8220 
+  Group: BGP-LS-PRIZMNET-PLA   Routing-Instance: master
+  Forwarding routing-instance: master  
+  Type: Internal    State: Idle           Flags: <PeerInterfaceUnknown>
+  Last State: NoState       Last Event: NoEvent
+  Last Error: None
+  Export: [ bgp-ls ] 
+  Options: <LocalAddress LogUpDown AddressFamily Refresh>
+  Options: <GracefulShutdownRcv>
+  Address families configured: te-unicast
+  Local Address: 10.54.4.236 Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Accept
+Peer: 109.74.16.248+50801 AS 8220 Local: 109.74.16.9+179 AS 8220 
+  Description: IBGP-WITH-RR-ASR-RR01
+  Group: INTERNAL-CORE-RR      Routing-Instance: master
+  Forwarding routing-instance: master  
+  Type: Internal    State: Established    Flags: <Sync>
+  Last State: OpenConfirm   Last Event: RecvKeepAlive
+  Last Error: Hold Timer Expired Error
+  Options: <LocalAddress MPNexthop AuthKey LogUpDown AddressFamily PeerAS Rib-group Refresh>
+  Options: <GracefulShutdownRcv>
+  Authentication key is configured
+  Address families configured: inet-unicast inet-vpn-unicast inet-mvpn
+  Local Address: 109.74.16.9 Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 13
+  Last flap event: HoldTime
+  Receive eBGP Origin Validation community: Accept
+  Error: 'Hold Timer Expired Error' Sent: 13 Recv: 0
+  Peer ID: 109.74.16.248   Local ID: 109.74.16.9       Active Holdtime: 90
+  Keepalive Interval: 30         Group index: 0    Peer index: 0    SNMP index: 0     
+  I/O Session Thread: bgpio-0 State: Enabled
+  BFD: disabled, down
+  NLRI for restart configured on peer: inet-unicast inet-vpn-unicast inet-mvpn
+  NLRI advertised by peer: inet-vpn-unicast inet-mvpn
+  NLRI for this session: inet-vpn-unicast inet-mvpn
+  Peer supports Refresh capability (2)
+  Stale routes from peer are kept for: 300
+  Peer does not support Restarter functionality
+  NLRI of received end-of-rib markers: inet-vpn-unicast inet-mvpn
+  NLRI of all end-of-rib markers sent: inet-vpn-unicast inet-mvpn
+  Peer does not support Receiver functionality
+  Peer does not support LLGR Restarter or Receiver functionality
+  Peer supports 4 byte AS extension (peer-as 8220)
+  Peer does not support Addpath
+  NLRI that peer supports extended nexthop encoding for: inet-vpn-unicast
+  NLRI(s) enabled for color nexthop resolution: inet-vpn-unicast
+  Table bgp.l3vpn.0 Bit: 30000
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: in sync
+    Active prefixes:              1291
+    Received prefixes:            1292
+    Accepted prefixes:            1292
+    Suppressed due to damping:    0
+    Advertised prefixes:          462
+  Table bgp.mvpn.0 Bit: 40000
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: in sync
+    Active prefixes:              4
+    Received prefixes:            4
+    Accepted prefixes:            4
+    Suppressed due to damping:    0
+    Advertised prefixes:          4
+  Table CE15-JAG.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              3
+    Received prefixes:            3
+    Accepted prefixes:            3
+    Suppressed due to damping:    0
+  Table CUST-GCP_SX06046-LSEG_MEC-UCAST-EFF02.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              0
+    Received prefixes:            0
+    Accepted prefixes:            0
+    Suppressed due to damping:    0
+  Table CUST-JAG-C2B1-MCAST-EFF02.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              3
+    Received prefixes:            3
+    Accepted prefixes:            3
+    Suppressed due to damping:    0
+  Table CUST-JAG-C2B1-UCAST-EFF02.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              0
+    Received prefixes:            0
+    Accepted prefixes:            0
+    Suppressed due to damping:    0
+  Table CUST-JAG-C2B1-UCAST-inside-EFF02.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              1
+    Received prefixes:            1
+    Accepted prefixes:            1
+    Suppressed due to damping:    0
+  Table CUST-SMART-TRIAL.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              0
+    Received prefixes:            0
+    Accepted prefixes:            0
+    Suppressed due to damping:    0
+  Table CUST2-JAG-MIG-MCAST-EFF02-new.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              3
+    Received prefixes:            3
+    Accepted prefixes:            3
+    Suppressed due to damping:    0
+  Table PROV-LSEG-EFF02.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              0
+    Received prefixes:            0
+    Accepted prefixes:            0
+    Suppressed due to damping:    0
+  Table CUST-GCP_SX06046-LSEG_MEC-UCAST-inside-EFF02.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              1
+    Received prefixes:            1
+    Accepted prefixes:            1
+    Suppressed due to damping:    0
+  Table CUST-GCP_SX06046-LSEG_MEC-UCAST-outside-EFF02.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              0
+    Received prefixes:            36
+    Accepted prefixes:            36
+    Suppressed due to damping:    0
+  Table CUST-JAG-C2B1-UCAST-outside-EFF02.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              2
+    Received prefixes:            2
+    Accepted prefixes:            2
+    Suppressed due to damping:    0
+  Table PROV-C-JAG-QOS-EFF02.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              0
+    Received prefixes:            0
+    Accepted prefixes:            0
+    Suppressed due to damping:    0
+  Table TEST-STP-VRRP.inet.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              0
+    Received prefixes:            0
+    Accepted prefixes:            0
+    Suppressed due to damping:    0
+  Table CE15-JAG.mvpn.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              1
+    Received prefixes:            1
+    Accepted prefixes:            1
+    Suppressed due to damping:    0
+  Table CUST-JAG-C2B1-MCAST-EFF02.mvpn.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              1
+    Received prefixes:            1
+    Accepted prefixes:            1
+    Suppressed due to damping:    0
+  Table CUST2-JAG-MIG-MCAST-EFF02-new.mvpn.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              1
+    Received prefixes:            1
+    Accepted prefixes:            1
+    Suppressed due to damping:    0
+  Table PROV-C-JAG-QOS-EFF02.mvpn.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              1
+    Received prefixes:            1
+    Accepted prefixes:            1
+    Suppressed due to damping:    0
+  Last traffic (seconds): Received 1    Sent 18   Checked 17740
+  Input messages:  Total 1061	Updates 413	Refreshes 0	Octets 79215
+  Output messages: Total 665	Updates 14	Refreshes 0	Octets 20763
+  Output Queue[2]: 0            (bgp.l3vpn.0, inet-vpn-unicast)
+  Output Queue[3]: 0            (bgp.mvpn.0, inet-mvpn)
+Peer: 109.74.16.249 AS 8220    Local: 109.74.16.9 AS 8220 
+  Description: IBGP-WITH-RR-ASR-RR02
+  Group: INTERNAL-CORE-RR      Routing-Instance: master
+  Forwarding routing-instance: master  
+  Type: Internal    State: Active         Flags: <>
+  Last State: Idle          Last Event: Start
+  Last Error: None
+  Options: <LocalAddress MPNexthop AuthKey LogUpDown AddressFamily PeerAS Rib-group Refresh>
+  Options: <GracefulShutdownRcv>
+  Authentication key is configured
+  Address families configured: inet-unicast inet-vpn-unicast inet-mvpn
+  Local Address: 109.74.16.9 Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Accept
+Peer: 169.254.146.81+62811 AS 16550 Local: 169.254.146.82+179 AS 8220 
+  Description: Connection with to GCP for LSEG Limited MEC Services
+  Group: GCP                   Routing-Instance: CUST-GCP_SX06046-LSEG_MEC-UCAST-EFF02
+  Forwarding routing-instance: CUST-GCP_SX06046-LSEG_MEC-UCAST-EFF02  
+  Type: External    State: Established    Flags: <Sync>
+  Last State: OpenConfirm   Last Event: RecvKeepAlive
+  Last Error: Cease
+  Export: [ FSX-DEFAULT-AS8220-CUST-UCAST-out ] Import: [ AS16550-CUST-GCP_SX06046-LSEG_MEC-UCAST-in ]
+  Options: <MetricOut LogUpDown PeerAS Refresh>
+  Options: <BfdEnabled>
+  Options: <GracefulShutdownRcv>
+  Holdtime: 90 Metric Out: 100 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 1
+  Last flap event: InterfaceAddrDeleted
+  Receive eBGP Origin Validation community: Reject
+  Error: 'Cease' Sent: 1 Recv: 0
+  Peer ID: 169.254.146.81  Local ID: 169.254.146.82    Active Holdtime: 90
+  Keepalive Interval: 30         Group index: 6    Peer index: 0    SNMP index: 10    
+  I/O Session Thread: bgpio-0 State: Enabled
+  BFD: enabled, down
+  Local Interface: ge-1/2/9.100                     
+  NLRI for restart configured on peer: inet-unicast
+  NLRI advertised by peer: inet-unicast
+  NLRI for this session: inet-unicast
+  Peer supports Refresh capability (2)
+  Stale routes from peer are kept for: 300
+  Peer does not support Restarter functionality
+  Restart flag received from the peer: Notification
+  NLRI that restart is negotiated for: inet-unicast
+  NLRI of received end-of-rib markers: inet-unicast
+  NLRI of all end-of-rib markers sent: inet-unicast
+  Peer does not support LLGR Restarter functionality
+  Peer supports 4 byte AS extension (peer-as 16550)
+  Peer does not support Addpath
+  Table CUST-GCP_SX06046-LSEG_MEC-UCAST-EFF02.inet.0 Bit: 90000
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: in sync
+    Active prefixes:              0
+    Received prefixes:            1
+    Accepted prefixes:            0
+    Suppressed due to damping:    0
+    Advertised prefixes:          72
+  Last traffic (seconds): Received 14   Sent 1    Checked 45962
+  Input messages:  Total 1705	Updates 2	Refreshes 0	Octets 32472
+  Output messages: Total 1682	Updates 1	Refreshes 0	Octets 32347
+  Output Queue[8]: 0            (CUST-GCP_SX06046-LSEG_MEC-UCAST-EFF02.inet.0, inet-unicast)
+Peer: 192.168.17.20 AS 200     Local: unspecified AS 8220 
+  Group: CPE                   Routing-Instance: CUST2-JAG-MIG-MCAST-EFF02-new
+  Forwarding routing-instance: CUST2-JAG-MIG-MCAST-EFF02-new  
+  Type: External    State: Idle           Flags: <PeerInterfaceUnknown>
+  Last State: NoState       Last Event: NoEvent
+  Last Error: None
+  Export: [ CUST2-JAG-MIG-MCAST-BGP-out ] Import: [ REJECT-ALL ]
+  Options: <LogUpDown PeerAS Refresh>
+  Options: <BfdEnabled>
+  Options: <GracefulShutdownRcv>
+  Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Reject
+Peer: 192.168.78.128 AS 8220   Local: 192.168.78.129 AS 20309
+  Group: ebgp                  Routing-Instance: NASDAQ_DR
+  Forwarding routing-instance: NASDAQ_DR  
+  Type: External    State: Idle           Flags: <PeerInterfaceUnknown>
+  Last State: NoState       Last Event: NoEvent
+  Last Error: None
+  Export: [ direct ] 
+  Options: <LocalAddress HoldTime PeerAS Refresh>
+  Options: <GracefulShutdownRcv>
+  Local Address: 192.168.78.129 Holdtime: 21 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Reject
+Peer: 192.168.130.20 AS 200    Local: unspecified AS 8220 
+  Group: CPE                   Routing-Instance: CUST-JAG-C2B1-UCAST-EFF02
+  Forwarding routing-instance: CUST-JAG-C2B1-UCAST-EFF02  
+  Type: External    State: Idle           Flags: <PeerInterfaceUnknown>
+  Last State: NoState       Last Event: NoEvent
+  Last Error: None
+  Export: [ CUST-JAG-C2B1-UCAST-out ] Import: [ CUST-JAG-C2B1-UCAST-in ]
+  Options: <LogUpDown PeerAS Refresh>
+  Options: <BfdEnabled>
+  Options: <GracefulShutdownRcv>
+  Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Reject
+Peer: 192.168.131.20 AS 200    Local: unspecified AS 8220 
+  Group: CPE                   Routing-Instance: CUST-JAG-C2B1-MCAST-EFF02
+  Forwarding routing-instance: CUST-JAG-C2B1-MCAST-EFF02  
+  Type: External    State: Idle           Flags: <PeerInterfaceUnknown>
+  Last State: NoState       Last Event: NoEvent
+  Last Error: None
+  Export: [ CUST-JAG-C2B1-MCAST-BGP-out ] Import: [ REJECT-ALL ]
+  Options: <LogUpDown PeerAS Refresh>
+  Options: <BfdEnabled>
+  Options: <GracefulShutdownRcv>
+  Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Reject
+Peer: 192.168.189.254 AS 8448  Local: unspecified AS 8220 
+  Group: ebgp                  Routing-Instance: CE15-JAG
+  Forwarding routing-instance: CE15-JAG  
+  Type: External    State: Idle           Flags: <PeerInterfaceUnknown>
+  Last State: NoState       Last Event: NoEvent
+  Last Error: None
+  Export: [ direct ] 
+  Options: <PeerAS Refresh As Override>
+  Options: <GracefulShutdownRcv>
+  Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 0
+  Receive eBGP Origin Validation community: Reject
+Peer: 194.180.107.5+52135 AS 8220 Local: 109.74.16.9+179 AS 8220 
+  Group: evpn                  Routing-Instance: master
+  Forwarding routing-instance: master  
+  Type: Internal    State: Established    Flags: <Sync>
+  Last State: OpenConfirm   Last Event: RecvKeepAlive
+  Last Error: Hold Timer Expired Error
+  Options: <LocalAddress LogUpDown AddressFamily Rib-group Refresh>
+  Options: <GracefulShutdownRcv>
+  Address families configured: evpn l2vpn-signaling
+  Local Address: 109.74.16.9 Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 12
+  Last flap event: TransportError
+  Receive eBGP Origin Validation community: Accept
+  Error: 'Hold Timer Expired Error' Sent: 6 Recv: 0
+  Peer ID: 194.180.107.5   Local ID: 109.74.16.9       Active Holdtime: 90
+  Keepalive Interval: 30         Group index: 4    Peer index: 0    SNMP index: 8     
+  I/O Session Thread: bgpio-0 State: Enabled
+  BFD: disabled, down
+  NLRI for restart configured on peer: l2vpn evpn
+  NLRI advertised by peer: l2vpn evpn
+  NLRI for this session: l2vpn evpn
+  Peer supports Refresh capability (2)
+  Stale routes from peer are kept for: 300
+  Peer does not support Restarter functionality
+  Restart flag received from the peer: Notification
+  NLRI that restart is negotiated for: l2vpn evpn
+  NLRI of received end-of-rib markers: l2vpn evpn
+  NLRI of all end-of-rib markers sent: l2vpn evpn
+  Peer does not support LLGR Restarter functionality
+  Peer supports 4 byte AS extension (peer-as 8220)
+  Peer does not support Addpath
+  NLRI(s) enabled for color nexthop resolution: l2vpn evpn
+  Table bgp.l2vpn.0
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: not advertising
+    Active prefixes:              1
+    Received prefixes:            1
+    Accepted prefixes:            1
+    Suppressed due to damping:    0
+  Table bgp.evpn.0 Bit: 70000
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: in sync
+    Active prefixes:              0
+    Received prefixes:            0
+    Accepted prefixes:            0
+    Suppressed due to damping:    0
+    Advertised prefixes:          0
+  Table l2vpn-inst1-eff02.l2vpn.0 Bit: 160000
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: in sync
+    Active prefixes:              1
+    Received prefixes:            1
+    Accepted prefixes:            1
+    Suppressed due to damping:    0
+    Advertised prefixes:          1
+  Last traffic (seconds): Received 24   Sent 20   Checked 17755
+  Input messages:  Total 648	Updates 3	Refreshes 0	Octets 12459
+  Output messages: Total 651	Updates 1	Refreshes 0	Octets 12464
+  Output Queue[6]: 0            (bgp.evpn.0, evpn)
+  Output Queue[21]: 0           (l2vpn-inst1-eff02.l2vpn.0, l2vpn)
+Peer: 213.86.204.114+50139 AS 8718 Local: 213.86.204.113+179 AS 8220 
+  Description: Connection with LSEG / Refinitiv Limited
+  Group: LSEG                  Routing-Instance: PROV-LSEG-EFF02
+  Forwarding routing-instance: PROV-LSEG-EFF02  
+  Type: External    State: Established    Flags: <Sync>
+  Last State: OpenConfirm   Last Event: RecvKeepAlive
+  Last Error: Cease
+  Export: [ AS8718-LSEG-out ] Import: [ AS8718-LSEG-in ]
+  Options: <LocalAddress RemovePrivateAS LogUpDown PeerAS Refresh>
+  Options: <BfdEnabled>
+  Options: <GracefulShutdownRcv>
+  Remove-private options: all
+  Local Address: 213.86.204.113 Holdtime: 90 Preference: 170
+  Graceful Shutdown Receiver local-preference: 0
+  Number of flaps: 1
+  Last flap event: InterfaceAddrDeleted
+  Receive eBGP Origin Validation community: Reject
+  Error: 'Cease' Sent: 2 Recv: 0
+  Peer ID: 213.86.204.114  Local ID: 213.86.204.113    Active Holdtime: 90
+  Keepalive Interval: 30         Group index: 14   Peer index: 0    SNMP index: 19    
+  I/O Session Thread: bgpio-0 State: Enabled
+  BFD: enabled, down
+  Local Interface: ge-1/2/8.3400                    
+  NLRI for restart configured on peer: inet-unicast
+  NLRI advertised by peer: inet-unicast
+  NLRI for this session: inet-unicast
+  Peer supports Refresh capability (2)
+  Stale routes from peer are kept for: 300
+  Peer does not support Restarter functionality
+  Restart flag received from the peer: Notification
+  NLRI that restart is negotiated for: inet-unicast
+  NLRI of received end-of-rib markers: inet-unicast
+  NLRI of all end-of-rib markers sent: inet-unicast
+  Peer does not support LLGR Restarter functionality
+  Peer supports 4 byte AS extension (peer-as 8718)
+  Peer does not support Addpath
+  Table PROV-LSEG-EFF02.inet.0 Bit: 100000
+    RIB State: BGP restart is complete
+    RIB State: VPN restart is complete
+    Send state: in sync
+    Active prefixes:              377
+    Received prefixes:            377
+    Accepted prefixes:            377
+    Suppressed due to damping:    0
+    Advertised prefixes:          2
+  Last traffic (seconds): Received 14   Sent 18   Checked 45962
+  Input messages:  Total 1705	Updates 2	Refreshes 0	Octets 34326
+  Output messages: Total 1683	Updates 2	Refreshes 0	Octets 32075
+  Output Queue[15]: 0           (PROV-LSEG-EFF02.inet.0, inet-unicast)
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show isis adjacency extensive | no-more 
+EFFPER01
+  Interface: xe-1/0/1.0, Level: 2, State: Up, Expires in 23 secs
+  Priority: 0, Up/Down transitions: 1, Last transition: 04:56:12 ago
+  Circuit type: 2, Speaks: IP, IPv6
+  Topologies: Unicast
+  Restart capable: Yes, Adjacency advertisement: Advertise
+  IP addresses: 109.74.16.89
+  Level 2 IPv4   protected Adj-SID:     185, Flags: -BVL--
+  Level 2 IPv4 unprotected Adj-SID:     186, Flags: --VL--
+  Transition log:
+  When                  State        Event           Down reason
+  Wed Apr  8 10:46:54   Up           Seenself        
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show route summary | no-more 
+Autonomous system number: 8220
+Router ID: 109.74.16.9
+
+Highwater Mark (All time / Time averaged watermark)
+    RIB unique destination routes: 2700 at 2026-04-06 06:59:24 / 2686
+    RIB routes                   : 2776 at 2026-04-08 07:14:02 / 2758
+    FIB routes                   : 751 at 2026-04-08 02:52:54 / 738
+    VRF type routing instances   : 13 at 2026-04-06 06:52:57
+
+inet.0: 79 destinations, 94 routes (79 active, 0 holddown, 0 hidden)
+              Direct:     14 routes,     14 active
+               Local:     22 routes,     22 active
+              Static:      1 routes,      1 active
+               IS-IS:     41 routes,     41 active
+                RSVP:      1 routes,      0 active
+                 LDP:      8 routes,      1 active
+              L-ISIS:      7 routes,      0 active
+
+inet.3: 41 destinations, 56 routes (9 active, 0 holddown, 41 hidden)
+               IS-IS:     41 routes,      0 active
+                RSVP:      1 routes,      0 active
+                 LDP:      7 routes,      2 active
+              L-ISIS:      7 routes,      7 active
+
+CE15-JAG.inet.0: 7 destinations, 7 routes (7 active, 0 holddown, 0 hidden)
+              Direct:      1 routes,      1 active
+               Local:      1 routes,      1 active
+                 BGP:      3 routes,      3 active
+                 PIM:      2 routes,      2 active
+
+CE15-JAG.inet.1: 5 destinations, 5 routes (5 active, 0 holddown, 0 hidden)
+           Multicast:      5 routes,      5 active
+
+CUST-GCP_SX06046-LSEG_MEC-UCAST-EFF02.inet.0: 73 destinations, 74 routes (73 active, 0 holddown, 1 hidden)
+              Direct:      1 routes,      1 active
+               Local:      1 routes,      1 active
+                 BGP:      1 routes,      0 active
+              Static:     71 routes,     71 active
+
+CUST-GCP_SX06046-LSEG_MEC-UCAST-inside-EFF02.inet.0: 72 destinations, 72 routes (72 active, 0 holddown, 0 hidden)
+                 BGP:      1 routes,      1 active
+              Static:     71 routes,     71 active
+
+CUST-GCP_SX06046-LSEG_MEC-UCAST-outside-EFF02.inet.0: 52 destinations, 88 routes (52 active, 0 holddown, 0 hidden)
+                 BGP:     86 routes,     50 active
+              Static:      2 routes,      2 active
+
+CUST-JAG-C2B1-MCAST-EFF02.inet.0: 6 destinations, 6 routes (6 active, 0 holddown, 0 hidden)
+               Local:      1 routes,      1 active
+                 BGP:      3 routes,      3 active
+                 PIM:      2 routes,      2 active
+
+CUST-JAG-C2B1-MCAST-EFF02.inet.1: 4 destinations, 4 routes (4 active, 0 holddown, 0 hidden)
+           Multicast:      4 routes,      4 active
+
+CUST-JAG-C2B1-UCAST-EFF02.inet.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+               Local:      2 routes,      2 active
+
+CUST-JAG-C2B1-UCAST-inside-EFF02.inet.0: 3 destinations, 3 routes (3 active, 0 holddown, 0 hidden)
+               Local:      2 routes,      2 active
+                 BGP:      1 routes,      1 active
+
+CUST-JAG-C2B1-UCAST-outside-EFF02.inet.0: 3 destinations, 3 routes (3 active, 0 holddown, 0 hidden)
+               Local:      1 routes,      1 active
+                 BGP:      2 routes,      2 active
+
+CUST-SMART-TRIAL.inet.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+              Direct:      1 routes,      1 active
+               Local:      1 routes,      1 active
+
+CUST2-JAG-MIG-MCAST-EFF02-new.inet.0: 6 destinations, 6 routes (6 active, 0 holddown, 0 hidden)
+               Local:      1 routes,      1 active
+                 BGP:      3 routes,      3 active
+                 PIM:      2 routes,      2 active
+
+CUST2-JAG-MIG-MCAST-EFF02-new.inet.1: 4 destinations, 4 routes (4 active, 0 holddown, 0 hidden)
+           Multicast:      4 routes,      4 active
+
+NASDAQ_DR.inet.0: 6 destinations, 6 routes (6 active, 0 holddown, 0 hidden)
+              Direct:      1 routes,      1 active
+               Local:      3 routes,      3 active
+                 PIM:      2 routes,      2 active
+
+NASDAQ_DR.inet.1: 3 destinations, 3 routes (3 active, 0 holddown, 0 hidden)
+           Multicast:      3 routes,      3 active
+
+PROV-C-JAG-QOS-EFF02.inet.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 PIM:      2 routes,      2 active
+
+PROV-C-JAG-QOS-EFF02.inet.1: 3 destinations, 3 routes (3 active, 0 holddown, 0 hidden)
+           Multicast:      3 routes,      3 active
+
+PROV-LSEG-EFF02.inet.0: 382 destinations, 382 routes (382 active, 0 holddown, 0 hidden)
+              Direct:      1 routes,      1 active
+               Local:      1 routes,      1 active
+                 BGP:    377 routes,    377 active
+              Static:      2 routes,      2 active
+           Aggregate:      1 routes,      1 active
+
+TEST-STP-VRRP.inet.0: 19 destinations, 19 routes (19 active, 0 holddown, 0 hidden)
+              Direct:      7 routes,      7 active
+               Local:     12 routes,     12 active
+
+iso.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
+              Direct:      1 routes,      1 active
+
+mpls.0: 39 destinations, 39 routes (39 active, 0 holddown, 0 hidden)
+                MPLS:      6 routes,      6 active
+                RSVP:      1 routes,      1 active
+                 LDP:      8 routes,      8 active
+                 VPN:     12 routes,     12 active
+              L-ISIS:     12 routes,     12 active
+
+bgp.l3vpn.0: 1775 destinations, 1775 routes (1774 active, 0 holddown, 1 hidden)
+              Direct:     11 routes,     11 active
+               Local:     21 routes,     21 active
+                 BGP:   1669 routes,   1668 active
+              Static:     73 routes,     73 active
+           Aggregate:      1 routes,      1 active
+
+CE15-JAG.inet6.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 PIM:      2 routes,      2 active
+
+CE15-JAG.inet6.1: 3 destinations, 3 routes (3 active, 0 holddown, 0 hidden)
+           Multicast:      3 routes,      3 active
+
+CUST-JAG-C2B1-MCAST-EFF02.inet6.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 PIM:      2 routes,      2 active
+
+CUST-JAG-C2B1-MCAST-EFF02.inet6.1: 3 destinations, 3 routes (3 active, 0 holddown, 0 hidden)
+           Multicast:      3 routes,      3 active
+
+CUST2-JAG-MIG-MCAST-EFF02-new.inet6.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 PIM:      2 routes,      2 active
+
+CUST2-JAG-MIG-MCAST-EFF02-new.inet6.1: 3 destinations, 3 routes (3 active, 0 holddown, 0 hidden)
+           Multicast:      3 routes,      3 active
+
+NASDAQ_DR.inet6.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 PIM:      2 routes,      2 active
+
+NASDAQ_DR.inet6.1: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
+           Multicast:      1 routes,      1 active
+
+PROV-C-JAG-QOS-EFF02.inet6.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 PIM:      2 routes,      2 active
+
+PROV-C-JAG-QOS-EFF02.inet6.1: 3 destinations, 3 routes (3 active, 0 holddown, 0 hidden)
+           Multicast:      3 routes,      3 active
+
+bgp.l2vpn.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
+                 BGP:      1 routes,      1 active
+
+l2vpn-inst1-eff02.l2vpn.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 BGP:      1 routes,      1 active
+               L2VPN:      1 routes,      1 active
+
+bgp.mvpn.0: 8 destinations, 8 routes (8 active, 0 holddown, 0 hidden)
+                 BGP:      4 routes,      4 active
+                MVPN:      4 routes,      4 active
+
+CE15-JAG.mvpn.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 BGP:      1 routes,      1 active
+                MVPN:      1 routes,      1 active
+
+CUST-JAG-C2B1-MCAST-EFF02.mvpn.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 BGP:      1 routes,      1 active
+                MVPN:      1 routes,      1 active
+
+CUST2-JAG-MIG-MCAST-EFF02-new.mvpn.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 BGP:      1 routes,      1 active
+                MVPN:      1 routes,      1 active
+
+PROV-C-JAG-QOS-EFF02.mvpn.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 BGP:      1 routes,      1 active
+                MVPN:      1 routes,      1 active
+
+CE15-JAG.mvpn-inet6.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
+                MVPN:      1 routes,      1 active
+
+CUST-JAG-C2B1-MCAST-EFF02.mvpn-inet6.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
+                MVPN:      1 routes,      1 active
+
+CUST2-JAG-MIG-MCAST-EFF02-new.mvpn-inet6.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
+                MVPN:      1 routes,      1 active
+
+PROV-C-JAG-QOS-EFF02.mvpn-inet6.0: 1 destinations, 1 routes (1 active, 0 holddown, 0 hidden)
+                MVPN:      1 routes,      1 active
+
+lsdist.0: 45 destinations, 45 routes (45 active, 0 holddown, 0 hidden)
+               IS-IS:     45 routes,     45 active
+
+l2vpn-inst1-eff02.l2id.0: 2 destinations, 2 routes (2 active, 0 holddown, 0 hidden)
+                 BGP:      1 routes,      1 active
+               L2VPN:      1 routes,      1 active
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show rsvp session | match DN | no-more 
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show mpls lsp unidirectional | match Dn | no-more 
+109.74.16.52    0.0.0.0         Dn     0       -                EFF02-ASR9k02
+109.74.16.1     0.0.0.0         Dn     0       -                EFF02-ESL02
+109.74.16.3     0.0.0.0         Dn     0       -                EFF02-IXL02
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show ldp neighbor | no-more 
+Address                             Interface       Label space ID     Hold time
+109.74.16.1                         lo0.0           109.74.16.1:0        35
+109.74.16.3                         lo0.0           109.74.16.3:0        44
+194.180.107.5                       lo0.0           194.180.107.5:0      39
+109.74.16.52                        lo0.0           0.0.0.0:0            0
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show connections | no-more 
+No matching connections found.
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show log messages | last 200 | no-more 
+Apr  8 15:41:11.336  EFFPER02 mgd[13458]: UI_CHILD_START: Starting child '/usr/sbin/tnpdump'
+Apr  8 15:41:11.355  EFFPER02 mgd[13458]: UI_CHILD_STATUS: Cleanup child '/usr/sbin/tnpdump', PID 13459, status 0
+Apr  8 15:41:11.356  EFFPER02 mgd[13458]: UI_LOGOUT_EVENT: User 'root' logout
+Apr  8 15:41:11.390  EFFPER02 mgd[13468]: UI_AUTH_EVENT: Authenticated user 'root' assigned to class 'super-user'
+Apr  8 15:41:11.390  EFFPER02 mgd[13468]: UI_LOGIN_EVENT: User 'root' login, class 'super-user' [13468], ssh-connection '10.80.109.133 37834 10.80.71.56 22', client-mode 'cli'
+Apr  8 15:41:11.393  EFFPER02 mgd[13468]: UI_CMDLINE_READ_LINE: User 'root', command 'show chassis hardware '
+Apr  8 15:41:11.455  EFFPER02 mgd[13468]: UI_LOGOUT_EVENT: User 'root' logout
+Apr  8 15:41:11.603  EFFPER02 kernel: tcp_auth_ok: Packet from 109.74.16.2:52073 unexpectedly has MD5 digest
+Apr  8 15:41:12.136  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:12.795  EFFPER02 rmopd[40699]: PING_TEST_COMPLETED: pingCtlOwnerIndex = __r__24, pingCtlTestName = __r__25
+Apr  8 15:41:12.822  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[2], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[136], msg->gencfg_op[3]
+Apr  8 15:41:12.824  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:41:12.825  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1027]
+Apr  8 15:41:13.598  EFFPER02 mgd[12216]: UI_CHILD_STATUS: Cleanup child '/usr/libexec/ui/show-support', PID 12680, status 0xf
+Apr  8 15:41:13.598  EFFPER02 mgd[12216]: UI_CHILD_SIGNALED: Child received signal: PID 12680, signal Terminated, command='/usr/libexec/ui/show-support'
+Apr  8 15:41:13.598  EFFPER02 mgd[12216]: UI_LOGOUT_EVENT: User 'lab' logout
+Apr  8 15:41:13.827  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[3], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[5], msg->gencfg_op[2]
+Apr  8 15:41:13.831  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:41:13.834  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1028]
+Apr  8 15:41:13.837  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[2], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[136], msg->gencfg_op[1]
+Apr  8 15:41:13.839  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:41:13.841  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1027]
+Apr  8 15:41:15.138  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:17.764  EFFPER02 kernel: tcp_auth_ok: Packet from 109.74.16.2:52073 unexpectedly has MD5 digest
+Apr  8 15:41:18.144  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:21.146  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:24.148  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:25.819  EFFPER02 rpd[40696]: JTASK_IO_CONNECT_FAILED: BGP_20309_20309.10.10.2.1: Connecting to 10.10.2.1+179 failed: No route to host
+Apr  8 15:41:25.819  EFFPER02 rpd[40696]: BGP_CONNECT_FAILED: bgp_connect_start: connect 10.10.2.1 (Internal AS 20309) (instance NASDAQ_DR): No route to host
+Apr  8 15:41:27.149  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:30.109  EFFPER02 kernel: tcp_auth_ok: Packet from 109.74.16.2:52073 unexpectedly has MD5 digest
+Apr  8 15:41:30.158  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:33.161  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:33.784  EFFPER02 rpd[40696]: JTASK_IO_CONNECT_FAILED: BGP_20309_20309.10.10.1.1: Connecting to 10.10.1.1+179 failed: No route to host
+Apr  8 15:41:33.784  EFFPER02 rpd[40696]: BGP_CONNECT_FAILED: bgp_connect_start: connect 10.10.1.1 (Internal AS 20309) (instance NASDAQ_DR): No route to host
+Apr  8 15:41:36.164  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:38.724  EFFPER02 rpd[40696]: JTASK_IO_CONNECT_FAILED: BGP_8220.109.74.16.249: Connecting to 109.74.16.249+179 failed: No route to host
+Apr  8 15:41:38.724  EFFPER02 rpd[40696]: BGP_CONNECT_FAILED: bgp_connect_start: connect 109.74.16.249 (Internal AS 8220) (instance master): No route to host
+Apr  8 15:41:39.169  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:41.731  EFFPER02 rpd[40696]: JTASK_IO_CONNECT_FAILED: BGP_8220.10.10.106.2: Connecting to 10.10.106.2+179 failed: Can't assign requested address
+Apr  8 15:41:41.731  EFFPER02 rpd[40696]: BGP_CONNECT_FAILED: bgp_connect_start: connect 10.10.106.2 (Internal AS 8220) (instance CUST-JAG-C2B1-UCAST-inside-EFF02): Can't assign requested address
+Apr  8 15:41:41.847  EFFPER02 rmopd[40699]: PING_TEST_COMPLETED: pingCtlOwnerIndex = __r__24, pingCtlTestName = __r__25
+Apr  8 15:41:41.874  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[2], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[136], msg->gencfg_op[3]
+Apr  8 15:41:41.876  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:41:41.878  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1027]
+Apr  8 15:41:42.171  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:42.877  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[3], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[5], msg->gencfg_op[2]
+Apr  8 15:41:42.881  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:41:42.883  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1028]
+Apr  8 15:41:42.885  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[2], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[136], msg->gencfg_op[1]
+Apr  8 15:41:42.887  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:41:42.889  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1027]
+Apr  8 15:41:45.175  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:48.176  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:51.178  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:54.181  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:41:54.181  EFFPER02 kernel: tcp_auth_ok: Packet from 109.74.16.2:52073 unexpectedly has MD5 digest
+Apr  8 15:41:57.185  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:00.186  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:03.188  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:06.193  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:09.196  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:10.919  EFFPER02 rmopd[40699]: PING_TEST_COMPLETED: pingCtlOwnerIndex = __r__24, pingCtlTestName = __r__25
+Apr  8 15:42:10.945  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[2], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[136], msg->gencfg_op[3]
+Apr  8 15:42:10.947  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:42:10.950  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1027]
+Apr  8 15:42:11.955  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[3], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[5], msg->gencfg_op[2]
+Apr  8 15:42:11.959  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:42:11.962  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1028]
+Apr  8 15:42:11.964  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[2], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[136], msg->gencfg_op[1]
+Apr  8 15:42:11.966  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:42:11.968  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1027]
+Apr  8 15:42:12.204  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:15.206  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:18.208  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:21.231  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:24.236  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:27.238  EFFPER02 auditd[40752]: AUDITD_TACPLUS_STOP_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:39.989  EFFPER02 rmopd[40699]: PING_TEST_COMPLETED: pingCtlOwnerIndex = __r__24, pingCtlTestName = __r__25
+Apr  8 15:42:40.016  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[2], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[136], msg->gencfg_op[3]
+Apr  8 15:42:40.018  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:42:40.020  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1027]
+Apr  8 15:42:41.024  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[3], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[5], msg->gencfg_op[2]
+Apr  8 15:42:41.028  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:42:41.031  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1028]
+Apr  8 15:42:41.033  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[2], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[136], msg->gencfg_op[1]
+Apr  8 15:42:41.035  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:42:41.036  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1027]
+Apr  8 15:42:48.818  EFFPER02 sshd: PAM_TACPLUS_SEND_AUTHEN_FAIL: Failed in sending authentication with error connect: timed out.
+Apr  8 15:42:48.824  EFFPER02 sshd[13537]: Accepted password for lab from 10.80.109.133 port 58734 ssh2
+Apr  8 15:42:48.905  EFFPER02 mgd[13545]: UI_AUTH_EVENT: Authenticated user 'lab' assigned to class 'j-super-user'
+Apr  8 15:42:48.905  EFFPER02 mgd[13545]: UI_LOGIN_EVENT: User 'lab' login, class 'j-super-user' [13545], ssh-connection '10.80.109.133 58734 10.80.71.56 22', client-mode 'cli'
+Apr  8 15:42:48.977  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'set cli screen-width 511 '
+Apr  8 15:42:48.987  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'set cli complete-on-space off '
+Apr  8 15:42:48.997  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'set cli screen-length 0 '
+Apr  8 15:42:50.077  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show services sessions | no-more '
+Apr  8 15:42:50.078  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/usr/sbin/spinfo'
+Apr  8 15:42:50.098  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/usr/sbin/spinfo', PID 13547, status 0
+Apr  8 15:42:50.566  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show services nat pool brief | no-more '
+Apr  8 15:42:50.567  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/usr/sbin/spinfo'
+Apr  8 15:42:50.588  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/usr/sbin/spinfo', PID 13548, status 0
+Apr  8 15:42:51.054  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show services flows brief | no-more '
+Apr  8 15:42:51.055  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/usr/sbin/spinfo'
+Apr  8 15:42:51.074  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/usr/sbin/spinfo', PID 13549, status 0
+Apr  8 15:42:51.542  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show services service-sets cpu-usage | no-more '
+Apr  8 15:42:51.543  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/usr/sbin/spinfo'
+Apr  8 15:42:51.568  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/usr/sbin/spinfo', PID 13550, status 0
+Apr  8 15:42:52.031  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show services service-sets memory-usage | no-more '
+Apr  8 15:42:52.031  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/usr/sbin/spinfo'
+Apr  8 15:42:52.151  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/usr/sbin/spinfo', PID 13551, status 0
+Apr  8 15:42:52.620  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show services service-sets summary | no-more '
+Apr  8 15:42:52.620  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/usr/sbin/spinfo'
+Apr  8 15:42:52.853  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/usr/sbin/spinfo', PID 13552, status 0
+Apr  8 15:42:53.310  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show chassis routing-engine | no-more '
+Apr  8 15:42:54.126  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show arp no-resolve | no-more '
+Apr  8 15:42:54.126  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/usr/sbin/arp'
+Apr  8 15:42:54.154  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/usr/sbin/arp', PID 13553, status 0
+Apr  8 15:42:54.614  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show lldp neighbors | no-more '
+Apr  8 15:42:55.102  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show system uptime | no-more '
+Apr  8 15:42:55.102  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/usr/libexec/ui/ntpsync'
+Apr  8 15:42:55.126  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/usr/libexec/ui/ntpsync', PID 13554, status 0
+Apr  8 15:42:55.127  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/usr/libexec/ui/uptime'
+Apr  8 15:42:55.144  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/usr/libexec/ui/uptime', PID 13560, status 0
+Apr  8 15:42:55.258  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:42:55.616  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show ntp associations no-resolve | no-more '
+Apr  8 15:42:55.616  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/usr/bin/ntpq'
+Apr  8 15:42:55.636  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/usr/bin/ntpq', PID 13568, status 0
+Apr  8 15:42:56.104  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show chassis hardware | no-more '
+Apr  8 15:42:56.593  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show chassis fpc detail | no-more '
+Apr  8 15:42:57.081  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show chassis alarms | no-more '
+Apr  8 15:42:57.569  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show system alarms | no-more '
+Apr  8 15:42:58.057  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show chassis environment | no-more '
+Apr  8 15:42:58.823  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show system resource-monitor fpc | no-more '
+Apr  8 15:42:59.312  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show system processes extensive | match rpd | no-more '
+Apr  8 15:42:59.312  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/usr/bin/top'
+Apr  8 15:42:59.335  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/usr/bin/top', PID 13569, status 0
+Apr  8 15:42:59.798  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/sbin/ifinfo'
+Apr  8 15:42:59.853  EFFPER02 ifinfo[13570]: IFINFO_IFD_NAME: IFD: terse
+Apr  8 15:42:59.863  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/sbin/ifinfo', PID 13570, status 0
+Apr  8 15:42:59.863  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/sbin/ifinfo'
+Apr  8 15:42:59.918  EFFPER02 ifinfo[13571]: IFINFO_IFD_NAME: IFD: |
+Apr  8 15:42:59.927  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/sbin/ifinfo', PID 13571, status 0
+Apr  8 15:42:59.928  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show interface terse | no-more '
+Apr  8 15:42:59.928  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/sbin/ifinfo'
+Apr  8 15:43:00.003  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/sbin/ifinfo', PID 13572, status 0
+Apr  8 15:43:00.488  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/sbin/ifinfo'
+Apr  8 15:43:00.543  EFFPER02 ifinfo[13573]: IFINFO_IFD_NAME: IFD: extensive
+Apr  8 15:43:00.551  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/sbin/ifinfo', PID 13573, status 0
+Apr  8 15:43:00.551  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/sbin/ifinfo'
+Apr  8 15:43:00.606  EFFPER02 ifinfo[13574]: IFINFO_IFD_NAME: IFD: |
+Apr  8 15:43:00.614  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/sbin/ifinfo', PID 13574, status 0
+Apr  8 15:43:00.615  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show oam ethernet connectivity-fault-management interfaces extensive | no-more '
+Apr  8 15:43:01.098  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show vrrp summary | no-more '
+Apr  8 15:43:01.587  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show bfd session | no-more '
+Apr  8 15:43:02.075  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show rsvp neighbor | no-more '
+Apr  8 15:43:02.563  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show rsvp session | no-more '
+Apr  8 15:43:03.051  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/bin/sh'
+Apr  8 15:43:03.091  EFFPER02 mgd[13580]: UI_AUTH_EVENT: Authenticated user 'root' assigned to class 'super-user'
+Apr  8 15:43:03.092  EFFPER02 mgd[13580]: UI_LOGIN_EVENT: User 'root' login, class 'super-user' [13580], ssh-connection '10.80.109.133 58734 10.80.71.56 22', client-mode 'cli'
+Apr  8 15:43:03.094  EFFPER02 mgd[13580]: UI_CMDLINE_READ_LINE: User 'root', command 'show route summary | display xml | grep table-name '
+Apr  8 15:43:03.104  EFFPER02 mgd[13580]: UI_LOGOUT_EVENT: User 'root' logout
+Apr  8 15:43:03.105  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/bin/sh', PID 13575, status 0
+Apr  8 15:43:03.107  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show route table inet.0 | no-more '
+Apr  8 15:43:03.621  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/bin/sh'
+Apr  8 15:43:03.661  EFFPER02 mgd[13586]: UI_AUTH_EVENT: Authenticated user 'root' assigned to class 'super-user'
+Apr  8 15:43:03.662  EFFPER02 mgd[13586]: UI_LOGIN_EVENT: User 'root' login, class 'super-user' [13586], ssh-connection '10.80.109.133 58734 10.80.71.56 22', client-mode 'cli'
+Apr  8 15:43:03.664  EFFPER02 mgd[13586]: UI_CMDLINE_READ_LINE: User 'root', command 'show route summary | display xml | grep table-name '
+Apr  8 15:43:03.674  EFFPER02 mgd[13586]: UI_LOGOUT_EVENT: User 'root' logout
+Apr  8 15:43:03.675  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/bin/sh', PID 13581, status 0
+Apr  8 15:43:03.677  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show route table inet.3 | no-more '
+Apr  8 15:43:04.160  EFFPER02 mgd[13545]: UI_CHILD_START: Starting child '/bin/sh'
+Apr  8 15:43:04.200  EFFPER02 mgd[13592]: UI_AUTH_EVENT: Authenticated user 'root' assigned to class 'super-user'
+Apr  8 15:43:04.200  EFFPER02 mgd[13592]: UI_LOGIN_EVENT: User 'root' login, class 'super-user' [13592], ssh-connection '10.80.109.133 58734 10.80.71.56 22', client-mode 'cli'
+Apr  8 15:43:04.203  EFFPER02 mgd[13592]: UI_CMDLINE_READ_LINE: User 'root', command 'show route summary | display xml | grep table-name '
+Apr  8 15:43:04.212  EFFPER02 mgd[13592]: UI_LOGOUT_EVENT: User 'root' logout
+Apr  8 15:43:04.214  EFFPER02 mgd[13545]: UI_CHILD_STATUS: Cleanup child '/bin/sh', PID 13587, status 0
+Apr  8 15:43:04.215  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show route table mpls.0 | no-more '
+Apr  8 15:43:04.700  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show mpls interface | no-more '
+Apr  8 15:43:05.188  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show mpls lsp | no-more '
+Apr  8 15:43:05.676  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show mpls lsp p2mp | no-more '
+Apr  8 15:43:06.165  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show bgp summary | no-more '
+Apr  8 15:43:06.653  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show bgp neighbor | no-more '
+Apr  8 15:43:07.170  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show isis adjacency extensive | no-more '
+Apr  8 15:43:07.658  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show route summary | no-more '
+Apr  8 15:43:08.150  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show rsvp session | match DN | no-more '
+Apr  8 15:43:08.317  EFFPER02 auditd[40752]: AUDITD_TACPLUS_START_NO_RESPONSE: Discarded Accounting-Request message; no positive response from TACACS+ servers
+Apr  8 15:43:08.640  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show mpls lsp unidirectional | match Dn | no-more '
+Apr  8 15:43:09.038  EFFPER02 rmopd[40699]: PING_TEST_COMPLETED: pingCtlOwnerIndex = __r__24, pingCtlTestName = __r__25
+Apr  8 15:43:09.055  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[2], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[136], msg->gencfg_op[3]
+Apr  8 15:43:09.060  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:43:09.062  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1027]
+Apr  8 15:43:09.126  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show ldp neighbor | no-more '
+Apr  8 15:43:09.614  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show connections | no-more '
+Apr  8 15:43:10.057  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[3], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[5], msg->gencfg_op[2]
+Apr  8 15:43:10.059  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:43:10.061  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1028]
+Apr  8 15:43:10.063  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: MSP_GENCFG_RPM_MSG_RCVD: msg->gencfg_major_type[9], msg->gencfg_minor_type[2], msg->gencfg_cfg_index[0], msg->gencfg_keylen[4], msg->gencfg_blob_full_len[136], msg->gencfg_op[1]
+Apr  8 15:43:10.068  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd MSVCS_CONTROL_EV_CFG_BLOB
+Apr  8 15:43:10.070  EFFPER02 (FPC Slot 2, PIC Slot 0)  ms20 mspmand[243]: jnx_jsfrpm_plugin_control_handler: Rcvd invalid rpm_gencfg_msg->blob_id[1027]
+---(more 100%)---
+                                        
+Apr  8 15:43:10.104  EFFPER02 mgd[13545]: UI_CMDLINE_READ_LINE: User 'lab', command 'show log messages | last 200 | no-more '
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show version 
+Hostname: EFFPER02
+Model: mx240
+Junos: 23.4R2-S3.9
+JUNOS OS Kernel 64-bit  [20240604.39c9257_builder_stable_12_234]
+JUNOS OS libs [20240604.39c9257_builder_stable_12_234]
+JUNOS OS runtime [20240604.39c9257_builder_stable_12_234]
+JUNOS OS time zone information [20240604.39c9257_builder_stable_12_234]
+JUNOS network stack and utilities [20241119.054100_builder_junos_234_r2_s3]
+JUNOS libs [20241119.054100_builder_junos_234_r2_s3]
+JUNOS OS libs compat32 [20240604.39c9257_builder_stable_12_234]
+JUNOS OS 32-bit compatibility [20240604.39c9257_builder_stable_12_234]
+JUNOS libs compat32 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS runtime [20241119.054100_builder_junos_234_r2_s3]
+JUNOS sflow mx [20241119.054100_builder_junos_234_r2_s3]
+JUNOS py extensions [20241119.054100_builder_junos_234_r2_s3]
+JUNOS py base [20241119.054100_builder_junos_234_r2_s3]
+JUNOS OS vmguest [20240604.39c9257_builder_stable_12_234]
+JUNOS OS package [20241014.220147_builder_main]
+JUNOS OS network modules [20240604.39c9257_builder_stable_12_234]
+JUNOS OS crypto [20240604.39c9257_builder_stable_12_234]
+JUNOS OS boot-ve files [20240604.39c9257_builder_stable_12_234]
+JUNOS na telemetry [23.4R2-S3.9]
+JUNOS vmguest  [20241119.054100_builder_junos_234_r2_s3]
+JUNOS vmguest (MTX) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS full sysmond [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx libs compat32 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx runtime [20241119.054100_builder_junos_234_r2_s3]
+JUNOS RPD Telemetry Application [23.4R2-S3.9]
+JUNOS python routing scripts for consistency check in RIB/FIB/PFE [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing mpls-oam-basic [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing mpls-oam-advanced [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing lsys [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing controller-internal [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing controller-external [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing 32-bit Compatible Version [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing aggregated [20241119.054100_builder_junos_234_r2_s3]
+Redis [20241119.054100_builder_junos_234_r2_s3]
+JUNOS probe utility [20241119.054100_builder_junos_234_r2_s3]
+JUNOS common platform support [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Openconfig [23.4R2-S3.9]
+JUNOS mtx network modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx libs [20241119.054100_builder_junos_234_r2_s3]
+JUNOS L2 RSI Scripts [20241119.054100_builder_junos_234_r2_s3]
+JUNOS SQL Sync Daemon [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mtx Data Plane Crypto Support [20241119.054100_builder_junos_234_r2_s3]
+JUNOS daemons [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx daemons [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Broadband Edge User Plane Apps [23.4R2-S3.9]
+Junos Remote Attestation package [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS appidd-mx application-identification daemon [20241119.054100_builder_junos_234_r2_s3]
+JUNOS TPM2 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services URL Filter package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services TLB Service PIC package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Telemetry [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services TCP-LOG [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services SSL [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services SOFTWIRE [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Stateful Firewall [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services RTCOM [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services RPM [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services PCEF package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services NAT [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Mobile Subscriber Service Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services MobileNext Software package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Logging Report Framework package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services LL-PDF Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Jflow Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Deep Packet Inspection package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services IPSec [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services IDS [20241119.054100_builder_junos_234_r2_s3]
+JUNOS IDP Services [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services HTTP Content Management package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services DNS Filter package (i386) [20241119.054100_builder_junos_234_r2_s3] 
+JUNOS Services Crypto [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Captive Portal and Content Delivery Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services COS [20241119.054100_builder_junos_234_r2_s3]
+JUNOS AppId Services [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Application Level Gateways [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services AACL Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS SDN Software Suite [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Extension Toolkit [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Phone-home [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (wrlinux9) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (MX/EX92XX Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (M/T Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (aft) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (MX Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Juniper Malware Removal Tool (JMRT) [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS Juniper Malware Removal Tool (JMRT) Test [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS J-Insight [20241119.054100_builder_junos_234_r2_s3]
+JUNOS jfirmware [20241018.050548_builder_junos_234_r2_s3]
+JUNOS Online Documentation [20241119.054100_builder_junos_234_r2_s3]
+JUNOS jail runtime [20240604.39c9257_builder_stable_12_234]
+JUNOS dsa [20241119.054100_builder_junos_234_r2_s3]
+
+lab@EFFPER02> request system snapshot 
+NOTICE: Snapshot snap.20260408.154311 created successfully
+
+lab@EFFPER02> show system snapshot 
+
+Non-recovery snapshots:
+Snapshot snap.20260406.065324:
+Location: /packages/sets/snap.20260406.065324
+Configuration: yes
+Creation date: Apr  6 06:53:24 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.064158:
+Location: /packages/sets/snap.20260408.064158
+Configuration: yes
+Creation date: Apr  8 06:41:58 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.064659:
+Location: /packages/sets/snap.20260408.064659
+Configuration: yes
+Creation date: Apr  8 06:46:59 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.072321:
+Location: /packages/sets/snap.20260408.072321
+Configuration: yes
+Creation date: Apr  8 07:23:21 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.072924:
+Location: /packages/sets/snap.20260408.072924
+Configuration: yes
+Creation date: Apr  8 07:29:24 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.083237:
+Location: /packages/sets/snap.20260408.083237
+Configuration: yes
+Creation date: Apr  8 08:32:37 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.083408:
+Location: /packages/sets/snap.20260408.083408
+Configuration: yes
+Creation date: Apr  8 08:34:08 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.102658:
+Location: /packages/sets/snap.20260408.102658
+Configuration: yes
+Creation date: Apr  8 10:26:58 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.110151:
+Location: /packages/sets/snap.20260408.110151
+Configuration: yes
+Creation date: Apr  8 11:01:51 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.110655:
+Location: /packages/sets/snap.20260408.110655
+Configuration: yes
+Creation date: Apr  8 11:06:55 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.132525:
+Location: /packages/sets/snap.20260408.132525
+Configuration: yes
+Creation date: Apr  8 13:25:25 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.141616:
+Location: /packages/sets/snap.20260408.141616
+Configuration: yes
+Creation date: Apr  8 14:16:16 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.141809:
+Location: /packages/sets/snap.20260408.141809
+Configuration: yes
+Creation date: Apr  8 14:18:09 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.142502:
+Location: /packages/sets/snap.20260408.142502
+Configuration: yes
+Creation date: Apr  8 14:25:02 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.143638:
+Location: /packages/sets/snap.20260408.143638
+Configuration: yes
+Creation date: Apr  8 14:36:38 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.143849:
+Location: /packages/sets/snap.20260408.143849
+Configuration: yes
+Creation date: Apr  8 14:38:49 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.154004:
+Location: /packages/sets/snap.20260408.154004
+Configuration: yes
+Creation date: Apr  8 15:40:04 2026
+Junos version: 23.4R2-S3.9
+
+Snapshot snap.20260408.154311:
+Location: /packages/sets/snap.20260408.154311
+Configuration: yes
+Creation date: Apr  8 15:43:11 2026
+Junos version: 23.4R2-S3.9
+
+Total non-recovery snapshots: 18
+
+Recovery Snapshots:
+No recovery snapshots available on the OAM volume
+
+lab@EFFPER02> 
+
+lab@EFFPER02> configure 
+Entering configuration mode
+
+[edit]
+lab@EFFPER02# 
+
+[edit]
+lab@EFFPER02# save juniper_mx240_2026-04-08_21-10-31 
+run file list
+Wrote 7019 lines of configuration to 'juniper_mx240_2026-04-08_21-10-31'
+
+[edit]
+lab@EFFPER02# run file list 
+
+/var/home/lab/:
+.ssh/
+0
+EFFPER02
+capture3.pcap
+e
+e 
+h 
+h int 
+juniper_mx240_2026-04-08_18-52-45
+juniper_mx240_2026-04-08_19-43-36
+juniper_mx240_2026-04-08_19-45-30
+juniper_mx240_2026-04-08_19-52-22
+juniper_mx240_2026-04-08_20-03-58
+juniper_mx240_2026-04-08_20-06-10
+juniper_mx240_2026-04-08_21-07-25
+juniper_mx240_2026-04-08_21-10-31
+q
+qqqq
+tances CUST-SMART-TRIAL \
+
+[edit]
+lab@EFFPER02# 
+
+[edit]
+lab@EFFPER02# exit configuration-mode 
+Exiting configuration mode
+
+lab@EFFPER02> 
+
+lab@EFFPER02> start shell 
+% 
+% scp -C /var/home/lab/juniper_mx240_2026-04-08_21-10-31 colt@10.80.109.133:/var/tmp/juniper_mx240_2026-04-08_21-10-31
+The authenticity of host '10.80.109.133 (10.80.109.133)' can't be established.
+ECDSA key fingerprint is SHA256:hNQUa4CBo7Mvnb6soiwfXbc+lkLGpk41Ts2UiOFoDzQ.
+Are you sure you want to continue connecting (yes/no)? 
+Host key verification failed.
+lost connection
+% kTRq8amH363r
+kTRq8amH363r: Command not found.
+% 
+% exit
+exit
+
+lab@EFFPER02> 
+
+lab@EFFPER02> 
+
+lab@EFFPER02> request support information | save /var/log/juniper_mx240_2026-04-08_21-10-31.txt 
+Wrote 136103 lines of output to '/var/log/juniper_mx240_2026-04-08_21-10-31.txt'
+
+lab@EFFPER02> file archive compress source /var/log/* destination /var/tmp/juniper_mx240_2026-04-08_21-10-31.tgz 
+tar: Removing leading '/' from member names
+
+lab@EFFPER02> start shell 
+% 
+% scp -C /var/tmp/juniper_mx240_2026-04-08_21-10-31.tgz colt@10.80.109.133:/var/tmp/juniper_mx240_2026-04-08_21-10-31.tgz
+The authenticity of host '10.80.109.133 (10.80.109.133)' can't be established.
+ECDSA key fingerprint is SHA256:hNQUa4CBo7Mvnb6soiwfXbc+lkLGpk41Ts2UiOFoDzQ.
+Are you sure you want to continue connecting (yes/no)? 
+Host key verification failed.
+lost connection
+% kTRq8amH363r
+kTRq8amH363r: Command not found.
+% 
+% exit
+exit
+
+lab@EFFPER02> 
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show system storage 
+Filesystem              Size       Used      Avail  Capacity   Mounted on
+/dev/gpt/junos         10.0G       2.3G       6.9G       25%  /.mount
+/dev/gpt/config         446M       1.6M       409M        0%  /.mount/config
+/dev/gpt/var             14G       8.3G       4.6G       64%  /.mount/var
+tmpfs                    36G        24K        36G        0%  /.mount/tmp
+/var/jails/rest-api        14G       8.3G       4.6G     64%  /.mount/packages/mnt/junos-runtime/web-api/var
+tmpfs                   8.0G       960K       8.0G        0%  /.mount/mfs
+
+lab@EFFPER02> show system storage invoke-on other-routing-engine 
+re1:
+--------------------------------------------------------------------------
+Filesystem              Size       Used      Avail  Capacity   Mounted on
+/dev/gpt/junos         10.0G       2.3G       6.9G       25%  /.mount
+/dev/gpt/config         446M       524K       410M        0%  /.mount/config
+/dev/gpt/var             14G       7.9G       5.1G       61%  /.mount/var
+tmpfs                    46G        40K        46G        0%  /.mount/tmp
+/var/jails/rest-api        14G       7.9G       5.1G     61%  /.mount/packages/mnt/junos-runtime/web-api/var
+tmpfs                   8.0G       632K       8.0G        0%  /.mount/mfs
+
+lab@EFFPER02> show system storage 
+Filesystem              Size       Used      Avail  Capacity   Mounted on
+/dev/gpt/junos         10.0G       2.3G       6.9G       25%  /.mount
+/dev/gpt/config         446M       1.6M       409M        0%  /.mount/config
+/dev/gpt/var             14G       8.3G       4.6G       64%  /.mount/var
+tmpfs                    36G        24K        36G        0%  /.mount/tmp
+/var/jails/rest-api        14G       8.3G       4.6G     64%  /.mount/packages/mnt/junos-runtime/web-api/var
+tmpfs                   8.0G       960K       8.0G        0%  /.mount/mfs
+
+lab@EFFPER02> start shell 
+% 
+% scp -C colt@10.80.109.133:/home/colt/backup/junos/MX240/junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz /var/tmp/
+The authenticity of host '10.80.109.133 (10.80.109.133)' can't be established.
+ECDSA key fingerprint is SHA256:hNQUa4CBo7Mvnb6soiwfXbc+lkLGpk41Ts2UiOFoDzQ.
+Are you sure you want to continue connecting (yes/no)? 
+Host key verification failed.
+% kTRq8amH363r
+kTRq8amH363r: Command not found.
+% 
+% exit
+exit
+
+lab@EFFPER02> 
+
+lab@EFFPER02> 
+
+lab@EFFPER02> 
+
+lab@EFFPER02> file checksum md5 /var/tmp/junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz 
+MD5 (/var/tmp/junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz) = eff137c3db585058eab9c8820cfb6c01
+
+lab@EFFPER02> show system storage 
+Filesystem              Size       Used      Avail  Capacity   Mounted on
+/dev/gpt/junos         10.0G       2.3G       6.9G       25%  /.mount
+/dev/gpt/config         446M       1.6M       409M        0%  /.mount/config
+/dev/gpt/var             14G       8.3G       4.6G       64%  /.mount/var
+tmpfs                    36G        24K        36G        0%  /.mount/tmp
+/var/jails/rest-api        14G       8.3G       4.6G     64%  /.mount/packages/mnt/junos-runtime/web-api/var
+tmpfs                   8.0G       960K       8.0G        0%  /.mount/mfs
+
+lab@EFFPER02> show system storage invoke-on other-routing-engine 
+re1:
+--------------------------------------------------------------------------
+Filesystem              Size       Used      Avail  Capacity   Mounted on
+/dev/gpt/junos         10.0G       2.3G       6.9G       25%  /.mount
+/dev/gpt/config         446M       524K       410M        0%  /.mount/config
+/dev/gpt/var             14G       7.9G       5.1G       61%  /.mount/var
+tmpfs                    46G        40K        46G        0%  /.mount/tmp
+/var/jails/rest-api        14G       7.9G       5.1G     61%  /.mount/packages/mnt/junos-runtime/web-api/var
+tmpfs                   8.0G       632K       8.0G        0%  /.mount/mfs
+
+lab@EFFPER02> show system storage 
+Filesystem              Size       Used      Avail  Capacity   Mounted on
+/dev/gpt/junos         10.0G       2.3G       6.9G       25%  /.mount
+/dev/gpt/config         446M       1.6M       409M        0%  /.mount/config
+/dev/gpt/var             14G       8.3G       4.6G       64%  /.mount/var
+tmpfs                    36G        24K        36G        0%  /.mount/tmp
+/var/jails/rest-api        14G       8.3G       4.6G     64%  /.mount/packages/mnt/junos-runtime/web-api/var
+tmpfs                   8.0G       960K       8.0G        0%  /.mount/mfs
+
+lab@EFFPER02> show chassis routing-engine 
+Routing Engine status:
+  Slot 0:
+    Current state                  Master
+    Election priority              Master (default)
+    Temperature                 39 degrees C / 102 degrees F
+    CPU temperature             61 degrees C / 141 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           5 percent
+    5 sec CPU utilization:
+      User                      19 percent
+      Background                 0 percent
+      Kernel                     9 percent
+      Interrupt                  0 percent
+      Idle                      72 percent
+    1 min CPU utilization:
+      User                       6 percent
+      Background                 0 percent
+      Kernel                     4 percent
+      Interrupt                  0 percent
+      Idle                      89 percent
+    5 min CPU utilization:
+      User                       3 percent
+      Background                 0 percent
+      Kernel                     3 percent
+      Interrupt                  0 percent
+      Idle                      94 percent
+    15 min CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     3 percent
+      Interrupt                  0 percent
+      Idle                      96 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7380
+    Start time                     2026-04-06 06:45:07 UTC
+    Uptime                         2 days, 9 hours, 46 seconds
+    Last reboot reason             0x2000:hypervisor reboot
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.51       0.47       0.38
+Routing Engine status:
+  Slot 1:
+    Current state                  Backup
+    Election priority              Backup (default)
+    Temperature                 37 degrees C / 98 degrees F
+    CPU temperature             53 degrees C / 127 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           4 percent
+    5 sec CPU utilization:
+      User                       0 percent
+      Background                 0 percent
+      Kernel                     0 percent
+      Interrupt                  0 percent
+      Idle                     100 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7430
+    Start time                     2026-04-08 02:55:53 UTC
+    Uptime                         12 hours, 50 minutes, 2 seconds
+    Last reboot reason             0x1:power cycle/failure
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.10       0.10       0.12
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show version invoke-on all-routing-engines 
+re0:
+--------------------------------------------------------------------------
+Hostname: EFFPER02
+Model: mx240
+Junos: 23.4R2-S3.9
+JUNOS OS Kernel 64-bit  [20240604.39c9257_builder_stable_12_234]
+JUNOS OS libs [20240604.39c9257_builder_stable_12_234]
+JUNOS OS runtime [20240604.39c9257_builder_stable_12_234]
+JUNOS OS time zone information [20240604.39c9257_builder_stable_12_234]
+JUNOS network stack and utilities [20241119.054100_builder_junos_234_r2_s3]
+JUNOS libs [20241119.054100_builder_junos_234_r2_s3]
+JUNOS OS libs compat32 [20240604.39c9257_builder_stable_12_234]
+JUNOS OS 32-bit compatibility [20240604.39c9257_builder_stable_12_234]
+JUNOS libs compat32 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS runtime [20241119.054100_builder_junos_234_r2_s3]
+JUNOS sflow mx [20241119.054100_builder_junos_234_r2_s3]
+JUNOS py extensions [20241119.054100_builder_junos_234_r2_s3]
+JUNOS py base [20241119.054100_builder_junos_234_r2_s3]
+JUNOS OS vmguest [20240604.39c9257_builder_stable_12_234]
+JUNOS OS package [20241014.220147_builder_main]
+JUNOS OS network modules [20240604.39c9257_builder_stable_12_234]
+JUNOS OS crypto [20240604.39c9257_builder_stable_12_234]
+JUNOS OS boot-ve files [20240604.39c9257_builder_stable_12_234]
+JUNOS na telemetry [23.4R2-S3.9]
+JUNOS vmguest  [20241119.054100_builder_junos_234_r2_s3]
+JUNOS vmguest (MTX) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS full sysmond [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx libs compat32 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx runtime [20241119.054100_builder_junos_234_r2_s3]
+JUNOS RPD Telemetry Application [23.4R2-S3.9]
+JUNOS python routing scripts for consistency check in RIB/FIB/PFE [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing mpls-oam-basic [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing mpls-oam-advanced [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing lsys [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing controller-internal [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing controller-external [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing 32-bit Compatible Version [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing aggregated [20241119.054100_builder_junos_234_r2_s3]
+Redis [20241119.054100_builder_junos_234_r2_s3]
+JUNOS probe utility [20241119.054100_builder_junos_234_r2_s3]
+JUNOS common platform support [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Openconfig [23.4R2-S3.9]
+JUNOS mtx network modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx libs [20241119.054100_builder_junos_234_r2_s3]
+JUNOS L2 RSI Scripts [20241119.054100_builder_junos_234_r2_s3]
+JUNOS SQL Sync Daemon [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mtx Data Plane Crypto Support [20241119.054100_builder_junos_234_r2_s3]
+JUNOS daemons [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx daemons [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Broadband Edge User Plane Apps [23.4R2-S3.9]
+Junos Remote Attestation package [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS appidd-mx application-identification daemon [20241119.054100_builder_junos_234_r2_s3]
+JUNOS TPM2 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services URL Filter package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services TLB Service PIC package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Telemetry [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services TCP-LOG [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services SSL [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services SOFTWIRE [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Stateful Firewall [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services RTCOM [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services RPM [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services PCEF package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services NAT [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Mobile Subscriber Service Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services MobileNext Software package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Logging Report Framework package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services LL-PDF Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Jflow Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Deep Packet Inspection package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services IPSec [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services IDS [20241119.054100_builder_junos_234_r2_s3]
+JUNOS IDP Services [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services HTTP Content Management package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services DNS Filter package (i386) [20241119.054100_builder_junos_234_r2_s3] 
+JUNOS Services Crypto [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Captive Portal and Content Delivery Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services COS [20241119.054100_builder_junos_234_r2_s3]
+JUNOS AppId Services [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Application Level Gateways [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services AACL Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS SDN Software Suite [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Extension Toolkit [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Phone-home [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (wrlinux9) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (MX/EX92XX Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (M/T Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (aft) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (MX Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Juniper Malware Removal Tool (JMRT) [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS Juniper Malware Removal Tool (JMRT) Test [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS J-Insight [20241119.054100_builder_junos_234_r2_s3]
+JUNOS jfirmware [20241018.050548_builder_junos_234_r2_s3]
+JUNOS Online Documentation [20241119.054100_builder_junos_234_r2_s3]
+JUNOS jail runtime [20240604.39c9257_builder_stable_12_234]
+JUNOS dsa [20241119.054100_builder_junos_234_r2_s3]
+
+re1:
+--------------------------------------------------------------------------
+Hostname: EFFPER02
+Model: mx240
+Junos: 23.4R2-S3.9
+JUNOS OS Kernel 64-bit  [20240604.39c9257_builder_stable_12_234]
+JUNOS OS libs [20240604.39c9257_builder_stable_12_234]
+JUNOS OS runtime [20240604.39c9257_builder_stable_12_234]
+JUNOS OS time zone information [20240604.39c9257_builder_stable_12_234]
+JUNOS network stack and utilities [20241119.054100_builder_junos_234_r2_s3]
+JUNOS libs [20241119.054100_builder_junos_234_r2_s3]
+JUNOS OS libs compat32 [20240604.39c9257_builder_stable_12_234]
+JUNOS OS 32-bit compatibility [20240604.39c9257_builder_stable_12_234]
+JUNOS libs compat32 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS runtime [20241119.054100_builder_junos_234_r2_s3]
+JUNOS sflow mx [20241119.054100_builder_junos_234_r2_s3]
+JUNOS py extensions [20241119.054100_builder_junos_234_r2_s3]
+JUNOS py base [20241119.054100_builder_junos_234_r2_s3]
+JUNOS OS vmguest [20240604.39c9257_builder_stable_12_234]
+JUNOS OS package [20241014.220147_builder_main]
+JUNOS OS network modules [20240604.39c9257_builder_stable_12_234]
+JUNOS OS crypto [20240604.39c9257_builder_stable_12_234]
+JUNOS OS boot-ve files [20240604.39c9257_builder_stable_12_234]
+JUNOS na telemetry [23.4R2-S3.9]
+JUNOS vmguest  [20241119.054100_builder_junos_234_r2_s3]
+JUNOS vmguest (MTX) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS full sysmond [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx libs compat32 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx runtime [20241119.054100_builder_junos_234_r2_s3]
+JUNOS RPD Telemetry Application [23.4R2-S3.9]
+JUNOS python routing scripts for consistency check in RIB/FIB/PFE [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing mpls-oam-basic [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing mpls-oam-advanced [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing lsys [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing controller-internal [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing controller-external [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing 32-bit Compatible Version [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing aggregated [20241119.054100_builder_junos_234_r2_s3]
+Redis [20241119.054100_builder_junos_234_r2_s3]
+JUNOS probe utility [20241119.054100_builder_junos_234_r2_s3]
+JUNOS common platform support [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Openconfig [23.4R2-S3.9]
+JUNOS mtx network modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx libs [20241119.054100_builder_junos_234_r2_s3]
+JUNOS L2 RSI Scripts [20241119.054100_builder_junos_234_r2_s3]
+JUNOS SQL Sync Daemon [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mtx Data Plane Crypto Support [20241119.054100_builder_junos_234_r2_s3]
+JUNOS daemons [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx daemons [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Broadband Edge User Plane Apps [23.4R2-S3.9]
+Junos Remote Attestation package [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS appidd-mx application-identification daemon [20241119.054100_builder_junos_234_r2_s3]
+JUNOS TPM2 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services URL Filter package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services TLB Service PIC package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Telemetry [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services TCP-LOG [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services SSL [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services SOFTWIRE [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Stateful Firewall [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services RTCOM [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services RPM [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services PCEF package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services NAT [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Mobile Subscriber Service Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services MobileNext Software package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Logging Report Framework package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services LL-PDF Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Jflow Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Deep Packet Inspection package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services IPSec [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services IDS [20241119.054100_builder_junos_234_r2_s3]
+JUNOS IDP Services [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services HTTP Content Management package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services DNS Filter package (i386) [20241119.054100_builder_junos_234_r2_s3] 
+JUNOS Services Crypto [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Captive Portal and Content Delivery Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services COS [20241119.054100_builder_junos_234_r2_s3]
+JUNOS AppId Services [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Application Level Gateways [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services AACL Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS SDN Software Suite [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Extension Toolkit [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Phone-home [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (wrlinux9) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (MX/EX92XX Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (M/T Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (aft) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (MX Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Juniper Malware Removal Tool (JMRT) [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS Juniper Malware Removal Tool (JMRT) Test [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS J-Insight [20241119.054100_builder_junos_234_r2_s3]
+JUNOS jfirmware [20241018.050548_builder_junos_234_r2_s3]
+JUNOS Online Documentation [20241119.054100_builder_junos_234_r2_s3]
+JUNOS jail runtime [20240604.39c9257_builder_stable_12_234]
+JUNOS dsa [20241119.054100_builder_junos_234_r2_s3]
+
+lab@EFFPER02> request chassis routing-engine master switch 
+warning: Traffic will be interrupted while the PFE is re-initialized
+Toggle mastership between routing engines ? [yes,no] (no) Last login: Mon Apr  6 06:35:20 2026 from 10.80.109.133
+--- JUNOS 23.4R2-S3.9 Kernel 64-bit  JNPR-12.1-20240604.39c9257_buil
+
+lab@EFFPER02> 
+
+lab@EFFPER02> 
+
+lab@EFFPER02> set cli screen-width 511 
+Screen width set to 511
+
+lab@EFFPER02> set cli complete-on-space off 
+Disabling complete-on-space
+
+lab@EFFPER02> set cli screen-length 0 
+Screen length set to 0
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show chassis routing-engine 
+
+Message from syslogd@EFFPER02 at Apr  8 15:46:32.965  ...
+EFFPER02 clksyncd[62008]: ../../../../../../src/junos/usr.sbin/clksyncd/clksyncd_zl.c:zl_dev_create:318: insist '(id_reg_val & ZL_DEV_ID_MASK) == dev_type' failed
+Routing Engine status:
+  Slot 0:
+    Current state                  Backup
+    Election priority              Master (default)
+    Temperature                 39 degrees C / 102 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           0 percent
+    5 sec CPU utilization:
+      User                       0 percent
+      Background                 0 percent
+      Kernel                     0 percent
+      Interrupt                  0 percent
+      Idle                       0 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7380
+    Start time                     2026-04-06 06:45:07 UTC
+    Uptime                         2 days, 9 hours, 1 minute, 9 seconds
+    Last reboot reason             0x2000:hypervisor reboot
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.62       0.49       0.39
+Routing Engine status:
+  Slot 1:
+    Current state                  Master
+    Election priority              Backup (default)
+    Temperature                 38 degrees C / 100 degrees F
+    CPU temperature             55 degrees C / 131 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           7 percent
+    5 sec CPU utilization:
+      User                      13 percent
+      Background                 0 percent
+      Kernel                    51 percent
+      Interrupt                  3 percent
+      Idle                      34 percent
+    1 min CPU utilization:
+      User                       6 percent
+      Background                 0 percent
+      Kernel                    11 percent
+      Interrupt                  0 percent
+      Idle                      82 percent
+    5 min CPU utilization:
+      User                       2 percent
+      Background                 0 percent
+      Kernel                     3 percent
+      Interrupt                  0 percent
+      Idle                      96 percent
+    15 min CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     1 percent
+      Interrupt                  0 percent
+      Idle                      98 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7430
+    Start time                     2026-04-08 02:55:53 UTC
+    Uptime                         12 hours, 50 minutes, 51 seconds
+    Last reboot reason             0x1:power cycle/failure
+    Load averages:                 1 minute   5 minute  15 minute
+                                       3.10       0.92       0.42
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show version invoke-on all-routing-engines 
+re0:
+--------------------------------------------------------------------------
+Hostname: EFFPER02
+Model: mx240
+Junos: 23.4R2-S3.9
+JUNOS OS Kernel 64-bit  [20240604.39c9257_builder_stable_12_234]
+JUNOS OS libs [20240604.39c9257_builder_stable_12_234]
+JUNOS OS runtime [20240604.39c9257_builder_stable_12_234]
+JUNOS OS time zone information [20240604.39c9257_builder_stable_12_234]
+JUNOS network stack and utilities [20241119.054100_builder_junos_234_r2_s3]
+JUNOS libs [20241119.054100_builder_junos_234_r2_s3]
+JUNOS OS libs compat32 [20240604.39c9257_builder_stable_12_234]
+JUNOS OS 32-bit compatibility [20240604.39c9257_builder_stable_12_234]
+JUNOS libs compat32 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS runtime [20241119.054100_builder_junos_234_r2_s3]
+JUNOS sflow mx [20241119.054100_builder_junos_234_r2_s3]
+JUNOS py extensions [20241119.054100_builder_junos_234_r2_s3]
+JUNOS py base [20241119.054100_builder_junos_234_r2_s3]
+JUNOS OS vmguest [20240604.39c9257_builder_stable_12_234]
+JUNOS OS package [20241014.220147_builder_main]
+JUNOS OS network modules [20240604.39c9257_builder_stable_12_234]
+JUNOS OS crypto [20240604.39c9257_builder_stable_12_234]
+JUNOS OS boot-ve files [20240604.39c9257_builder_stable_12_234]
+JUNOS na telemetry [23.4R2-S3.9]
+JUNOS vmguest  [20241119.054100_builder_junos_234_r2_s3]
+JUNOS vmguest (MTX) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS full sysmond [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx libs compat32 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx runtime [20241119.054100_builder_junos_234_r2_s3]
+JUNOS RPD Telemetry Application [23.4R2-S3.9]
+JUNOS python routing scripts for consistency check in RIB/FIB/PFE [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing mpls-oam-basic [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing mpls-oam-advanced [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing lsys [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing controller-internal [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing controller-external [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing 32-bit Compatible Version [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing aggregated [20241119.054100_builder_junos_234_r2_s3]
+Redis [20241119.054100_builder_junos_234_r2_s3]
+JUNOS probe utility [20241119.054100_builder_junos_234_r2_s3]
+JUNOS common platform support [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Openconfig [23.4R2-S3.9]
+JUNOS mtx network modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx libs [20241119.054100_builder_junos_234_r2_s3]
+JUNOS L2 RSI Scripts [20241119.054100_builder_junos_234_r2_s3]
+JUNOS SQL Sync Daemon [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mtx Data Plane Crypto Support [20241119.054100_builder_junos_234_r2_s3]
+JUNOS daemons [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx daemons [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Broadband Edge User Plane Apps [23.4R2-S3.9]
+Junos Remote Attestation package [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS appidd-mx application-identification daemon [20241119.054100_builder_junos_234_r2_s3]
+JUNOS TPM2 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services URL Filter package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services TLB Service PIC package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Telemetry [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services TCP-LOG [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services SSL [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services SOFTWIRE [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Stateful Firewall [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services RTCOM [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services RPM [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services PCEF package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services NAT [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Mobile Subscriber Service Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services MobileNext Software package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Logging Report Framework package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services LL-PDF Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Jflow Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Deep Packet Inspection package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services IPSec [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services IDS [20241119.054100_builder_junos_234_r2_s3]
+JUNOS IDP Services [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services HTTP Content Management package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services DNS Filter package (i386) [20241119.054100_builder_junos_234_r2_s3] 
+JUNOS Services Crypto [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Captive Portal and Content Delivery Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services COS [20241119.054100_builder_junos_234_r2_s3]
+JUNOS AppId Services [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Application Level Gateways [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services AACL Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS SDN Software Suite [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Extension Toolkit [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Phone-home [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (wrlinux9) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (MX/EX92XX Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (M/T Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (aft) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (MX Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Juniper Malware Removal Tool (JMRT) [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS Juniper Malware Removal Tool (JMRT) Test [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS J-Insight [20241119.054100_builder_junos_234_r2_s3]
+JUNOS jfirmware [20241018.050548_builder_junos_234_r2_s3]
+JUNOS Online Documentation [20241119.054100_builder_junos_234_r2_s3]
+JUNOS jail runtime [20240604.39c9257_builder_stable_12_234]
+JUNOS dsa [20241119.054100_builder_junos_234_r2_s3]
+
+re1:
+--------------------------------------------------------------------------
+Hostname: EFFPER02
+Model: mx240
+Junos: 23.4R2-S3.9
+JUNOS OS Kernel 64-bit  [20240604.39c9257_builder_stable_12_234]
+JUNOS OS libs [20240604.39c9257_builder_stable_12_234]
+JUNOS OS runtime [20240604.39c9257_builder_stable_12_234]
+JUNOS OS time zone information [20240604.39c9257_builder_stable_12_234]
+JUNOS network stack and utilities [20241119.054100_builder_junos_234_r2_s3]
+JUNOS libs [20241119.054100_builder_junos_234_r2_s3]
+JUNOS OS libs compat32 [20240604.39c9257_builder_stable_12_234]
+JUNOS OS 32-bit compatibility [20240604.39c9257_builder_stable_12_234]
+JUNOS libs compat32 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS runtime [20241119.054100_builder_junos_234_r2_s3]
+JUNOS sflow mx [20241119.054100_builder_junos_234_r2_s3]
+JUNOS py extensions [20241119.054100_builder_junos_234_r2_s3]
+JUNOS py base [20241119.054100_builder_junos_234_r2_s3]
+JUNOS OS vmguest [20240604.39c9257_builder_stable_12_234]
+JUNOS OS package [20241014.220147_builder_main]
+JUNOS OS network modules [20240604.39c9257_builder_stable_12_234]
+JUNOS OS crypto [20240604.39c9257_builder_stable_12_234]
+JUNOS OS boot-ve files [20240604.39c9257_builder_stable_12_234]
+JUNOS na telemetry [23.4R2-S3.9]
+JUNOS vmguest  [20241119.054100_builder_junos_234_r2_s3]
+JUNOS vmguest (MTX) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS full sysmond [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx libs compat32 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx runtime [20241119.054100_builder_junos_234_r2_s3]
+JUNOS RPD Telemetry Application [23.4R2-S3.9]
+JUNOS python routing scripts for consistency check in RIB/FIB/PFE [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing mpls-oam-basic [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing mpls-oam-advanced [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing lsys [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing controller-internal [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing controller-external [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing 32-bit Compatible Version [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Routing aggregated [20241119.054100_builder_junos_234_r2_s3]
+Redis [20241119.054100_builder_junos_234_r2_s3]
+JUNOS probe utility [20241119.054100_builder_junos_234_r2_s3]
+JUNOS common platform support [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Openconfig [23.4R2-S3.9]
+JUNOS mtx network modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx modules [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx libs [20241119.054100_builder_junos_234_r2_s3]
+JUNOS L2 RSI Scripts [20241119.054100_builder_junos_234_r2_s3]
+JUNOS SQL Sync Daemon [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mtx Data Plane Crypto Support [20241119.054100_builder_junos_234_r2_s3]
+JUNOS daemons [20241119.054100_builder_junos_234_r2_s3]
+JUNOS mx daemons [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Broadband Edge User Plane Apps [23.4R2-S3.9]
+Junos Remote Attestation package [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS appidd-mx application-identification daemon [20241119.054100_builder_junos_234_r2_s3]
+JUNOS TPM2 [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services URL Filter package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services TLB Service PIC package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Telemetry [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services TCP-LOG [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services SSL [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services SOFTWIRE [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Stateful Firewall [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services RTCOM [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services RPM [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services PCEF package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services NAT [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Mobile Subscriber Service Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services MobileNext Software package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Logging Report Framework package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services LL-PDF Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Jflow Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Deep Packet Inspection package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services IPSec [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services IDS [20241119.054100_builder_junos_234_r2_s3]
+JUNOS IDP Services [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services HTTP Content Management package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services DNS Filter package (i386) [20241119.054100_builder_junos_234_r2_s3] 
+JUNOS Services Crypto [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Captive Portal and Content Delivery Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services COS [20241119.054100_builder_junos_234_r2_s3]
+JUNOS AppId Services [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services Application Level Gateways [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Services AACL Container package [20241119.054100_builder_junos_234_r2_s3]
+JUNOS SDN Software Suite [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Extension Toolkit [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Phone-home [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (wrlinux9) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (MX/EX92XX Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (M/T Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (aft) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Packet Forwarding Engine Support (MX Common) [20241119.054100_builder_junos_234_r2_s3]
+JUNOS Juniper Malware Removal Tool (JMRT) [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS Juniper Malware Removal Tool (JMRT) Test [1.0.0+20241119.054100_builder_junos_234_r2_s3]
+JUNOS J-Insight [20241119.054100_builder_junos_234_r2_s3]
+JUNOS jfirmware [20241018.050548_builder_junos_234_r2_s3]
+JUNOS Online Documentation [20241119.054100_builder_junos_234_r2_s3]
+JUNOS jail runtime [20240604.39c9257_builder_stable_12_234]
+JUNOS dsa [20241119.054100_builder_junos_234_r2_s3]
+
+lab@EFFPER02> request chassis routing-engine master switch 
+warning: Traffic will be interrupted while the PFE is re-initialized
+Toggle mastership between routing engines ? [yes,no] (no) yes 
+
+Not ready for mastership switch, try after 202 secs.
+
+lab@EFFPER02> yes
+              ^
+unknown command.
+
+lab@EFFPER02> Last login: Wed Apr  8 15:46:31 2026 from 10.80.109.133
+--- JUNOS 23.4R2-S3.9 Kernel 64-bit  JNPR-12.1-20240604.39c9257_buil
+
+lab@EFFPER02> 
+
+lab@EFFPER02> 
+
+lab@EFFPER02> set cli screen-width 511 
+Screen width set to 511
+
+lab@EFFPER02> set cli complete-on-space off 
+Disabling complete-on-space
+
+lab@EFFPER02> set cli screen-length 0 
+Screen length set to 0
+
+lab@EFFPER02> 
+
+lab@EFFPER02> show chassis routing-engine 
+Routing Engine status:
+  Slot 0:
+    Current state                  Backup
+    Election priority              Master (default)
+    Temperature                 41 degrees C / 105 degrees F
+    CPU temperature             64 degrees C / 147 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           5 percent
+    5 sec CPU utilization:
+      User                       0 percent
+      Background                 0 percent
+      Kernel                     0 percent
+      Interrupt                  0 percent
+      Idle                     100 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7380
+    Start time                     2026-04-06 06:45:07 UTC
+    Uptime                         2 days, 9 hours, 2 minutes, 2 seconds
+    Last reboot reason             0x2000:hypervisor reboot
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.58       0.50       0.40
+Routing Engine status:
+  Slot 1:
+    Current state                  Master
+    Election priority              Backup (default)
+    Temperature                 39 degrees C / 102 degrees F
+    CPU temperature             56 degrees C / 132 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           7 percent
+    5 sec CPU utilization:
+      User                      23 percent
+      Background                 0 percent
+      Kernel                    35 percent
+      Interrupt                  1 percent
+      Idle                      41 percent
+    1 min CPU utilization:
+      User                      10 percent
+      Background                 0 percent
+      Kernel                    22 percent
+      Interrupt                  1 percent
+      Idle                      67 percent
+    5 min CPU utilization:
+      User                       3 percent
+      Background                 0 percent
+      Kernel                     6 percent
+      Interrupt                  0 percent
+      Idle                      91 percent
+    15 min CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     2 percent
+      Interrupt                  0 percent
+      Idle                      96 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7430
+    Start time                     2026-04-08 02:55:53 UTC
+    Uptime                         12 hours, 51 minutes, 22 seconds
+    Last reboot reason             0x1:power cycle/failure
+    Load averages:                 1 minute   5 minute  15 minute
+                                       2.92       1.07       0.49
+
+lab@EFFPER02> 
+
+lab@EFFPER02> 

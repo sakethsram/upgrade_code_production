@@ -1,0 +1,1811 @@
+{
+  "10_80_109_249_cisco_ncs5501": {
+    "status": "",
+    "device_info": {
+      "host": "10.80.109.249",
+      "vendor": "cisco",
+      "model": "ncs5501",
+      "hostname": "",
+      "version": "7.11.2"
+    },
+    "yaml": {
+      "host": "10.80.109.249",
+      "vendor": "cisco",
+      "model": "ncs5501",
+      "device_type": "cisco_xr",
+      "curr_image": "ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso",
+      "curr_os": "7.11.2",
+      "smu_upgrade": false,
+      "intermediate_release": true,
+      "image_storage": 2,
+      "upgrade_storage": 3,
+      "username": "admin",
+      "password": "Colt@123",
+      "imageDetails": [
+        {
+          "intermediate_image": "ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso",
+          "expected_os": "7.7.2",
+          "checksum": "98ea1cf2fa46700d4ec4896686b2934a",
+          "xr_committed_pkg": [
+            "ncs5500-isis-2.1.0.0-r772",
+            "ncs5500-mgbl-3.0.0.0-r772",
+            "ncs5500-mcast-3.0.0.0-r772",
+            "ncs5500-li-1.0.0.0-r772",
+            "ncs5500-eigrp-1.0.0.0-r772",
+            "ncs5500-k9sec-3.1.0.0-r772",
+            "ncs5500-ospf-2.0.0.0-r772",
+            "ncs5500-mpls-2.1.0.0-r772",
+            "ncs5500-mpls-te-rsvp-3.1.0.0-r772",
+            "ncs5500-lictrl-1.0.0.0-r772"
+          ],
+          "admin_committed_pkg": [
+            "ncs5500-sysadmin-7.7.2"
+          ]
+        },
+        {
+          "image": "ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso",
+          "expected_os": "7.11.2",
+          "checksum": "61aeb6ce722dddd815baeb2f297b1c44",
+          "xr_committed_pkg": [
+            "ncs5500-isis-1.0.0.0-r7112",
+            "ncs5500-k9sec-1.0.0.0-r7112",
+            "ncs5500-li-1.0.0.0-r7112",
+            "ncs5500-lictrl-1.0.0.0-r7112",
+            "ncs5500-mcast-1.0.0.0-r7112",
+            "ncs5500-mgbl-1.0.0.0-r7112",
+            "ncs5500-mpls-1.0.0.0-r7112",
+            "ncs5500-mpls-te-rsvp-1.0.0.0-r7112",
+            "ncs5500-ospf-1.0.0.0-r7112"
+          ],
+          "admin_committed_pkg": [
+            "ncs5500-sysadmin-7.11.2"
+          ]
+        },
+        {
+          "smu_images": [
+            {
+              "image": "ncs5500-7.11.2.CSCws66900.tar",
+              "checksum": "298fefd1bb034364cd30c82c4de8f9de"
+            },
+            {
+              "image": "ncs5500-7.11.2.CSCwk15658.tar",
+              "checksum": "12018fb06bffa4220b784110283d5643"
+            },
+            {
+              "image": "ncs5500-7.11.2.CSCwm31234.tar",
+              "checksum": "f5c139b4a289effc6ae9b397f65f78cc"
+            },
+            {
+              "image": "ncs5500-7.11.2.CSCwq09649.tar",
+              "checksum": "f4fa747ac5f627a334b3a5f0881a2a0e"
+            }
+          ],
+          "expected_os": "7.11.2",
+          "xr_committed_pkg": [
+            "ncs5500-os-support-1.0.0.7-r7112.CSCws66900",
+            "ncs5500-dpa-1.0.0.28-r7112.CSCws66900",
+            "ncs5500-dpa-fwding-1.0.0.18-r7112.CSCwq09649",
+            "ncs5500-infra-1.0.0.18-r7112.CSCws66900",
+            "ncs5500-fwding-1.0.0.6-r7112.CSCws66900",
+            "ncs5500-common-pd-fib-1.0.0.3-r7112.CSCwq09649",
+            "ncs5500-iosxr-fwding-1.0.0.8-r7112.CSCwm31234",
+            "ncs5500-os-1.0.0.1-r7112.CSCwk15658"
+          ],
+          "admin_committed_pkg": [
+            "ncs5500-sysadmin-7.11.2"
+          ]
+        }
+      ],
+      "image_path": "/home/colt/backup/gimages",
+      "smu_image_path": "/home/colt/Documents/SMU",
+      "remote_backup_server": "colt@10.80.109.133",
+      "remote_password": "kTRq8amH363r",
+      "cleanup_files": [
+        "cisco_ncs5501_2026-04-06_12-49-27-xr.cfg",
+        "cisco_ncs5501_2026-04-06_12-01-29-xr.cfg",
+        "ncs5500-goldenk9-x-7.6.2-NCS5500_762_GISO_291024.iso"
+      ],
+      "accepted_vendors": [
+        "juniper",
+        "cisco"
+      ]
+    },
+    "pre": {
+      "connect": {
+        "ping": "up",
+        "status": true,
+        "exception": ""
+      },
+      "execute_show_commands": {
+        "status": "completed",
+        "exception": "",
+        "commands": [
+          {
+            "cmd": "show version",
+            "output": "\nWed Apr  8 14:29:22.240 UTC\nCisco IOS XR Software, Version 7.11.2\nCopyright (c) 2013-2024 by Cisco Systems, Inc.\n\nBuild Information:\n Built By     : swtools\n Built On     : Fri Mar 29 15:19:15 PDT 2024\n Built Host   : iox-ucs-063\n Workspace    : /auto/srcarchive11/prod/7.11.2/ncs5500/ws\n Version      : 7.11.2\n Location     : /opt/cisco/XR/packages/\n Label        : 7.11.2-NCS5501_7112\n\ncisco NCS-5500 () processor\nSystem uptime is 39 minutes\n",
+            "json": {
+              "version": "7.11.2",
+              "model": "ncs-5500",
+              "systemUptime": "39 minutes"
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show inventory",
+            "output": "\nWed Apr  8 14:29:23.485 UTC\nNAME: \"0/RP0\", DESCR: \"NC5501 w/o TCAM Route Processor Card\"\nPID: NCS-5501          , VID: V03, SN: FOC29020NAV\n\nNAME: \"TenGigE0/0/0/0\", DESCR: \"Non-Cisco SFP+ 10G SR Pluggable Optics Module\"\nPID: 8SM-400           , VID: SA01, SN: L2012050185\n\nNAME: \"TenGigE0/0/0/1\", DESCR: \"Cisco SFP+ 10G LR Pluggable Optics Module\"\nPID: SFP-10G-LR        , VID: V02, SN: ACW281803XQ\n\nNAME: \"TenGigE0/0/0/2\", DESCR: \"Cisco SFP+ 10G LR Pluggable Optics Module\"\nPID: SFP-10G-LR-S      , VID: V01, SN: OPM28390G8G\n\nNAME: \"GigabitEthernet0/0/0/46\", DESCR: \"Non-Cisco SFP 1G 1000BASE-LX Pluggable Optics Module\"\nPID: 7SN-000           , VID: SA01, SN: X2409110247\n\nNAME: \"TenGigE0/0/0/47\", DESCR: \"Non-Cisco SFP+ 10G LR Pluggable Optics Module\"\nPID: 8SN-400           , VID: SA01, SN: X2003030269\n\nNAME: \"Rack 0\", DESCR: \"NCS5501 w/o TCAM 1RU Chassis\"\nPID: NCS-5501          , VID: V03, SN: FOC2901R0DR\n\nNAME: \"0/FT0\", DESCR: \"NC5501 Fan Tray Forward Flow\"\nPID: NCS-1RU-FAN-FW    , VID: V01, SN: N/A\n\nNAME: \"0/FT1\", DESCR: \"NC5501 Fan Tray Forward Flow\"\nPID: NCS-1RU-FAN-FW    , VID: V01, SN: N/A\n\nNAME: \"0/PM0\", DESCR: \"NCS 5500 AC 1100W Power Supply Port-S Intake/Front-to-back\"\nPID: NCS-1100W-ACFW    , VID: V02, SN: ART2839F3ZN\n\nNAME: \"0/PM1\", DESCR: \"NCS 5500 AC 1100W Power Supply Port-S Intake/Front-to-back\"\nPID: NCS-1100W-ACFW    , VID: V02, SN: ART2839F1UH\n",
+            "json": {
+              "totalCount": 11,
+              "inventory": [
+                {
+                  "NAME": "0/RP0",
+                  "DESCR": "NC5501 w/o TCAM Route Processor Card",
+                  "PID": "NCS-5501",
+                  "VID": "V03",
+                  "SN": "FOC29020NAV"
+                },
+                {
+                  "NAME": "TenGigE0/0/0/0",
+                  "DESCR": "Non-Cisco SFP+ 10G SR Pluggable Optics Module",
+                  "PID": "8SM-400",
+                  "VID": "SA01",
+                  "SN": "L2012050185"
+                },
+                {
+                  "NAME": "TenGigE0/0/0/1",
+                  "DESCR": "Cisco SFP+ 10G LR Pluggable Optics Module",
+                  "PID": "SFP-10G-LR",
+                  "VID": "V02",
+                  "SN": "ACW281803XQ"
+                },
+                {
+                  "NAME": "TenGigE0/0/0/2",
+                  "DESCR": "Cisco SFP+ 10G LR Pluggable Optics Module",
+                  "PID": "SFP-10G-LR-S",
+                  "VID": "V01",
+                  "SN": "OPM28390G8G"
+                },
+                {
+                  "NAME": "GigabitEthernet0/0/0/46",
+                  "DESCR": "Non-Cisco SFP 1G 1000BASE-LX Pluggable Optics Module",
+                  "PID": "7SN-000",
+                  "VID": "SA01",
+                  "SN": "X2409110247"
+                },
+                {
+                  "NAME": "TenGigE0/0/0/47",
+                  "DESCR": "Non-Cisco SFP+ 10G LR Pluggable Optics Module",
+                  "PID": "8SN-400",
+                  "VID": "SA01",
+                  "SN": "X2003030269"
+                },
+                {
+                  "NAME": "Rack 0",
+                  "DESCR": "NCS5501 w/o TCAM 1RU Chassis",
+                  "PID": "NCS-5501",
+                  "VID": "V03",
+                  "SN": "FOC2901R0DR"
+                },
+                {
+                  "NAME": "0/FT0",
+                  "DESCR": "NC5501 Fan Tray Forward Flow",
+                  "PID": "NCS-1RU-FAN-FW",
+                  "VID": "V01",
+                  "SN": "N/A"
+                },
+                {
+                  "NAME": "0/FT1",
+                  "DESCR": "NC5501 Fan Tray Forward Flow",
+                  "PID": "NCS-1RU-FAN-FW",
+                  "VID": "V01",
+                  "SN": "N/A"
+                },
+                {
+                  "NAME": "0/PM0",
+                  "DESCR": "NCS 5500 AC 1100W Power Supply Port-S Intake/Front-to-back",
+                  "PID": "NCS-1100W-ACFW",
+                  "VID": "V02",
+                  "SN": "ART2839F3ZN"
+                },
+                {
+                  "NAME": "0/PM1",
+                  "DESCR": "NCS 5500 AC 1100W Power Supply Port-S Intake/Front-to-back",
+                  "PID": "NCS-1100W-ACFW",
+                  "VID": "V02",
+                  "SN": "ART2839F1UH"
+                }
+              ]
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show platform",
+            "output": "\nWed Apr  8 14:29:24.202 UTC\nNode              Type                       State             Config state\n--------------------------------------------------------------------------------\n0/RP0/CPU0        NCS-5501(Active)           IOS XR RUN        NSHUT\n0/RP0/NPU0        Slice                      UP                \n0/FT0             NCS-1RU-FAN-FW             OPERATIONAL       NSHUT\n0/FT1             NCS-1RU-FAN-FW             OPERATIONAL       NSHUT\n0/PM0             NCS-1100W-ACFW             OPERATIONAL       NSHUT\n0/PM1             NCS-1100W-ACFW             OPERATIONAL       NSHUT",
+            "json": {
+              "totalCount": 6,
+              "platformInfo": [
+                {
+                  "Node": "0/RP0/CPU0",
+                  "Type": "NCS-5501(Active)",
+                  "State": "IOS XR RUN",
+                  "ConfigState": "NSHUT"
+                },
+                {
+                  "Node": "0/RP0/NPU0",
+                  "Type": "Slice",
+                  "State": "UP",
+                  "ConfigState": ""
+                },
+                {
+                  "Node": "0/FT0",
+                  "Type": "NCS-1RU-FAN-FW",
+                  "State": "OPERATIONAL",
+                  "ConfigState": "NSHUT"
+                },
+                {
+                  "Node": "0/FT1",
+                  "Type": "NCS-1RU-FAN-FW",
+                  "State": "OPERATIONAL",
+                  "ConfigState": "NSHUT"
+                },
+                {
+                  "Node": "0/PM0",
+                  "Type": "NCS-1100W-ACFW",
+                  "State": "OPERATIONAL",
+                  "ConfigState": "NSHUT"
+                },
+                {
+                  "Node": "0/PM1",
+                  "Type": "NCS-1100W-ACFW",
+                  "State": "OPERATIONAL",
+                  "ConfigState": "NSHUT"
+                }
+              ]
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show install active summary",
+            "output": "\nWed Apr  8 14:29:24.749 UTC\nLabel : 7.11.2-NCS5501_7112\n\n    Active Packages: 12\n        ncs5500-xr-7.11.2 version=7.11.2 [Boot image]\n        ncs5500-eigrp-1.0.0.0-r7112\n        ncs5500-healthcheck-1.0.0.0-r7112\n        ncs5500-isis-1.0.0.0-r7112\n        ncs5500-k9sec-1.0.0.0-r7112\n        ncs5500-li-1.0.0.0-r7112\n        ncs5500-lictrl-1.0.0.0-r7112\n        ncs5500-mcast-1.0.0.0-r7112\n        ncs5500-mgbl-1.0.0.0-r7112\n        ncs5500-mpls-1.0.0.0-r7112\n        ncs5500-mpls-te-rsvp-1.0.0.0-r7112\n        ncs5500-ospf-1.0.0.0-r7112\n",
+            "json": {
+              "Label": "7.11.2-NCS5501_7112",
+              "AcivePackages": 12,
+              "Packages": [
+                "ncs5500-xr-7.11.2",
+                "ncs5500-eigrp-1.0.0.0-r7112",
+                "ncs5500-healthcheck-1.0.0.0-r7112",
+                "ncs5500-isis-1.0.0.0-r7112",
+                "ncs5500-k9sec-1.0.0.0-r7112",
+                "ncs5500-li-1.0.0.0-r7112",
+                "ncs5500-lictrl-1.0.0.0-r7112",
+                "ncs5500-mcast-1.0.0.0-r7112",
+                "ncs5500-mgbl-1.0.0.0-r7112",
+                "ncs5500-mpls-1.0.0.0-r7112",
+                "ncs5500-mpls-te-rsvp-1.0.0.0-r7112",
+                "ncs5500-ospf-1.0.0.0-r7112"
+              ]
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show install committed summary",
+            "output": "\nWed Apr  8 14:29:26.471 UTC\nLabel : 7.11.2-NCS5501_7112\n\n    Committed Packages: 12\n        ncs5500-xr-7.11.2 version=7.11.2 [Boot image]\n        ncs5500-eigrp-1.0.0.0-r7112\n        ncs5500-healthcheck-1.0.0.0-r7112\n        ncs5500-isis-1.0.0.0-r7112\n        ncs5500-k9sec-1.0.0.0-r7112\n        ncs5500-li-1.0.0.0-r7112\n        ncs5500-lictrl-1.0.0.0-r7112\n        ncs5500-mcast-1.0.0.0-r7112\n        ncs5500-mgbl-1.0.0.0-r7112\n        ncs5500-mpls-1.0.0.0-r7112\n        ncs5500-mpls-te-rsvp-1.0.0.0-r7112\n        ncs5500-ospf-1.0.0.0-r7112\n",
+            "json": {
+              "Label": "7.11.2-NCS5501_7112",
+              "CommittedPackages": 12,
+              "Packages": [
+                "ncs5500-xr-7.11.2",
+                "ncs5500-eigrp-1.0.0.0-r7112",
+                "ncs5500-healthcheck-1.0.0.0-r7112",
+                "ncs5500-isis-1.0.0.0-r7112",
+                "ncs5500-k9sec-1.0.0.0-r7112",
+                "ncs5500-li-1.0.0.0-r7112",
+                "ncs5500-lictrl-1.0.0.0-r7112",
+                "ncs5500-mcast-1.0.0.0-r7112",
+                "ncs5500-mgbl-1.0.0.0-r7112",
+                "ncs5500-mpls-1.0.0.0-r7112",
+                "ncs5500-mpls-te-rsvp-1.0.0.0-r7112",
+                "ncs5500-ospf-1.0.0.0-r7112"
+              ]
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show media",
+            "output": "\nWed Apr  8 14:29:27.868 UTC\n\nMedia Info for Location: node0_RP0_CPU0\nPartition                            Size     Used  Percent    Avail\n--------------------------------------------------------------------\nrootfs:                              3.9G     2.1G      56%     1.7G\napphost:                             3.7G     2.0G      56%     1.6G\nharddisk:                            5.6G     2.0G      37%     3.4G\nlog:                                 459M     159M      38%     266M\nconfig:                              459M     3.4M       1%     421M\ndisk0:                               2.0G      18M       1%     1.8G\n/tmp/tmpDb0uuW                       1.9G     1.9G     100%        0",
+            "json": {
+              "TotalCount": 8,
+              "MediaLoc": "node0_RP0_CPU0",
+              "MediaInfo": [
+                {
+                  "Partition": "Wed",
+                  "Size": "Apr",
+                  "Used": "8",
+                  "Percent": "14:29:27.868",
+                  "Avail": "UTC"
+                },
+                {
+                  "Partition": "rootfs:",
+                  "Size": "3.9G",
+                  "Used": "2.1G",
+                  "Percent": "56%",
+                  "Avail": "1.7G"
+                },
+                {
+                  "Partition": "apphost:",
+                  "Size": "3.7G",
+                  "Used": "2.0G",
+                  "Percent": "56%",
+                  "Avail": "1.6G"
+                },
+                {
+                  "Partition": "harddisk:",
+                  "Size": "5.6G",
+                  "Used": "2.0G",
+                  "Percent": "37%",
+                  "Avail": "3.4G"
+                },
+                {
+                  "Partition": "log:",
+                  "Size": "459M",
+                  "Used": "159M",
+                  "Percent": "38%",
+                  "Avail": "266M"
+                },
+                {
+                  "Partition": "config:",
+                  "Size": "459M",
+                  "Used": "3.4M",
+                  "Percent": "1%",
+                  "Avail": "421M"
+                },
+                {
+                  "Partition": "disk0:",
+                  "Size": "2.0G",
+                  "Used": "18M",
+                  "Percent": "1%",
+                  "Avail": "1.8G"
+                },
+                {
+                  "Partition": "/tmp/tmpDb0uuW",
+                  "Size": "1.9G",
+                  "Used": "1.9G",
+                  "Percent": "100%",
+                  "Avail": "0"
+                }
+              ]
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show hw-module fpd",
+            "output": "\nWed Apr  8 14:29:28.432 UTC\n\nAuto-upgrade:Enabled\n                                                                         FPD Versions\n                                                                        ==============\nLocation   Card type             HWver FPD device       ATR Status    Running   Programd  \n-----------------------------------------------------------------------------------------\n0/RP0      NCS-5501              1.0   MB-MIFPGA             CURRENT     1.01      1.01    \n0/RP0      NCS-5501              1.0   Bootloader            CURRENT     1.23      1.23    \n0/RP0      NCS-5501              1.0   CPU-IOFPGA            CURRENT     1.27      1.27    \n0/RP0      NCS-5501              1.0   MB-IOFPGA             CURRENT     1.12      1.12    ",
+            "json": {
+              "FPDsCount": 4,
+              "AutoUpgrade": "Enabled",
+              "FPDs": [
+                {
+                  "Location": "0/RP0",
+                  "CardType": "NCS-5501",
+                  "HWver": "1.0",
+                  "FPDdevice": "MB-MIFPGA",
+                  "ATRstatus": "CURRENT",
+                  "FPDVersions": {
+                    "Running": 1.01,
+                    "Programd": 1.01
+                  }
+                },
+                {
+                  "Location": "0/RP0",
+                  "CardType": "NCS-5501",
+                  "HWver": "1.0",
+                  "FPDdevice": "Bootloader",
+                  "ATRstatus": "CURRENT",
+                  "FPDVersions": {
+                    "Running": 1.23,
+                    "Programd": 1.23
+                  }
+                },
+                {
+                  "Location": "0/RP0",
+                  "CardType": "NCS-5501",
+                  "HWver": "1.0",
+                  "FPDdevice": "CPU-IOFPGA",
+                  "ATRstatus": "CURRENT",
+                  "FPDVersions": {
+                    "Running": 1.27,
+                    "Programd": 1.27
+                  }
+                },
+                {
+                  "Location": "0/RP0",
+                  "CardType": "NCS-5501",
+                  "HWver": "1.0",
+                  "FPDdevice": "MB-IOFPGA",
+                  "ATRstatus": "CURRENT",
+                  "FPDVersions": {
+                    "Running": 1.12,
+                    "Programd": 1.12
+                  }
+                }
+              ]
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show route summary",
+            "output": "\nWed Apr  8 14:29:28.970 UTC\nRoute Source                     Routes     Backup     Deleted     Memory(bytes)\nconnected                        4          1          0           1040         \nlocal                            5          0          0           1040         \nstatic                           1          0          0           208          \napplication fib_mgr              0          0          0           0            \nte-client                        0          0          0           0            \nvxlan                            0          0          0           0            \ndagr                             0          0          0           0            \nisis COLT                        10         3          0           2704         \nTotal                            20         4          0           4992         \n",
+            "json": {
+              "totalCount": 9,
+              "route_summary": [
+                {
+                  "routeSource": "connected",
+                  "routes": 4,
+                  "backup": 1,
+                  "deleted": 0,
+                  "memory": "1040 bytes"
+                },
+                {
+                  "routeSource": "local",
+                  "routes": 5,
+                  "backup": 0,
+                  "deleted": 0,
+                  "memory": "1040 bytes"
+                },
+                {
+                  "routeSource": "static",
+                  "routes": 1,
+                  "backup": 0,
+                  "deleted": 0,
+                  "memory": "208 bytes"
+                },
+                {
+                  "routeSource": "application fib_mgr",
+                  "routes": 0,
+                  "backup": 0,
+                  "deleted": 0,
+                  "memory": "0 bytes"
+                },
+                {
+                  "routeSource": "te-client",
+                  "routes": 0,
+                  "backup": 0,
+                  "deleted": 0,
+                  "memory": "0 bytes"
+                },
+                {
+                  "routeSource": "vxlan",
+                  "routes": 0,
+                  "backup": 0,
+                  "deleted": 0,
+                  "memory": "0 bytes"
+                },
+                {
+                  "routeSource": "dagr",
+                  "routes": 0,
+                  "backup": 0,
+                  "deleted": 0,
+                  "memory": "0 bytes"
+                },
+                {
+                  "routeSource": "isis COLT",
+                  "routes": 10,
+                  "backup": 3,
+                  "deleted": 0,
+                  "memory": "2704 bytes"
+                },
+                {
+                  "routeSource": "Total",
+                  "routes": 20,
+                  "backup": 4,
+                  "deleted": 0,
+                  "memory": "4992 bytes"
+                }
+              ]
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show watchdog memory-state location all",
+            "output": "\nWed Apr  8 14:29:29.584 UTC\n---- node0_RP0_CPU0 ----\nMemory information:\n    Physical Memory\t: 18432.0   MB\n    Free Memory\t\t: 14873.187 MB\n    Memory State\t:   Normal\n---- node0_0_CPU0 ----\nMemory information:\n    Physical Memory\t: 8192.0   MB\n    Free Memory\t\t: 5678.292 MB\n    Memory State\t:   Normal",
+            "json": {
+              "node0_RP0_CPU0": {
+                "nodeName": "node0_RP0_CPU0",
+                "memoryInfo": [
+                  {
+                    "physicalMem": "18432.0 MB",
+                    "freeMem": "14873.187 MB",
+                    "memoryState": "Normal"
+                  }
+                ]
+              },
+              "node0_0_CPU0": {
+                "nodeName": "node0_0_CPU0",
+                "memoryInfo": [
+                  {
+                    "physicalMem": "8192.0 MB",
+                    "freeMem": "5678.292 MB",
+                    "memoryState": "Normal"
+                  }
+                ]
+              }
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show controllers npu resources all location all",
+            "output": "\nWed Apr  8 14:29:30.122 UTC\nHW Resource Information For Location: 0/0/CPU0\nHW Resource Information\n    Name                            : lem\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Estimated Max Entries       : 768000  \n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n        OOR State                   : Green\n\n\nCurrent Usage\n        Total In-Use                : 30       (0 %)\n        iproute                     : 25       (0 %)\n        ip6route                    : 0        (0 %)\n        mplslabel                   : 13       (0 %)\n        l2brmac                     : 0        (0 %)\n\n\nHW Resource Information\n    Name                            : lpm\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Estimated Max Entries       : 457879  \n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n        OOR State                   : Green\n\n\nCurrent Usage\n        Total In-Use                : 63       (0 %)\n        iproute                     : 12       (0 %)\n        ip6route                    : 28       (0 %)\n        ipmcroute                   : 1        (0 %)\n        ip6mcroute                  : 0        (0 %)\n        ip6mc_comp_grp              : 0        (0 %)\n\n\nHW Resource Information\n    Name                            : encap\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n\n\nOFA Table Information\n(May not match HW usage)\n        ipvrf                       : 0        \n        redirectvrf                 : 0        \n        macllnh                     : 8        \n        mplsmdtbud                  : 0        \n        llnh                        : 0        \n        mplsnh                      : 3        \n        iptunnelencap               : 0        \n        iptunneldecap               : 0        \n        iptunneldecapvni            : 0        \n        limd                        : 0        \n        ipmcmdtencap                : 0        \n        srv6nh                      : 0        \n        ipmctxintf                  : 0        \n        l2intf                      : 2        \n        l2port                      : 0        \n        mplspweport                 : 0        \n        l2bridgeolist               : 0        \n        l2bridge                    : 0        \n\nCurrent Hardware Usage\n    Name: encap\n\n\n       Name: bank_1\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 4        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=8 extended=no \n\n\n       Name: bank_2\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_3\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_4\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_5\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_6\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 22       (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=1 extended=no \n\n\n       Name: bank_7\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 2        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=2 extended=no \n\n\n       Name: bank_8\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 3        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=4 extended=no \n\n\n       Name: bank_9\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_10\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_11\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_12\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_13\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_14\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_15\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_16\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_17\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_18\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_19\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_20\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_21\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_22\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n       Name: bank_23\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        (0 %)\n           OOR State                   : Green\n           Bank Info                   : phase=0 extended=no \n\n\n\nHW Resource Information\n    Name                            : fec\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Estimated Max Entries       : 126976  \n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n        OOR State                   : Green\n        Bank Info                   : FEC \n\n\nOFA Table Information\n(May not match HW usage)\n        ipnhgroup                   : 37       \n        ip6nhgroup                  : 10       \n        edpl                        : 0        \n        limd                        : 0        \n        punt                        : 19       \n        iptunneldecap               : 0        \n        iptunneldecapvni            : 0        \n        ipmcroute                   : 1        \n        ip6mcroute                  : 0        \n        ipnh                        : 0        \n        ip6nh                       : 0        \n        mplsmdtbud                  : 0        \n        ipvrf                       : 3        \n        ippbr                       : 0        \n        redirectvrf                 : 0        \n        l2protect                   : 0        \n        l2bridgeport                : 0        \n        mplspweport                 : 0        \n\nCurrent Hardware Usage\n    Name: fec\n        Estimated Max Entries       : 126976  \n        Total In-Use                : 70       (0 %)\n        OOR State                   : Green\n        Bank Info                   : FEC \n\n\n       Name: hier_0\n           Estimated Max Entries       : 126976  \n           Total In-Use                : 70       (0 %)\n           OOR State                   : Green\n           Bank Info                   : FEC \n\n\n\nHW Resource Information\n    Name                            : ecmp_fec\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Estimated Max Entries       : 4096    \n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n        OOR State                   : Green\n        Bank Info                   : ECMP \n\n\nOFA Table Information\n(May not match HW usage)\n        ipnhgroup                   : 0        \n        ip6nhgroup                  : 0        \n\nCurrent Hardware Usage\n    Name: ecmp_fec\n        Estimated Max Entries       : 4096    \n        Total In-Use                : 0        (0 %)\n        OOR State                   : Green\n        Bank Info                   : ECMP \n\n\n       Name: hier_0\n           Estimated Max Entries       : 4096    \n           Total In-Use                : 0        \n           OOR State                   : Green\n           Bank Info                   : ECMP \n\n\n\nHW Resource Information\n    Name                            : rif\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Estimated Max Entries       : 8192    \n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n        OOR State                   : Green\n        Bank Info                   : RIF \n\n\nOFA Table Information\n(May not match HW usage)\n        l3intf                      : 56       \n        ipvrf                       : 2        \n        redirectvrf                 : 0        \n        pbr_tt_ipv4                 : 0        \n        pbr_tt_ipv6                 : 0        \n        iptunneldecap               : 0        \n        mplsmdtbud                  : 0        \n        l2bridge                    : 0        \n\nCurrent Hardware Usage\n    Name: rif\n        Estimated Max Entries       : 8192    \n        Total In-Use                : 58       (0 %)\n        OOR State                   : Green\n        Bank Info                   : RIF \n\n\n\nHW Resource Information\n    Name                            : inlif\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Estimated Max Entries       : 57344   \n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n        OOR State                   : Green\n        Bank Info                   : INLIF \n\n\nOFA Table Information\n(May not match HW usage)\n        l2port                      : 54       \n        l2intf                      : 2        \n        ipvrf                       : 2        \n        l2bridge                    : 0        \n        mplsmdtbud                  : 0        \n        mplslabel                   : 1        \n        iptunneldecap               : 0        \n        pbr_tt_ipv4                 : 0        \n        redirectvrf                 : 0        \n        mplspweport                 : 0        \n        l3intf                      : 0        \n\nCurrent Hardware Usage\n    Name: inlif\n        Estimated Max Entries       : 57344   \n        Total In-Use                : 59       (0 %)\n        OOR State                   : Green\n        Bank Info                   : INLIF \n\n\n\nHW Resource is not valid for the NPU type\nHW Resource is not valid for the NPU type\nHW Resource Information\n    Name                            : sexem2\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Estimated Max Entries       : 49020   \n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n        OOR State                   : Green\n        Bank Info                   : SEXEM2 \n\n\nOFA Table Information\n(May not match HW usage)\n        mplspweport                 : 0        \n        extlif                      : 0        \n\nCurrent Hardware Usage\n    Name: sexem2\n        Estimated Max Entries       : 49020   \n        Total In-Use                : 0        (0 %)\n        OOR State                   : Green\n        Bank Info                   : SEXEM2 \n\n\n\nHW Resource Information\n    Name                            : isem1\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Estimated Max Entries       : 65536   \n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n        OOR State                   : Green\n        Bank Info                   : ISEM1 \n\n\nOFA Table Information\n(May not match HW usage)\n        l2port                      : 54       \n        l2intf                      : 4        \n        ipvrf                       : 0        \n        l2bridge                    : 0        \n        mplsmdtbud                  : 0        \n        l3intf                      : 0        \n        mplspweport                 : 0        \n\nCurrent Hardware Usage\n    Name: isem1\n        Estimated Max Entries       : 65536   \n        Total In-Use                : 58       (0 %)\n        OOR State                   : Green\n        Bank Info                   : ISEM1 \n\n\n\nHW Resource Information\n    Name                            : isem2\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Estimated Max Entries       : 65536   \n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n        OOR State                   : Green\n        Bank Info                   : ISEM2 \n\n\nOFA Table Information\n(May not match HW usage)\n        mplsmdtbud                  : 0        \n        l2xc                        : 0        \n        mplslabel                   : 0        \n        iptunneldecap               : 0        \n        pbr_tt_ipv4                 : 0        \n        redirectvrf                 : 0        \n        mplspweport                 : 0        \n        srv6sid                     : 0        \n        l2intf                      : 0        \n\nCurrent Hardware Usage\n    Name: isem2\n        Estimated Max Entries       : 65536   \n        Total In-Use                : 0        (0 %)\n        OOR State                   : Green\n        Bank Info                   : ISEM2 \n\n\n\nHW Resource is not valid for the NPU type\nHW Resource is not valid for the NPU type\nHW Resource is not valid for the NPU type\nHW Resource is not valid for the NPU type\nHW Resource Information\n    Name                            : mcid_ingress\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Estimated Max Entries       : 8192    \n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n        OOR State                   : Green\n        Bank Info                   : INGRESS \n\n\nOFA Table Information\n(May not match HW usage)\n        l2bridge                    : 0        \n        l2ipmcroute                 : 0        \n        l2ip6mcroute                : 0        \n        ipmcmdtencap                : 0        \n        mplsmdtbud                  : 0        \n\nCurrent Hardware Usage\n    Name: mcid_ingress\n        Estimated Max Entries       : 8192    \n        Total In-Use                : 0        (0 %)\n        OOR State                   : Green\n        Bank Info                   : INGRESS \n\n\n\nHW Resource Information\n    Name                            : mcid_egress\n    Asic Type                       : Qumran\n\nNPU-0\nOOR Summary\n        Estimated Max Entries       : 57344   \n        Red Threshold               : 95 %\n        Yellow Threshold            : 80 %\n        OOR State                   : Green\n        Bank Info                   : EGRESS \n\n\nOFA Table Information\n(May not match HW usage)\n        l2bridge                    : 0        \n        l2ipmcroute                 : 0        \n        l2ip6mcroute                : 0        \n        ipmcolist                   : 0        \n\nCurrent Hardware Usage\n    Name: mcid_egress\n        Estimated Max Entries       : 57344   \n        Total In-Use                : 0        (0 %)\n        OOR State                   : Green\n        Bank Info                   : EGRESS \n\n\n",
+            "json": {
+              "hwLocation": "0/0/CPU0",
+              "hwInfo": [
+                {
+                  "name": "lem",
+                  "OORState": "Green",
+                  "hwUsage": []
+                },
+                {
+                  "name": "lpm",
+                  "OORState": "Green",
+                  "hwUsage": []
+                },
+                {
+                  "name": "encap",
+                  "OORState": "",
+                  "hwUsage": [
+                    {
+                      "name": "bank_2",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_3",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_4",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_5",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_6",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_7",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_8",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_9",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_10",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_11",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_12",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_13",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_14",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_15",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_16",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_17",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_18",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_19",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_20",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_21",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_22",
+                      "OORState": "Green"
+                    },
+                    {
+                      "name": "bank_23",
+                      "OORState": "Green"
+                    }
+                  ]
+                },
+                {
+                  "name": "fec",
+                  "OORState": "Green",
+                  "hwUsage": [
+                    {
+                      "name": "hier_0",
+                      "OORState": "Green"
+                    }
+                  ]
+                },
+                {
+                  "name": "ecmp_fec",
+                  "OORState": "Green",
+                  "hwUsage": [
+                    {
+                      "name": "hier_0",
+                      "OORState": "Green"
+                    }
+                  ]
+                },
+                {
+                  "name": "rif",
+                  "OORState": "Green",
+                  "hwUsage": []
+                },
+                {
+                  "name": "inlif",
+                  "OORState": "Green",
+                  "hwUsage": []
+                },
+                {
+                  "name": "sexem2",
+                  "OORState": "Green",
+                  "hwUsage": []
+                },
+                {
+                  "name": "isem1",
+                  "OORState": "Green",
+                  "hwUsage": []
+                },
+                {
+                  "name": "isem2",
+                  "OORState": "Green",
+                  "hwUsage": []
+                },
+                {
+                  "name": "mcid_ingress",
+                  "OORState": "Green",
+                  "hwUsage": []
+                },
+                {
+                  "name": "mcid_egress",
+                  "OORState": "Green",
+                  "hwUsage": []
+                }
+              ]
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show ipv4 vrf all interface brief",
+            "output": "\nWed Apr  8 14:29:30.662 UTC\n\nInterface                      IP-Address      Status          Protocol Vrf-Name\nLoopback0                      212.74.67.7     Up              Up       default \nMgmtEth0/RP0/CPU0/0            10.80.109.249   Up              Up       default \nTenGigE0/0/0/0                 212.74.64.11    Up              Up       default \nTenGigE0/0/0/1                 212.74.64.13    Up              Up       default \nTenGigE0/0/0/2                 unassigned      Down            Down     default \nTenGigE0/0/0/3                 unassigned      Down            Down     default \nTenGigE0/0/0/3.500             100.1.1.1       Down            Down     default \nTenGigE0/0/0/4                 unassigned      Shutdown        Down     default \nTenGigE0/0/0/5                 unassigned      Shutdown        Down     default \nTenGigE0/0/0/6                 unassigned      Shutdown        Down     default \nTenGigE0/0/0/7                 unassigned      Shutdown        Down     default \nTenGigE0/0/0/8                 unassigned      Shutdown        Down     default \nTenGigE0/0/0/9                 unassigned      Shutdown        Down     default \nTenGigE0/0/0/10                unassigned      Shutdown        Down     default \nTenGigE0/0/0/11                unassigned      Shutdown        Down     default \nTenGigE0/0/0/12                unassigned      Shutdown        Down     default \nTenGigE0/0/0/13                unassigned      Shutdown        Down     default \nTenGigE0/0/0/14                unassigned      Shutdown        Down     default \nTenGigE0/0/0/15                unassigned      Shutdown        Down     default \nTenGigE0/0/0/16                unassigned      Shutdown        Down     default \nTenGigE0/0/0/17                unassigned      Shutdown        Down     default \nTenGigE0/0/0/18                unassigned      Shutdown        Down     default \nTenGigE0/0/0/19                unassigned      Shutdown        Down     default \nTenGigE0/0/0/20                unassigned      Shutdown        Down     default \nTenGigE0/0/0/21                unassigned      Shutdown        Down     default \nTenGigE0/0/0/22                unassigned      Shutdown        Down     default \nTenGigE0/0/0/23                unassigned      Shutdown        Down     default \nTenGigE0/0/0/24                unassigned      Shutdown        Down     default \nTenGigE0/0/0/25                unassigned      Shutdown        Down     default \nTenGigE0/0/0/26                unassigned      Shutdown        Down     default \nTenGigE0/0/0/27                unassigned      Shutdown        Down     default \nTenGigE0/0/0/28                unassigned      Shutdown        Down     default \nTenGigE0/0/0/29                unassigned      Shutdown        Down     default \nTenGigE0/0/0/30                unassigned      Shutdown        Down     default \nTenGigE0/0/0/31                unassigned      Shutdown        Down     default \nTenGigE0/0/0/32                unassigned      Shutdown        Down     default \nTenGigE0/0/0/33                unassigned      Shutdown        Down     default \nTenGigE0/0/0/34                unassigned      Shutdown        Down     default \nTenGigE0/0/0/35                unassigned      Shutdown        Down     default \nTenGigE0/0/0/36                unassigned      Shutdown        Down     default \nTenGigE0/0/0/37                unassigned      Shutdown        Down     default \nTenGigE0/0/0/38                unassigned      Shutdown        Down     default \nTenGigE0/0/0/39                unassigned      Shutdown        Down     default \nTenGigE0/0/0/40                unassigned      Shutdown        Down     default \nTenGigE0/0/0/41                unassigned      Shutdown        Down     default \nTenGigE0/0/0/42                unassigned      Shutdown        Down     default \nTenGigE0/0/0/43                unassigned      Shutdown        Down     default \nTenGigE0/0/0/44                unassigned      Shutdown        Down     default \nTenGigE0/0/0/45                unassigned      Shutdown        Down     default \nGigabitEthernet0/0/0/46        unassigned      Up              Up       default \nTenGigE0/0/0/47                unassigned      Up              Up       default \nTenGigE0/0/0/47.120            10.10.10.2      Up              Up       default \nHundredGigE0/0/1/0             unassigned      Shutdown        Down     default \nHundredGigE0/0/1/1             unassigned      Shutdown        Down     default \nHundredGigE0/0/1/2             unassigned      Shutdown        Down     default \nHundredGigE0/0/1/3             unassigned      Shutdown        Down     default \nHundredGigE0/0/1/4             unassigned      Shutdown        Down     default \nHundredGigE0/0/1/5             unassigned      Shutdown        Down     default ",
+            "json": {
+              "totalCount": 58,
+              "VRFInterfaces": [
+                {
+                  "interface": "Loopback0",
+                  "IPAddress": "212.74.67.7",
+                  "status": "Up",
+                  "protocol": "Up",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "MgmtEth0/RP0/CPU0/0",
+                  "IPAddress": "10.80.109.249",
+                  "status": "Up",
+                  "protocol": "Up",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/0",
+                  "IPAddress": "212.74.64.11",
+                  "status": "Up",
+                  "protocol": "Up",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/1",
+                  "IPAddress": "212.74.64.13",
+                  "status": "Up",
+                  "protocol": "Up",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/2",
+                  "IPAddress": "unassigned",
+                  "status": "Down",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/3",
+                  "IPAddress": "unassigned",
+                  "status": "Down",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/3.500",
+                  "IPAddress": "100.1.1.1",
+                  "status": "Down",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/4",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/5",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/6",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/7",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/8",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/9",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/10",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/11",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/12",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/13",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/14",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/15",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/16",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/17",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/18",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/19",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/20",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/21",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/22",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/23",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/24",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/25",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/26",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/27",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/28",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/29",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/30",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/31",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/32",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/33",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/34",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/35",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/36",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/37",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/38",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/39",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/40",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/41",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/42",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/43",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/44",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/45",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "GigabitEthernet0/0/0/46",
+                  "IPAddress": "unassigned",
+                  "status": "Up",
+                  "protocol": "Up",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/47",
+                  "IPAddress": "unassigned",
+                  "status": "Up",
+                  "protocol": "Up",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "TenGigE0/0/0/47.120",
+                  "IPAddress": "10.10.10.2",
+                  "status": "Up",
+                  "protocol": "Up",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "HundredGigE0/0/1/0",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "HundredGigE0/0/1/1",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "HundredGigE0/0/1/2",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "HundredGigE0/0/1/3",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "HundredGigE0/0/1/4",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                },
+                {
+                  "interface": "HundredGigE0/0/1/5",
+                  "IPAddress": "unassigned",
+                  "status": "Shutdown",
+                  "protocol": "Down",
+                  "VRFName": "default"
+                }
+              ]
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show bgp l2vpn evpn summary",
+            "output": "\nWed Apr  8 14:29:31.228 UTC\n% BGP instance 'default' not active",
+            "json": {
+              "BGP instance": "default",
+              "status": "not active"
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show isis adjacency",
+            "output": "\nWed Apr  8 14:29:31.775 UTC\n\nIS-IS COLT Level-1 adjacencies:\nSystem Id      Interface                SNPA           State Hold Changed  NSF IPv4 IPv6\n                                                                               BFD  BFD \nar1.BLB        Te0/0/0/47.120           *PtoP*         Up    25   00:37:07 Yes None None\n\nTotal adjacency count: 1\n\nIS-IS COLT Level-2 adjacencies:\nSystem Id      Interface                SNPA           State Hold Changed  NSF IPv4 IPv6\n                                                                               BFD  BFD \nar1.BLB        Te0/0/0/0                *PtoP*         Up    21   00:37:07 Yes None None\nar2.BLB        Te0/0/0/1                *PtoP*         Up    25   00:37:07 Yes None None\n\nTotal adjacency count: 2",
+            "json": {
+              "ISISColtAdjacencyLevel": 1,
+              "adjacencies": [
+                {
+                  "systemID": "ar1.BLB",
+                  "interface": "Te0/0/0/47.120",
+                  "SNPA": "*PtoP*",
+                  "state": "Up",
+                  "hold": "25",
+                  "changed": "00:37:07",
+                  "NSF": "Yes",
+                  "ipv4BFD": "None",
+                  "ipv6BFD": "None"
+                },
+                {
+                  "systemID": "ar1.BLB",
+                  "interface": "Te0/0/0/0",
+                  "SNPA": "*PtoP*",
+                  "state": "Up",
+                  "hold": "21",
+                  "changed": "00:37:07",
+                  "NSF": "Yes",
+                  "ipv4BFD": "None",
+                  "ipv6BFD": "None"
+                },
+                {
+                  "systemID": "ar2.BLB",
+                  "interface": "Te0/0/0/1",
+                  "SNPA": "*PtoP*",
+                  "state": "Up",
+                  "hold": "25",
+                  "changed": "00:37:07",
+                  "NSF": "Yes",
+                  "ipv4BFD": "None",
+                  "ipv6BFD": "None"
+                }
+              ],
+              "totalAdjacency": 1
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show mpls forwarding summary",
+            "output": "\nWed Apr  8 14:29:32.337 UTC\nForwarding entries:\n   Label switching: 12, protected: 0 (Ready: 0, Active: 0)\n   MPLS TE tunnel head: 0, protected: 0\n   MPLS TE midpoint: 0, protected: 0\n   MPLS TE internal: 0, protected: 0\n   MPLS P2MP TE tunnel head: 0\n   MPLS P2MP TE tunnel midpoint/tail: 0\n   MPLS P2MP mLDP/IR head: 0\n   MPLS P2MP mLDP/IR midpoint/tail: 0\nForwarding updates:\n   messages: 6 \n      p2p updates: 11\nLabels in use:\n   Reserved: 4\n   Lowest: 0\n   Highest: 101013\n   Deleted stale label entries: 0\n   SRGB range: 100000 - 165534\n   SRLB range: 15000 - 15999\n\nPkts dropped:    0\nPkts fragmented: 0\nFailed lookups:  0",
+            "json": {
+              "ForwardingEntries": {
+                "labelSwitching": 12,
+                "labelSwitchingProtected": 0,
+                "labelSwitchingReady": 0,
+                "labelSwitchingActive": 0,
+                "mplsTETunnellHead": 0,
+                "mplsTETunnellHeadProtected": 0
+              },
+              "ForwardingUpdates": {
+                "messages": 6,
+                "p2pUpdates": 11
+              },
+              "LabelsInUse": {
+                "reserved": 4,
+                "lowest": 0,
+                "highest": 101013,
+                "deletedStaleLabelEntries": 0
+              },
+              "PktsDropped": "0",
+              "PktsFragmented": "0",
+              "FailedLookUps": "0"
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show bfd session detail",
+            "output": "\nWed Apr  8 14:29:32.951 UTC\n\n",
+            "json": {
+              "info": "No BFD sessions found",
+              "timestamp": "Wed Apr  8 14:29:32.951 UTC"
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show l2vpn xconnect summary",
+            "output": "\nWed Apr  8 14:29:33.490 UTC\nNumber of groups: 0\nNumber of xconnects: 0\n  Up: 0  Down: 0  Unresolved: 0 Partially-programmed: 0\n  AC-PW: 0  AC-AC: 0  PW-PW: 0 Monitor-Session-PW: 0\n  AC-IP Tunnel: 0, AC-VlanAware: 0\nNumber of Admin Down segments: 0\nNumber of MP2MP xconnects: 0\n  Up 0 Down 0\n  Advertised: 0 Non-Advertised: 0\nNumber of CE Connections: 0\n  Advertised: 0 Non-Advertised: 0\nBackup PW:\n  Configured   : 0\n  UP           : 0\n  Down         : 0\n  Admin Down   : 0\n  Unresolved   : 0\n  Standby      : 0\n  Standby Ready: 0\nBackup Interface:\n  Configured   : 0\n  UP           : 0\n  Down         : 0\n  Admin Down   : 0\n  Unresolved   : 0\n  Standby      : 0",
+            "json": {
+              "numberOfGroups": 0,
+              "xconnect": {
+                "numberofXconnect": 0,
+                "up": 0,
+                "down": 0
+              },
+              "adminDownSegments": 0,
+              "m2mpXconnects": {
+                "m2mpXconnections": 0,
+                "up": 0,
+                "down": 0
+              },
+              "ceConnections": {
+                "ceConnections": 0,
+                "advertised": 0,
+                "nonAdvertised": 0
+              }
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show lldp neighbors",
+            "output": "\nWed Apr  8 14:29:34.106 UTC\nCapability codes:\n\t(R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device\n\t(W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other\n\nDevice ID       Local Intf                      Hold-time  Capability      Port ID\nar1.BLB         TenGigE0/0/0/0                  120        R               TenGigE0/0/0/1\nar2.BLB         TenGigE0/0/0/1                  120        R               TenGigE0/0/0/1\nar2.BLB         GigabitEthernet0/0/0/46         120        R               GigabitEthernet0/0/0/21\nar1.BLB         TenGigE0/0/0/47                 120        R               TenGigE0/0/0/21\n\nTotal entries displayed: 4\n",
+            "json": {
+              "Total entries displayed": 4,
+              "neighbors": [
+                {
+                  "deviceId": "Wed",
+                  "localIntf": "Apr",
+                  "holdTime": "8",
+                  "capability": "14:29:34.106",
+                  "portId": "UTC"
+                },
+                {
+                  "deviceId": "ar1.BLB",
+                  "localIntf": "TenGigE0/0/0/0",
+                  "holdTime": "120",
+                  "capability": "R",
+                  "portId": "TenGigE0/0/0/1"
+                },
+                {
+                  "deviceId": "ar2.BLB",
+                  "localIntf": "TenGigE0/0/0/1",
+                  "holdTime": "120",
+                  "capability": "R",
+                  "portId": "TenGigE0/0/0/1"
+                },
+                {
+                  "deviceId": "ar2.BLB",
+                  "localIntf": "GigabitEthernet0/0/0/46",
+                  "holdTime": "120",
+                  "capability": "R",
+                  "portId": "GigabitEthernet0/0/0/21"
+                },
+                {
+                  "deviceId": "ar1.BLB",
+                  "localIntf": "TenGigE0/0/0/47",
+                  "holdTime": "120",
+                  "capability": "R",
+                  "portId": "TenGigE0/0/0/21"
+                }
+              ]
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show interface description",
+            "output": "\nWed Apr  8 14:29:34.645 UTC\n\nInterface          Status      Protocol    Description\n--------------------------------------------------------------------------------\nLo0                up          up          \nNu0                up          up          \nGi0/0/0/46         up          up          \nTe0/0/0/0          up          up          AUTO249_Te0/0/0/0 to AUTO251_Te0/0/0/1\nTe0/0/0/1          up          up          AUTO249_Te0/0/0/0 to AUTO252_Te0/0/0/1\nTe0/0/0/2          down        down        AUTO249 Te0/0/0/2 to AUTO248 Te0/0/2\nTe0/0/0/3          down        down        \nTe0/0/0/3.500      down        down        \nTe0/0/0/4          admin-down  admin-down  \nTe0/0/0/5          admin-down  admin-down  \nTe0/0/0/6          admin-down  admin-down  \nTe0/0/0/7          admin-down  admin-down  \nTe0/0/0/8          admin-down  admin-down  \nTe0/0/0/9          admin-down  admin-down  \nTe0/0/0/10         admin-down  admin-down  \nTe0/0/0/11         admin-down  admin-down  \nTe0/0/0/12         admin-down  admin-down  \nTe0/0/0/13         admin-down  admin-down  \nTe0/0/0/14         admin-down  admin-down  \nTe0/0/0/15         admin-down  admin-down  \nTe0/0/0/16         admin-down  admin-down  \nTe0/0/0/17         admin-down  admin-down  \nTe0/0/0/18         admin-down  admin-down  \nTe0/0/0/19         admin-down  admin-down  \nTe0/0/0/20         admin-down  admin-down  \nTe0/0/0/21         admin-down  admin-down  \nTe0/0/0/22         admin-down  admin-down  \nTe0/0/0/23         admin-down  admin-down  \nTe0/0/0/24         admin-down  admin-down  \nTe0/0/0/25         admin-down  admin-down  \nTe0/0/0/26         admin-down  admin-down  \nTe0/0/0/27         admin-down  admin-down  \nTe0/0/0/28         admin-down  admin-down  \nTe0/0/0/29         admin-down  admin-down  \nTe0/0/0/30         admin-down  admin-down  \nTe0/0/0/31         admin-down  admin-down  \nTe0/0/0/32         admin-down  admin-down  \nTe0/0/0/33         admin-down  admin-down  \nTe0/0/0/34         admin-down  admin-down  \nTe0/0/0/35         admin-down  admin-down  \nTe0/0/0/36         admin-down  admin-down  \nTe0/0/0/37         admin-down  admin-down  \nTe0/0/0/38         admin-down  admin-down  \nTe0/0/0/39         admin-down  admin-down  \nTe0/0/0/40         admin-down  admin-down  \nTe0/0/0/41         admin-down  admin-down  \nTe0/0/0/42         admin-down  admin-down  \nTe0/0/0/43         admin-down  admin-down  \nTe0/0/0/44         admin-down  admin-down  \nTe0/0/0/45         admin-down  admin-down  \nTe0/0/0/47         up          up          \"connected to Auto-251 port 21 | AB\"\nTe0/0/0/47.120     up          up          \nHu0/0/1/0          admin-down  admin-down  \nHu0/0/1/1          admin-down  admin-down  \nHu0/0/1/2          admin-down  admin-down  \nHu0/0/1/3          admin-down  admin-down  \nHu0/0/1/4          admin-down  admin-down  \nHu0/0/1/5          admin-down  admin-down  \nMg0/RP0/CPU0/0     up          up          \"NCS5501 to Automation_Switch_42\"\n",
+            "json": {
+              "totalInterfaces": 59,
+              "interfaces": [
+                {
+                  "interface": "Lo0",
+                  "status": "up",
+                  "protocol": "up",
+                  "description": null
+                },
+                {
+                  "interface": "Nu0",
+                  "status": "up",
+                  "protocol": "up",
+                  "description": null
+                },
+                {
+                  "interface": "Gi0/0/0/46",
+                  "status": "up",
+                  "protocol": "up",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/0",
+                  "status": "up",
+                  "protocol": "up",
+                  "description": "AUTO249_Te0/0/0/0 to AUTO251_Te0/0/0/1"
+                },
+                {
+                  "interface": "Te0/0/0/1",
+                  "status": "up",
+                  "protocol": "up",
+                  "description": "AUTO249_Te0/0/0/0 to AUTO252_Te0/0/0/1"
+                },
+                {
+                  "interface": "Te0/0/0/2",
+                  "status": "down",
+                  "protocol": "down",
+                  "description": "AUTO249 Te0/0/0/2 to AUTO248 Te0/0/2"
+                },
+                {
+                  "interface": "Te0/0/0/3",
+                  "status": "down",
+                  "protocol": "down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/3.500",
+                  "status": "down",
+                  "protocol": "down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/4",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/5",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/6",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/7",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/8",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/9",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/10",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/11",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/12",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/13",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/14",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/15",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/16",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/17",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/18",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/19",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/20",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/21",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/22",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/23",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/24",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/25",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/26",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/27",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/28",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/29",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/30",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/31",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/32",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/33",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/34",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/35",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/36",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/37",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/38",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/39",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/40",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/41",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/42",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/43",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/44",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/45",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Te0/0/0/47",
+                  "status": "up",
+                  "protocol": "up",
+                  "description": "\"connected to Auto-251 port 21 | AB\""
+                },
+                {
+                  "interface": "Te0/0/0/47.120",
+                  "status": "up",
+                  "protocol": "up",
+                  "description": null
+                },
+                {
+                  "interface": "Hu0/0/1/0",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Hu0/0/1/1",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Hu0/0/1/2",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Hu0/0/1/3",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Hu0/0/1/4",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Hu0/0/1/5",
+                  "status": "admin-down",
+                  "protocol": "admin-down",
+                  "description": null
+                },
+                {
+                  "interface": "Mg0/RP0/CPU0/0",
+                  "status": "up",
+                  "protocol": "up",
+                  "description": "\"NCS5501 to Automation_Switch_42\""
+                }
+              ]
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show proc cpu",
+            "output": "\nWed Apr  8 14:29:35.260 UTC\n---- node0_RP0_CPU0 ----\n\nCPU utilization for one minute: 1%; five minutes: 4%; fifteen minutes: 5%\n \nPID    1Min    5Min    15Min Process\n1        0%      0%       0% init\n20       0%      0%       0% rpcbind\n26       0%      0%       0% systemd-journald\n36       0%      0%       0% rngd\n1316     0%      0%       0% bash\n1340     0%      0%       0% sh\n1341     0%      0%       0% bash\n1367     0%      0%       0% cgroup_oom\n1425     0%      0%       0% crond\n1426     0%      0%       0% dbus-daemon\n1446     0%      0%       0% syslogd\n1459     0%      0%       0% lighttpd\n1467     0%      0%       0% systemd-networkd\n1486     0%      0%       0% systemd-logind\n1502     0%      0%       0% systemd-resolved\n1561     0%      0%       0% avahi-daemon:\n1567     0%      0%       0% ninfod\n1571     0%      0%       0% rdisc\n1573     0%      0%       0% avahi-daemon:\n1574     0%      0%       0% redis-server\n1578     0%      0%       0% xinetd\n2500     0%      0%       0% bash\n2501     0%      0%       0% dsr\n2532     0%      0%       0% ds\n2533     0%      0%       0% bash\n2546     0%      0%       0% bash\n2553     0%      0%       0% dev_inotify_hdlr\n2560     0%      0%       0% bash\n2566     0%      0%       0% dev_inotify_hdlr\n2653     0%      0%       0% processmgr\n2718     0%      0%       0% devc-conaux-aux\n2723     0%      0%       0% devc-conaux-con\n2728     0%      0%       0% correlatord\n2739     0%      0%       0% cerrno_server\n2748     0%      0%       0% db_listener\n2754     0%      0%       0% db_writer\n2759     0%      0%       0% tty_exec_launcher\n2764     0%      0%       0% syslogd\n2772     0%      0%       0% syslogd_helper\n2775     0%      0%       0% syslog_dev\n2781     0%      0%       0% shmwin_svr\n2785     0%      0%       0% sdr_invmgr\n2810     0%      0%       0% platform-mgr\n2824     0%      0%       0% issudir\n2828     0%      0%       0% vm-monitor\n2839     0%      0%       0% nrssvr_global\n2847     0%      0%       0% dumper\n2850     0%      0%       0% invmgr_proxy\n2858     0%      0%       0% qsm\n2866     0%      0%       0% sysdb_shared_data_nc\n2884     0%      0%       0% mpa_fm_svr\n2905     0%      0%       0% sysdb_shared_nc\n2919     0%      0%       0% spp\n2932     0%      0%       0% sysdb_shared_sc\n2945     0%      0%       0% packet\n2963     0%      0%       0% sysdb_svr_admin\n2969     0%      0%       0% chkpt_proxy\n2995     0%      0%       0% ssh_key_server\n3016     0%      0%       0% ltrace_server\n3022     0%      0%       0% grid_allocator\n3026     0%      0%       0% ltrace_sync\n3030     0%      0%       0% debug_d_admin\n3031     0%      0%       0% resmon\n3035     0%      0%       0% nrssvr\n3046     0%      0%       0% sld\n3052     0%      0%       0% corehelper_context_edm\n3063     0%      0%       0% rmf_svr\n3075     0%      0%       0% bag_schema_svr\n3097     0%      0%       0% sysdb_svr_local\n3110     0%      0%       0% ccv\n3120     0%      0%       0% ssh_key_client\n3126     0%      0%       0% gsp\n3139     0%      0%       0% fia_cfg\n3145     0%      0%       0% fab_proxy\n3148     0%      0%       0% meminfo_svr\n3158     0%      0%       0% showd_server\n3178     0%      0%       0% tamfs\n3193     0%      0%       0% aipc_cleaner\n3200     0%      0%       0% rdsfs_svr\n3206     0%      0%       0% wdsysmon_fd_edm\n3211     0%      0%       0% sysdb_mc\n3218     0%      0%       0% bundlemgr_checker\n3230     0%      0%       0% cfgmgr-rp\n3234     0%      0%       0% parser_server\n3239     0%      0%       0% nvgen_server\n3251     0%      0%       0% timezone_config\n3261     0%      0%       0% heap_summary_edm\n3268     0%      0%       0% issumgr\n3279     0%      0%       0% media_server\n3289     0%      0%       0% procfs_server\n3296     0%      0%       0% sdr_instagt\n3306     0%      0%       0% show_enc_status_edm\n3314     0%      0%       0% show_mediang_edm\n3317     0%      0%       0% ssd_enc_server\n3623     0%      0%       0% cdsproxy\n3625     0%      0%       0% cdssvr\n3627     0%      0%       0% dpa_port_mapper\n3632     0%      0%       0% ifmgr\n3639     0%      0%       0% netio\n3646     0%      0%       0% ifindex_server\n3649     0%      0%       0% bcdl_agent\n3657     0%      0%       0% lpts_pa\n3665     0%      0%       0% alarm-logger\n3670     0%      0%       0% calv_alarm_mgr\n3678     0%      0%       0% fwd_driver_partner\n3690     0%      0%       0% locald_DLRSC\n3702     0%      0%       0% mempool_edm\n3709     0%      0%       0% bcdl_agent\n3720     0%      0%       0% ncd\n3727     0%      0%       0% nd_partner\n3751     0%      0%       0% nsr_fo\n3765     0%      0%       0% nsr_ping_reply\n3772     0%      0%       0% rmf_cli_edm\n3775     0%      0%       0% rsi_agent\n3778     0%      0%       0% rsi_master\n3788     0%      0%       0% sh_proc_mem_edm\n3804     0%      0%       0% sh_proc_threadname_edm\n3816     0%      0%       0% sysmgr_show_proc_all_edm\n3823     0%      0%       0% tty_show_users_edm\n3833     0%      0%       0% fpd-serv\n3840     0%      0%       0% mpls_io_ea\n3847     0%      0%       0% aib\n3859     0%      0%       0% bundlemgr_adj\n3868     0%      0%       0% statsd_server\n3876     0%      0%       0% ipv4_arm\n3888     0%      0%       0% ipv6_arm\n3893     0%      0%       0% ipv4_acl_mgr\n3899     0%      0%       0% ipv6_acl_daemon\n3906     0%      0%       0% ipv4_mfwd_partner\n3920     0%      0%       0% ipv6_mfwd_partner\n3931     0%      0%       0% pifibm_server_rp\n3953     0%      0%       0% ipv4_io\n3973     0%      0%       0% ipv4_ma\n3979     0%      0%       0% ipv6_nd\n3993     0%      0%       0% policymgr_rp\n4007     0%      0%       0% fib_mgr\n4058     0%      0%       0% ipv6_ea\n4067     0%      0%       0% ipv6_io\n4077     0%      0%       0% nve_mgr\n4085     0%      0%       0% optics_server\n4090     0%      0%       0% procfind\n4096     0%      0%       0% xlncd\n4103     0%      0%       0% ipv6_ma\n4111     0%      0%       0% mpls_lsd\n4140     0%      0%       0% bgp_policy_reg_agent\n4146     0%      0%       0% eigrp_policy_reg_agent\n4153     0%      0%       0% igmp_policy_reg_agent\n4163     0%      0%       0% igmpsn_policy_reg_agent\n4177     0%      0%       0% isis_policy_reg_agent\n4187     0%      0%       0% l2vpn_policy_reg_agent\n4204     0%      0%       0% lisp_xr_policy_reg_agent\n4215     0%      0%       0% mldp_policy_reg_agent\n4227     0%      0%       0% mldsn_policy_reg_agent\n4241     0%      0%       0% ospf_policy_reg_agent\n4245     0%      0%       0% ospfv3_policy_reg_agent\n4251     0%      0%       0% pim6_policy_reg_agent\n4254     0%      0%       0% pim_policy_reg_agent\n4266     0%      0%       0% rip_policy_reg_agent\n4287     0%      0%       0% debug_d\n4300     0%      0%       0% ether_rewrite_helper\n4305     0%      0%       0% fsyncmgr\n4322     0%      0%       0% ocifip_v4ma\n4327     0%      0%       0% ocifip_v6ma\n4337     0%      0%       0% shelf_mgr_proxy\n4344     0%      0%       0% tamsvcs_tamm\n4416     0%      0%       0% tams_proc\n4424     0%      0%       0% ixdb_gc\n4429     0%      0%       0% tamd_proc\n4441     0%      0%       0% beam.smp\n4455     0%      0%       0% erl_child_setup\n4502     0%      0%       0% epmd\n4545     0%      0%       0% inet_gethost\n4546     0%      0%       0% inet_gethost\n4579     0%      0%       0% bcdls\n4581     0%      0%       0% bcdls\n4648     0%      0%       0% tam_entropy\n4649     0%      0%       0% ownershipd\n4650     0%      0%       0% tam_sync\n4651     0%      0%       0% syslog_infra_hm\n4658     0%      0%       0% ipv6_rump\n4679     0%      0%       0% ftp_fs\n4683     0%      0%       0% tty_verifyd\n4686     0%      0%       0% ethernet_stats_controller_edm\n4692     0%      0%       0% domain_services\n4702     0%      0%       0% bgp_epe\n4710     0%      0%       0% bfd\n4719     0%      0%       0% bundlemgr_distrib\n4728     0%      0%       0% pim6\n4737     0%      0%       0% pim\n4746     0%      0%       0% mld\n4754     0%      0%       0% ipv6_local\n4757     0%      0%       0% ipv6_connected\n4759     0%      0%       0% ipv4_rump\n4760     0%      0%       0% eth_gl_cfg\n4770     0%      0%       0% ipv4_connected\n4780     0%      0%       0% ipv6_mpa\n4794     0%      0%       0% ipv4_mpa\n4806     0%      0%       0% policy_repository_shadow\n4820     0%      0%       0% policy_repository\n4828     0%      0%       0% igmp\n4839     0%      0%       0% mrib6\n4844     0%      0%       0% ipv4_local\n4856     0%      0%       0% mrib\n4868     0%      0%       0% ipv6_rib\n4873     0%      0%       0% ipv6_mfwd_ma\n4891     0%      0%       0% ipv4_rib\n4897     0%      0%       0% nfmgr\n4906     0%      0%       0% intf_mgbl\n4912     0%      0%       0% ipv4_mfwd_ma\n4917     0%      0%       0% statsd_manager_g\n4922     0%      0%       0% showtech_cfg\n4942     0%      0%       0% lldp_mgr\n4951     0%      0%       0% mpls_static\n4957     0%      0%       0% ema_server_sdr\n4965     0%      0%       0% daps\n4980     0%      0%       0% fretta_fabric_proxy\n4993     0%      0%       0% l2fib_mgr\n5015     0%      0%       0% l2rib\n5038     0%      0%       0% sconbkup\n5058     0%      0%       0% yang_server\n5071     0%      0%       0% ipv6_assembler\n5079     0%      0%       0% mpls_fwd_show_proxy\n5093     0%      0%       0% shconf-edm\n5117     0%      0%       0% statsd_manager_l\n5131     0%      0%       0% bcdl_agent\n5143     0%      0%       0% envmon_proxy\n5155     0%      0%       0% fsyncglobal\n5159     0%      0%       0% ztp_edm\n5165     0%      0%       0% mpls_io\n5169     0%      0%       0% bcdl_agent\n5178     0%      0%       0% ntpd\n5210     0%      0%       0% bcdl_agent\n5213     0%      0%       0% bcdls\n5217     0%      0%       0% nfma\n5226     0%      0%       0% arp\n5244     0%      0%       0% clns\n5252     0%      0%       0% ip_aps\n5262     0%      0%       0% raw_ip\n5269     0%      0%       1% tcp\n5279     0%      0%       0% udp\n5286     0%      0%       0% fhrp_output\n5298     0%      0%       0% l2snoop\n5302     0%      0%       0% pim6_ma\n5312     0%      0%       0% pim_ma\n5323     0%      0%       0% ip_app\n5344     0%      0%       0% macsec_ea\n5361     0%      0%       0% cinetd\n5377     0%      0%       0% devc-vty\n5384     0%      0%       0% bundlemgr_local\n5397     0%      0%       0% ether_mgbl\n5418     0%      0%       0% bcdls\n5421     0%      0%       0% failover_helper\n5426     0%      0%       0% bcdls\n5442     0%      0%       0% opt_terminal_device\n5450     0%      0%       0% otn_sync\n5481     0%      0%       0% tftp_fs\n5506     0%      0%       0% type6_server\n5515     0%      0%       0% eem_server\n5536     0%      0%       0% showd_lc\n5539     0%      0%       0% tcl_secure_mode\n5559     0%      0%       0% lpts_fm\n5598     0%      0%       0% eem_policy_dir\n5613     0%      0%       0% ipsec_mp\n5637     0%      0%       0% ipsec_pp\n5651     0%      0%       0% cepki\n5653     0%      0%       0% crypto_monitor\n5658     0%      0%       0% eem_ed_config\n5661     0%      0%       0% eem_ed_counter\n5669     0%      0%       0% eem_ed_generic\n5679     0%      0%       0% eem_ed_nd\n5711     0%      0%       0% eem_ed_none\n5719     0%      0%       0% eem_ed_stats\n5724     0%      0%       0% eem_ed_syslog\n5741     0%      0%       0% eem_ed_sysmgr\n5751     0%      0%       0% eem_ed_telemetry\n5767     0%      0%       0% eem_ed_test\n5780     0%      0%       0% eem_ed_timer\n5785     0%      0%       0% object_tracking\n5809     0%      0%       0% call_home\n5838     0%      0%       0% http_client\n5849     0%      0%       0% plat_sl_client\n5871     0%      0%       0% smartlicserver\n6494     0%      0%       0% config_autosave_server\n6495     0%      0%       0% mirror_server\n6496     0%      0%       0% tmpsymlink_server\n6497     0%      0%       0% redstatsd\n6502     0%      0%       0% appmgr\n6507     0%      0%       0% cem_class\n6514     0%      0%       0% cmp_edm\n6520     0%      0%       0% crypto_edm\n6525     0%      0%       0% dockerd_monitor\n6531     0%      0%       0% domain_sync\n6532     0%      0%       0% es_acl_act_agent\n6538     0%      0%       0% eth_mgmt\n6545     0%      0%       0% file_paltx\n6550     0%      0%       0% hcmgr\n6553     0%      0%       0% hostname_sync\n6559     0%      0%       0% imaedm_server\n6566     0%      0%       0% insight_cfg_listener\n6574     0%      0%       0% ipodwdm\n6585     0%      0%       0% ipv4_acl_act_agent\n6598     0%      0%       0% ipv6_acl_cfg_agent\n6611     0%      0%       0% linux_nto_misc_showd\n6626     0%      0%       0% local_sock\n6637     0%      0%       0% mpls_vpn_mib\n6650     0%      0%       0% netio_debug_partner\n6662     0%      0%       0% oc_macsec\n6672     0%      0%       0% ofa_proxy_rp\n6677     0%      0%       0% pam_manager\n6682     0%      0%       0% ether_caps_partner\n6689     0%      0%       0% pfilter_ma\n6694     0%      0%       0% ether_sock\n6703     0%      0%       0% pkt_trace_agent\n6709     0%      0%       0% pkt_trace_master\n6720     0%      0%       0% pm_ma\n6730     0%      0%       0% pm_server\n6747     0%      0%       0% script_agent_main\n6756     0%      0%       0% script_watcher_main\n6762     0%      0%       0% spio_ea\n6768     0%      0%       0% pm_collector\n6777     0%      0%       0% spio_ma\n6780     0%      0%       0% ssm_process\n6791     0%      0%       0% vlan_ea\n6897     0%      0%       0% sys_rec\n6899     0%      0%       0% tc_server\n6901     0%      0%       0% wanphy_proc\n6907     0%      0%       0% ssh_backup_server\n6911     0%      0%       0% ssh_server\n6914     0%      0%       0% snmppingd\n6918     0%      0%       0% sks_server_engine\n6919     0%      0%       0% sdr_instmgr\n6930     0%      0%       0% schema_server\n6933     0%      0%       0% ocaaateld\n6937     0%      0%       0% ct_agent\n6948     0%      0%       0% li_mgr\n6961     0%      0%       0% cmpp\n6968     0%      0%       0% bash\n6986     0%      0%       0% l2vpn_mgr\n6989     0%      0%       0% attestation_agent\n7004     0%      0%       0% xtc_agent\n7019     0%      0%       0% mpls_ldp\n7024     0%      0%       0% es_acl_mgr\n7030     0%      0%       0% qos_ma\n7036     0%      0%       0% pbr_ma\n7038     0%      0%       0% rt_check_mgr\n7239     0%      0%       0% rsvp\n7240     0%      0%       0% te_control\n7253     0%      0%       0% srms\n7258     0%      0%       0% fpd_auto_upgrade_config\n7259     0%      0%       0% lldp_agent\n7260     0%      0%       0% ipv4_static\n7261     0%      0%       0% isis\n7272     0%      0%       0% isis_uv\n7514     0%      0%       0% bpm\n7515     0%      0%       0% bpm_shadow\n7585     0%      0%       0% loopback_caps_partner\n7628     0%      0%       0% sdr_mgbl_proxy\n9539     0%      0%       0% perl\n9557     0%      0%       0% perl\n9748     0%      0%       0% perl\n9751     0%      0%       0% pam_cli_agent\n9880     0%      0%       0% perl\n9918     0%      0%       0% perl\n14492    0%      0%       0% ssh_xr\n14568    0%      0%       0% sshd_child_handler\n14578    0%      0%       0% exec\n15261    0%      0%       0% ssh_xr\n17510    0%      0%       0% sleep\n",
+            "json": {
+              "oneMinUtilization": "1%",
+              "fiveMinUtilization": "5%",
+              "fifteenMinUtilization": "4%"
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "sh l2vpn flexible-xconnect-service",
+            "output": "\nWed Apr  8 14:29:35.851 UTC",
+            "json": {
+              "info": "No flexible xonnect service found"
+            },
+            "exception": ""
+          },
+          {
+            "cmd": "show  bgp  l2vpn  evpn advertised",
+            "output": "\nWed Apr  8 14:29:36.467 UTC\n% BGP instance 'default' not active",
+            "json": {
+              "BGP instance": "default",
+              "Status": "not active"
+            },
+            "exception": ""
+          }
+        ]
+      },
+      "show_version": {
+        "status": "ok",
+        "exception": "",
+        "version": "7.11.2",
+        "platform": "",
+        "hostname": ""
+      },
+      "check_storage": {
+        "status": "ok",
+        "deleted_files": [],
+        "exception": "10.80.109.249: checkStorage() failed for Upgrade",
+        "sufficient": true
+      },
+      "backup_active_filesystem": {
+        "status": "not_started",
+        "exception": "",
+        "snapshot_slot": "",
+        "verified": false
+      },
+      "backup_running_config": {
+        "status": "ok",
+        "exception": "",
+        "config_file": "cisco_ncs5501_2026-04-08_19-52-11",
+        "log_file": "cisco_ncs5501_2026-04-08_19-52-11",
+        "destination": "/harddisk:"
+      },
+      "transfer_image": [
+        {
+          "status": "not_started",
+          "exception": "",
+          "image": "",
+          "destination": ""
+        },
+        {
+          "status": "ok",
+          "exception": "",
+          "image": "ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso",
+          "destination": "/misc/disk1/"
+        }
+      ],
+      "verify_checksum": [
+        {
+          "image": "",
+          "status": "not_started",
+          "exception": "",
+          "expected": "",
+          "computed": "",
+          "match": false
+        },
+        {
+          "image": "ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso",
+          "status": "ok",
+          "exception": "",
+          "expected": "98ea1cf2fa46700d4ec4896686b2934a",
+          "computed": "98ea1cf2fa46700d4ec4896686b2934a",
+          "match": true
+        }
+      ],
+      "disable_re_protect_filter": {
+        "status": "not_started",
+        "exception": ""
+      },
+      "check_auto_fpd": {
+        "status": "ok",
+        "xr_fpd_enabled": true,
+        "admin_fpd_enabled": false,
+        "exception": "",
+        "verified": true
+      },
+      "change_lpts_rate": {
+        "status": "ok",
+        "exception": "",
+        "lpts rate": 50000
+      }
+    },
+    "upgrade": {
+      "status": "in_progress",
+      "initial_os": "7.11.2",
+      "target_os": "7.11.2",
+      "exception": "",
+      "connect": {
+        "status": "not_started",
+        "exception": ""
+      },
+      "hops": [
+        {
+          "image": "",
+          "status": "not_started",
+          "exception": "",
+          "md5_match": false,
+          "connect": {
+            "status": "not_started",
+            "attempt": 0,
+            "exception": ""
+          }
+        },
+        {
+          "image": "ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso",
+          "status": "not_started",
+          "exception": "",
+          "md5_match": false,
+          "connect": {
+            "status": "not_started",
+            "attempt": 0,
+            "exception": ""
+          }
+        },
+        {
+          "image": "",
+          "status": "not_started",
+          "exception": "",
+          "md5_match": false,
+          "connect": {
+            "status": "not_started",
+            "attempt": 0,
+            "exception": ""
+          }
+        }
+      ]
+    },
+    "post": {
+      "show_version": {
+        "status": "not_started",
+        "exception": "",
+        "version": "",
+        "platform": "",
+        "hostname": ""
+      },
+      "execute_show_commands": {
+        "status": "not_started",
+        "exception": "",
+        "commands": []
+      },
+      "enable_re_protect_filter": {
+        "status": "",
+        "exception": ""
+      }
+    },
+    "diff": {}
+  }
+}

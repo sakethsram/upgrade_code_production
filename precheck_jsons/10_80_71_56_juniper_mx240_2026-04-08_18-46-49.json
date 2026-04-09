@@ -1,0 +1,160 @@
+{
+  "10_80_71_56_juniper_mx240": {
+    "status": "",
+    "device_info": {
+      "host": "10.80.71.56",
+      "vendor": "juniper",
+      "model": "mx240",
+      "hostname": "",
+      "version": ""
+    },
+    "yaml": {
+      "host": "10.80.71.56",
+      "vendor": "juniper",
+      "model": "mx240",
+      "device_type": "juniper",
+      "curr_image": "junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz",
+      "curr_os": "22.2R3-S2.8",
+      "intermediate_release": false,
+      "smu_upgrade": false,
+      "image_storage": 2,
+      "upgrade_storage": 4,
+      "username": "lab",
+      "password": "lab123",
+      "imageDetails": [
+        {
+          "image": "junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz",
+          "expected_os": "23.4R2-S3.9",
+          "checksum": "eff137c3db585058eab9c8820cfb6c01"
+        }
+      ],
+      "remote_backup_server": "colt@10.80.109.133",
+      "remote_password": "kTRq8amH363r",
+      "image_path": "/home/colt/backup/junos/MX240",
+      "smu_image_path": "",
+      "cleanup_files": [
+        "juniper_mx240_2026-*",
+        "/var/tmp/juniper_mx240_2026-*"
+      ],
+      "accepted_vendors": [
+        "juniper",
+        "cisco"
+      ]
+    },
+    "pre": {
+      "connect": {
+        "ping": "up",
+        "status": true,
+        "exception": ""
+      },
+      "execute_show_commands": {
+        "status": "not_started",
+        "exception": "",
+        "commands": []
+      },
+      "show_version": {
+        "status": "not_started",
+        "exception": "",
+        "version": "",
+        "platform": "",
+        "hostname": ""
+      },
+      "check_storage": {
+        "status": "ok",
+        "deleted_files": [],
+        "exception": "",
+        "sufficient": true
+      },
+      "backup_active_filesystem": {
+        "status": "not_started",
+        "exception": "",
+        "snapshot_slot": "",
+        "verified": false
+      },
+      "backup_running_config": {
+        "status": "not_started",
+        "exception": "",
+        "destination": "",
+        "config_file": ""
+      },
+      "transfer_image": [
+        {
+          "status": "not_started",
+          "exception": "",
+          "image": "",
+          "destination": ""
+        },
+        {
+          "status": "ok",
+          "exception": "",
+          "image": "junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz",
+          "destination": "/var/tmp/"
+        }
+      ],
+      "verify_checksum": [
+        {
+          "image": "",
+          "status": "not_started",
+          "exception": "",
+          "expected": "",
+          "computed": "",
+          "match": false
+        },
+        {
+          "image": "junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz",
+          "status": "ok",
+          "exception": "",
+          "expected": "eff137c3db585058eab9c8820cfb6c01",
+          "computed": "eff137c3db585058eab9c8820cfb6c01",
+          "match": true
+        }
+      ],
+      "disable_re_protect_filter": {
+        "status": "not_started",
+        "exception": ""
+      }
+    },
+    "upgrade": {
+      "status": "success",
+      "initial_os": "22.2R3-S2.8",
+      "target_os": "23.4R2-S3.9",
+      "exception": "",
+      "connect": {
+        "status": "not_started",
+        "exception": ""
+      },
+      "hops": [
+        {
+          "image": "junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz",
+          "status": "not_started",
+          "exception": "",
+          "md5_match": false,
+          "connect": {
+            "status": "not_started",
+            "attempt": 0,
+            "exception": ""
+          }
+        }
+      ]
+    },
+    "post": {
+      "show_version": {
+        "status": "not_started",
+        "exception": "",
+        "version": "",
+        "platform": "",
+        "hostname": ""
+      },
+      "execute_show_commands": {
+        "status": "not_started",
+        "exception": "",
+        "commands": []
+      },
+      "enable_re_protect_filter": {
+        "status": "",
+        "exception": ""
+      }
+    },
+    "diff": {}
+  }
+}

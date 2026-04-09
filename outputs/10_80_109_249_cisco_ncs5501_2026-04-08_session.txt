@@ -1,0 +1,5590 @@
+
+
+
+RP/0/RP0/CPU0:ar3.BLB#terminal width 511
+
+Wed Apr  8 15:47:29.389 UTC
+terminal length 0
+RP/0/RP0/CPU0:ar3.BLB#terminal length 0
+
+Wed Apr  8 15:47:29.446 UTC
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show version
+
+Wed Apr  8 15:47:30.363 UTC
+Cisco IOS XR Software, Version 7.11.2
+Copyright (c) 2013-2024 by Cisco Systems, Inc.
+
+Build Information:
+ Built By     : swtools
+ Built On     : Fri Mar 29 15:19:15 PDT 2024
+ Built Host   : iox-ucs-063
+ Workspace    : /auto/srcarchive11/prod/7.11.2/ncs5500/ws
+ Version      : 7.11.2
+ Location     : /opt/cisco/XR/packages/
+ Label        : 7.11.2-NCS5501_7112
+
+cisco NCS-5500 () processor
+System uptime is 1 hour 8 minutes
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show inventory
+
+Wed Apr  8 15:47:30.902 UTC
+NAME: "0/RP0", DESCR: "NC5501 w/o TCAM Route Processor Card"
+PID: NCS-5501          , VID: V03, SN: FOC29020NAV
+
+NAME: "TenGigE0/0/0/0", DESCR: "Non-Cisco SFP+ 10G SR Pluggable Optics Module"
+PID: 8SM-400           , VID: SA01, SN: L2012050185
+
+NAME: "TenGigE0/0/0/1", DESCR: "Cisco SFP+ 10G LR Pluggable Optics Module"
+PID: SFP-10G-LR        , VID: V02, SN: ACW281803XQ
+
+NAME: "TenGigE0/0/0/2", DESCR: "Cisco SFP+ 10G LR Pluggable Optics Module"
+PID: SFP-10G-LR-S      , VID: V01, SN: OPM28390G8G
+
+NAME: "GigabitEthernet0/0/0/46", DESCR: "Non-Cisco SFP 1G 1000BASE-LX Pluggable Optics Module"
+PID: 7SN-000           , VID: SA01, SN: X2409110247
+
+NAME: "TenGigE0/0/0/47", DESCR: "Non-Cisco SFP+ 10G LR Pluggable Optics Module"
+PID: 8SN-400           , VID: SA01, SN: X2003030269
+
+NAME: "Rack 0", DESCR: "NCS5501 w/o TCAM 1RU Chassis"
+PID: NCS-5501          , VID: V03, SN: FOC2901R0DR
+
+NAME: "0/FT0", DESCR: "NC5501 Fan Tray Forward Flow"
+PID: NCS-1RU-FAN-FW    , VID: V01, SN: N/A
+
+NAME: "0/FT1", DESCR: "NC5501 Fan Tray Forward Flow"
+PID: NCS-1RU-FAN-FW    , VID: V01, SN: N/A
+
+NAME: "0/PM0", DESCR: "NCS 5500 AC 1100W Power Supply Port-S Intake/Front-to-back"
+PID: NCS-1100W-ACFW    , VID: V02, SN: ART2839F3ZN
+
+NAME: "0/PM1", DESCR: "NCS 5500 AC 1100W Power Supply Port-S Intake/Front-to-back"
+PID: NCS-1100W-ACFW    , VID: V02, SN: ART2839F1UH
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show platform
+
+Wed Apr  8 15:47:31.620 UTC
+Node              Type                       State             Config state
+--------------------------------------------------------------------------------
+0/RP0/CPU0        NCS-5501(Active)           IOS XR RUN        NSHUT
+0/RP0/NPU0        Slice                      UP                
+0/FT0             NCS-1RU-FAN-FW             OPERATIONAL       NSHUT
+0/FT1             NCS-1RU-FAN-FW             OPERATIONAL       NSHUT
+0/PM0             NCS-1100W-ACFW             OPERATIONAL       NSHUT
+0/PM1             NCS-1100W-ACFW             OPERATIONAL       NSHUT
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show install active summary
+
+Wed Apr  8 15:47:32.166 UTC
+Label : 7.11.2-NCS5501_7112
+
+    Active Packages: 12
+        ncs5500-xr-7.11.2 version=7.11.2 [Boot image]
+        ncs5500-eigrp-1.0.0.0-r7112
+        ncs5500-healthcheck-1.0.0.0-r7112
+        ncs5500-isis-1.0.0.0-r7112
+        ncs5500-k9sec-1.0.0.0-r7112
+        ncs5500-li-1.0.0.0-r7112
+        ncs5500-lictrl-1.0.0.0-r7112
+        ncs5500-mcast-1.0.0.0-r7112
+        ncs5500-mgbl-1.0.0.0-r7112
+        ncs5500-mpls-1.0.0.0-r7112
+        ncs5500-mpls-te-rsvp-1.0.0.0-r7112
+        ncs5500-ospf-1.0.0.0-r7112
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show install committed summary
+
+Wed Apr  8 15:47:33.864 UTC
+Label : 7.11.2-NCS5501_7112
+
+    Committed Packages: 12
+        ncs5500-xr-7.11.2 version=7.11.2 [Boot image]
+        ncs5500-eigrp-1.0.0.0-r7112
+        ncs5500-healthcheck-1.0.0.0-r7112
+        ncs5500-isis-1.0.0.0-r7112
+        ncs5500-k9sec-1.0.0.0-r7112
+        ncs5500-li-1.0.0.0-r7112
+        ncs5500-lictrl-1.0.0.0-r7112
+        ncs5500-mcast-1.0.0.0-r7112
+        ncs5500-mgbl-1.0.0.0-r7112
+        ncs5500-mpls-1.0.0.0-r7112
+        ncs5500-mpls-te-rsvp-1.0.0.0-r7112
+        ncs5500-ospf-1.0.0.0-r7112
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show media
+
+Wed Apr  8 15:47:35.259 UTC
+
+Media Info for Location: node0_RP0_CPU0
+Partition                            Size     Used  Percent    Avail
+--------------------------------------------------------------------
+rootfs:                              3.9G     2.1G      56%     1.7G
+apphost:                             3.7G      29M       1%     3.5G
+harddisk:                            5.6G     1.8G      33%     3.6G
+log:                                 459M     168M      40%     257M
+config:                              459M     3.4M       1%     421M
+disk0:                               2.0G      18M       1%     1.8G
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show hw-module fpd
+
+Wed Apr  8 15:47:35.823 UTC
+
+Auto-upgrade:Enabled
+                                                                         FPD Versions
+                                                                        ==============
+Location   Card type             HWver FPD device       ATR Status    Running   Programd  
+-----------------------------------------------------------------------------------------
+0/RP0      NCS-5501              1.0   MB-MIFPGA             CURRENT     1.01      1.01    
+0/RP0      NCS-5501              1.0   Bootloader            CURRENT     1.23      1.23    
+0/RP0      NCS-5501              1.0   CPU-IOFPGA            CURRENT     1.27      1.27    
+0/RP0      NCS-5501              1.0   MB-IOFPGA             CURRENT     1.12      1.12    
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show route summary
+
+Wed Apr  8 15:47:36.363 UTC
+Route Source                     Routes     Backup     Deleted     Memory(bytes)
+local                            5          0          0           1040         
+connected                        4          1          0           1040         
+static                           1          0          0           208          
+application fib_mgr              0          0          0           0            
+te-client                        0          0          0           0            
+vxlan                            0          0          0           0            
+dagr                             0          0          0           0            
+isis COLT                        10         3          0           2704         
+Total                            20         4          0           4992         
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show watchdog memory-state location all
+
+Wed Apr  8 15:47:37.001 UTC
+---- node0_RP0_CPU0 ----
+Memory information:
+    Physical Memory	: 18432.0   MB
+    Free Memory		: 14930.257 MB
+    Memory State	:   Normal
+---- node0_0_CPU0 ----
+Memory information:
+    Physical Memory	: 8192.0   MB
+    Free Memory		: 5656.398 MB
+    Memory State	:   Normal
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show controllers npu resources all location all
+
+Wed Apr  8 15:47:37.540 UTC
+HW Resource Information For Location: 0/0/CPU0
+HW Resource Information
+    Name                            : lem
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Estimated Max Entries       : 768000  
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+
+
+Current Usage
+        Total In-Use                : 30       (0 %)
+        iproute                     : 25       (0 %)
+        ip6route                    : 0        (0 %)
+        mplslabel                   : 13       (0 %)
+        l2brmac                     : 0        (0 %)
+
+
+HW Resource Information
+    Name                            : lpm
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Estimated Max Entries       : 457879  
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+
+
+Current Usage
+        Total In-Use                : 63       (0 %)
+        iproute                     : 12       (0 %)
+        ip6route                    : 28       (0 %)
+        ipmcroute                   : 1        (0 %)
+        ip6mcroute                  : 0        (0 %)
+        ip6mc_comp_grp              : 0        (0 %)
+
+
+HW Resource Information
+    Name                            : encap
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+
+
+OFA Table Information
+(May not match HW usage)
+        ipvrf                       : 0        
+        redirectvrf                 : 0        
+        macllnh                     : 8        
+        mplsmdtbud                  : 0        
+        llnh                        : 0        
+        mplsnh                      : 3        
+        iptunnelencap               : 0        
+        iptunneldecap               : 0        
+        iptunneldecapvni            : 0        
+        limd                        : 0        
+        ipmcmdtencap                : 0        
+        srv6nh                      : 0        
+        ipmctxintf                  : 0        
+        l2intf                      : 2        
+        l2port                      : 0        
+        mplspweport                 : 0        
+        l2bridgeolist               : 0        
+        l2bridge                    : 0        
+
+Current Hardware Usage
+    Name: encap
+
+
+       Name: bank_1
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 4        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=8 extended=no 
+
+
+       Name: bank_2
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_3
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_4
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_5
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_6
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 22       (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=1 extended=no 
+
+
+       Name: bank_7
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 2        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=2 extended=no 
+
+
+       Name: bank_8
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 3        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=4 extended=no 
+
+
+       Name: bank_9
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_10
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_11
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_12
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_13
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_14
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_15
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_16
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_17
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_18
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_19
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_20
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_21
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_22
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+       Name: bank_23
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        (0 %)
+           OOR State                   : Green
+           Bank Info                   : phase=0 extended=no 
+
+
+
+HW Resource Information
+    Name                            : fec
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Estimated Max Entries       : 126976  
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+        Bank Info                   : FEC 
+
+
+OFA Table Information
+(May not match HW usage)
+        ipnhgroup                   : 37       
+        ip6nhgroup                  : 10       
+        edpl                        : 0        
+        limd                        : 0        
+        punt                        : 19       
+        iptunneldecap               : 0        
+        iptunneldecapvni            : 0        
+        ipmcroute                   : 1        
+        ip6mcroute                  : 0        
+        ipnh                        : 0        
+        ip6nh                       : 0        
+        mplsmdtbud                  : 0        
+        ipvrf                       : 3        
+        ippbr                       : 0        
+        redirectvrf                 : 0        
+        l2protect                   : 0        
+        l2bridgeport                : 0        
+        mplspweport                 : 0        
+
+Current Hardware Usage
+    Name: fec
+        Estimated Max Entries       : 126976  
+        Total In-Use                : 70       (0 %)
+        OOR State                   : Green
+        Bank Info                   : FEC 
+
+
+       Name: hier_0
+           Estimated Max Entries       : 126976  
+           Total In-Use                : 70       (0 %)
+           OOR State                   : Green
+           Bank Info                   : FEC 
+
+
+
+HW Resource Information
+    Name                            : ecmp_fec
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Estimated Max Entries       : 4096    
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+        Bank Info                   : ECMP 
+
+
+OFA Table Information
+(May not match HW usage)
+        ipnhgroup                   : 0        
+        ip6nhgroup                  : 0        
+
+Current Hardware Usage
+    Name: ecmp_fec
+        Estimated Max Entries       : 4096    
+        Total In-Use                : 0        (0 %)
+        OOR State                   : Green
+        Bank Info                   : ECMP 
+
+
+       Name: hier_0
+           Estimated Max Entries       : 4096    
+           Total In-Use                : 0        
+           OOR State                   : Green
+           Bank Info                   : ECMP 
+
+
+
+HW Resource Information
+    Name                            : rif
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Estimated Max Entries       : 8192    
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+        Bank Info                   : RIF 
+
+
+OFA Table Information
+(May not match HW usage)
+        l3intf                      : 56       
+        ipvrf                       : 2        
+        redirectvrf                 : 0        
+        pbr_tt_ipv4                 : 0        
+        pbr_tt_ipv6                 : 0        
+        iptunneldecap               : 0        
+        mplsmdtbud                  : 0        
+        l2bridge                    : 0        
+
+Current Hardware Usage
+    Name: rif
+        Estimated Max Entries       : 8192    
+        Total In-Use                : 58       (0 %)
+        OOR State                   : Green
+        Bank Info                   : RIF 
+
+
+
+HW Resource Information
+    Name                            : inlif
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Estimated Max Entries       : 57344   
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+        Bank Info                   : INLIF 
+
+
+OFA Table Information
+(May not match HW usage)
+        l2port                      : 54       
+        l2intf                      : 2        
+        ipvrf                       : 2        
+        l2bridge                    : 0        
+        mplsmdtbud                  : 0        
+        mplslabel                   : 1        
+        iptunneldecap               : 0        
+        pbr_tt_ipv4                 : 0        
+        redirectvrf                 : 0        
+        mplspweport                 : 0        
+        l3intf                      : 0        
+
+Current Hardware Usage
+    Name: inlif
+        Estimated Max Entries       : 57344   
+        Total In-Use                : 59       (0 %)
+        OOR State                   : Green
+        Bank Info                   : INLIF 
+
+
+
+HW Resource is not valid for the NPU type
+HW Resource is not valid for the NPU type
+HW Resource Information
+    Name                            : sexem2
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Estimated Max Entries       : 49020   
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+        Bank Info                   : SEXEM2 
+
+
+OFA Table Information
+(May not match HW usage)
+        mplspweport                 : 0        
+        extlif                      : 0        
+
+Current Hardware Usage
+    Name: sexem2
+        Estimated Max Entries       : 49020   
+        Total In-Use                : 0        (0 %)
+        OOR State                   : Green
+        Bank Info                   : SEXEM2 
+
+
+
+HW Resource Information
+    Name                            : isem1
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Estimated Max Entries       : 65536   
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+        Bank Info                   : ISEM1 
+
+
+OFA Table Information
+(May not match HW usage)
+        l2port                      : 54       
+        l2intf                      : 4        
+        ipvrf                       : 0        
+        l2bridge                    : 0        
+        mplsmdtbud                  : 0        
+        l3intf                      : 0        
+        mplspweport                 : 0        
+
+Current Hardware Usage
+    Name: isem1
+        Estimated Max Entries       : 65536   
+        Total In-Use                : 58       (0 %)
+        OOR State                   : Green
+        Bank Info                   : ISEM1 
+
+
+
+HW Resource Information
+    Name                            : isem2
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Estimated Max Entries       : 65536   
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+        Bank Info                   : ISEM2 
+
+
+OFA Table Information
+(May not match HW usage)
+        mplsmdtbud                  : 0        
+        l2xc                        : 0        
+        mplslabel                   : 0        
+        iptunneldecap               : 0        
+        pbr_tt_ipv4                 : 0        
+        redirectvrf                 : 0        
+        mplspweport                 : 0        
+        srv6sid                     : 0        
+        l2intf                      : 0        
+
+Current Hardware Usage
+    Name: isem2
+        Estimated Max Entries       : 65536   
+        Total In-Use                : 0        (0 %)
+        OOR State                   : Green
+        Bank Info                   : ISEM2 
+
+
+
+HW Resource is not valid for the NPU type
+HW Resource is not valid for the NPU type
+HW Resource is not valid for the NPU type
+HW Resource is not valid for the NPU type
+HW Resource Information
+    Name                            : mcid_ingress
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Estimated Max Entries       : 8192    
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+        Bank Info                   : INGRESS 
+
+
+OFA Table Information
+(May not match HW usage)
+        l2bridge                    : 0        
+        l2ipmcroute                 : 0        
+        l2ip6mcroute                : 0        
+        ipmcmdtencap                : 0        
+        mplsmdtbud                  : 0        
+
+Current Hardware Usage
+    Name: mcid_ingress
+        Estimated Max Entries       : 8192    
+        Total In-Use                : 0        (0 %)
+        OOR State                   : Green
+        Bank Info                   : INGRESS 
+
+
+
+HW Resource Information
+    Name                            : mcid_egress
+    Asic Type                       : Qumran
+
+NPU-0
+OOR Summary
+        Estimated Max Entries       : 57344   
+        Red Threshold               : 95 %
+        Yellow Threshold            : 80 %
+        OOR State                   : Green
+        Bank Info                   : EGRESS 
+
+
+OFA Table Information
+(May not match HW usage)
+        l2bridge                    : 0        
+        l2ipmcroute                 : 0        
+        l2ip6mcroute                : 0        
+        ipmcolist                   : 0        
+
+Current Hardware Usage
+    Name: mcid_egress
+        Estimated Max Entries       : 57344   
+        Total In-Use                : 0        (0 %)
+        OOR State                   : Green
+        Bank Info                   : EGRESS 
+
+
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show ipv4 vrf all interface brief
+
+Wed Apr  8 15:47:38.080 UTC
+
+Interface                      IP-Address      Status          Protocol Vrf-Name
+Loopback0                      212.74.67.7     Up              Up       default 
+MgmtEth0/RP0/CPU0/0            10.80.109.249   Up              Up       default 
+TenGigE0/0/0/0                 212.74.64.11    Up              Up       default 
+TenGigE0/0/0/1                 212.74.64.13    Up              Up       default 
+TenGigE0/0/0/2                 unassigned      Down            Down     default 
+TenGigE0/0/0/3                 unassigned      Down            Down     default 
+TenGigE0/0/0/3.500             100.1.1.1       Down            Down     default 
+TenGigE0/0/0/4                 unassigned      Shutdown        Down     default 
+TenGigE0/0/0/5                 unassigned      Shutdown        Down     default 
+TenGigE0/0/0/6                 unassigned      Shutdown        Down     default 
+TenGigE0/0/0/7                 unassigned      Shutdown        Down     default 
+TenGigE0/0/0/8                 unassigned      Shutdown        Down     default 
+TenGigE0/0/0/9                 unassigned      Shutdown        Down     default 
+TenGigE0/0/0/10                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/11                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/12                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/13                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/14                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/15                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/16                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/17                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/18                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/19                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/20                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/21                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/22                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/23                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/24                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/25                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/26                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/27                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/28                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/29                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/30                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/31                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/32                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/33                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/34                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/35                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/36                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/37                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/38                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/39                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/40                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/41                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/42                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/43                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/44                unassigned      Shutdown        Down     default 
+TenGigE0/0/0/45                unassigned      Shutdown        Down     default 
+GigabitEthernet0/0/0/46        unassigned      Up              Up       default 
+TenGigE0/0/0/47                unassigned      Up              Up       default 
+TenGigE0/0/0/47.120            10.10.10.2      Up              Up       default 
+HundredGigE0/0/1/0             unassigned      Shutdown        Down     default 
+HundredGigE0/0/1/1             unassigned      Shutdown        Down     default 
+HundredGigE0/0/1/2             unassigned      Shutdown        Down     default 
+HundredGigE0/0/1/3             unassigned      Shutdown        Down     default 
+HundredGigE0/0/1/4             unassigned      Shutdown        Down     default 
+HundredGigE0/0/1/5             unassigned      Shutdown        Down     default 
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show bgp l2vpn evpn summary
+
+Wed Apr  8 15:47:38.645 UTC
+% BGP instance 'default' not active
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show isis adjacency
+
+Wed Apr  8 15:47:39.218 UTC
+
+IS-IS COLT Level-1 adjacencies:
+System Id      Interface                SNPA           State Hold Changed  NSF IPv4 IPv6
+                                                                               BFD  BFD 
+ar1.BLB        Te0/0/0/47.120           *PtoP*         Up    24   01:04:50 Yes None None
+
+Total adjacency count: 1
+
+IS-IS COLT Level-2 adjacencies:
+System Id      Interface                SNPA           State Hold Changed  NSF IPv4 IPv6
+                                                                               BFD  BFD 
+ar1.BLB        Te0/0/0/0                *PtoP*         Up    23   01:04:50 Yes None None
+ar2.BLB        Te0/0/0/1                *PtoP*         Up    25   01:04:50 Yes None None
+
+Total adjacency count: 2
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show mpls forwarding summary
+
+Wed Apr  8 15:47:39.755 UTC
+Forwarding entries:
+   Label switching: 12, protected: 0 (Ready: 0, Active: 0)
+   MPLS TE tunnel head: 0, protected: 0
+   MPLS TE midpoint: 0, protected: 0
+   MPLS TE internal: 0, protected: 0
+   MPLS P2MP TE tunnel head: 0
+   MPLS P2MP TE tunnel midpoint/tail: 0
+   MPLS P2MP mLDP/IR head: 0
+   MPLS P2MP mLDP/IR midpoint/tail: 0
+Forwarding updates:
+   messages: 6 
+      p2p updates: 11
+Labels in use:
+   Reserved: 4
+   Lowest: 0
+   Highest: 101013
+   Deleted stale label entries: 0
+   SRGB range: 100000 - 165534
+   SRLB range: 15000 - 15999
+
+Pkts dropped:    0
+Pkts fragmented: 0
+Failed lookups:  0
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show bfd session detail
+
+Wed Apr  8 15:47:40.370 UTC
+
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show l2vpn xconnect summary
+
+Wed Apr  8 15:47:40.908 UTC
+Number of groups: 0
+Number of xconnects: 0
+  Up: 0  Down: 0  Unresolved: 0 Partially-programmed: 0
+  AC-PW: 0  AC-AC: 0  PW-PW: 0 Monitor-Session-PW: 0
+  AC-IP Tunnel: 0, AC-VlanAware: 0
+Number of Admin Down segments: 0
+Number of MP2MP xconnects: 0
+  Up 0 Down 0
+  Advertised: 0 Non-Advertised: 0
+Number of CE Connections: 0
+  Advertised: 0 Non-Advertised: 0
+Backup PW:
+  Configured   : 0
+  UP           : 0
+  Down         : 0
+  Admin Down   : 0
+  Unresolved   : 0
+  Standby      : 0
+  Standby Ready: 0
+Backup Interface:
+  Configured   : 0
+  UP           : 0
+  Down         : 0
+  Admin Down   : 0
+  Unresolved   : 0
+  Standby      : 0
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show lldp neighbors
+
+Wed Apr  8 15:47:41.521 UTC
+Capability codes:
+	(R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device
+	(W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other
+
+Device ID       Local Intf                      Hold-time  Capability      Port ID
+ar1.BLB         TenGigE0/0/0/0                  120        R               TenGigE0/0/0/1
+ar2.BLB         TenGigE0/0/0/1                  120        R               TenGigE0/0/0/1
+ar2.BLB         GigabitEthernet0/0/0/46         120        R               GigabitEthernet0/0/0/21
+ar1.BLB         TenGigE0/0/0/47                 120        R               TenGigE0/0/0/21
+
+Total entries displayed: 4
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show interface description
+
+Wed Apr  8 15:47:42.059 UTC
+
+Interface          Status      Protocol    Description
+--------------------------------------------------------------------------------
+Lo0                up          up          
+Nu0                up          up          
+Gi0/0/0/46         up          up          
+Te0/0/0/0          up          up          AUTO249_Te0/0/0/0 to AUTO251_Te0/0/0/1
+Te0/0/0/1          up          up          AUTO249_Te0/0/0/0 to AUTO252_Te0/0/0/1
+Te0/0/0/2          down        down        AUTO249 Te0/0/0/2 to AUTO248 Te0/0/2
+Te0/0/0/3          down        down        
+Te0/0/0/3.500      down        down        
+Te0/0/0/4          admin-down  admin-down  
+Te0/0/0/5          admin-down  admin-down  
+Te0/0/0/6          admin-down  admin-down  
+Te0/0/0/7          admin-down  admin-down  
+Te0/0/0/8          admin-down  admin-down  
+Te0/0/0/9          admin-down  admin-down  
+Te0/0/0/10         admin-down  admin-down  
+Te0/0/0/11         admin-down  admin-down  
+Te0/0/0/12         admin-down  admin-down  
+Te0/0/0/13         admin-down  admin-down  
+Te0/0/0/14         admin-down  admin-down  
+Te0/0/0/15         admin-down  admin-down  
+Te0/0/0/16         admin-down  admin-down  
+Te0/0/0/17         admin-down  admin-down  
+Te0/0/0/18         admin-down  admin-down  
+Te0/0/0/19         admin-down  admin-down  
+Te0/0/0/20         admin-down  admin-down  
+Te0/0/0/21         admin-down  admin-down  
+Te0/0/0/22         admin-down  admin-down  
+Te0/0/0/23         admin-down  admin-down  
+Te0/0/0/24         admin-down  admin-down  
+Te0/0/0/25         admin-down  admin-down  
+Te0/0/0/26         admin-down  admin-down  
+Te0/0/0/27         admin-down  admin-down  
+Te0/0/0/28         admin-down  admin-down  
+Te0/0/0/29         admin-down  admin-down  
+Te0/0/0/30         admin-down  admin-down  
+Te0/0/0/31         admin-down  admin-down  
+Te0/0/0/32         admin-down  admin-down  
+Te0/0/0/33         admin-down  admin-down  
+Te0/0/0/34         admin-down  admin-down  
+Te0/0/0/35         admin-down  admin-down  
+Te0/0/0/36         admin-down  admin-down  
+Te0/0/0/37         admin-down  admin-down  
+Te0/0/0/38         admin-down  admin-down  
+Te0/0/0/39         admin-down  admin-down  
+Te0/0/0/40         admin-down  admin-down  
+Te0/0/0/41         admin-down  admin-down  
+Te0/0/0/42         admin-down  admin-down  
+Te0/0/0/43         admin-down  admin-down  
+Te0/0/0/44         admin-down  admin-down  
+Te0/0/0/45         admin-down  admin-down  
+Te0/0/0/47         up          up          "connected to Auto-251 port 21 | AB"
+Te0/0/0/47.120     up          up          
+Hu0/0/1/0          admin-down  admin-down  
+Hu0/0/1/1          admin-down  admin-down  
+Hu0/0/1/2          admin-down  admin-down  
+Hu0/0/1/3          admin-down  admin-down  
+Hu0/0/1/4          admin-down  admin-down  
+Hu0/0/1/5          admin-down  admin-down  
+Mg0/RP0/CPU0/0     up          up          "NCS5501 to Automation_Switch_42"
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show proc cpu
+
+Wed Apr  8 15:47:42.647 UTC
+---- node0_RP0_CPU0 ----
+
+CPU utilization for one minute: 1%; five minutes: 6%; fifteen minutes: 2%
+ 
+PID    1Min    5Min    15Min Process
+1        0%      0%       0% init
+20       0%      0%       0% rpcbind
+25       0%      0%       0% systemd-journald
+36       0%      0%       0% rngd
+1223     0%      0%       0% bash
+1247     0%      0%       0% sh
+1248     0%      0%       0% bash
+1274     0%      0%       0% cgroup_oom
+1324     0%      0%       0% crond
+1325     0%      0%       0% dbus-daemon
+1341     0%      0%       0% syslogd
+1357     0%      0%       0% systemd-networkd
+1367     0%      0%       0% lighttpd
+1374     0%      0%       0% systemd-logind
+1385     0%      0%       0% systemd-resolved
+1446     0%      0%       0% avahi-daemon:
+1451     0%      0%       0% ninfod
+1452     0%      0%       0% rdisc
+1455     0%      0%       0% redis-server
+1460     0%      0%       0% xinetd
+1461     0%      0%       0% avahi-daemon:
+2327     0%      0%       0% bash
+2328     0%      0%       0% dsr
+2358     0%      0%       0% ds
+2360     0%      0%       0% bash
+2371     0%      0%       0% bash
+2378     0%      0%       0% dev_inotify_hdlr
+2386     0%      0%       0% bash
+2394     0%      0%       0% dev_inotify_hdlr
+2480     0%      0%       0% processmgr
+2543     0%      0%       0% devc-conaux-aux
+2548     0%      0%       0% devc-conaux-con
+2550     0%      0%       0% correlatord
+2553     0%      0%       0% cerrno_server
+2558     0%      0%       0% db_listener
+2563     0%      0%       0% db_writer
+2566     0%      0%       0% syslogd
+2578     0%      0%       0% syslogd_helper
+2595     0%      0%       0% syslog_dev
+2602     0%      0%       0% shmwin_svr
+2603     0%      0%       0% tty_exec_launcher
+2608     0%      0%       0% issudir
+2614     0%      0%       0% sdr_invmgr
+2631     0%      0%       0% nrssvr_global
+2645     0%      0%       0% platform-mgr
+2646     0%      0%       0% invmgr_proxy
+2652     0%      0%       0% vm-monitor
+2664     0%      0%       0% sysdb_shared_data_nc
+2668     0%      0%       0% dumper
+2669     0%      0%       0% sysdb_shared_nc
+2670     0%      0%       0% qsm
+2674     0%      0%       0% sysdb_shared_sc
+2685     0%      0%       0% mpa_fm_svr
+2707     0%      0%       0% sysdb_svr_admin
+2731     0%      0%       0% spp
+2755     0%      0%       0% ssh_key_server
+2779     0%      0%       0% packet
+2792     0%      0%       0% grid_allocator
+2796     0%      0%       0% chkpt_proxy
+2809     0%      0%       0% debug_d_admin
+2816     0%      0%       0% ltrace_server
+2827     0%      0%       0% nrssvr
+2837     0%      0%       0% ltrace_sync
+2844     0%      0%       0% corehelper_context_edm
+2856     0%      0%       0% resmon
+2864     0%      0%       0% sld
+2870     0%      0%       0% rmf_svr
+2883     0%      0%       0% bag_schema_svr
+2904     0%      0%       0% sysdb_svr_local
+2927     0%      0%       0% ccv
+2937     0%      0%       0% ssh_key_client
+2942     0%      0%       0% gsp
+2952     0%      0%       0% fia_cfg
+2957     0%      0%       0% fab_proxy
+2967     0%      0%       0% meminfo_svr
+2979     0%      0%       0% showd_server
+3008     0%      0%       0% tamfs
+3017     0%      0%       0% aipc_cleaner
+3020     0%      0%       0% rdsfs_svr
+3027     0%      0%       0% wdsysmon_fd_edm
+3035     0%      0%       0% sysdb_mc
+3054     0%      0%       0% bundlemgr_checker
+3056     0%      0%       0% cfgmgr-rp
+3059     0%      0%       0% parser_server
+3067     0%      0%       0% nvgen_server
+3072     0%      0%       0% timezone_config
+3076     0%      0%       0% heap_summary_edm
+3081     0%      0%       0% issumgr
+3089     0%      0%       0% media_server
+3103     0%      0%       0% procfs_server
+3118     0%      0%       0% sdr_instagt
+3127     0%      0%       0% show_enc_status_edm
+3136     0%      0%       0% show_mediang_edm
+3138     0%      0%       0% ssd_enc_server
+3412     0%      0%       0% cdsproxy
+3419     0%      0%       0% cdssvr
+3426     0%      0%       0% dpa_port_mapper
+3434     0%      0%       0% ifmgr
+3439     0%      1%       0% netio
+3443     0%      0%       0% ifindex_server
+3450     0%      0%       0% bcdl_agent
+3460     0%      0%       0% lpts_pa
+3473     0%      0%       0% alarm-logger
+3479     0%      0%       0% calv_alarm_mgr
+3487     0%      0%       0% fwd_driver_partner
+3493     0%      0%       0% locald_DLRSC
+3503     0%      0%       0% mempool_edm
+3507     0%      0%       0% ncd
+3535     0%      0%       0% nd_partner
+3542     0%      0%       0% nsr_fo
+3547     0%      0%       0% bcdl_agent
+3553     0%      0%       0% nsr_ping_reply
+3557     0%      0%       0% rmf_cli_edm
+3560     0%      0%       0% rsi_agent
+3572     0%      0%       0% rsi_master
+3587     0%      0%       0% sh_proc_mem_edm
+3596     0%      0%       0% sh_proc_threadname_edm
+3600     0%      0%       0% sysmgr_show_proc_all_edm
+3603     0%      0%       0% tty_show_users_edm
+3621     0%      0%       0% fpd-serv
+3628     0%      0%       0% mpls_io_ea
+3636     0%      0%       0% aib
+3640     0%      0%       0% bundlemgr_adj
+3644     0%      0%       0% statsd_server
+3654     0%      0%       0% ipv4_arm
+3666     0%      0%       0% ipv6_arm
+3672     0%      0%       0% ipv4_acl_mgr
+3690     0%      0%       0% ipv6_acl_daemon
+3699     0%      0%       0% ipv4_mfwd_partner
+3710     0%      0%       0% ipv6_mfwd_partner
+3731     0%      0%       0% pifibm_server_rp
+3770     0%      0%       0% ipv4_io
+3779     0%      0%       0% ipv4_ma
+3786     0%      0%       0% ipv6_nd
+3798     0%      0%       0% policymgr_rp
+3809     0%      0%       0% fib_mgr
+3829     0%      0%       0% ipv6_ea
+3834     0%      0%       0% ipv6_io
+3855     0%      0%       0% nve_mgr
+3860     0%      0%       0% optics_server
+3864     0%      0%       0% procfind
+3881     0%      0%       0% xlncd
+3890     0%      0%       0% ipv6_ma
+3895     0%      0%       0% mpls_lsd
+3918     0%      0%       0% bgp_policy_reg_agent
+3926     0%      0%       0% eigrp_policy_reg_agent
+3927     0%      0%       0% igmp_policy_reg_agent
+3934     0%      0%       0% igmpsn_policy_reg_agent
+3940     0%      0%       0% isis_policy_reg_agent
+3947     0%      0%       0% l2vpn_policy_reg_agent
+3971     0%      0%       0% lisp_xr_policy_reg_agent
+3987     0%      0%       0% mldp_policy_reg_agent
+3993     0%      0%       0% mldsn_policy_reg_agent
+4001     0%      0%       0% ospf_policy_reg_agent
+4015     0%      0%       0% ospfv3_policy_reg_agent
+4027     0%      0%       0% pim6_policy_reg_agent
+4035     0%      0%       0% pim_policy_reg_agent
+4037     0%      0%       0% rip_policy_reg_agent
+4040     0%      0%       0% debug_d
+4054     0%      0%       0% ether_rewrite_helper
+4068     0%      0%       0% fsyncmgr
+4084     0%      0%       0% ocifip_v4ma
+4087     0%      0%       0% ocifip_v6ma
+4101     0%      0%       0% shelf_mgr_proxy
+4105     0%      0%       0% tamsvcs_tamm
+4180     0%      0%       0% ixdb_gc
+4181     0%      0%       0% tams_proc
+4210     0%      0%       0% bcdls
+4212     0%      0%       0% bcdls
+4246     0%      0%       0% tamd_proc
+4260     0%      0%       0% beam.smp
+4272     0%      0%       0% erl_child_setup
+4341     0%      0%       0% epmd
+4389     0%      0%       0% inet_gethost
+4390     0%      0%       0% inet_gethost
+4544     0%      0%       0% tam_entropy
+4545     0%      0%       0% ownershipd
+4546     0%      0%       0% tam_sync
+4547     0%      0%       0% syslog_infra_hm
+4548     0%      0%       0% ipv6_rump
+4554     0%      0%       0% ipv4_rump
+4563     0%      0%       0% ftp_fs
+4573     0%      0%       0% ethernet_stats_controller_edm
+4582     0%      0%       0% domain_services
+4588     0%      0%       0% bgp_epe
+4608     0%      0%       0% bfd
+4611     0%      0%       0% bundlemgr_distrib
+4622     0%      0%       0% pim6
+4625     0%      0%       0% mld
+4626     0%      0%       0% pim
+4629     0%      0%       0% ipv6_local
+4635     0%      0%       0% ipv6_connected
+4638     0%      0%       0% ipv4_local
+4642     0%      0%       0% ipv4_connected
+4647     0%      0%       0% igmp
+4663     0%      0%       0% eth_gl_cfg
+4672     0%      0%       0% ipv6_mpa
+4680     0%      0%       0% ipv4_mpa
+4687     0%      0%       0% policy_repository_shadow
+4703     0%      0%       0% tty_verifyd
+4708     0%      0%       0% policy_repository
+4722     0%      0%       0% mrib6
+4736     0%      0%       0% mrib
+4742     0%      0%       0% ipv6_rib
+4756     0%      0%       0% ipv6_mfwd_ma
+4766     0%      0%       0% ipv4_rib
+4769     0%      0%       0% ipv4_mfwd_ma
+4780     0%      0%       0% statsd_manager_g
+4788     0%      0%       0% nfmgr
+4792     0%      0%       0% intf_mgbl
+4802     0%      0%       0% showtech_cfg
+4815     0%      0%       0% lldp_mgr
+4822     0%      0%       0% mpls_static
+4826     0%      0%       0% ema_server_sdr
+4838     0%      0%       0% daps
+4842     0%      0%       0% fretta_fabric_proxy
+4843     0%      0%       0% l2fib_mgr
+4857     0%      0%       0% l2rib
+4884     0%      0%       0% sconbkup
+4904     0%      0%       0% yang_server
+4910     0%      0%       0% ipv6_assembler
+4926     0%      0%       0% mpls_fwd_show_proxy
+4940     0%      0%       0% shconf-edm
+4954     0%      0%       0% statsd_manager_l
+4962     0%      0%       0% envmon_proxy
+4972     0%      0%       0% fsyncglobal
+4989     0%      0%       0% ztp_edm
+5002     0%      0%       0% mpls_io
+5015     0%      0%       0% ntpd
+5037     0%      0%       0% nfma
+5046     0%      0%       0% bcdl_agent
+5064     0%      0%       0% arp
+5077     0%      0%       0% clns
+5084     0%      0%       0% bcdls
+5087     0%      0%       0% ip_aps
+5098     0%      0%       0% raw_ip
+5127     0%      1%       0% tcp
+5140     0%      0%       0% udp
+5155     0%      0%       0% fhrp_output
+5160     0%      0%       0% bcdl_agent
+5172     0%      0%       0% l2snoop
+5190     0%      0%       0% bcdl_agent
+5199     0%      0%       0% pim6_ma
+5208     0%      0%       0% pim_ma
+5212     0%      0%       0% ip_app
+5228     0%      0%       0% macsec_ea
+5240     0%      0%       0% cinetd
+5251     0%      0%       0% devc-vty
+5271     0%      0%       0% bundlemgr_local
+5281     0%      0%       0% ether_mgbl
+5288     0%      0%       0% bcdls
+5297     0%      0%       0% failover_helper
+5302     0%      0%       0% opt_terminal_device
+5310     0%      0%       0% otn_sync
+5340     0%      0%       0% tftp_fs
+5350     0%      0%       0% type6_server
+5373     0%      0%       0% eem_server
+5407     0%      0%       0% bcdls
+5411     0%      0%       0% showd_lc
+5421     0%      0%       0% tcl_secure_mode
+5437     0%      0%       0% lpts_fm
+5478     0%      0%       0% eem_policy_dir
+5483     0%      0%       0% ipsec_mp
+5487     0%      0%       0% ipsec_pp
+5491     0%      0%       0% cepki
+5502     0%      0%       0% crypto_monitor
+5533     0%      0%       0% eem_ed_config
+5538     0%      0%       0% eem_ed_counter
+5555     0%      0%       0% eem_ed_generic
+5577     0%      0%       0% eem_ed_nd
+5592     0%      0%       0% eem_ed_none
+5597     0%      0%       0% eem_ed_stats
+5601     0%      0%       0% eem_ed_syslog
+5614     0%      0%       0% eem_ed_sysmgr
+5619     0%      0%       0% eem_ed_telemetry
+5627     0%      0%       0% eem_ed_test
+5635     0%      0%       0% eem_ed_timer
+5643     0%      0%       0% object_tracking
+5654     0%      0%       0% call_home
+5687     0%      0%       0% http_client
+5694     0%      0%       0% plat_sl_client
+5702     0%      0%       0% smartlicserver
+6394     0%      0%       0% config_autosave_server
+6395     0%      0%       0% mirror_server
+6396     0%      0%       0% tmpsymlink_server
+6397     0%      0%       0% redstatsd
+6400     0%      0%       0% appmgr
+6404     0%      0%       0% cem_class
+6410     0%      0%       0% cmp_edm
+6415     0%      0%       0% crypto_edm
+6422     0%      0%       0% dockerd_monitor
+6431     0%      0%       0% domain_sync
+6437     0%      0%       0% es_acl_act_agent
+6441     0%      0%       0% eth_mgmt
+6447     0%      0%       0% file_paltx
+6449     0%      0%       0% hcmgr
+6450     0%      0%       0% hostname_sync
+6452     0%      0%       0% imaedm_server
+6460     0%      0%       0% insight_cfg_listener
+6471     0%      0%       0% ipodwdm
+6478     0%      0%       0% ipv4_acl_act_agent
+6487     0%      0%       0% ipv6_acl_cfg_agent
+6504     0%      0%       0% linux_nto_misc_showd
+6514     0%      0%       0% local_sock
+6525     0%      0%       0% mpls_vpn_mib
+6537     0%      0%       0% netio_debug_partner
+6548     0%      0%       0% oc_macsec
+6561     0%      0%       0% ofa_proxy_rp
+6566     0%      0%       0% pam_manager
+6580     0%      0%       0% pfilter_ma
+6588     0%      0%       0% pkt_trace_agent
+6597     0%      0%       0% pkt_trace_master
+6602     0%      0%       0% pm_ma
+6606     0%      0%       0% pm_server
+6611     0%      0%       0% ether_caps_partner
+6637     0%      0%       0% ether_sock
+6644     0%      0%       0% script_agent_main
+6649     0%      0%       0% pm_collector
+6655     0%      0%       0% script_watcher_main
+6656     0%      0%       0% spio_ea
+6660     0%      0%       0% spio_ma
+6669     0%      0%       0% ssm_process
+6713     0%      0%       0% vlan_ea
+6790     0%      0%       0% wanphy_proc
+6792     0%      0%       0% tc_server
+6793     0%      0%       0% sys_rec
+6799     0%      0%       0% ssh_server
+6807     0%      0%       0% ssh_backup_server
+6813     0%      0%       0% snmppingd
+6818     0%      0%       0% sks_server_engine
+6819     0%      0%       0% sdr_instmgr
+6824     0%      0%       0% schema_server
+6830     0%      0%       0% ocaaateld
+6836     0%      0%       0% li_mgr
+6852     0%      0%       0% ct_agent
+6856     0%      0%       0% cmpp
+6872     0%      0%       0% bash
+6879     0%      0%       0% l2vpn_mgr
+6890     0%      0%       0% xtc_agent
+6895     0%      0%       0% attestation_agent
+6899     0%      0%       0% mpls_ldp
+6908     0%      0%       0% qos_ma
+6910     0%      0%       0% pbr_ma
+6917     0%      0%       0% rt_check_mgr
+6922     0%      0%       0% es_acl_mgr
+7137     0%      0%       0% rsvp
+7138     0%      0%       0% te_control
+7139     0%      0%       0% srms
+7141     0%      0%       0% fpd_auto_upgrade_config
+7144     0%      0%       0% lldp_agent
+7168     0%      0%       0% ipv4_static
+7171     0%      0%       0% isis
+7178     0%      0%       0% isis_uv
+7329     0%      0%       0% bpm
+7330     0%      0%       0% bpm_shadow
+7467     0%      0%       0% loopback_caps_partner
+7500     0%      0%       0% sdr_mgbl_proxy
+8844     0%      0%       0% perl
+8862     0%      0%       0% perl
+9078     0%      0%       0% perl
+9081     0%      0%       0% pam_cli_agent
+9193     0%      0%       0% perl
+9236     0%      0%       0% perl
+17264    0%      0%       0% ssh_xr
+17548    0%      0%       0% sleep
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#sh l2vpn flexible-xconnect-service
+
+Wed Apr  8 15:47:43.238 UTC
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show  bgp  l2vpn  evpn advertised
+
+Wed Apr  8 15:47:43.854 UTC
+% BGP instance 'default' not active
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show version
+
+Wed Apr  8 15:47:44.407 UTC
+Cisco IOS XR Software, Version 7.11.2
+Copyright (c) 2013-2024 by Cisco Systems, Inc.
+
+Build Information:
+ Built By     : swtools
+ Built On     : Fri Mar 29 15:19:15 PDT 2024
+ Built Host   : iox-ucs-063
+ Workspace    : /auto/srcarchive11/prod/7.11.2/ncs5500/ws
+ Version      : 7.11.2
+ Location     : /opt/cisco/XR/packages/
+ Label        : 7.11.2-NCS5501_7112
+
+cisco NCS-5500 () processor
+System uptime is 1 hour 8 minutes
+
+RP/0/RP0/CPU0:ar3.BLB#copy running-config harddisk:cisco_ncs5501_2026-04-08_21-10-19-xr
+
+Wed Apr  8 15:47:44.496 UTC
+Destination file name (control-c to cancel): [/harddisk:/cisco_ncs5501_2026-04-08_21-10-19-xr]?
+
+.
+307 lines built in 1 second
+[OK]
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show running-config formal | include fpd
+
+Wed Apr  8 15:47:51.453 UTC
+fpd auto-upgrade enable
+RP/0/RP0/CPU0:ar3.BLB#show media
+
+Wed Apr  8 15:47:51.701 UTC
+
+Media Info for Location: node0_RP0_CPU0
+Partition                            Size     Used  Percent    Avail
+--------------------------------------------------------------------
+rootfs:                              3.9G     2.1G      56%     1.7G
+apphost:                             3.7G      29M       1%     3.5G
+harddisk:                            5.6G     1.8G      33%     3.6G
+log:                                 459M     168M      40%     257M
+config:                              459M     3.4M       1%     421M
+disk0:                               2.0G      18M       1%     1.8G
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#configure terminal
+
+Wed Apr  8 15:47:51.860 UTC
+RP/0/RP0/CPU0:ar3.BLB(config)#
+
+RP/0/RP0/CPU0:ar3.BLB(config)#lpts pifib hardware police flow ssh known rate 50000
+
+RP/0/RP0/CPU0:ar3.BLB(config)#commit
+
+Wed Apr  8 15:47:52.229 UTC
+exit
+RP/0/RP0/CPU0:ar3.BLB(config)#exit
+
+RP/0/RP0/CPU0:ar3.BLB#scp colt@10.80.109.133:/home/colt/backup/gimages/ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso /misc/disk1/
+
+Wed Apr  8 15:47:56.638 UTC
+Connecting to 10.80.109.133...22
+Password: 
+
+  Transferred 1167360 Bytes
+  Transferred 2334720 Bytes
+  Transferred 3502080 Bytes
+  Transferred 4669440 Bytes
+  Transferred 5836800 Bytes
+  Transferred 7004160 Bytes
+  Transferred 8171520 Bytes
+  Transferred 9338880 Bytes
+  Transferred 10506240 Bytes
+  Transferred 11673600 Bytes
+  Transferred 12840960 Bytes
+  Transferred 14008320 Bytes
+  Transferred 15175680 Bytes
+  Transferred 16343040 Bytes
+  Transferred 17510400 Bytes
+  Transferred 18677760 Bytes
+  Transferred 19845120 Bytes
+  Transferred 21012480 Bytes
+  Transferred 22179840 Bytes
+  Transferred 23347200 Bytes
+  Transferred 24514560 Bytes
+  Transferred 25681920 Bytes
+  Transferred 26849280 Bytes
+  Transferred 28016640 Bytes
+  Transferred 29184000 Bytes
+  Transferred 30351360 Bytes
+  Transferred 31518720 Bytes
+  Transferred 32686080 Bytes
+  Transferred 33853440 Bytes
+  Transferred 35020800 Bytes
+  Transferred 36188160 Bytes
+  Transferred 37355520 Bytes
+  Transferred 38522880 Bytes
+  Transferred 39690240 Bytes
+  Transferred 40857600 Bytes
+  Transferred 42024960 Bytes
+  Transferred 43192320 Bytes
+  Transferred 44359680 Bytes
+  Transferred 45527040 Bytes
+  Transferred 46694400 Bytes
+  Transferred 47861760 Bytes
+  Transferred 49029120 Bytes
+  Transferred 50196480 Bytes
+  Transferred 51363840 Bytes
+  Transferred 52531200 Bytes
+  Transferred 53698560 Bytes
+  Transferred 54865920 Bytes
+  Transferred 56033280 Bytes
+  Transferred 57200640 Bytes
+  Transferred 58368000 Bytes
+  Transferred 59535360 Bytes
+  Transferred 60702720 Bytes
+  Transferred 61870080 Bytes
+  Transferred 63037440 Bytes
+  Transferred 64204800 Bytes
+  Transferred 65372160 Bytes
+  Transferred 66539520 Bytes
+  Transferred 67706880 Bytes
+  Transferred 68874240 Bytes
+  Transferred 70041600 Bytes
+  Transferred 71208960 Bytes
+  Transferred 72376320 Bytes
+  Transferred 73543680 Bytes
+  Transferred 74711040 Bytes
+  Transferred 75878400 Bytes
+  Transferred 77045760 Bytes
+  Transferred 78213120 Bytes
+  Transferred 79380480 Bytes
+  Transferred 80547840 Bytes
+  Transferred 81715200 Bytes
+  Transferred 82882560 Bytes
+  Transferred 84049920 Bytes
+  Transferred 85217280 Bytes
+  Transferred 86384640 Bytes
+  Transferred 87552000 Bytes
+  Transferred 88719360 Bytes
+  Transferred 89886720 Bytes
+  Transferred 91054080 Bytes
+  Transferred 92221440 Bytes
+  Transferred 93388800 Bytes
+  Transferred 94556160 Bytes
+  Transferred 95723520 Bytes
+  Transferred 96890880 Bytes
+  Transferred 98058240 Bytes
+  Transferred 99225600 Bytes
+  Transferred 100392960 Bytes
+  Transferred 101560320 Bytes
+  Transferred 102727680 Bytes
+  Transferred 103895040 Bytes
+  Transferred 105062400 Bytes
+  Transferred 106229760 Bytes
+  Transferred 107397120 Bytes
+  Transferred 108564480 Bytes
+  Transferred 109731840 Bytes
+  Transferred 110899200 Bytes
+  Transferred 112066560 Bytes
+  Transferred 113233920 Bytes
+  Transferred 114401280 Bytes
+  Transferred 115568640 Bytes
+  Transferred 116736000 Bytes
+  Transferred 117903360 Bytes
+  Transferred 119070720 Bytes
+  Transferred 120238080 Bytes
+  Transferred 121405440 Bytes
+  Transferred 122572800 Bytes
+  Transferred 123740160 Bytes
+  Transferred 124907520 Bytes
+  Transferred 126074880 Bytes
+  Transferred 127242240 Bytes
+  Transferred 128409600 Bytes
+  Transferred 129576960 Bytes
+  Transferred 130744320 Bytes
+  Transferred 131911680 Bytes
+  Transferred 133079040 Bytes
+  Transferred 134246400 Bytes
+  Transferred 135413760 Bytes
+  Transferred 136581120 Bytes
+  Transferred 137748480 Bytes
+  Transferred 138915840 Bytes
+  Transferred 140083200 Bytes
+  Transferred 141250560 Bytes
+  Transferred 142417920 Bytes
+  Transferred 143585280 Bytes
+  Transferred 144752640 Bytes
+  Transferred 145920000 Bytes
+  Transferred 147087360 Bytes
+  Transferred 148254720 Bytes
+  Transferred 149422080 Bytes
+  Transferred 150589440 Bytes
+  Transferred 151756800 Bytes
+  Transferred 152924160 Bytes
+  Transferred 154091520 Bytes
+  Transferred 155258880 Bytes
+  Transferred 156426240 Bytes
+  Transferred 157593600 Bytes
+  Transferred 158760960 Bytes
+  Transferred 159928320 Bytes
+  Transferred 161095680 Bytes
+  Transferred 162263040 Bytes
+  Transferred 163430400 Bytes
+  Transferred 164597760 Bytes
+  Transferred 165765120 Bytes
+  Transferred 166932480 Bytes
+  Transferred 168099840 Bytes
+  Transferred 169267200 Bytes
+  Transferred 170434560 Bytes
+  Transferred 171601920 Bytes
+  Transferred 172769280 Bytes
+  Transferred 173936640 Bytes
+  Transferred 175104000 Bytes
+  Transferred 176271360 Bytes
+  Transferred 177438720 Bytes
+  Transferred 178606080 Bytes
+  Transferred 179773440 Bytes
+  Transferred 180940800 Bytes
+  Transferred 182108160 Bytes
+  Transferred 183275520 Bytes
+  Transferred 184442880 Bytes
+  Transferred 185610240 Bytes
+  Transferred 186777600 Bytes
+  Transferred 187944960 Bytes
+  Transferred 189112320 Bytes
+  Transferred 190279680 Bytes
+  Transferred 191447040 Bytes
+  Transferred 192614400 Bytes
+  Transferred 193781760 Bytes
+  Transferred 194949120 Bytes
+  Transferred 196116480 Bytes
+  Transferred 197283840 Bytes
+  Transferred 198451200 Bytes
+  Transferred 199618560 Bytes
+  Transferred 200785920 Bytes
+  Transferred 201953280 Bytes
+  Transferred 203120640 Bytes
+  Transferred 204288000 Bytes
+  Transferred 205455360 Bytes
+  Transferred 206622720 Bytes
+  Transferred 207790080 Bytes
+  Transferred 208957440 Bytes
+  Transferred 210124800 Bytes
+  Transferred 211292160 Bytes
+  Transferred 212459520 Bytes
+  Transferred 213626880 Bytes
+  Transferred 214794240 Bytes
+  Transferred 215961600 Bytes
+  Transferred 217128960 Bytes
+  Transferred 218296320 Bytes
+  Transferred 219463680 Bytes
+  Transferred 220631040 Bytes
+  Transferred 221798400 Bytes
+  Transferred 222965760 Bytes
+  Transferred 224133120 Bytes
+  Transferred 225300480 Bytes
+  Transferred 226467840 Bytes
+  Transferred 227635200 Bytes
+  Transferred 228802560 Bytes
+  Transferred 229969920 Bytes
+  Transferred 231137280 Bytes
+  Transferred 232304640 Bytes
+  Transferred 233472000 Bytes
+  Transferred 234639360 Bytes
+  Transferred 235806720 Bytes
+  Transferred 236974080 Bytes
+  Transferred 238141440 Bytes
+  Transferred 239308800 Bytes
+  Transferred 240476160 Bytes
+  Transferred 241643520 Bytes
+  Transferred 242810880 Bytes
+  Transferred 243978240 Bytes
+  Transferred 245145600 Bytes
+  Transferred 246312960 Bytes
+  Transferred 247480320 Bytes
+  Transferred 248647680 Bytes
+  Transferred 249815040 Bytes
+  Transferred 250982400 Bytes
+  Transferred 252149760 Bytes
+  Transferred 253317120 Bytes
+  Transferred 254484480 Bytes
+  Transferred 255651840 Bytes
+  Transferred 256819200 Bytes
+  Transferred 257986560 Bytes
+  Transferred 259153920 Bytes
+  Transferred 260321280 Bytes
+  Transferred 261488640 Bytes
+  Transferred 262656000 Bytes
+  Transferred 263823360 Bytes
+  Transferred 264990720 Bytes
+  Transferred 266158080 Bytes
+  Transferred 267325440 Bytes
+  Transferred 268492800 Bytes
+  Transferred 269660160 Bytes
+  Transferred 270827520 Bytes
+  Transferred 271994880 Bytes
+  Transferred 273162240 Bytes
+  Transferred 274329600 Bytes
+  Transferred 275496960 Bytes
+  Transferred 276664320 Bytes
+  Transferred 277831680 Bytes
+  Transferred 278999040 Bytes
+  Transferred 280166400 Bytes
+  Transferred 281333760 Bytes
+  Transferred 282501120 Bytes
+  Transferred 283668480 Bytes
+  Transferred 284835840 Bytes
+  Transferred 286003200 Bytes
+  Transferred 287170560 Bytes
+  Transferred 288337920 Bytes
+  Transferred 289505280 Bytes
+  Transferred 290672640 Bytes
+  Transferred 291840000 Bytes
+  Transferred 293007360 Bytes
+  Transferred 294174720 Bytes
+  Transferred 295342080 Bytes
+  Transferred 296509440 Bytes
+  Transferred 297676800 Bytes
+  Transferred 298844160 Bytes
+  Transferred 300011520 Bytes
+  Transferred 301178880 Bytes
+  Transferred 302346240 Bytes
+  Transferred 303513600 Bytes
+  Transferred 304680960 Bytes
+  Transferred 305848320 Bytes
+  Transferred 307015680 Bytes
+  Transferred 308183040 Bytes
+  Transferred 309350400 Bytes
+  Transferred 310517760 Bytes
+  Transferred 311685120 Bytes
+  Transferred 312852480 Bytes
+  Transferred 314019840 Bytes
+  Transferred 315187200 Bytes
+  Transferred 316354560 Bytes
+  Transferred 317521920 Bytes
+  Transferred 318689280 Bytes
+  Transferred 319856640 Bytes
+  Transferred 321024000 Bytes
+  Transferred 322191360 Bytes
+  Transferred 323358720 Bytes
+  Transferred 324526080 Bytes
+  Transferred 325693440 Bytes
+  Transferred 326860800 Bytes
+  Transferred 328028160 Bytes
+  Transferred 329195520 Bytes
+  Transferred 330362880 Bytes
+  Transferred 331530240 Bytes
+  Transferred 332697600 Bytes
+  Transferred 333864960 Bytes
+  Transferred 335032320 Bytes
+  Transferred 336199680 Bytes
+  Transferred 337367040 Bytes
+  Transferred 338534400 Bytes
+  Transferred 339701760 Bytes
+  Transferred 340869120 Bytes
+  Transferred 342036480 Bytes
+  Transferred 343203840 Bytes
+  Transferred 344371200 Bytes
+  Transferred 345538560 Bytes
+  Transferred 346705920 Bytes
+  Transferred 347873280 Bytes
+  Transferred 349040640 Bytes
+  Transferred 350208000 Bytes
+  Transferred 351375360 Bytes
+  Transferred 352542720 Bytes
+  Transferred 353710080 Bytes
+  Transferred 354877440 Bytes
+  Transferred 356044800 Bytes
+  Transferred 357212160 Bytes
+  Transferred 358379520 Bytes
+  Transferred 359546880 Bytes
+  Transferred 360714240 Bytes
+  Transferred 361881600 Bytes
+  Transferred 363048960 Bytes
+  Transferred 364216320 Bytes
+  Transferred 365383680 Bytes
+  Transferred 366551040 Bytes
+  Transferred 367718400 Bytes
+  Transferred 368885760 Bytes
+  Transferred 370053120 Bytes
+  Transferred 371220480 Bytes
+  Transferred 372387840 Bytes
+  Transferred 373555200 Bytes
+  Transferred 374722560 Bytes
+  Transferred 375889920 Bytes
+  Transferred 377057280 Bytes
+  Transferred 378224640 Bytes
+  Transferred 379392000 Bytes
+  Transferred 380559360 Bytes
+  Transferred 381726720 Bytes
+  Transferred 382894080 Bytes
+  Transferred 384061440 Bytes
+  Transferred 385228800 Bytes
+  Transferred 386396160 Bytes
+  Transferred 387563520 Bytes
+  Transferred 388730880 Bytes
+  Transferred 389898240 Bytes
+  Transferred 391065600 Bytes
+  Transferred 392232960 Bytes
+  Transferred 393400320 Bytes
+  Transferred 394567680 Bytes
+  Transferred 395735040 Bytes
+  Transferred 396902400 Bytes
+  Transferred 398069760 Bytes
+  Transferred 399237120 Bytes
+  Transferred 400404480 Bytes
+  Transferred 401571840 Bytes
+  Transferred 402739200 Bytes
+  Transferred 403906560 Bytes
+  Transferred 405073920 Bytes
+  Transferred 406241280 Bytes
+  Transferred 407408640 Bytes
+  Transferred 408576000 Bytes
+  Transferred 409743360 Bytes
+  Transferred 410910720 Bytes
+  Transferred 412078080 Bytes
+  Transferred 413245440 Bytes
+  Transferred 414412800 Bytes
+  Transferred 415580160 Bytes
+  Transferred 416747520 Bytes
+  Transferred 417914880 Bytes
+  Transferred 419082240 Bytes
+  Transferred 420249600 Bytes
+  Transferred 421416960 Bytes
+  Transferred 422584320 Bytes
+  Transferred 423751680 Bytes
+  Transferred 424919040 Bytes
+  Transferred 426086400 Bytes
+  Transferred 427253760 Bytes
+  Transferred 428421120 Bytes
+  Transferred 429588480 Bytes
+  Transferred 430755840 Bytes
+  Transferred 431923200 Bytes
+  Transferred 433090560 Bytes
+  Transferred 434257920 Bytes
+  Transferred 435425280 Bytes
+  Transferred 436592640 Bytes
+  Transferred 437760000 Bytes
+  Transferred 438927360 Bytes
+  Transferred 440094720 Bytes
+  Transferred 441262080 Bytes
+  Transferred 442429440 Bytes
+  Transferred 443596800 Bytes
+  Transferred 444764160 Bytes
+  Transferred 445931520 Bytes
+  Transferred 447098880 Bytes
+  Transferred 448266240 Bytes
+  Transferred 449433600 Bytes
+  Transferred 450600960 Bytes
+  Transferred 451768320 Bytes
+  Transferred 452935680 Bytes
+  Transferred 454103040 Bytes
+  Transferred 455270400 Bytes
+  Transferred 456437760 Bytes
+  Transferred 457605120 Bytes
+  Transferred 458772480 Bytes
+  Transferred 459939840 Bytes
+  Transferred 461107200 Bytes
+  Transferred 462274560 Bytes
+  Transferred 463441920 Bytes
+  Transferred 464609280 Bytes
+  Transferred 465776640 Bytes
+  Transferred 466944000 Bytes
+  Transferred 468111360 Bytes
+  Transferred 469278720 Bytes
+  Transferred 470446080 Bytes
+  Transferred 471613440 Bytes
+  Transferred 472780800 Bytes
+  Transferred 473948160 Bytes
+  Transferred 475115520 Bytes
+  Transferred 476282880 Bytes
+  Transferred 477450240 Bytes
+  Transferred 478617600 Bytes
+  Transferred 479784960 Bytes
+  Transferred 480952320 Bytes
+  Transferred 482119680 Bytes
+  Transferred 483287040 Bytes
+  Transferred 484454400 Bytes
+  Transferred 485621760 Bytes
+  Transferred 486789120 Bytes
+  Transferred 487956480 Bytes
+  Transferred 489123840 Bytes
+  Transferred 490291200 Bytes
+  Transferred 491458560 Bytes
+  Transferred 492625920 Bytes
+  Transferred 493793280 Bytes
+  Transferred 494960640 Bytes
+  Transferred 496128000 Bytes
+  Transferred 497295360 Bytes
+  Transferred 498462720 Bytes
+  Transferred 499630080 Bytes
+  Transferred 500797440 Bytes
+  Transferred 501964800 Bytes
+  Transferred 503132160 Bytes
+  Transferred 504299520 Bytes
+  Transferred 505466880 Bytes
+  Transferred 506634240 Bytes
+  Transferred 507801600 Bytes
+  Transferred 508968960 Bytes
+  Transferred 510136320 Bytes
+  Transferred 511303680 Bytes
+  Transferred 512471040 Bytes
+  Transferred 513638400 Bytes
+  Transferred 514805760 Bytes
+  Transferred 515973120 Bytes
+  Transferred 517140480 Bytes
+  Transferred 518307840 Bytes
+  Transferred 519475200 Bytes
+  Transferred 520642560 Bytes
+  Transferred 521809920 Bytes
+  Transferred 522977280 Bytes
+  Transferred 524144640 Bytes
+  Transferred 525312000 Bytes
+  Transferred 526479360 Bytes
+  Transferred 527646720 Bytes
+  Transferred 528814080 Bytes
+  Transferred 529981440 Bytes
+  Transferred 531148800 Bytes
+  Transferred 532316160 Bytes
+  Transferred 533483520 Bytes
+  Transferred 534650880 Bytes
+  Transferred 535818240 Bytes
+  Transferred 536985600 Bytes
+  Transferred 538152960 Bytes
+  Transferred 539320320 Bytes
+  Transferred 540487680 Bytes
+  Transferred 541655040 Bytes
+  Transferred 542822400 Bytes
+  Transferred 543989760 Bytes
+  Transferred 545157120 Bytes
+  Transferred 546324480 Bytes
+  Transferred 547491840 Bytes
+  Transferred 548659200 Bytes
+  Transferred 549826560 Bytes
+  Transferred 550993920 Bytes
+  Transferred 552161280 Bytes
+  Transferred 553328640 Bytes
+  Transferred 554496000 Bytes
+  Transferred 555663360 Bytes
+  Transferred 556830720 Bytes
+  Transferred 557998080 Bytes
+  Transferred 559165440 Bytes
+  Transferred 560332800 Bytes
+  Transferred 561500160 Bytes
+  Transferred 562667520 Bytes
+  Transferred 563834880 Bytes
+  Transferred 565002240 Bytes
+  Transferred 566169600 Bytes
+  Transferred 567336960 Bytes
+  Transferred 568504320 Bytes
+  Transferred 569671680 Bytes
+  Transferred 570839040 Bytes
+  Transferred 572006400 Bytes
+  Transferred 573173760 Bytes
+  Transferred 574341120 Bytes
+  Transferred 575508480 Bytes
+  Transferred 576675840 Bytes
+  Transferred 577843200 Bytes
+  Transferred 579010560 Bytes
+  Transferred 580177920 Bytes
+  Transferred 581345280 Bytes
+  Transferred 582512640 Bytes
+  Transferred 583680000 Bytes
+  Transferred 584847360 Bytes
+  Transferred 586014720 Bytes
+  Transferred 587182080 Bytes
+  Transferred 588349440 Bytes
+  Transferred 589516800 Bytes
+  Transferred 590684160 Bytes
+  Transferred 591851520 Bytes
+  Transferred 593018880 Bytes
+  Transferred 594186240 Bytes
+  Transferred 595353600 Bytes
+  Transferred 596520960 Bytes
+  Transferred 597688320 Bytes
+  Transferred 598855680 Bytes
+  Transferred 600023040 Bytes
+  Transferred 601190400 Bytes
+  Transferred 602357760 Bytes
+  Transferred 603525120 Bytes
+  Transferred 604692480 Bytes
+  Transferred 605859840 Bytes
+  Transferred 607027200 Bytes
+  Transferred 608194560 Bytes
+  Transferred 609361920 Bytes
+  Transferred 610529280 Bytes
+  Transferred 611696640 Bytes
+  Transferred 612864000 Bytes
+  Transferred 614031360 Bytes
+  Transferred 615198720 Bytes
+  Transferred 616366080 Bytes
+  Transferred 617533440 Bytes
+  Transferred 618700800 Bytes
+  Transferred 619868160 Bytes
+  Transferred 621035520 Bytes
+  Transferred 622202880 Bytes
+  Transferred 623370240 Bytes
+  Transferred 624537600 Bytes
+  Transferred 625704960 Bytes
+  Transferred 626872320 Bytes
+  Transferred 628039680 Bytes
+  Transferred 629207040 Bytes
+  Transferred 630374400 Bytes
+  Transferred 631541760 Bytes
+  Transferred 632709120 Bytes
+  Transferred 633876480 Bytes
+  Transferred 635043840 Bytes
+  Transferred 636211200 Bytes
+  Transferred 637378560 Bytes
+  Transferred 638545920 Bytes
+  Transferred 639713280 Bytes
+  Transferred 640880640 Bytes
+  Transferred 642048000 Bytes
+  Transferred 643215360 Bytes
+  Transferred 644382720 Bytes
+  Transferred 645550080 Bytes
+  Transferred 646717440 Bytes
+  Transferred 647884800 Bytes
+  Transferred 649052160 Bytes
+  Transferred 650219520 Bytes
+  Transferred 651386880 Bytes
+  Transferred 652554240 Bytes
+  Transferred 653721600 Bytes
+  Transferred 654888960 Bytes
+  Transferred 656056320 Bytes
+  Transferred 657223680 Bytes
+  Transferred 658391040 Bytes
+  Transferred 659558400 Bytes
+  Transferred 660725760 Bytes
+  Transferred 661893120 Bytes
+  Transferred 663060480 Bytes
+  Transferred 664227840 Bytes
+  Transferred 665395200 Bytes
+  Transferred 666562560 Bytes
+  Transferred 667729920 Bytes
+  Transferred 668897280 Bytes
+  Transferred 670064640 Bytes
+  Transferred 671232000 Bytes
+  Transferred 672399360 Bytes
+  Transferred 673566720 Bytes
+  Transferred 674734080 Bytes
+  Transferred 675901440 Bytes
+  Transferred 677068800 Bytes
+  Transferred 678236160 Bytes
+  Transferred 679403520 Bytes
+  Transferred 680570880 Bytes
+  Transferred 681738240 Bytes
+  Transferred 682905600 Bytes
+  Transferred 684072960 Bytes
+  Transferred 685240320 Bytes
+  Transferred 686407680 Bytes
+  Transferred 687575040 Bytes
+  Transferred 688742400 Bytes
+  Transferred 689909760 Bytes
+  Transferred 691077120 Bytes
+  Transferred 692244480 Bytes
+  Transferred 693411840 Bytes
+  Transferred 694579200 Bytes
+  Transferred 695746560 Bytes
+  Transferred 696913920 Bytes
+  Transferred 698081280 Bytes
+  Transferred 699248640 Bytes
+  Transferred 700416000 Bytes
+  Transferred 701583360 Bytes
+  Transferred 702750720 Bytes
+  Transferred 703918080 Bytes
+  Transferred 705085440 Bytes
+  Transferred 706252800 Bytes
+  Transferred 707420160 Bytes
+  Transferred 708587520 Bytes
+  Transferred 709754880 Bytes
+  Transferred 710922240 Bytes
+  Transferred 712089600 Bytes
+  Transferred 713256960 Bytes
+  Transferred 714424320 Bytes
+  Transferred 715591680 Bytes
+  Transferred 716759040 Bytes
+  Transferred 717926400 Bytes
+  Transferred 719093760 Bytes
+  Transferred 720261120 Bytes
+  Transferred 721428480 Bytes
+  Transferred 722595840 Bytes
+  Transferred 723763200 Bytes
+  Transferred 724930560 Bytes
+  Transferred 726097920 Bytes
+  Transferred 727265280 Bytes
+  Transferred 728432640 Bytes
+  Transferred 729600000 Bytes
+  Transferred 730767360 Bytes
+  Transferred 731934720 Bytes
+  Transferred 733102080 Bytes
+  Transferred 734269440 Bytes
+  Transferred 735436800 Bytes
+  Transferred 736604160 Bytes
+  Transferred 737771520 Bytes
+  Transferred 738938880 Bytes
+  Transferred 740106240 Bytes
+  Transferred 741273600 Bytes
+  Transferred 742440960 Bytes
+  Transferred 743608320 Bytes
+  Transferred 744775680 Bytes
+  Transferred 745943040 Bytes
+  Transferred 747110400 Bytes
+  Transferred 748277760 Bytes
+  Transferred 749445120 Bytes
+  Transferred 750612480 Bytes
+  Transferred 751779840 Bytes
+  Transferred 752947200 Bytes
+  Transferred 754114560 Bytes
+  Transferred 755281920 Bytes
+  Transferred 756449280 Bytes
+  Transferred 757616640 Bytes
+  Transferred 758784000 Bytes
+  Transferred 759951360 Bytes
+  Transferred 761118720 Bytes
+  Transferred 762286080 Bytes
+  Transferred 763453440 Bytes
+  Transferred 764620800 Bytes
+  Transferred 765788160 Bytes
+  Transferred 766955520 Bytes
+  Transferred 768122880 Bytes
+  Transferred 769290240 Bytes
+  Transferred 770457600 Bytes
+  Transferred 771624960 Bytes
+  Transferred 772792320 Bytes
+  Transferred 773959680 Bytes
+  Transferred 775127040 Bytes
+  Transferred 776294400 Bytes
+  Transferred 777461760 Bytes
+  Transferred 778629120 Bytes
+  Transferred 779796480 Bytes
+  Transferred 780963840 Bytes
+  Transferred 782131200 Bytes
+  Transferred 783298560 Bytes
+  Transferred 784465920 Bytes
+  Transferred 785633280 Bytes
+  Transferred 786800640 Bytes
+  Transferred 787968000 Bytes
+  Transferred 789135360 Bytes
+  Transferred 790302720 Bytes
+  Transferred 791470080 Bytes
+  Transferred 792637440 Bytes
+  Transferred 793804800 Bytes
+  Transferred 794972160 Bytes
+  Transferred 796139520 Bytes
+  Transferred 797306880 Bytes
+  Transferred 798474240 Bytes
+  Transferred 799641600 Bytes
+  Transferred 800808960 Bytes
+  Transferred 801976320 Bytes
+  Transferred 803143680 Bytes
+  Transferred 804311040 Bytes
+  Transferred 805478400 Bytes
+  Transferred 806645760 Bytes
+  Transferred 807813120 Bytes
+  Transferred 808980480 Bytes
+  Transferred 810147840 Bytes
+  Transferred 811315200 Bytes
+  Transferred 812482560 Bytes
+  Transferred 813649920 Bytes
+  Transferred 814817280 Bytes
+  Transferred 815984640 Bytes
+  Transferred 817152000 Bytes
+  Transferred 818319360 Bytes
+  Transferred 819486720 Bytes
+  Transferred 820654080 Bytes
+  Transferred 821821440 Bytes
+  Transferred 822988800 Bytes
+  Transferred 824156160 Bytes
+  Transferred 825323520 Bytes
+  Transferred 826490880 Bytes
+  Transferred 827658240 Bytes
+  Transferred 828825600 Bytes
+  Transferred 829992960 Bytes
+  Transferred 831160320 Bytes
+  Transferred 832327680 Bytes
+  Transferred 833495040 Bytes
+  Transferred 834662400 Bytes
+  Transferred 835829760 Bytes
+  Transferred 836997120 Bytes
+  Transferred 838164480 Bytes
+  Transferred 839331840 Bytes
+  Transferred 840499200 Bytes
+  Transferred 841666560 Bytes
+  Transferred 842833920 Bytes
+  Transferred 844001280 Bytes
+  Transferred 845168640 Bytes
+  Transferred 846336000 Bytes
+  Transferred 847503360 Bytes
+  Transferred 848670720 Bytes
+  Transferred 849838080 Bytes
+  Transferred 851005440 Bytes
+  Transferred 852172800 Bytes
+  Transferred 853340160 Bytes
+  Transferred 854507520 Bytes
+  Transferred 855674880 Bytes
+  Transferred 856842240 Bytes
+  Transferred 858009600 Bytes
+  Transferred 859176960 Bytes
+  Transferred 860344320 Bytes
+  Transferred 861511680 Bytes
+  Transferred 862679040 Bytes
+  Transferred 863846400 Bytes
+  Transferred 865013760 Bytes
+  Transferred 866181120 Bytes
+  Transferred 867348480 Bytes
+  Transferred 868515840 Bytes
+  Transferred 869683200 Bytes
+  Transferred 870850560 Bytes
+  Transferred 872017920 Bytes
+  Transferred 873185280 Bytes
+  Transferred 874352640 Bytes
+  Transferred 875520000 Bytes
+  Transferred 876687360 Bytes
+  Transferred 877854720 Bytes
+  Transferred 879022080 Bytes
+  Transferred 880189440 Bytes
+  Transferred 881356800 Bytes
+  Transferred 882524160 Bytes
+  Transferred 883691520 Bytes
+  Transferred 884858880 Bytes
+  Transferred 886026240 Bytes
+  Transferred 887193600 Bytes
+  Transferred 888360960 Bytes
+  Transferred 889528320 Bytes
+  Transferred 890695680 Bytes
+  Transferred 891863040 Bytes
+  Transferred 893030400 Bytes
+  Transferred 894197760 Bytes
+  Transferred 895365120 Bytes
+  Transferred 896532480 Bytes
+  Transferred 897699840 Bytes
+  Transferred 898867200 Bytes
+  Transferred 900034560 Bytes
+  Transferred 901201920 Bytes
+  Transferred 902369280 Bytes
+  Transferred 903536640 Bytes
+  Transferred 904704000 Bytes
+  Transferred 905871360 Bytes
+  Transferred 907038720 Bytes
+  Transferred 908206080 Bytes
+  Transferred 909373440 Bytes
+  Transferred 910540800 Bytes
+  Transferred 911708160 Bytes
+  Transferred 912875520 Bytes
+  Transferred 914042880 Bytes
+  Transferred 915210240 Bytes
+  Transferred 916377600 Bytes
+  Transferred 917544960 Bytes
+  Transferred 918712320 Bytes
+  Transferred 919879680 Bytes
+  Transferred 921047040 Bytes
+  Transferred 922214400 Bytes
+  Transferred 923381760 Bytes
+  Transferred 924549120 Bytes
+  Transferred 925716480 Bytes
+  Transferred 926883840 Bytes
+  Transferred 928051200 Bytes
+  Transferred 929218560 Bytes
+  Transferred 930385920 Bytes
+  Transferred 931553280 Bytes
+  Transferred 932720640 Bytes
+  Transferred 933888000 Bytes
+  Transferred 935055360 Bytes
+  Transferred 936222720 Bytes
+  Transferred 937390080 Bytes
+  Transferred 938557440 Bytes
+  Transferred 939724800 Bytes
+  Transferred 940892160 Bytes
+  Transferred 942059520 Bytes
+  Transferred 943226880 Bytes
+  Transferred 944394240 Bytes
+  Transferred 945561600 Bytes
+  Transferred 946728960 Bytes
+  Transferred 947896320 Bytes
+  Transferred 949063680 Bytes
+  Transferred 950231040 Bytes
+  Transferred 951398400 Bytes
+  Transferred 952565760 Bytes
+  Transferred 953733120 Bytes
+  Transferred 954900480 Bytes
+  Transferred 956067840 Bytes
+  Transferred 957235200 Bytes
+  Transferred 958402560 Bytes
+  Transferred 959569920 Bytes
+  Transferred 960737280 Bytes
+  Transferred 961904640 Bytes
+  Transferred 963072000 Bytes
+  Transferred 964239360 Bytes
+  Transferred 965406720 Bytes
+  Transferred 966574080 Bytes
+  Transferred 967741440 Bytes
+  Transferred 968908800 Bytes
+  Transferred 970076160 Bytes
+  Transferred 971243520 Bytes
+  Transferred 972410880 Bytes
+  Transferred 973578240 Bytes
+  Transferred 974745600 Bytes
+  Transferred 975912960 Bytes
+  Transferred 977080320 Bytes
+  Transferred 978247680 Bytes
+  Transferred 979415040 Bytes
+  Transferred 980582400 Bytes
+  Transferred 981749760 Bytes
+  Transferred 982917120 Bytes
+  Transferred 984084480 Bytes
+  Transferred 985251840 Bytes
+  Transferred 986419200 Bytes
+  Transferred 987586560 Bytes
+  Transferred 988753920 Bytes
+  Transferred 989921280 Bytes
+  Transferred 991088640 Bytes
+  Transferred 992256000 Bytes
+  Transferred 993423360 Bytes
+  Transferred 994590720 Bytes
+  Transferred 995758080 Bytes
+  Transferred 996925440 Bytes
+  Transferred 998092800 Bytes
+  Transferred 999260160 Bytes
+  Transferred 1000427520 Bytes
+  Transferred 1001594880 Bytes
+  Transferred 1002762240 Bytes
+  Transferred 1003929600 Bytes
+  Transferred 1005096960 Bytes
+  Transferred 1006264320 Bytes
+  Transferred 1007431680 Bytes
+  Transferred 1008599040 Bytes
+  Transferred 1009766400 Bytes
+  Transferred 1010933760 Bytes
+  Transferred 1012101120 Bytes
+  Transferred 1013268480 Bytes
+  Transferred 1014435840 Bytes
+  Transferred 1015603200 Bytes
+  Transferred 1016770560 Bytes
+  Transferred 1017937920 Bytes
+  Transferred 1019105280 Bytes
+  Transferred 1020272640 Bytes
+  Transferred 1021440000 Bytes
+  Transferred 1022607360 Bytes
+  Transferred 1023774720 Bytes
+  Transferred 1024942080 Bytes
+  Transferred 1026109440 Bytes
+  Transferred 1027276800 Bytes
+  Transferred 1028444160 Bytes
+  Transferred 1029611520 Bytes
+  Transferred 1030778880 Bytes
+  Transferred 1031946240 Bytes
+  Transferred 1033113600 Bytes
+  Transferred 1034280960 Bytes
+  Transferred 1035448320 Bytes
+  Transferred 1036615680 Bytes
+  Transferred 1037783040 Bytes
+  Transferred 1038950400 Bytes
+  Transferred 1040117760 Bytes
+  Transferred 1041285120 Bytes
+  Transferred 1042452480 Bytes
+  Transferred 1043619840 Bytes
+  Transferred 1044787200 Bytes
+  Transferred 1045954560 Bytes
+  Transferred 1047121920 Bytes
+  Transferred 1048289280 Bytes
+  Transferred 1049456640 Bytes
+  Transferred 1050624000 Bytes
+  Transferred 1051791360 Bytes
+  Transferred 1052958720 Bytes
+  Transferred 1054126080 Bytes
+  Transferred 1055293440 Bytes
+  Transferred 1056460800 Bytes
+  Transferred 1057628160 Bytes
+  Transferred 1058795520 Bytes
+  Transferred 1059962880 Bytes
+  Transferred 1061130240 Bytes
+  Transferred 1062297600 Bytes
+  Transferred 1063464960 Bytes
+  Transferred 1064632320 Bytes
+  Transferred 1065799680 Bytes
+  Transferred 1066967040 Bytes
+  Transferred 1068134400 Bytes
+  Transferred 1069301760 Bytes
+  Transferred 1070469120 Bytes
+  Transferred 1071636480 Bytes
+  Transferred 1072803840 Bytes
+  Transferred 1073971200 Bytes
+  Transferred 1075138560 Bytes
+  Transferred 1076305920 Bytes
+  Transferred 1077473280 Bytes
+  Transferred 1078640640 Bytes
+  Transferred 1079808000 Bytes
+  Transferred 1080975360 Bytes
+  Transferred 1082142720 Bytes
+  Transferred 1083310080 Bytes
+  Transferred 1084477440 Bytes
+  Transferred 1085644800 Bytes
+  Transferred 1086812160 Bytes
+  Transferred 1087979520 Bytes
+  Transferred 1089146880 Bytes
+  Transferred 1090314240 Bytes
+  Transferred 1091481600 Bytes
+  Transferred 1092648960 Bytes
+  Transferred 1093816320 Bytes
+  Transferred 1094983680 Bytes
+  Transferred 1096151040 Bytes
+  Transferred 1097318400 Bytes
+  Transferred 1098485760 Bytes
+  Transferred 1099653120 Bytes
+  Transferred 1100820480 Bytes
+  Transferred 1101987840 Bytes
+  Transferred 1103155200 Bytes
+  Transferred 1104322560 Bytes
+  Transferred 1105489920 Bytes
+  Transferred 1106657280 Bytes
+  Transferred 1107824640 Bytes
+  Transferred 1108992000 Bytes
+  Transferred 1110159360 Bytes
+  Transferred 1111326720 Bytes
+  Transferred 1112494080 Bytes
+  Transferred 1113661440 Bytes
+  Transferred 1114828800 Bytes
+  Transferred 1115996160 Bytes
+  Transferred 1117163520 Bytes
+  Transferred 1118330880 Bytes
+  Transferred 1119498240 Bytes
+  Transferred 1120665600 Bytes
+  Transferred 1121832960 Bytes
+  Transferred 1123000320 Bytes
+  Transferred 1124167680 Bytes
+  Transferred 1125335040 Bytes
+  Transferred 1126502400 Bytes
+  Transferred 1127669760 Bytes
+  Transferred 1128837120 Bytes
+  Transferred 1130004480 Bytes
+  Transferred 1131171840 Bytes
+  Transferred 1132339200 Bytes
+  Transferred 1133506560 Bytes
+  Transferred 1134673920 Bytes
+  Transferred 1135841280 Bytes
+  Transferred 1137008640 Bytes
+  Transferred 1138176000 Bytes
+  Transferred 1139343360 Bytes
+  Transferred 1140510720 Bytes
+  Transferred 1141678080 Bytes
+  Transferred 1142845440 Bytes
+  Transferred 1144012800 Bytes
+  Transferred 1145180160 Bytes
+  Transferred 1146347520 Bytes
+  Transferred 1147514880 Bytes
+  Transferred 1148682240 Bytes
+  Transferred 1149849600 Bytes
+  Transferred 1151016960 Bytes
+  Transferred 1152184320 Bytes
+  Transferred 1153351680 Bytes
+  Transferred 1154519040 Bytes
+  Transferred 1155686400 Bytes
+  Transferred 1156853760 Bytes
+  Transferred 1158021120 Bytes
+  Transferred 1159188480 Bytes
+  Transferred 1160355840 Bytes
+  Transferred 1161523200 Bytes
+  Transferred 1162690560 Bytes
+  Transferred 1163857920 Bytes
+  Transferred 1165025280 Bytes
+  Transferred 1166192640 Bytes
+  Transferred 1167360000 Bytes
+  Transferred 1168527360 Bytes
+  Transferred 1169694720 Bytes
+  Transferred 1170862080 Bytes
+  Transferred 1172029440 Bytes
+  Transferred 1173196800 Bytes
+  Transferred 1174364160 Bytes
+  Transferred 1175531520 Bytes
+  Transferred 1176698880 Bytes
+  Transferred 1177866240 Bytes
+  Transferred 1179033600 Bytes
+  Transferred 1180200960 Bytes
+  Transferred 1181368320 Bytes
+  Transferred 1182535680 Bytes
+  Transferred 1183703040 Bytes
+  Transferred 1184870400 Bytes
+  Transferred 1186037760 Bytes
+  Transferred 1187205120 Bytes
+  Transferred 1188372480 Bytes
+  Transferred 1189539840 Bytes
+  Transferred 1190707200 Bytes
+  Transferred 1191874560 Bytes
+  Transferred 1193041920 Bytes
+  Transferred 1194209280 Bytes
+  Transferred 1195376640 Bytes
+  Transferred 1196544000 Bytes
+  Transferred 1197711360 Bytes
+  Transferred 1198878720 Bytes
+  Transferred 1200046080 Bytes
+  Transferred 1201213440 Bytes
+  Transferred 1202380800 Bytes
+  Transferred 1203548160 Bytes
+  Transferred 1204715520 Bytes
+  Transferred 1205882880 Bytes
+  Transferred 1207050240 Bytes
+  Transferred 1208217600 Bytes
+  Transferred 1209384960 Bytes
+  Transferred 1210552320 Bytes
+  Transferred 1211719680 Bytes
+  Transferred 1212887040 Bytes
+  Transferred 1214054400 Bytes
+  Transferred 1215221760 Bytes
+  Transferred 1216389120 Bytes
+  Transferred 1217556480 Bytes
+  Transferred 1218723840 Bytes
+  Transferred 1219891200 Bytes
+  Transferred 1221058560 Bytes
+  Transferred 1222225920 Bytes
+  Transferred 1223393280 Bytes
+  Transferred 1224560640 Bytes
+  Transferred 1225728000 Bytes
+  Transferred 1226895360 Bytes
+  Transferred 1228062720 Bytes
+  Transferred 1229230080 Bytes
+  Transferred 1230397440 Bytes
+  Transferred 1231564800 Bytes
+  Transferred 1232732160 Bytes
+  Transferred 1233899520 Bytes
+  Transferred 1235066880 Bytes
+  Transferred 1236234240 Bytes
+  Transferred 1237401600 Bytes
+  Transferred 1238568960 Bytes
+  Transferred 1239736320 Bytes
+  Transferred 1240903680 Bytes
+  Transferred 1242071040 Bytes
+  Transferred 1243238400 Bytes
+  Transferred 1244405760 Bytes
+  Transferred 1245573120 Bytes
+  Transferred 1246740480 Bytes
+  Transferred 1247907840 Bytes
+  Transferred 1249075200 Bytes
+  Transferred 1250242560 Bytes
+  Transferred 1251409920 Bytes
+  Transferred 1252577280 Bytes
+  Transferred 1253744640 Bytes
+  Transferred 1254912000 Bytes
+  Transferred 1256079360 Bytes
+  Transferred 1257246720 Bytes
+  Transferred 1258414080 Bytes
+  Transferred 1259581440 Bytes
+  Transferred 1260748800 Bytes
+  Transferred 1261916160 Bytes
+  Transferred 1263083520 Bytes
+  Transferred 1264250880 Bytes
+  Transferred 1265418240 Bytes
+  Transferred 1266585600 Bytes
+  Transferred 1267752960 Bytes
+  Transferred 1268920320 Bytes
+  Transferred 1270087680 Bytes
+  Transferred 1271255040 Bytes
+  Transferred 1272422400 Bytes
+  Transferred 1273589760 Bytes
+  Transferred 1274757120 Bytes
+  Transferred 1275924480 Bytes
+  Transferred 1277091840 Bytes
+  Transferred 1278259200 Bytes
+  Transferred 1279426560 Bytes
+  Transferred 1280593920 Bytes
+  Transferred 1281761280 Bytes
+  Transferred 1282928640 Bytes
+  Transferred 1284096000 Bytes
+  Transferred 1285263360 Bytes
+  Transferred 1286430720 Bytes
+  Transferred 1287598080 Bytes
+  Transferred 1288765440 Bytes
+  Transferred 1289932800 Bytes
+  Transferred 1291100160 Bytes
+  Transferred 1292267520 Bytes
+  Transferred 1293434880 Bytes
+  Transferred 1294602240 Bytes
+  Transferred 1295769600 Bytes
+  Transferred 1296936960 Bytes
+  Transferred 1298104320 Bytes
+  Transferred 1299271680 Bytes
+  Transferred 1300439040 Bytes
+  Transferred 1301606400 Bytes
+  Transferred 1302773760 Bytes
+  Transferred 1303941120 Bytes
+  Transferred 1305108480 Bytes
+  Transferred 1306275840 Bytes
+  Transferred 1307443200 Bytes
+  Transferred 1308610560 Bytes
+  Transferred 1309777920 Bytes
+  Transferred 1310945280 Bytes
+  Transferred 1312112640 Bytes
+  Transferred 1313280000 Bytes
+  Transferred 1314447360 Bytes
+  Transferred 1315614720 Bytes
+  Transferred 1316782080 Bytes
+  Transferred 1317949440 Bytes
+  Transferred 1319116800 Bytes
+  Transferred 1320284160 Bytes
+  Transferred 1321451520 Bytes
+  Transferred 1322618880 Bytes
+  Transferred 1323786240 Bytes
+  Transferred 1324953600 Bytes
+  Transferred 1326120960 Bytes
+  Transferred 1327288320 Bytes
+  Transferred 1328455680 Bytes
+  Transferred 1329623040 Bytes
+  Transferred 1330790400 Bytes
+  Transferred 1331957760 Bytes
+  Transferred 1333125120 Bytes
+  Transferred 1334292480 Bytes
+  Transferred 1335459840 Bytes
+  Transferred 1336627200 Bytes
+  Transferred 1337794560 Bytes
+  Transferred 1338961920 Bytes
+  Transferred 1340129280 Bytes
+  Transferred 1341296640 Bytes
+  Transferred 1342464000 Bytes
+  Transferred 1343631360 Bytes
+  Transferred 1344798720 Bytes
+  Transferred 1345966080 Bytes
+  Transferred 1347133440 Bytes
+  Transferred 1348300800 Bytes
+  Transferred 1349468160 Bytes
+  Transferred 1350635520 Bytes
+  Transferred 1351802880 Bytes
+  Transferred 1352970240 Bytes
+  Transferred 1354137600 Bytes
+  Transferred 1355304960 Bytes
+  Transferred 1356472320 Bytes
+  Transferred 1357639680 Bytes
+  Transferred 1358807040 Bytes
+  Transferred 1359974400 Bytes
+  Transferred 1361141760 Bytes
+  Transferred 1362309120 Bytes
+  Transferred 1363476480 Bytes
+  Transferred 1364643840 Bytes
+  Transferred 1365811200 Bytes
+  Transferred 1366978560 Bytes
+  Transferred 1368145920 Bytes
+  Transferred 1369313280 Bytes
+  Transferred 1370480640 Bytes
+  Transferred 1371648000 Bytes
+  Transferred 1372815360 Bytes
+  Transferred 1373982720 Bytes
+  Transferred 1375150080 Bytes
+  Transferred 1376317440 Bytes
+  Transferred 1377484800 Bytes
+  Transferred 1378652160 Bytes
+  Transferred 1379819520 Bytes
+  Transferred 1380986880 Bytes
+  Transferred 1382154240 Bytes
+  Transferred 1383321600 Bytes
+  Transferred 1384488960 Bytes
+  Transferred 1385656320 Bytes
+  Transferred 1386823680 Bytes
+  Transferred 1387991040 Bytes
+  Transferred 1389158400 Bytes
+  Transferred 1390325760 Bytes
+  Transferred 1391493120 Bytes
+  Transferred 1392660480 Bytes
+  Transferred 1393827840 Bytes
+  Transferred 1394995200 Bytes
+  Transferred 1396162560 Bytes
+  Transferred 1397329920 Bytes
+  Transferred 1398497280 Bytes
+  Transferred 1399664640 Bytes
+  Transferred 1400832000 Bytes
+  Transferred 1401999360 Bytes
+  Transferred 1403166720 Bytes
+  Transferred 1404334080 Bytes
+  Transferred 1405501440 Bytes
+  Transferred 1406668800 Bytes
+  Transferred 1407836160 Bytes
+  Transferred 1409003520 Bytes
+  Transferred 1410170880 Bytes
+  Transferred 1411338240 Bytes
+  Transferred 1412505600 Bytes
+  Transferred 1413672960 Bytes
+  Transferred 1414840320 Bytes
+  Transferred 1416007680 Bytes
+  Transferred 1417175040 Bytes
+  Transferred 1418342400 Bytes
+  Transferred 1419509760 Bytes
+  Transferred 1420677120 Bytes
+  Transferred 1421844480 Bytes
+  Transferred 1423011840 Bytes
+  Transferred 1424179200 Bytes
+  Transferred 1425346560 Bytes
+  Transferred 1426513920 Bytes
+  Transferred 1427681280 Bytes
+  Transferred 1428848640 Bytes
+  Transferred 1430016000 Bytes
+  Transferred 1431183360 Bytes
+  Transferred 1432350720 Bytes
+  Transferred 1433518080 Bytes
+  Transferred 1434685440 Bytes
+  Transferred 1435852800 Bytes
+  Transferred 1437020160 Bytes
+  Transferred 1438187520 Bytes
+  Transferred 1439354880 Bytes
+  Transferred 1440522240 Bytes
+  Transferred 1441689600 Bytes
+  Transferred 1442856960 Bytes
+  Transferred 1444024320 Bytes
+  Transferred 1445191680 Bytes
+  Transferred 1446359040 Bytes
+  Transferred 1447526400 Bytes
+  Transferred 1448693760 Bytes
+  Transferred 1449861120 Bytes
+  Transferred 1451028480 Bytes
+  Transferred 1452195840 Bytes
+  Transferred 1453363200 Bytes
+  Transferred 1454530560 Bytes
+  Transferred 1455697920 Bytes
+  Transferred 1456865280 Bytes
+  Transferred 1458032640 Bytes
+  Transferred 1459200000 Bytes
+  Transferred 1460367360 Bytes
+  Transferred 1461534720 Bytes
+  Transferred 1462702080 Bytes
+  Transferred 1463869440 Bytes
+  Transferred 1465036800 Bytes
+  Transferred 1466204160 Bytes
+  Transferred 1467371520 Bytes
+  Transferred 1468538880 Bytes
+  Transferred 1469706240 Bytes
+  Transferred 1470873600 Bytes
+  Transferred 1472040960 Bytes
+  Transferred 1473208320 Bytes
+  Transferred 1474375680 Bytes
+  Transferred 1475543040 Bytes
+  Transferred 1476710400 Bytes
+  Transferred 1477877760 Bytes
+  Transferred 1479045120 Bytes
+  Transferred 1480212480 Bytes
+  Transferred 1481379840 Bytes
+  Transferred 1482547200 Bytes
+  Transferred 1483714560 Bytes
+  Transferred 1484881920 Bytes
+  Transferred 1486049280 Bytes
+  Transferred 1487216640 Bytes
+  Transferred 1488384000 Bytes
+  Transferred 1489551360 Bytes
+  Transferred 1490718720 Bytes
+  Transferred 1491886080 Bytes
+  Transferred 1493053440 Bytes
+  Transferred 1494220800 Bytes
+  Transferred 1495388160 Bytes
+  Transferred 1496555520 Bytes
+  Transferred 1497722880 Bytes
+  Transferred 1498890240 Bytes
+  Transferred 1500057600 Bytes
+  Transferred 1501224960 Bytes
+  Transferred 1502392320 Bytes
+  Transferred 1503559680 Bytes
+  Transferred 1504727040 Bytes
+  Transferred 1505894400 Bytes
+  Transferred 1507061760 Bytes
+  Transferred 1508229120 Bytes
+  Transferred 1509396480 Bytes
+  Transferred 1510563840 Bytes
+  Transferred 1511731200 Bytes
+  Transferred 1512898560 Bytes
+  Transferred 1514065920 Bytes
+  Transferred 1515233280 Bytes
+  Transferred 1516400640 Bytes
+  Transferred 1517568000 Bytes
+  Transferred 1518735360 Bytes
+  Transferred 1519902720 Bytes
+  Transferred 1521070080 Bytes
+  Transferred 1522237440 Bytes
+  Transferred 1523404800 Bytes
+  Transferred 1524572160 Bytes
+  Transferred 1525739520 Bytes
+  Transferred 1526906880 Bytes
+  Transferred 1528074240 Bytes
+  Transferred 1529241600 Bytes
+  Transferred 1530408960 Bytes
+  Transferred 1531576320 Bytes
+  Transferred 1532743680 Bytes
+  Transferred 1533911040 Bytes
+  Transferred 1535078400 Bytes
+  Transferred 1536245760 Bytes
+  Transferred 1537413120 Bytes
+  Transferred 1538580480 Bytes
+  Transferred 1539747840 Bytes
+  Transferred 1540915200 Bytes
+  Transferred 1542082560 Bytes
+  Transferred 1543249920 Bytes
+  Transferred 1544417280 Bytes
+  Transferred 1545584640 Bytes
+  Transferred 1546752000 Bytes
+  Transferred 1547919360 Bytes
+  Transferred 1549086720 Bytes
+  Transferred 1550254080 Bytes
+  Transferred 1551421440 Bytes
+  Transferred 1552588800 Bytes
+  Transferred 1553756160 Bytes
+  Transferred 1554923520 Bytes
+  Transferred 1556090880 Bytes
+  Transferred 1557258240 Bytes
+  Transferred 1558425600 Bytes
+  Transferred 1559592960 Bytes
+  Transferred 1560760320 Bytes
+  Transferred 1561927680 Bytes
+  Transferred 1563095040 Bytes
+  Transferred 1564262400 Bytes
+  Transferred 1565429760 Bytes
+  Transferred 1566597120 Bytes
+  Transferred 1567764480 Bytes
+  Transferred 1568931840 Bytes
+  Transferred 1570099200 Bytes
+  Transferred 1571266560 Bytes
+  Transferred 1572433920 Bytes
+  Transferred 1573601280 Bytes
+  Transferred 1574768640 Bytes
+  Transferred 1575936000 Bytes
+  Transferred 1577103360 Bytes
+  Transferred 1578270720 Bytes
+  Transferred 1579438080 Bytes
+  Transferred 1580605440 Bytes
+  Transferred 1581772800 Bytes
+  Transferred 1582940160 Bytes
+  Transferred 1584107520 Bytes
+  Transferred 1585274880 Bytes
+  Transferred 1586442240 Bytes
+  Transferred 1587609600 Bytes
+  Transferred 1588776960 Bytes
+  Transferred 1589944320 Bytes
+  Transferred 1591111680 Bytes
+  Transferred 1592279040 Bytes
+  Transferred 1593446400 Bytes
+  Transferred 1594613760 Bytes
+  Transferred 1595781120 Bytes
+  Transferred 1596948480 Bytes
+  Transferred 1598115840 Bytes
+  Transferred 1599283200 Bytes
+  Transferred 1600450560 Bytes
+  Transferred 1601617920 Bytes
+  Transferred 1602785280 Bytes
+  Transferred 1603952640 Bytes
+  Transferred 1605120000 Bytes
+  Transferred 1606287360 Bytes
+  Transferred 1607454720 Bytes
+  Transferred 1608622080 Bytes
+  Transferred 1609789440 Bytes
+  Transferred 1610956800 Bytes
+  Transferred 1612124160 Bytes
+  Transferred 1613291520 Bytes
+  Transferred 1614458880 Bytes
+  Transferred 1615626240 Bytes
+  Transferred 1616793600 Bytes
+  Transferred 1617960960 Bytes
+  Transferred 1619128320 Bytes
+  Transferred 1620295680 Bytes
+  Transferred 1621463040 Bytes
+  Transferred 1622630400 Bytes
+  Transferred 1623797760 Bytes
+  Transferred 1624965120 Bytes
+  Transferred 1626132480 Bytes
+  Transferred 1627299840 Bytes
+  Transferred 1628467200 Bytes
+  Transferred 1629634560 Bytes
+  Transferred 1630801920 Bytes
+  Transferred 1631969280 Bytes
+  Transferred 1633136640 Bytes
+  Transferred 1634304000 Bytes
+  Transferred 1635471360 Bytes
+  Transferred 1636638720 Bytes
+  Transferred 1637806080 Bytes
+  Transferred 1638973440 Bytes
+  Transferred 1640140800 Bytes
+  Transferred 1641308160 Bytes
+  Transferred 1642475520 Bytes
+  Transferred 1643642880 Bytes
+  Transferred 1644810240 Bytes
+  Transferred 1645977600 Bytes
+  Transferred 1647144960 Bytes
+  Transferred 1648312320 Bytes
+  Transferred 1649479680 Bytes
+  Transferred 1650647040 Bytes
+  Transferred 1651814400 Bytes
+  Transferred 1652981760 Bytes
+  Transferred 1654149120 Bytes
+  Transferred 1655316480 Bytes
+  Transferred 1656483840 Bytes
+  Transferred 1657651200 Bytes
+  Transferred 1658818560 Bytes
+  Transferred 1659985920 Bytes
+  Transferred 1661153280 Bytes
+  Transferred 1662320640 Bytes
+  Transferred 1663488000 Bytes
+  Transferred 1664655360 Bytes
+  Transferred 1665822720 Bytes
+  Transferred 1666990080 Bytes
+  Transferred 1668157440 Bytes
+  Transferred 1669324800 Bytes
+  Transferred 1670492160 Bytes
+  Transferred 1671659520 Bytes
+  Transferred 1672826880 Bytes
+  Transferred 1673994240 Bytes
+  Transferred 1675161600 Bytes
+  Transferred 1676328960 Bytes
+  Transferred 1677496320 Bytes
+  Transferred 1678663680 Bytes
+  Transferred 1679831040 Bytes
+  Transferred 1680998400 Bytes
+  Transferred 1682165760 Bytes
+  Transferred 1683333120 Bytes
+  Transferred 1684500480 Bytes
+  Transferred 1685667840 Bytes
+  Transferred 1686835200 Bytes
+  Transferred 1688002560 Bytes
+  Transferred 1689169920 Bytes
+  Transferred 1690337280 Bytes
+  Transferred 1691504640 Bytes
+  Transferred 1692672000 Bytes
+  Transferred 1693839360 Bytes
+  Transferred 1695006720 Bytes
+  Transferred 1696174080 Bytes
+  Transferred 1697341440 Bytes
+  Transferred 1698508800 Bytes
+  Transferred 1699676160 Bytes
+  Transferred 1700843520 Bytes
+  Transferred 1702010880 Bytes
+  Transferred 1703178240 Bytes
+  Transferred 1704345600 Bytes
+  Transferred 1705512960 Bytes
+  Transferred 1706680320 Bytes
+  Transferred 1707847680 Bytes
+  Transferred 1709015040 Bytes
+  Transferred 1710182400 Bytes
+  Transferred 1711349760 Bytes
+  Transferred 1712517120 Bytes
+  Transferred 1713684480 Bytes
+  Transferred 1714851840 Bytes
+  Transferred 1716019200 Bytes
+  Transferred 1717186560 Bytes
+  Transferred 1718353920 Bytes
+  Transferred 1719521280 Bytes
+  Transferred 1720688640 Bytes
+  Transferred 1721856000 Bytes
+  Transferred 1723023360 Bytes
+  Transferred 1724190720 Bytes
+  Transferred 1725358080 Bytes
+  Transferred 1726525440 Bytes
+  Transferred 1727692800 Bytes
+  Transferred 1728860160 Bytes
+  Transferred 1730027520 Bytes
+  Transferred 1731194880 Bytes
+  Transferred 1732362240 Bytes
+  Transferred 1733529600 Bytes
+  Transferred 1734696960 Bytes
+  Transferred 1735864320 Bytes
+  Transferred 1737031680 Bytes
+  Transferred 1738199040 Bytes
+  Transferred 1739366400 Bytes
+  Transferred 1740533760 Bytes
+  Transferred 1741701120 Bytes
+  Transferred 1742868480 Bytes
+  Transferred 1744035840 Bytes
+  Transferred 1745203200 Bytes
+  Transferred 1746370560 Bytes
+  Transferred 1747537920 Bytes
+  Transferred 1748705280 Bytes
+  Transferred 1749872640 Bytes
+  Transferred 1751040000 Bytes
+  Transferred 1752207360 Bytes
+  Transferred 1753374720 Bytes
+  Transferred 1754542080 Bytes
+  Transferred 1755709440 Bytes
+  Transferred 1756876800 Bytes
+  Transferred 1758044160 Bytes
+  Transferred 1759211520 Bytes
+  Transferred 1760378880 Bytes
+  Transferred 1761546240 Bytes
+  Transferred 1762713600 Bytes
+  Transferred 1763880960 Bytes
+  Transferred 1765048320 Bytes
+  Transferred 1766215680 Bytes
+  Transferred 1767383040 Bytes
+  Transferred 1768550400 Bytes
+  Transferred 1769717760 Bytes
+  Transferred 1770885120 Bytes
+  Transferred 1772052480 Bytes
+  Transferred 1773219840 Bytes
+  Transferred 1774387200 Bytes
+  Transferred 1775554560 Bytes
+  Transferred 1776721920 Bytes
+  Transferred 1777889280 Bytes
+  Transferred 1779056640 Bytes
+  Transferred 1780224000 Bytes
+  Transferred 1781391360 Bytes
+  Transferred 1782558720 Bytes
+  Transferred 1783726080 Bytes
+  Transferred 1784893440 Bytes
+  Transferred 1786060800 Bytes
+  Transferred 1787228160 Bytes
+  Transferred 1788395520 Bytes
+  Transferred 1789562880 Bytes
+  Transferred 1790730240 Bytes
+  Transferred 1791897600 Bytes
+  Transferred 1793064960 Bytes
+  Transferred 1794232320 Bytes
+  Transferred 1795399680 Bytes
+  Transferred 1796567040 Bytes
+  Transferred 1797734400 Bytes
+  Transferred 1798901760 Bytes
+  Transferred 1800069120 Bytes
+  Transferred 1801236480 Bytes
+  Transferred 1802403840 Bytes
+  Transferred 1803571200 Bytes
+  Transferred 1804738560 Bytes
+  Transferred 1805905920 Bytes
+  Transferred 1807073280 Bytes
+  Transferred 1808240640 Bytes
+  Transferred 1809408000 Bytes
+  Transferred 1810575360 Bytes
+  Transferred 1811742720 Bytes
+  Transferred 1812910080 Bytes
+  Transferred 1814077440 Bytes
+  Transferred 1815244800 Bytes
+  Transferred 1816412160 Bytes
+  Transferred 1817579520 Bytes
+  Transferred 1818746880 Bytes
+  Transferred 1819914240 Bytes
+  Transferred 1821081600 Bytes
+  Transferred 1822248960 Bytes
+  Transferred 1823416320 Bytes
+  Transferred 1824583680 Bytes
+  Transferred 1825751040 Bytes
+  Transferred 1826918400 Bytes
+  Transferred 1828085760 Bytes
+  Transferred 1829253120 Bytes
+  Transferred 1830420480 Bytes
+  Transferred 1831587840 Bytes
+  Transferred 1832755200 Bytes
+  Transferred 1833922560 Bytes
+  Transferred 1835089920 Bytes
+  Transferred 1836257280 Bytes
+  Transferred 1837424640 Bytes
+  Transferred 1838592000 Bytes
+  Transferred 1839759360 Bytes
+  Transferred 1840926720 Bytes
+  Transferred 1842094080 Bytes
+  Transferred 1843261440 Bytes
+  Transferred 1844428800 Bytes
+  Transferred 1845596160 Bytes
+  Transferred 1846763520 Bytes
+  Transferred 1847930880 Bytes
+  Transferred 1849098240 Bytes
+  Transferred 1850265600 Bytes
+  Transferred 1851432960 Bytes
+  Transferred 1852600320 Bytes
+  Transferred 1853767680 Bytes
+  Transferred 1854935040 Bytes
+  Transferred 1856102400 Bytes
+  Transferred 1857269760 Bytes
+  Transferred 1858437120 Bytes
+  Transferred 1859604480 Bytes
+  Transferred 1860771840 Bytes
+  Transferred 1861939200 Bytes
+  Transferred 1863106560 Bytes
+  Transferred 1864273920 Bytes
+  Transferred 1865441280 Bytes
+  Transferred 1866608640 Bytes
+  Transferred 1867776000 Bytes
+  Transferred 1868943360 Bytes
+  Transferred 1870110720 Bytes
+  Transferred 1871278080 Bytes
+  Transferred 1872445440 Bytes
+  Transferred 1873612800 Bytes
+  Transferred 1874780160 Bytes
+  Transferred 1875947520 Bytes
+  Transferred 1877114880 Bytes
+  Transferred 1878282240 Bytes
+  Transferred 1879449600 Bytes
+  Transferred 1880616960 Bytes
+  Transferred 1881784320 Bytes
+  Transferred 1882951680 Bytes
+  Transferred 1884119040 Bytes
+  Transferred 1885286400 Bytes
+  Transferred 1886453760 Bytes
+  Transferred 1887621120 Bytes
+  Transferred 1888788480 Bytes
+  Transferred 1889955840 Bytes
+  Transferred 1891123200 Bytes
+  Transferred 1892290560 Bytes
+  Transferred 1893457920 Bytes
+  Transferred 1894625280 Bytes
+  Transferred 1895792640 Bytes
+  Transferred 1896960000 Bytes
+  Transferred 1898127360 Bytes
+  Transferred 1899294720 Bytes
+  Transferred 1900462080 Bytes
+  Transferred 1901629440 Bytes
+  Transferred 1902796800 Bytes
+  Transferred 1903964160 Bytes
+  Transferred 1905131520 Bytes
+  Transferred 1906298880 Bytes
+  Transferred 1907466240 Bytes
+  Transferred 1908633600 Bytes
+  Transferred 1909800960 Bytes
+  Transferred 1910968320 Bytes
+  Transferred 1912135680 Bytes
+  Transferred 1913303040 Bytes
+  Transferred 1914470400 Bytes
+  Transferred 1915637760 Bytes
+  Transferred 1916805120 Bytes
+  Transferred 1917972480 Bytes
+  Transferred 1919139840 Bytes
+  Transferred 1920307200 Bytes
+  Transferred 1921474560 Bytes
+  Transferred 1922641920 Bytes
+  Transferred 1923809280 Bytes
+  Transferred 1924976640 Bytes
+  Transferred 1926144000 Bytes
+  Transferred 1927311360 Bytes
+  Transferred 1928478720 Bytes
+  Transferred 1929646080 Bytes
+  Transferred 1930813440 Bytes
+  Transferred 1931980800 Bytes
+  Transferred 1933148160 Bytes
+  Transferred 1934315520 Bytes
+  Transferred 1935482880 Bytes
+  Transferred 1936650240 Bytes
+  Transferred 1937817600 Bytes
+  Transferred 1938984960 Bytes
+  Transferred 1940152320 Bytes
+  Transferred 1941319680 Bytes
+  Transferred 1942487040 Bytes
+  Transferred 1943654400 Bytes
+  Transferred 1944821760 Bytes
+  Transferred 1945989120 Bytes
+  Transferred 1947156480 Bytes
+  Transferred 1948323840 Bytes
+  Transferred 1949491200 Bytes
+  Transferred 1950658560 Bytes
+  Transferred 1951825920 Bytes
+  Transferred 1952993280 Bytes
+  Transferred 1954160640 Bytes
+  Transferred 1955328000 Bytes
+  Transferred 1956495360 Bytes
+  Transferred 1957662720 Bytes
+  Transferred 1958830080 Bytes
+  Transferred 1959997440 Bytes
+  Transferred 1961164800 Bytes
+  Transferred 1962332160 Bytes
+  Transferred 1963499520 Bytes
+  Transferred 1964666880 Bytes
+  Transferred 1965834240 Bytes
+  Transferred 1967001600 Bytes
+  Transferred 1968168960 Bytes
+  Transferred 1969336320 Bytes
+  Transferred 1970503680 Bytes
+  Transferred 1971671040 Bytes
+  Transferred 1972838400 Bytes
+  Transferred 1974005760 Bytes
+  Transferred 1975173120 Bytes
+  Transferred 1976340480 Bytes
+  Transferred 1977507840 Bytes
+  Transferred 1978675200 Bytes
+  Transferred 1979842560 Bytes
+  Transferred 1981009920 Bytes
+  Transferred 1982177280 Bytes
+  Transferred 1983344640 Bytes
+  Transferred 1984512000 Bytes
+  Transferred 1985679360 Bytes
+  Transferred 1986846720 Bytes
+  Transferred 1988014080 Bytes
+  Transferred 1989181440 Bytes
+  Transferred 1990348800 Bytes
+  Transferred 1991516160 Bytes
+  Transferred 1992683520 Bytes
+  Transferred 1993850880 Bytes
+  Transferred 1995018240 Bytes
+  Transferred 1996185600 Bytes
+  Transferred 1997352960 Bytes
+  Transferred 1998520320 Bytes
+  Transferred 1999687680 Bytes
+  Transferred 2000855040 Bytes
+  Transferred 2002022400 Bytes
+  Transferred 2003189760 Bytes
+  Transferred 2004357120 Bytes
+  Transferred 2005524480 Bytes
+  Transferred 2006691840 Bytes
+  Transferred 2007859200 Bytes
+  Transferred 2009026560 Bytes
+  Transferred 2010193920 Bytes
+  Transferred 2011361280 Bytes
+  Transferred 2012528640 Bytes
+  Transferred 2013696000 Bytes
+  Transferred 2014863360 Bytes
+  Transferred 2016030720 Bytes
+  Transferred 2017198080 Bytes
+  Transferred 2018365440 Bytes
+  Transferred 2019532800 Bytes
+  Transferred 2020700160 Bytes
+  Transferred 2021867520 Bytes
+  Transferred 2023034880 Bytes
+  Transferred 2024202240 Bytes
+  Transferred 2025369600 Bytes
+  Transferred 2026536960 Bytes
+  Transferred 2027704320 Bytes
+  Transferred 2028871680 Bytes
+  Transferred 2030039040 Bytes
+  Transferred 2031106048 Bytes
+  2031106048 bytes copied in 67 sec (30121697)bytes/sec
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show md5 file /harddisk:/ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso
+
+Wed Apr  8 15:49:17.053 UTC
+98ea1cf2fa46700d4ec4896686b2934a
+RP/0/RP0/CPU0:ar3.BLB#show media
+
+Wed Apr  8 15:49:24.523 UTC
+
+Media Info for Location: node0_RP0_CPU0
+Partition                            Size     Used  Percent    Avail
+--------------------------------------------------------------------
+rootfs:                              3.9G     2.1G      56%     1.7G
+apphost:                             3.7G      29M       1%     3.5G
+harddisk:                            5.6G     2.0G      37%     3.4G
+log:                                 459M     168M      40%     257M
+config:                              459M     3.4M       1%     421M
+disk0:                               2.0G      18M       1%     1.8G
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#configure terminal
+
+Wed Apr  8 15:49:24.675 UTC
+RP/0/RP0/CPU0:ar3.BLB(config)#
+
+RP/0/RP0/CPU0:ar3.BLB(config)#router isis COLT
+
+RP/0/RP0/CPU0:ar3.BLB(config-isis)#set-overload-bit
+
+RP/0/RP0/CPU0:ar3.BLB(config-isis)#
+
+RP/0/RP0/CPU0:ar3.BLB(config-isis)#commit
+
+Wed Apr  8 15:49:25.549 UTC
+RP/0/RP0/CPU0:ar3.BLB(config-isis)#
+
+RP/0/RP0/CPU0:ar3.BLB(config-isis)#end
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#sh isis instance COLT | in Overload
+
+Wed Apr  8 15:49:26.638 UTC
+  Overload Bit Level-1: configured, set
+  Overload Bit Level-2: configured, set
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#run mv /misc/disk1/ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso /misc/app_host/
+
+Wed Apr  8 15:49:27.189 UTC
+
+RP/0/RP0/CPU0:ar3.BLB#install replace /misc/app_host/ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso commit force noprompt
+
+Wed Apr  8 15:49:35.465 UTC
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-04-08 15:49:47 Install operation 386 started by admin:
+2026-04-08 15:49:47   install replace source /misc/app_host/ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso noprompt force commit
+2026-04-08 15:49:52 No install operation in progress at this moment
+2026-04-08 15:49:52 Checking system is ready for install operation
+2026-04-08 15:49:52 'install replace' in progress
+2026-04-08 15:49:52 Install replace with commit option is triggered
+2026-04-08 15:49:52 Install replace with force option is triggered
+2026-04-08 15:49:52 Label = NCS5501_772
+2026-04-08 15:49:52 ISO ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso in input package list. Going to upgrade the system to version 7.7.2.
+********************************************************************************
+                                   WARNING !!!                                  
+    With 'force' option:                                                        
+i.  Auto-recovery is enabled. In the scenario of auto-recovery of any node(s)
+    debuggability data will be lost if the node(s) are re-imaged/reloaded for 
+    auto-recovery
+ii. Upgrade matrix check is not enforced.
+    In the scenario of an unsupported upgrade/downgrade, the install operation
+    may result in errors.
+********************************************************************************
+
+
+WARNING: Commit option is used. This will auto commit the software after the install activation completes successfully.
+However, if any login failures are seen after the reload, rollback would be possible with USB/PXE boot or appropriate workaround.
+
+2026-04-08 15:50:03 Scheme : localdisk
+2026-04-08 15:50:03 Hostname : localhost
+2026-04-08 15:50:03 Username : None
+2026-04-08 15:50:03 SourceDir : /misc/app_host
+2026-04-08 15:50:03 Collecting software state..
+2026-04-08 15:50:04 Getting platform
+2026-04-08 15:50:04 Getting supported architecture
+2026-04-08 15:50:04 Getting active packages from XR
+2026-04-08 15:50:05 Getting inactive packages from XR
+2026-04-08 15:50:14 Getting list of RPMs in local repo
+2026-04-08 15:50:15 Getting list of provides of all active packages
+2026-04-08 15:50:15 Getting provides of each rpm in repo
+2026-04-08 15:50:15 Getting requires of each rpm in repo
+2026-04-08 15:50:15 Fetching .... ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso
+2026-04-08 15:50:47 Adding packages 
+	ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso
+2026-04-08 15:50:47 Allocated operation ID 387 for install add
+2026-04-08 15:51:28 Activating ncs5500-goldenk9-x-7.7.2-NCS5501_772
+2026-04-08 15:51:31 Optimized list to prepare after sanitizing input list for superseded packages:
+	ncs5500-goldenk9-x-7.7.2-NCS5501_772
+2026-04-08 15:51:31 Package list:
+2026-04-08 15:51:31 	ncs5500-goldenk9-x-7.7.2-NCS5501_772
+2026-04-08 15:51:31 The operation is past point-of-no-return and can no longer be stopped!
+2026-04-08 15:51:31 Action 1: install prepare action started
+2026-04-08 15:51:31 Triggering prepare operation.
+This may take a while...
+2026-04-08 15:56:50 Action 1: install prepare action completed successfully
+2026-04-08 15:56:52 Prepare operation completed. Trigger activate.
+This may take a while...
+2026-04-08 15:56:52 Prepare completed. Operation ID 386 will be taken up for activate operation
+2026-04-08 15:56:52 Autorecover marker file created
+2026-04-08 15:56:54 Activate operation ID is: 386 for 'install source' ID:386
+2026-04-08 15:56:56 Install operation 386 started:
+  install activate replace noprompt synchronous 
+2026-04-08 15:56:58 Action 1: install activate action started
+2026-04-08 15:56:58 The software will be activated with reload upgrade
+2026-04-08 15:57:00 Following nodes are available for System Upgrade activate:
+2026-04-08 15:57:00  0/RP0 
+2026-04-08 15:59:26 Action 1: install activate action completed successfully
+2026-04-08 15:59:42 Install operation 386 finished successfully
+2026-04-08 15:59:43 Ending operation 386
+
+
+
+RP/0/RP0/CPU0:ar3.BLB#terminal width 511
+
+Wed Apr  8 16:12:07.636 UTC
+terminal length 0
+RP/0/RP0/CPU0:ar3.BLB#terminal length 0
+
+Wed Apr  8 16:12:07.693 UTC
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show version
+
+Wed Apr  8 16:12:07.893 UTC
+Cisco IOS XR Software, Version 7.7.2
+Copyright (c) 2013-2022 by Cisco Systems, Inc.
+
+Build Information:
+ Built By     : ingunawa
+ Built On     : Wed Oct 26 14:35:27 PDT 2022
+ Built Host   : iox-lnx-068
+ Workspace    : /auto/srcarchive14/prod/7.7.2/ncs5500/ws
+ Version      : 7.7.2
+ Location     : /opt/cisco/XR/packages/
+ Label        : 7.7.2-NCS5501_772
+
+cisco NCS-5500 () processor
+System uptime is 7 minutes
+
+RP/0/RP0/CPU0:ar3.BLB#install commit
+
+Wed Apr  8 16:12:07.969 UTC
+2026-04-08 16:12:11 Install operation 390 started by admin:
+  install commit 
+2026-04-08 16:12:13 Install operation will continue in the background
+RP/0/RP0/CPU0:ar3.BLB#2026-04-08 16:12:35 Install operation 390 finished successfully
+
+
+RP/0/RP0/CPU0:ar3.BLB#run rm /misc/app_host/ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso
+
+Wed Apr  8 16:14:08.318 UTC
+
+RP/0/RP0/CPU0:ar3.BLB#show install active summary
+
+Wed Apr  8 16:14:08.447 UTC
+Label : 7.7.2-NCS5501_772
+
+    Active Packages: 11
+        ncs5500-xr-7.7.2 version=7.7.2 [Boot image]
+        ncs5500-isis-2.1.0.0-r772
+        ncs5500-mgbl-3.0.0.0-r772
+        ncs5500-mcast-3.0.0.0-r772
+        ncs5500-li-1.0.0.0-r772
+        ncs5500-eigrp-1.0.0.0-r772
+        ncs5500-k9sec-3.1.0.0-r772
+        ncs5500-ospf-2.0.0.0-r772
+        ncs5500-mpls-2.1.0.0-r772
+        ncs5500-mpls-te-rsvp-3.1.0.0-r772
+        ncs5500-lictrl-1.0.0.0-r772
+
+RP/0/RP0/CPU0:ar3.BLB#admin show install active summary
+
+Wed Apr  8 16:14:09.457 UTC
+     Active Packages: 1
+        ncs5500-sysadmin-7.7.2 version=7.7.2 [Boot image]
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show install committed summary
+
+Wed Apr  8 16:14:14.321 UTC
+Label : 7.7.2-NCS5501_772
+
+    Committed Packages: 11
+        ncs5500-xr-7.7.2 version=7.7.2 [Boot image]
+        ncs5500-isis-2.1.0.0-r772
+        ncs5500-mgbl-3.0.0.0-r772
+        ncs5500-mcast-3.0.0.0-r772
+        ncs5500-li-1.0.0.0-r772
+        ncs5500-eigrp-1.0.0.0-r772
+        ncs5500-k9sec-3.1.0.0-r772
+        ncs5500-ospf-2.0.0.0-r772
+        ncs5500-mpls-2.1.0.0-r772
+        ncs5500-mpls-te-rsvp-3.1.0.0-r772
+        ncs5500-lictrl-1.0.0.0-r772
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#admin show install committed summary
+
+Wed Apr  8 16:14:14.994 UTC
+     Committed Packages: 1
+        ncs5500-sysadmin-7.7.2 version=7.7.2 [Boot image]
+
+RP/0/RP0/CPU0:ar3.BLB#show media
+
+Wed Apr  8 16:14:21.298 UTC
+
+Media Info for Location: node0_RP0_CPU0
+Partition                            Size     Used  Percent    Avail
+--------------------------------------------------------------------
+rootfs:                              3.9G     2.0G      53%     1.8G
+apphost:                             3.7G      29M       1%     3.5G
+/dev/sde                             969M     456M      51%     447M
+harddisk:                            5.6G      32M       1%     5.3G
+log:                                 459M     169M      40%     256M
+config:                              459M     3.4M       1%     421M
+disk0:                               2.0G      18M       1%     1.8G
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#configure terminal
+
+Wed Apr  8 16:14:21.451 UTC
+RP/0/RP0/CPU0:ar3.BLB(config)#
+
+RP/0/RP0/CPU0:ar3.BLB(config)#lpts pifib hardware police flow ssh known rate 50000
+
+commit
+RP/0/RP0/CPU0:ar3.BLB(config)#commit
+
+exit
+Wed Apr  8 16:14:21.743 UTC
+RP/0/RP0/CPU0:ar3.BLB(config)#exit
+
+RP/0/RP0/CPU0:ar3.BLB#scp colt@10.80.109.133:/home/colt/backup/gimages/ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso /misc/disk1/
+
+Wed Apr  8 16:14:26.059 UTC
+Connecting to 10.80.109.133...22
+Password: 
+
+  Transferred 1167360 Bytes
+  Transferred 2334720 Bytes
+  Transferred 3502080 Bytes
+  Transferred 4669440 Bytes
+  Transferred 5836800 Bytes
+  Transferred 7004160 Bytes
+  Transferred 8171520 Bytes
+  Transferred 9338880 Bytes
+  Transferred 10506240 Bytes
+  Transferred 11673600 Bytes
+  Transferred 12840960 Bytes
+  Transferred 14008320 Bytes
+  Transferred 15175680 Bytes
+  Transferred 16343040 Bytes
+  Transferred 17510400 Bytes
+  Transferred 18677760 Bytes
+  Transferred 19845120 Bytes
+  Transferred 21012480 Bytes
+  Transferred 22179840 Bytes
+  Transferred 23347200 Bytes
+  Transferred 24514560 Bytes
+  Transferred 25681920 Bytes
+  Transferred 26849280 Bytes
+  Transferred 28016640 Bytes
+  Transferred 29184000 Bytes
+  Transferred 30351360 Bytes
+  Transferred 31518720 Bytes
+  Transferred 32686080 Bytes
+  Transferred 33853440 Bytes
+  Transferred 35020800 Bytes
+  Transferred 36188160 Bytes
+  Transferred 37355520 Bytes
+  Transferred 38522880 Bytes
+  Transferred 39690240 Bytes
+  Transferred 40857600 Bytes
+  Transferred 42024960 Bytes
+  Transferred 43192320 Bytes
+  Transferred 44359680 Bytes
+  Transferred 45527040 Bytes
+  Transferred 46694400 Bytes
+  Transferred 47861760 Bytes
+  Transferred 49029120 Bytes
+  Transferred 50196480 Bytes
+  Transferred 51363840 Bytes
+  Transferred 52531200 Bytes
+  Transferred 53698560 Bytes
+  Transferred 54865920 Bytes
+  Transferred 56033280 Bytes
+  Transferred 57200640 Bytes
+  Transferred 58368000 Bytes
+  Transferred 59535360 Bytes
+  Transferred 60702720 Bytes
+  Transferred 61870080 Bytes
+  Transferred 63037440 Bytes
+  Transferred 64204800 Bytes
+  Transferred 65372160 Bytes
+  Transferred 66539520 Bytes
+  Transferred 67706880 Bytes
+  Transferred 68874240 Bytes
+  Transferred 70041600 Bytes
+  Transferred 71208960 Bytes
+  Transferred 72376320 Bytes
+  Transferred 73543680 Bytes
+  Transferred 74711040 Bytes
+  Transferred 75878400 Bytes
+  Transferred 77045760 Bytes
+  Transferred 78213120 Bytes
+  Transferred 79380480 Bytes
+  Transferred 80547840 Bytes
+  Transferred 81715200 Bytes
+  Transferred 82882560 Bytes
+  Transferred 84049920 Bytes
+  Transferred 85217280 Bytes
+  Transferred 86384640 Bytes
+  Transferred 87552000 Bytes
+  Transferred 88719360 Bytes
+  Transferred 89886720 Bytes
+  Transferred 91054080 Bytes
+  Transferred 92221440 Bytes
+  Transferred 93388800 Bytes
+  Transferred 94556160 Bytes
+  Transferred 95723520 Bytes
+  Transferred 96890880 Bytes
+  Transferred 98058240 Bytes
+  Transferred 99225600 Bytes
+  Transferred 100392960 Bytes
+  Transferred 101560320 Bytes
+  Transferred 102727680 Bytes
+  Transferred 103895040 Bytes
+  Transferred 105062400 Bytes
+  Transferred 106229760 Bytes
+  Transferred 107397120 Bytes
+  Transferred 108564480 Bytes
+  Transferred 109731840 Bytes
+  Transferred 110899200 Bytes
+  Transferred 112066560 Bytes
+  Transferred 113233920 Bytes
+  Transferred 114401280 Bytes
+  Transferred 115568640 Bytes
+  Transferred 116736000 Bytes
+  Transferred 117903360 Bytes
+  Transferred 119070720 Bytes
+  Transferred 120238080 Bytes
+  Transferred 121405440 Bytes
+  Transferred 122572800 Bytes
+  Transferred 123740160 Bytes
+  Transferred 124907520 Bytes
+  Transferred 126074880 Bytes
+  Transferred 127242240 Bytes
+  Transferred 128409600 Bytes
+  Transferred 129576960 Bytes
+  Transferred 130744320 Bytes
+  Transferred 131911680 Bytes
+  Transferred 133079040 Bytes
+  Transferred 134246400 Bytes
+  Transferred 135413760 Bytes
+  Transferred 136581120 Bytes
+  Transferred 137748480 Bytes
+  Transferred 138915840 Bytes
+  Transferred 140083200 Bytes
+  Transferred 141250560 Bytes
+  Transferred 142417920 Bytes
+  Transferred 143585280 Bytes
+  Transferred 144752640 Bytes
+  Transferred 145920000 Bytes
+  Transferred 147087360 Bytes
+  Transferred 148254720 Bytes
+  Transferred 149422080 Bytes
+  Transferred 150589440 Bytes
+  Transferred 151756800 Bytes
+  Transferred 152924160 Bytes
+  Transferred 154091520 Bytes
+  Transferred 155258880 Bytes
+  Transferred 156426240 Bytes
+  Transferred 157593600 Bytes
+  Transferred 158760960 Bytes
+  Transferred 159928320 Bytes
+  Transferred 161095680 Bytes
+  Transferred 162263040 Bytes
+  Transferred 163430400 Bytes
+  Transferred 164597760 Bytes
+  Transferred 165765120 Bytes
+  Transferred 166932480 Bytes
+  Transferred 168099840 Bytes
+  Transferred 169267200 Bytes
+  Transferred 170434560 Bytes
+  Transferred 171601920 Bytes
+  Transferred 172769280 Bytes
+  Transferred 173936640 Bytes
+  Transferred 175104000 Bytes
+  Transferred 176271360 Bytes
+  Transferred 177438720 Bytes
+  Transferred 178606080 Bytes
+  Transferred 179773440 Bytes
+  Transferred 180940800 Bytes
+  Transferred 182108160 Bytes
+  Transferred 183275520 Bytes
+  Transferred 184442880 Bytes
+  Transferred 185610240 Bytes
+  Transferred 186777600 Bytes
+  Transferred 187944960 Bytes
+  Transferred 189112320 Bytes
+  Transferred 190279680 Bytes
+  Transferred 191447040 Bytes
+  Transferred 192614400 Bytes
+  Transferred 193781760 Bytes
+  Transferred 194949120 Bytes
+  Transferred 196116480 Bytes
+  Transferred 197283840 Bytes
+  Transferred 198451200 Bytes
+  Transferred 199618560 Bytes
+  Transferred 200785920 Bytes
+  Transferred 201953280 Bytes
+  Transferred 203120640 Bytes
+  Transferred 204288000 Bytes
+  Transferred 205455360 Bytes
+  Transferred 206622720 Bytes
+  Transferred 207790080 Bytes
+  Transferred 208957440 Bytes
+  Transferred 210124800 Bytes
+  Transferred 211292160 Bytes
+  Transferred 212459520 Bytes
+  Transferred 213626880 Bytes
+  Transferred 214794240 Bytes
+  Transferred 215961600 Bytes
+  Transferred 217128960 Bytes
+  Transferred 218296320 Bytes
+  Transferred 219463680 Bytes
+  Transferred 220631040 Bytes
+  Transferred 221798400 Bytes
+  Transferred 222965760 Bytes
+  Transferred 224133120 Bytes
+  Transferred 225300480 Bytes
+  Transferred 226467840 Bytes
+  Transferred 227635200 Bytes
+  Transferred 228802560 Bytes
+  Transferred 229969920 Bytes
+  Transferred 231137280 Bytes
+  Transferred 232304640 Bytes
+  Transferred 233472000 Bytes
+  Transferred 234639360 Bytes
+  Transferred 235806720 Bytes
+  Transferred 236974080 Bytes
+  Transferred 238141440 Bytes
+  Transferred 239308800 Bytes
+  Transferred 240476160 Bytes
+  Transferred 241643520 Bytes
+  Transferred 242810880 Bytes
+  Transferred 243978240 Bytes
+  Transferred 245145600 Bytes
+  Transferred 246312960 Bytes
+  Transferred 247480320 Bytes
+  Transferred 248647680 Bytes
+  Transferred 249815040 Bytes
+  Transferred 250982400 Bytes
+  Transferred 252149760 Bytes
+  Transferred 253317120 Bytes
+  Transferred 254484480 Bytes
+  Transferred 255651840 Bytes
+  Transferred 256819200 Bytes
+  Transferred 257986560 Bytes
+  Transferred 259153920 Bytes
+  Transferred 260321280 Bytes
+  Transferred 261488640 Bytes
+  Transferred 262656000 Bytes
+  Transferred 263823360 Bytes
+  Transferred 264990720 Bytes
+  Transferred 266158080 Bytes
+  Transferred 267325440 Bytes
+  Transferred 268492800 Bytes
+  Transferred 269660160 Bytes
+  Transferred 270827520 Bytes
+  Transferred 271994880 Bytes
+  Transferred 273162240 Bytes
+  Transferred 274329600 Bytes
+  Transferred 275496960 Bytes
+  Transferred 276664320 Bytes
+  Transferred 277831680 Bytes
+  Transferred 278999040 Bytes
+  Transferred 280166400 Bytes
+  Transferred 281333760 Bytes
+  Transferred 282501120 Bytes
+  Transferred 283668480 Bytes
+  Transferred 284835840 Bytes
+  Transferred 286003200 Bytes
+  Transferred 287170560 Bytes
+  Transferred 288337920 Bytes
+  Transferred 289505280 Bytes
+  Transferred 290672640 Bytes
+  Transferred 291840000 Bytes
+  Transferred 293007360 Bytes
+  Transferred 294174720 Bytes
+  Transferred 295342080 Bytes
+  Transferred 296509440 Bytes
+  Transferred 297676800 Bytes
+  Transferred 298844160 Bytes
+  Transferred 300011520 Bytes
+  Transferred 301178880 Bytes
+  Transferred 302346240 Bytes
+  Transferred 303513600 Bytes
+  Transferred 304680960 Bytes
+  Transferred 305848320 Bytes
+  Transferred 307015680 Bytes
+  Transferred 308183040 Bytes
+  Transferred 309350400 Bytes
+  Transferred 310517760 Bytes
+  Transferred 311685120 Bytes
+  Transferred 312852480 Bytes
+  Transferred 314019840 Bytes
+  Transferred 315187200 Bytes
+  Transferred 316354560 Bytes
+  Transferred 317521920 Bytes
+  Transferred 318689280 Bytes
+  Transferred 319856640 Bytes
+  Transferred 321024000 Bytes
+  Transferred 322191360 Bytes
+  Transferred 323358720 Bytes
+  Transferred 324526080 Bytes
+  Transferred 325693440 Bytes
+  Transferred 326860800 Bytes
+  Transferred 328028160 Bytes
+  Transferred 329195520 Bytes
+  Transferred 330362880 Bytes
+  Transferred 331530240 Bytes
+  Transferred 332697600 Bytes
+  Transferred 333864960 Bytes
+  Transferred 335032320 Bytes
+  Transferred 336199680 Bytes
+  Transferred 337367040 Bytes
+  Transferred 338534400 Bytes
+  Transferred 339701760 Bytes
+  Transferred 340869120 Bytes
+  Transferred 342036480 Bytes
+  Transferred 343203840 Bytes
+  Transferred 344371200 Bytes
+  Transferred 345538560 Bytes
+  Transferred 346705920 Bytes
+  Transferred 347873280 Bytes
+  Transferred 349040640 Bytes
+  Transferred 350208000 Bytes
+  Transferred 351375360 Bytes
+  Transferred 352542720 Bytes
+  Transferred 353710080 Bytes
+  Transferred 354877440 Bytes
+  Transferred 356044800 Bytes
+  Transferred 357212160 Bytes
+  Transferred 358379520 Bytes
+  Transferred 359546880 Bytes
+  Transferred 360714240 Bytes
+  Transferred 361881600 Bytes
+  Transferred 363048960 Bytes
+  Transferred 364216320 Bytes
+  Transferred 365383680 Bytes
+  Transferred 366551040 Bytes
+  Transferred 367718400 Bytes
+  Transferred 368885760 Bytes
+  Transferred 370053120 Bytes
+  Transferred 371220480 Bytes
+  Transferred 372387840 Bytes
+  Transferred 373555200 Bytes
+  Transferred 374722560 Bytes
+  Transferred 375889920 Bytes
+  Transferred 377057280 Bytes
+  Transferred 378224640 Bytes
+  Transferred 379392000 Bytes
+  Transferred 380559360 Bytes
+  Transferred 381726720 Bytes
+  Transferred 382894080 Bytes
+  Transferred 384061440 Bytes
+  Transferred 385228800 Bytes
+  Transferred 386396160 Bytes
+  Transferred 387563520 Bytes
+  Transferred 388730880 Bytes
+  Transferred 389898240 Bytes
+  Transferred 391065600 Bytes
+  Transferred 392232960 Bytes
+  Transferred 393400320 Bytes
+  Transferred 394567680 Bytes
+  Transferred 395735040 Bytes
+  Transferred 396902400 Bytes
+  Transferred 398069760 Bytes
+  Transferred 399237120 Bytes
+  Transferred 400404480 Bytes
+  Transferred 401571840 Bytes
+  Transferred 402739200 Bytes
+  Transferred 403906560 Bytes
+  Transferred 405073920 Bytes
+  Transferred 406241280 Bytes
+  Transferred 407408640 Bytes
+  Transferred 408576000 Bytes
+  Transferred 409743360 Bytes
+  Transferred 410910720 Bytes
+  Transferred 412078080 Bytes
+  Transferred 413245440 Bytes
+  Transferred 414412800 Bytes
+  Transferred 415580160 Bytes
+  Transferred 416747520 Bytes
+  Transferred 417914880 Bytes
+  Transferred 419082240 Bytes
+  Transferred 420249600 Bytes
+  Transferred 421416960 Bytes
+  Transferred 422584320 Bytes
+  Transferred 423751680 Bytes
+  Transferred 424919040 Bytes
+  Transferred 426086400 Bytes
+  Transferred 427253760 Bytes
+  Transferred 428421120 Bytes
+  Transferred 429588480 Bytes
+  Transferred 430755840 Bytes
+  Transferred 431923200 Bytes
+  Transferred 433090560 Bytes
+  Transferred 434257920 Bytes
+  Transferred 435425280 Bytes
+  Transferred 436592640 Bytes
+  Transferred 437760000 Bytes
+  Transferred 438927360 Bytes
+  Transferred 440094720 Bytes
+  Transferred 441262080 Bytes
+  Transferred 442429440 Bytes
+  Transferred 443596800 Bytes
+  Transferred 444764160 Bytes
+  Transferred 445931520 Bytes
+  Transferred 447098880 Bytes
+  Transferred 448266240 Bytes
+  Transferred 449433600 Bytes
+  Transferred 450600960 Bytes
+  Transferred 451768320 Bytes
+  Transferred 452935680 Bytes
+  Transferred 454103040 Bytes
+  Transferred 455270400 Bytes
+  Transferred 456437760 Bytes
+  Transferred 457605120 Bytes
+  Transferred 458772480 Bytes
+  Transferred 459939840 Bytes
+  Transferred 461107200 Bytes
+  Transferred 462274560 Bytes
+  Transferred 463441920 Bytes
+  Transferred 464609280 Bytes
+  Transferred 465776640 Bytes
+  Transferred 466944000 Bytes
+  Transferred 468111360 Bytes
+  Transferred 469278720 Bytes
+  Transferred 470446080 Bytes
+  Transferred 471613440 Bytes
+  Transferred 472780800 Bytes
+  Transferred 473948160 Bytes
+  Transferred 475115520 Bytes
+  Transferred 476282880 Bytes
+  Transferred 477450240 Bytes
+  Transferred 478617600 Bytes
+  Transferred 479784960 Bytes
+  Transferred 480952320 Bytes
+  Transferred 482119680 Bytes
+  Transferred 483287040 Bytes
+  Transferred 484454400 Bytes
+  Transferred 485621760 Bytes
+  Transferred 486789120 Bytes
+  Transferred 487956480 Bytes
+  Transferred 489123840 Bytes
+  Transferred 490291200 Bytes
+  Transferred 491458560 Bytes
+  Transferred 492625920 Bytes
+  Transferred 493793280 Bytes
+  Transferred 494960640 Bytes
+  Transferred 496128000 Bytes
+  Transferred 497295360 Bytes
+  Transferred 498462720 Bytes
+  Transferred 499630080 Bytes
+  Transferred 500797440 Bytes
+  Transferred 501964800 Bytes
+  Transferred 503132160 Bytes
+  Transferred 504299520 Bytes
+  Transferred 505466880 Bytes
+  Transferred 506634240 Bytes
+  Transferred 507801600 Bytes
+  Transferred 508968960 Bytes
+  Transferred 510136320 Bytes
+  Transferred 511303680 Bytes
+  Transferred 512471040 Bytes
+  Transferred 513638400 Bytes
+  Transferred 514805760 Bytes
+  Transferred 515973120 Bytes
+  Transferred 517140480 Bytes
+  Transferred 518307840 Bytes
+  Transferred 519475200 Bytes
+  Transferred 520642560 Bytes
+  Transferred 521809920 Bytes
+  Transferred 522977280 Bytes
+  Transferred 524144640 Bytes
+  Transferred 525312000 Bytes
+  Transferred 526479360 Bytes
+  Transferred 527646720 Bytes
+  Transferred 528814080 Bytes
+  Transferred 529981440 Bytes
+  Transferred 531148800 Bytes
+  Transferred 532316160 Bytes
+  Transferred 533483520 Bytes
+  Transferred 534650880 Bytes
+  Transferred 535818240 Bytes
+  Transferred 536985600 Bytes
+  Transferred 538152960 Bytes
+  Transferred 539320320 Bytes
+  Transferred 540487680 Bytes
+  Transferred 541655040 Bytes
+  Transferred 542822400 Bytes
+  Transferred 543989760 Bytes
+  Transferred 545157120 Bytes
+  Transferred 546324480 Bytes
+  Transferred 547491840 Bytes
+  Transferred 548659200 Bytes
+  Transferred 549826560 Bytes
+  Transferred 550993920 Bytes
+  Transferred 552161280 Bytes
+  Transferred 553328640 Bytes
+  Transferred 554496000 Bytes
+  Transferred 555663360 Bytes
+  Transferred 556830720 Bytes
+  Transferred 557998080 Bytes
+  Transferred 559165440 Bytes
+  Transferred 560332800 Bytes
+  Transferred 561500160 Bytes
+  Transferred 562667520 Bytes
+  Transferred 563834880 Bytes
+  Transferred 565002240 Bytes
+  Transferred 566169600 Bytes
+  Transferred 567336960 Bytes
+  Transferred 568504320 Bytes
+  Transferred 569671680 Bytes
+  Transferred 570839040 Bytes
+  Transferred 572006400 Bytes
+  Transferred 573173760 Bytes
+  Transferred 574341120 Bytes
+  Transferred 575508480 Bytes
+  Transferred 576675840 Bytes
+  Transferred 577843200 Bytes
+  Transferred 579010560 Bytes
+  Transferred 580177920 Bytes
+  Transferred 581345280 Bytes
+  Transferred 582512640 Bytes
+  Transferred 583680000 Bytes
+  Transferred 584847360 Bytes
+  Transferred 586014720 Bytes
+  Transferred 587182080 Bytes
+  Transferred 588349440 Bytes
+  Transferred 589516800 Bytes
+  Transferred 590684160 Bytes
+  Transferred 591851520 Bytes
+  Transferred 593018880 Bytes
+  Transferred 594186240 Bytes
+  Transferred 595353600 Bytes
+  Transferred 596520960 Bytes
+  Transferred 597688320 Bytes
+  Transferred 598855680 Bytes
+  Transferred 600023040 Bytes
+  Transferred 601190400 Bytes
+  Transferred 602357760 Bytes
+  Transferred 603525120 Bytes
+  Transferred 604692480 Bytes
+  Transferred 605859840 Bytes
+  Transferred 607027200 Bytes
+  Transferred 608194560 Bytes
+  Transferred 609361920 Bytes
+  Transferred 610529280 Bytes
+  Transferred 611696640 Bytes
+  Transferred 612864000 Bytes
+  Transferred 614031360 Bytes
+  Transferred 615198720 Bytes
+  Transferred 616366080 Bytes
+  Transferred 617533440 Bytes
+  Transferred 618700800 Bytes
+  Transferred 619868160 Bytes
+  Transferred 621035520 Bytes
+  Transferred 622202880 Bytes
+  Transferred 623370240 Bytes
+  Transferred 624537600 Bytes
+  Transferred 625704960 Bytes
+  Transferred 626872320 Bytes
+  Transferred 628039680 Bytes
+  Transferred 629207040 Bytes
+  Transferred 630374400 Bytes
+  Transferred 631541760 Bytes
+  Transferred 632709120 Bytes
+  Transferred 633876480 Bytes
+  Transferred 635043840 Bytes
+  Transferred 636211200 Bytes
+  Transferred 637378560 Bytes
+  Transferred 638545920 Bytes
+  Transferred 639713280 Bytes
+  Transferred 640880640 Bytes
+  Transferred 642048000 Bytes
+  Transferred 643215360 Bytes
+  Transferred 644382720 Bytes
+  Transferred 645550080 Bytes
+  Transferred 646717440 Bytes
+  Transferred 647884800 Bytes
+  Transferred 649052160 Bytes
+  Transferred 650219520 Bytes
+  Transferred 651386880 Bytes
+  Transferred 652554240 Bytes
+  Transferred 653721600 Bytes
+  Transferred 654888960 Bytes
+  Transferred 656056320 Bytes
+  Transferred 657223680 Bytes
+  Transferred 658391040 Bytes
+  Transferred 659558400 Bytes
+  Transferred 660725760 Bytes
+  Transferred 661893120 Bytes
+  Transferred 663060480 Bytes
+  Transferred 664227840 Bytes
+  Transferred 665395200 Bytes
+  Transferred 666562560 Bytes
+  Transferred 667729920 Bytes
+  Transferred 668897280 Bytes
+  Transferred 670064640 Bytes
+  Transferred 671232000 Bytes
+  Transferred 672399360 Bytes
+  Transferred 673566720 Bytes
+  Transferred 674734080 Bytes
+  Transferred 675901440 Bytes
+  Transferred 677068800 Bytes
+  Transferred 678236160 Bytes
+  Transferred 679403520 Bytes
+  Transferred 680570880 Bytes
+  Transferred 681738240 Bytes
+  Transferred 682905600 Bytes
+  Transferred 684072960 Bytes
+  Transferred 685240320 Bytes
+  Transferred 686407680 Bytes
+  Transferred 687575040 Bytes
+  Transferred 688742400 Bytes
+  Transferred 689909760 Bytes
+  Transferred 691077120 Bytes
+  Transferred 692244480 Bytes
+  Transferred 693411840 Bytes
+  Transferred 694579200 Bytes
+  Transferred 695746560 Bytes
+  Transferred 696913920 Bytes
+  Transferred 698081280 Bytes
+  Transferred 699248640 Bytes
+  Transferred 700416000 Bytes
+  Transferred 701583360 Bytes
+  Transferred 702750720 Bytes
+  Transferred 703918080 Bytes
+  Transferred 705085440 Bytes
+  Transferred 706252800 Bytes
+  Transferred 707420160 Bytes
+  Transferred 708587520 Bytes
+  Transferred 709754880 Bytes
+  Transferred 710922240 Bytes
+  Transferred 712089600 Bytes
+  Transferred 713256960 Bytes
+  Transferred 714424320 Bytes
+  Transferred 715591680 Bytes
+  Transferred 716759040 Bytes
+  Transferred 717926400 Bytes
+  Transferred 719093760 Bytes
+  Transferred 720261120 Bytes
+  Transferred 721428480 Bytes
+  Transferred 722595840 Bytes
+  Transferred 723763200 Bytes
+  Transferred 724930560 Bytes
+  Transferred 726097920 Bytes
+  Transferred 727265280 Bytes
+  Transferred 728432640 Bytes
+  Transferred 729600000 Bytes
+  Transferred 730767360 Bytes
+  Transferred 731934720 Bytes
+  Transferred 733102080 Bytes
+  Transferred 734269440 Bytes
+  Transferred 735436800 Bytes
+  Transferred 736604160 Bytes
+  Transferred 737771520 Bytes
+  Transferred 738938880 Bytes
+  Transferred 740106240 Bytes
+  Transferred 741273600 Bytes
+  Transferred 742440960 Bytes
+  Transferred 743608320 Bytes
+  Transferred 744775680 Bytes
+  Transferred 745943040 Bytes
+  Transferred 747110400 Bytes
+  Transferred 748277760 Bytes
+  Transferred 749445120 Bytes
+  Transferred 750612480 Bytes
+  Transferred 751779840 Bytes
+  Transferred 752947200 Bytes
+  Transferred 754114560 Bytes
+  Transferred 755281920 Bytes
+  Transferred 756449280 Bytes
+  Transferred 757616640 Bytes
+  Transferred 758784000 Bytes
+  Transferred 759951360 Bytes
+  Transferred 761118720 Bytes
+  Transferred 762286080 Bytes
+  Transferred 763453440 Bytes
+  Transferred 764620800 Bytes
+  Transferred 765788160 Bytes
+  Transferred 766955520 Bytes
+  Transferred 768122880 Bytes
+  Transferred 769290240 Bytes
+  Transferred 770457600 Bytes
+  Transferred 771624960 Bytes
+  Transferred 772792320 Bytes
+  Transferred 773959680 Bytes
+  Transferred 775127040 Bytes
+  Transferred 776294400 Bytes
+  Transferred 777461760 Bytes
+  Transferred 778629120 Bytes
+  Transferred 779796480 Bytes
+  Transferred 780963840 Bytes
+  Transferred 782131200 Bytes
+  Transferred 783298560 Bytes
+  Transferred 784465920 Bytes
+  Transferred 785633280 Bytes
+  Transferred 786800640 Bytes
+  Transferred 787968000 Bytes
+  Transferred 789135360 Bytes
+  Transferred 790302720 Bytes
+  Transferred 791470080 Bytes
+  Transferred 792637440 Bytes
+  Transferred 793804800 Bytes
+  Transferred 794972160 Bytes
+  Transferred 796139520 Bytes
+  Transferred 797306880 Bytes
+  Transferred 798474240 Bytes
+  Transferred 799641600 Bytes
+  Transferred 800808960 Bytes
+  Transferred 801976320 Bytes
+  Transferred 803143680 Bytes
+  Transferred 804311040 Bytes
+  Transferred 805478400 Bytes
+  Transferred 806645760 Bytes
+  Transferred 807813120 Bytes
+  Transferred 808980480 Bytes
+  Transferred 810147840 Bytes
+  Transferred 811315200 Bytes
+  Transferred 812482560 Bytes
+  Transferred 813649920 Bytes
+  Transferred 814817280 Bytes
+  Transferred 815984640 Bytes
+  Transferred 817152000 Bytes
+  Transferred 818319360 Bytes
+  Transferred 819486720 Bytes
+  Transferred 820654080 Bytes
+  Transferred 821821440 Bytes
+  Transferred 822988800 Bytes
+  Transferred 824156160 Bytes
+  Transferred 825323520 Bytes
+  Transferred 826490880 Bytes
+  Transferred 827658240 Bytes
+  Transferred 828825600 Bytes
+  Transferred 829992960 Bytes
+  Transferred 831160320 Bytes
+  Transferred 832327680 Bytes
+  Transferred 833495040 Bytes
+  Transferred 834662400 Bytes
+  Transferred 835829760 Bytes
+  Transferred 836997120 Bytes
+  Transferred 838164480 Bytes
+  Transferred 839331840 Bytes
+  Transferred 840499200 Bytes
+  Transferred 841666560 Bytes
+  Transferred 842833920 Bytes
+  Transferred 844001280 Bytes
+  Transferred 845168640 Bytes
+  Transferred 846336000 Bytes
+  Transferred 847503360 Bytes
+  Transferred 848670720 Bytes
+  Transferred 849838080 Bytes
+  Transferred 851005440 Bytes
+  Transferred 852172800 Bytes
+  Transferred 853340160 Bytes
+  Transferred 854507520 Bytes
+  Transferred 855674880 Bytes
+  Transferred 856842240 Bytes
+  Transferred 858009600 Bytes
+  Transferred 859176960 Bytes
+  Transferred 860344320 Bytes
+  Transferred 861511680 Bytes
+  Transferred 862679040 Bytes
+  Transferred 863846400 Bytes
+  Transferred 865013760 Bytes
+  Transferred 866181120 Bytes
+  Transferred 867348480 Bytes
+  Transferred 868515840 Bytes
+  Transferred 869683200 Bytes
+  Transferred 870850560 Bytes
+  Transferred 872017920 Bytes
+  Transferred 873185280 Bytes
+  Transferred 874352640 Bytes
+  Transferred 875520000 Bytes
+  Transferred 876687360 Bytes
+  Transferred 877854720 Bytes
+  Transferred 879022080 Bytes
+  Transferred 880189440 Bytes
+  Transferred 881356800 Bytes
+  Transferred 882524160 Bytes
+  Transferred 883691520 Bytes
+  Transferred 884858880 Bytes
+  Transferred 886026240 Bytes
+  Transferred 887193600 Bytes
+  Transferred 888360960 Bytes
+  Transferred 889528320 Bytes
+  Transferred 890695680 Bytes
+  Transferred 891863040 Bytes
+  Transferred 893030400 Bytes
+  Transferred 894197760 Bytes
+  Transferred 895365120 Bytes
+  Transferred 896532480 Bytes
+  Transferred 897699840 Bytes
+  Transferred 898867200 Bytes
+  Transferred 900034560 Bytes
+  Transferred 901201920 Bytes
+  Transferred 902369280 Bytes
+  Transferred 903536640 Bytes
+  Transferred 904704000 Bytes
+  Transferred 905871360 Bytes
+  Transferred 907038720 Bytes
+  Transferred 908206080 Bytes
+  Transferred 909373440 Bytes
+  Transferred 910540800 Bytes
+  Transferred 911708160 Bytes
+  Transferred 912875520 Bytes
+  Transferred 914042880 Bytes
+  Transferred 915210240 Bytes
+  Transferred 916377600 Bytes
+  Transferred 917544960 Bytes
+  Transferred 918712320 Bytes
+  Transferred 919879680 Bytes
+  Transferred 921047040 Bytes
+  Transferred 922214400 Bytes
+  Transferred 923381760 Bytes
+  Transferred 924549120 Bytes
+  Transferred 925716480 Bytes
+  Transferred 926883840 Bytes
+  Transferred 928051200 Bytes
+  Transferred 929218560 Bytes
+  Transferred 930385920 Bytes
+  Transferred 931553280 Bytes
+  Transferred 932720640 Bytes
+  Transferred 933888000 Bytes
+  Transferred 935055360 Bytes
+  Transferred 936222720 Bytes
+  Transferred 937390080 Bytes
+  Transferred 938557440 Bytes
+  Transferred 939724800 Bytes
+  Transferred 940892160 Bytes
+  Transferred 942059520 Bytes
+  Transferred 943226880 Bytes
+  Transferred 944394240 Bytes
+  Transferred 945561600 Bytes
+  Transferred 946728960 Bytes
+  Transferred 947896320 Bytes
+  Transferred 949063680 Bytes
+  Transferred 950231040 Bytes
+  Transferred 951398400 Bytes
+  Transferred 952565760 Bytes
+  Transferred 953733120 Bytes
+  Transferred 954900480 Bytes
+  Transferred 956067840 Bytes
+  Transferred 957235200 Bytes
+  Transferred 958402560 Bytes
+  Transferred 959569920 Bytes
+  Transferred 960737280 Bytes
+  Transferred 961904640 Bytes
+  Transferred 963072000 Bytes
+  Transferred 964239360 Bytes
+  Transferred 965406720 Bytes
+  Transferred 966574080 Bytes
+  Transferred 967741440 Bytes
+  Transferred 968908800 Bytes
+  Transferred 970076160 Bytes
+  Transferred 971243520 Bytes
+  Transferred 972410880 Bytes
+  Transferred 973578240 Bytes
+  Transferred 974745600 Bytes
+  Transferred 975912960 Bytes
+  Transferred 977080320 Bytes
+  Transferred 978247680 Bytes
+  Transferred 979415040 Bytes
+  Transferred 980582400 Bytes
+  Transferred 981749760 Bytes
+  Transferred 982917120 Bytes
+  Transferred 984084480 Bytes
+  Transferred 985251840 Bytes
+  Transferred 986419200 Bytes
+  Transferred 987586560 Bytes
+  Transferred 988753920 Bytes
+  Transferred 989921280 Bytes
+  Transferred 991088640 Bytes
+  Transferred 992256000 Bytes
+  Transferred 993423360 Bytes
+  Transferred 994590720 Bytes
+  Transferred 995758080 Bytes
+  Transferred 996925440 Bytes
+  Transferred 998092800 Bytes
+  Transferred 999260160 Bytes
+  Transferred 1000427520 Bytes
+  Transferred 1001594880 Bytes
+  Transferred 1002762240 Bytes
+  Transferred 1003929600 Bytes
+  Transferred 1005096960 Bytes
+  Transferred 1006264320 Bytes
+  Transferred 1007431680 Bytes
+  Transferred 1008599040 Bytes
+  Transferred 1009766400 Bytes
+  Transferred 1010933760 Bytes
+  Transferred 1012101120 Bytes
+  Transferred 1013268480 Bytes
+  Transferred 1014435840 Bytes
+  Transferred 1015603200 Bytes
+  Transferred 1016770560 Bytes
+  Transferred 1017937920 Bytes
+  Transferred 1019105280 Bytes
+  Transferred 1020272640 Bytes
+  Transferred 1021440000 Bytes
+  Transferred 1022607360 Bytes
+  Transferred 1023774720 Bytes
+  Transferred 1024942080 Bytes
+  Transferred 1026109440 Bytes
+  Transferred 1027276800 Bytes
+  Transferred 1028444160 Bytes
+  Transferred 1029611520 Bytes
+  Transferred 1030778880 Bytes
+  Transferred 1031946240 Bytes
+  Transferred 1033113600 Bytes
+  Transferred 1034280960 Bytes
+  Transferred 1035448320 Bytes
+  Transferred 1036615680 Bytes
+  Transferred 1037783040 Bytes
+  Transferred 1038950400 Bytes
+  Transferred 1040117760 Bytes
+  Transferred 1041285120 Bytes
+  Transferred 1042452480 Bytes
+  Transferred 1043619840 Bytes
+  Transferred 1044787200 Bytes
+  Transferred 1045954560 Bytes
+  Transferred 1047121920 Bytes
+  Transferred 1048289280 Bytes
+  Transferred 1049456640 Bytes
+  Transferred 1050624000 Bytes
+  Transferred 1051791360 Bytes
+  Transferred 1052958720 Bytes
+  Transferred 1054126080 Bytes
+  Transferred 1055293440 Bytes
+  Transferred 1056460800 Bytes
+  Transferred 1057628160 Bytes
+  Transferred 1058795520 Bytes
+  Transferred 1059962880 Bytes
+  Transferred 1061130240 Bytes
+  Transferred 1062297600 Bytes
+  Transferred 1063464960 Bytes
+  Transferred 1064632320 Bytes
+  Transferred 1065799680 Bytes
+  Transferred 1066967040 Bytes
+  Transferred 1068134400 Bytes
+  Transferred 1069301760 Bytes
+  Transferred 1070469120 Bytes
+  Transferred 1071636480 Bytes
+  Transferred 1072803840 Bytes
+  Transferred 1073971200 Bytes
+  Transferred 1075138560 Bytes
+  Transferred 1076305920 Bytes
+  Transferred 1077473280 Bytes
+  Transferred 1078640640 Bytes
+  Transferred 1079808000 Bytes
+  Transferred 1080975360 Bytes
+  Transferred 1082142720 Bytes
+  Transferred 1083310080 Bytes
+  Transferred 1084477440 Bytes
+  Transferred 1085644800 Bytes
+  Transferred 1086812160 Bytes
+  Transferred 1087979520 Bytes
+  Transferred 1089146880 Bytes
+  Transferred 1090314240 Bytes
+  Transferred 1091481600 Bytes
+  Transferred 1092648960 Bytes
+  Transferred 1093816320 Bytes
+  Transferred 1094983680 Bytes
+  Transferred 1096151040 Bytes
+  Transferred 1097318400 Bytes
+  Transferred 1098485760 Bytes
+  Transferred 1099653120 Bytes
+  Transferred 1100820480 Bytes
+  Transferred 1101987840 Bytes
+  Transferred 1103155200 Bytes
+  Transferred 1104322560 Bytes
+  Transferred 1105489920 Bytes
+  Transferred 1106657280 Bytes
+  Transferred 1107824640 Bytes
+  Transferred 1108992000 Bytes
+  Transferred 1110159360 Bytes
+  Transferred 1111326720 Bytes
+  Transferred 1112494080 Bytes
+  Transferred 1113661440 Bytes
+  Transferred 1114828800 Bytes
+  Transferred 1115996160 Bytes
+  Transferred 1117163520 Bytes
+  Transferred 1118330880 Bytes
+  Transferred 1119498240 Bytes
+  Transferred 1120665600 Bytes
+  Transferred 1121832960 Bytes
+  Transferred 1123000320 Bytes
+  Transferred 1124167680 Bytes
+  Transferred 1125335040 Bytes
+  Transferred 1126502400 Bytes
+  Transferred 1127669760 Bytes
+  Transferred 1128837120 Bytes
+  Transferred 1130004480 Bytes
+  Transferred 1131171840 Bytes
+  Transferred 1132339200 Bytes
+  Transferred 1133506560 Bytes
+  Transferred 1134673920 Bytes
+  Transferred 1135841280 Bytes
+  Transferred 1137008640 Bytes
+  Transferred 1138176000 Bytes
+  Transferred 1139343360 Bytes
+  Transferred 1140510720 Bytes
+  Transferred 1141678080 Bytes
+  Transferred 1142845440 Bytes
+  Transferred 1144012800 Bytes
+  Transferred 1145180160 Bytes
+  Transferred 1146347520 Bytes
+  Transferred 1147514880 Bytes
+  Transferred 1148682240 Bytes
+  Transferred 1149849600 Bytes
+  Transferred 1151016960 Bytes
+  Transferred 1152184320 Bytes
+  Transferred 1153351680 Bytes
+  Transferred 1154519040 Bytes
+  Transferred 1155686400 Bytes
+  Transferred 1156853760 Bytes
+  Transferred 1158021120 Bytes
+  Transferred 1159188480 Bytes
+  Transferred 1160355840 Bytes
+  Transferred 1161523200 Bytes
+  Transferred 1162690560 Bytes
+  Transferred 1163857920 Bytes
+  Transferred 1165025280 Bytes
+  Transferred 1166192640 Bytes
+  Transferred 1167360000 Bytes
+  Transferred 1168527360 Bytes
+  Transferred 1169694720 Bytes
+  Transferred 1170862080 Bytes
+  Transferred 1172029440 Bytes
+  Transferred 1173196800 Bytes
+  Transferred 1174364160 Bytes
+  Transferred 1175531520 Bytes
+  Transferred 1176698880 Bytes
+  Transferred 1177866240 Bytes
+  Transferred 1179033600 Bytes
+  Transferred 1180200960 Bytes
+  Transferred 1181368320 Bytes
+  Transferred 1182535680 Bytes
+  Transferred 1183703040 Bytes
+  Transferred 1184870400 Bytes
+  Transferred 1186037760 Bytes
+  Transferred 1187205120 Bytes
+  Transferred 1188372480 Bytes
+  Transferred 1189539840 Bytes
+  Transferred 1190707200 Bytes
+  Transferred 1191874560 Bytes
+  Transferred 1193041920 Bytes
+  Transferred 1194209280 Bytes
+  Transferred 1195376640 Bytes
+  Transferred 1196544000 Bytes
+  Transferred 1197711360 Bytes
+  Transferred 1198878720 Bytes
+  Transferred 1200046080 Bytes
+  Transferred 1201213440 Bytes
+  Transferred 1202380800 Bytes
+  Transferred 1203548160 Bytes
+  Transferred 1204715520 Bytes
+  Transferred 1205882880 Bytes
+  Transferred 1207050240 Bytes
+  Transferred 1208217600 Bytes
+  Transferred 1209384960 Bytes
+  Transferred 1210552320 Bytes
+  Transferred 1211719680 Bytes
+  Transferred 1212887040 Bytes
+  Transferred 1214054400 Bytes
+  Transferred 1215221760 Bytes
+  Transferred 1216389120 Bytes
+  Transferred 1217556480 Bytes
+  Transferred 1218723840 Bytes
+  Transferred 1219891200 Bytes
+  Transferred 1221058560 Bytes
+  Transferred 1222225920 Bytes
+  Transferred 1223393280 Bytes
+  Transferred 1224560640 Bytes
+  Transferred 1225728000 Bytes
+  Transferred 1226895360 Bytes
+  Transferred 1228062720 Bytes
+  Transferred 1229230080 Bytes
+  Transferred 1230397440 Bytes
+  Transferred 1231564800 Bytes
+  Transferred 1232732160 Bytes
+  Transferred 1233899520 Bytes
+  Transferred 1235066880 Bytes
+  Transferred 1236234240 Bytes
+  Transferred 1237401600 Bytes
+  Transferred 1238568960 Bytes
+  Transferred 1239736320 Bytes
+  Transferred 1240903680 Bytes
+  Transferred 1242071040 Bytes
+  Transferred 1243238400 Bytes
+  Transferred 1244405760 Bytes
+  Transferred 1245573120 Bytes
+  Transferred 1246740480 Bytes
+  Transferred 1247907840 Bytes
+  Transferred 1249075200 Bytes
+  Transferred 1250242560 Bytes
+  Transferred 1251409920 Bytes
+  Transferred 1252577280 Bytes
+  Transferred 1253744640 Bytes
+  Transferred 1254912000 Bytes
+  Transferred 1256079360 Bytes
+  Transferred 1257246720 Bytes
+  Transferred 1258414080 Bytes
+  Transferred 1259581440 Bytes
+  Transferred 1260748800 Bytes
+  Transferred 1261916160 Bytes
+  Transferred 1263083520 Bytes
+  Transferred 1264250880 Bytes
+  Transferred 1265418240 Bytes
+  Transferred 1266585600 Bytes
+  Transferred 1267752960 Bytes
+  Transferred 1268920320 Bytes
+  Transferred 1270087680 Bytes
+  Transferred 1271255040 Bytes
+  Transferred 1272422400 Bytes
+  Transferred 1273589760 Bytes
+  Transferred 1274757120 Bytes
+  Transferred 1275924480 Bytes
+  Transferred 1277091840 Bytes
+  Transferred 1278259200 Bytes
+  Transferred 1279426560 Bytes
+  Transferred 1280593920 Bytes
+  Transferred 1281761280 Bytes
+  Transferred 1282928640 Bytes
+  Transferred 1284096000 Bytes
+  Transferred 1285263360 Bytes
+  Transferred 1286430720 Bytes
+  Transferred 1287598080 Bytes
+  Transferred 1288765440 Bytes
+  Transferred 1289932800 Bytes
+  Transferred 1291100160 Bytes
+  Transferred 1292267520 Bytes
+  Transferred 1293434880 Bytes
+  Transferred 1294602240 Bytes
+  Transferred 1295769600 Bytes
+  Transferred 1296936960 Bytes
+  Transferred 1298104320 Bytes
+  Transferred 1299271680 Bytes
+  Transferred 1300439040 Bytes
+  Transferred 1301606400 Bytes
+  Transferred 1302773760 Bytes
+  Transferred 1303941120 Bytes
+  Transferred 1305108480 Bytes
+  Transferred 1306275840 Bytes
+  Transferred 1307443200 Bytes
+  Transferred 1308610560 Bytes
+  Transferred 1309777920 Bytes
+  Transferred 1310945280 Bytes
+  Transferred 1312112640 Bytes
+  Transferred 1313280000 Bytes
+  Transferred 1314447360 Bytes
+  Transferred 1315614720 Bytes
+  Transferred 1316782080 Bytes
+  Transferred 1317949440 Bytes
+  Transferred 1319116800 Bytes
+  Transferred 1320284160 Bytes
+  Transferred 1321451520 Bytes
+  Transferred 1322618880 Bytes
+  Transferred 1323786240 Bytes
+  Transferred 1324953600 Bytes
+  Transferred 1326120960 Bytes
+  Transferred 1327288320 Bytes
+  Transferred 1328455680 Bytes
+  Transferred 1329623040 Bytes
+  Transferred 1330790400 Bytes
+  Transferred 1331957760 Bytes
+  Transferred 1333125120 Bytes
+  Transferred 1334292480 Bytes
+  Transferred 1335459840 Bytes
+  Transferred 1336627200 Bytes
+  Transferred 1337794560 Bytes
+  Transferred 1338961920 Bytes
+  Transferred 1340129280 Bytes
+  Transferred 1341296640 Bytes
+  Transferred 1342464000 Bytes
+  Transferred 1343631360 Bytes
+  Transferred 1344798720 Bytes
+  Transferred 1345966080 Bytes
+  Transferred 1347133440 Bytes
+  Transferred 1348300800 Bytes
+  Transferred 1349468160 Bytes
+  Transferred 1350635520 Bytes
+  Transferred 1351802880 Bytes
+  Transferred 1352970240 Bytes
+  Transferred 1354137600 Bytes
+  Transferred 1355304960 Bytes
+  Transferred 1356472320 Bytes
+  Transferred 1357639680 Bytes
+  Transferred 1358807040 Bytes
+  Transferred 1359974400 Bytes
+  Transferred 1361141760 Bytes
+  Transferred 1362309120 Bytes
+  Transferred 1363476480 Bytes
+  Transferred 1364643840 Bytes
+  Transferred 1365811200 Bytes
+  Transferred 1366978560 Bytes
+  Transferred 1368145920 Bytes
+  Transferred 1369313280 Bytes
+  Transferred 1370480640 Bytes
+  Transferred 1371648000 Bytes
+  Transferred 1372815360 Bytes
+  Transferred 1373982720 Bytes
+  Transferred 1375150080 Bytes
+  Transferred 1376317440 Bytes
+  Transferred 1377484800 Bytes
+  Transferred 1378652160 Bytes
+  Transferred 1379819520 Bytes
+  Transferred 1380986880 Bytes
+  Transferred 1382154240 Bytes
+  Transferred 1383321600 Bytes
+  Transferred 1384488960 Bytes
+  Transferred 1385656320 Bytes
+  Transferred 1386823680 Bytes
+  Transferred 1387991040 Bytes
+  Transferred 1389158400 Bytes
+  Transferred 1390325760 Bytes
+  Transferred 1391493120 Bytes
+  Transferred 1392660480 Bytes
+  Transferred 1393827840 Bytes
+  Transferred 1394995200 Bytes
+  Transferred 1396162560 Bytes
+  Transferred 1397329920 Bytes
+  Transferred 1398497280 Bytes
+  Transferred 1399664640 Bytes
+  Transferred 1400832000 Bytes
+  Transferred 1401999360 Bytes
+  Transferred 1403166720 Bytes
+  Transferred 1404334080 Bytes
+  Transferred 1405501440 Bytes
+  Transferred 1406668800 Bytes
+  Transferred 1407836160 Bytes
+  Transferred 1409003520 Bytes
+  Transferred 1410170880 Bytes
+  Transferred 1411338240 Bytes
+  Transferred 1412505600 Bytes
+  Transferred 1413672960 Bytes
+  Transferred 1414840320 Bytes
+  Transferred 1416007680 Bytes
+  Transferred 1417175040 Bytes
+  Transferred 1418342400 Bytes
+  Transferred 1419509760 Bytes
+  Transferred 1420677120 Bytes
+  Transferred 1421844480 Bytes
+  Transferred 1423011840 Bytes
+  Transferred 1424179200 Bytes
+  Transferred 1425346560 Bytes
+  Transferred 1426513920 Bytes
+  Transferred 1427681280 Bytes
+  Transferred 1428848640 Bytes
+  Transferred 1430016000 Bytes
+  Transferred 1431183360 Bytes
+  Transferred 1432350720 Bytes
+  Transferred 1433518080 Bytes
+  Transferred 1434685440 Bytes
+  Transferred 1435852800 Bytes
+  Transferred 1437020160 Bytes
+  Transferred 1438187520 Bytes
+  Transferred 1439354880 Bytes
+  Transferred 1440522240 Bytes
+  Transferred 1441689600 Bytes
+  Transferred 1442856960 Bytes
+  Transferred 1444024320 Bytes
+  Transferred 1445191680 Bytes
+  Transferred 1446359040 Bytes
+  Transferred 1447526400 Bytes
+  Transferred 1448693760 Bytes
+  Transferred 1449861120 Bytes
+  Transferred 1451028480 Bytes
+  Transferred 1452195840 Bytes
+  Transferred 1453363200 Bytes
+  Transferred 1454530560 Bytes
+  Transferred 1455697920 Bytes
+  Transferred 1456865280 Bytes
+  Transferred 1458032640 Bytes
+  Transferred 1459200000 Bytes
+  Transferred 1460367360 Bytes
+  Transferred 1461534720 Bytes
+  Transferred 1462702080 Bytes
+  Transferred 1463869440 Bytes
+  Transferred 1465036800 Bytes
+  Transferred 1466204160 Bytes
+  Transferred 1467371520 Bytes
+  Transferred 1468538880 Bytes
+  Transferred 1469706240 Bytes
+  Transferred 1470873600 Bytes
+  Transferred 1472040960 Bytes
+  Transferred 1473208320 Bytes
+  Transferred 1474375680 Bytes
+  Transferred 1475543040 Bytes
+  Transferred 1476710400 Bytes
+  Transferred 1477877760 Bytes
+  Transferred 1479045120 Bytes
+  Transferred 1480212480 Bytes
+  Transferred 1481379840 Bytes
+  Transferred 1482547200 Bytes
+  Transferred 1483714560 Bytes
+  Transferred 1484881920 Bytes
+  Transferred 1486049280 Bytes
+  Transferred 1487216640 Bytes
+  Transferred 1488384000 Bytes
+  Transferred 1489551360 Bytes
+  Transferred 1490718720 Bytes
+  Transferred 1491886080 Bytes
+  Transferred 1493053440 Bytes
+  Transferred 1494220800 Bytes
+  Transferred 1495388160 Bytes
+  Transferred 1496555520 Bytes
+  Transferred 1497722880 Bytes
+  Transferred 1498890240 Bytes
+  Transferred 1500057600 Bytes
+  Transferred 1501224960 Bytes
+  Transferred 1502392320 Bytes
+  Transferred 1503559680 Bytes
+  Transferred 1504727040 Bytes
+  Transferred 1505894400 Bytes
+  Transferred 1507061760 Bytes
+  Transferred 1508229120 Bytes
+  Transferred 1509396480 Bytes
+  Transferred 1510563840 Bytes
+  Transferred 1511731200 Bytes
+  Transferred 1512898560 Bytes
+  Transferred 1514065920 Bytes
+  Transferred 1515233280 Bytes
+  Transferred 1516400640 Bytes
+  Transferred 1517568000 Bytes
+  Transferred 1518735360 Bytes
+  Transferred 1519902720 Bytes
+  Transferred 1521070080 Bytes
+  Transferred 1522237440 Bytes
+  Transferred 1523404800 Bytes
+  Transferred 1524572160 Bytes
+  Transferred 1525739520 Bytes
+  Transferred 1526906880 Bytes
+  Transferred 1528074240 Bytes
+  Transferred 1529241600 Bytes
+  Transferred 1530408960 Bytes
+  Transferred 1531576320 Bytes
+  Transferred 1532743680 Bytes
+  Transferred 1533911040 Bytes
+  Transferred 1535078400 Bytes
+  Transferred 1536245760 Bytes
+  Transferred 1537413120 Bytes
+  Transferred 1538580480 Bytes
+  Transferred 1539747840 Bytes
+  Transferred 1540915200 Bytes
+  Transferred 1542082560 Bytes
+  Transferred 1543249920 Bytes
+  Transferred 1544417280 Bytes
+  Transferred 1545584640 Bytes
+  Transferred 1546752000 Bytes
+  Transferred 1547919360 Bytes
+  Transferred 1549086720 Bytes
+  Transferred 1550254080 Bytes
+  Transferred 1551421440 Bytes
+  Transferred 1552588800 Bytes
+  Transferred 1553756160 Bytes
+  Transferred 1554923520 Bytes
+  Transferred 1556090880 Bytes
+  Transferred 1557258240 Bytes
+  Transferred 1558425600 Bytes
+  Transferred 1559592960 Bytes
+  Transferred 1560760320 Bytes
+  Transferred 1561927680 Bytes
+  Transferred 1563095040 Bytes
+  Transferred 1564262400 Bytes
+  Transferred 1565429760 Bytes
+  Transferred 1566597120 Bytes
+  Transferred 1567764480 Bytes
+  Transferred 1568931840 Bytes
+  Transferred 1570099200 Bytes
+  Transferred 1571266560 Bytes
+  Transferred 1572433920 Bytes
+  Transferred 1573601280 Bytes
+  Transferred 1574768640 Bytes
+  Transferred 1575936000 Bytes
+  Transferred 1577103360 Bytes
+  Transferred 1578270720 Bytes
+  Transferred 1579438080 Bytes
+  Transferred 1580605440 Bytes
+  Transferred 1581772800 Bytes
+  Transferred 1582940160 Bytes
+  Transferred 1584107520 Bytes
+  Transferred 1585274880 Bytes
+  Transferred 1586442240 Bytes
+  Transferred 1587609600 Bytes
+  Transferred 1588776960 Bytes
+  Transferred 1589944320 Bytes
+  Transferred 1591111680 Bytes
+  Transferred 1592279040 Bytes
+  Transferred 1593446400 Bytes
+  Transferred 1594613760 Bytes
+  Transferred 1595781120 Bytes
+  Transferred 1596948480 Bytes
+  Transferred 1598115840 Bytes
+  Transferred 1599283200 Bytes
+  Transferred 1600450560 Bytes
+  Transferred 1601617920 Bytes
+  Transferred 1602785280 Bytes
+  Transferred 1603952640 Bytes
+  Transferred 1605120000 Bytes
+  Transferred 1606287360 Bytes
+  Transferred 1607454720 Bytes
+  Transferred 1608622080 Bytes
+  Transferred 1609789440 Bytes
+  Transferred 1610956800 Bytes
+  Transferred 1612124160 Bytes
+  Transferred 1613291520 Bytes
+  Transferred 1614458880 Bytes
+  Transferred 1615626240 Bytes
+  Transferred 1616793600 Bytes
+  Transferred 1617960960 Bytes
+  Transferred 1619128320 Bytes
+  Transferred 1620295680 Bytes
+  Transferred 1621463040 Bytes
+  Transferred 1622630400 Bytes
+  Transferred 1623797760 Bytes
+  Transferred 1624965120 Bytes
+  Transferred 1626132480 Bytes
+  Transferred 1627299840 Bytes
+  Transferred 1628467200 Bytes
+  Transferred 1629634560 Bytes
+  Transferred 1630801920 Bytes
+  Transferred 1631969280 Bytes
+  Transferred 1633136640 Bytes
+  Transferred 1634304000 Bytes
+  Transferred 1635471360 Bytes
+  Transferred 1636638720 Bytes
+  Transferred 1637806080 Bytes
+  Transferred 1638973440 Bytes
+  Transferred 1640140800 Bytes
+  Transferred 1641308160 Bytes
+  Transferred 1642475520 Bytes
+  Transferred 1643642880 Bytes
+  Transferred 1644810240 Bytes
+  Transferred 1645977600 Bytes
+  Transferred 1647144960 Bytes
+  Transferred 1648312320 Bytes
+  Transferred 1649479680 Bytes
+  Transferred 1650647040 Bytes
+  Transferred 1651814400 Bytes
+  Transferred 1652981760 Bytes
+  Transferred 1654149120 Bytes
+  Transferred 1655316480 Bytes
+  Transferred 1656483840 Bytes
+  Transferred 1657651200 Bytes
+  Transferred 1658818560 Bytes
+  Transferred 1659985920 Bytes
+  Transferred 1661153280 Bytes
+  Transferred 1662320640 Bytes
+  Transferred 1663488000 Bytes
+  Transferred 1664655360 Bytes
+  Transferred 1665822720 Bytes
+  Transferred 1666990080 Bytes
+  Transferred 1668157440 Bytes
+  Transferred 1669324800 Bytes
+  Transferred 1670492160 Bytes
+  Transferred 1671659520 Bytes
+  Transferred 1672826880 Bytes
+  Transferred 1673994240 Bytes
+  Transferred 1675161600 Bytes
+  Transferred 1676328960 Bytes
+  Transferred 1677496320 Bytes
+  Transferred 1678663680 Bytes
+  Transferred 1679831040 Bytes
+  Transferred 1680998400 Bytes
+  Transferred 1682165760 Bytes
+  Transferred 1683333120 Bytes
+  Transferred 1684500480 Bytes
+  Transferred 1685667840 Bytes
+  Transferred 1686835200 Bytes
+  Transferred 1688002560 Bytes
+  Transferred 1689169920 Bytes
+  Transferred 1690337280 Bytes
+  Transferred 1691504640 Bytes
+  Transferred 1692672000 Bytes
+  Transferred 1693839360 Bytes
+  Transferred 1695006720 Bytes
+  Transferred 1696174080 Bytes
+  Transferred 1697341440 Bytes
+  Transferred 1698508800 Bytes
+  Transferred 1699676160 Bytes
+  Transferred 1700843520 Bytes
+  Transferred 1702010880 Bytes
+  Transferred 1703178240 Bytes
+  Transferred 1704345600 Bytes
+  Transferred 1705512960 Bytes
+  Transferred 1706680320 Bytes
+  Transferred 1707847680 Bytes
+  Transferred 1709015040 Bytes
+  Transferred 1710182400 Bytes
+  Transferred 1711349760 Bytes
+  Transferred 1712517120 Bytes
+  Transferred 1713684480 Bytes
+  Transferred 1714851840 Bytes
+  Transferred 1716019200 Bytes
+  Transferred 1717186560 Bytes
+  Transferred 1718353920 Bytes
+  Transferred 1719521280 Bytes
+  Transferred 1720688640 Bytes
+  Transferred 1721856000 Bytes
+  Transferred 1723023360 Bytes
+  Transferred 1724190720 Bytes
+  Transferred 1725358080 Bytes
+  Transferred 1726525440 Bytes
+  Transferred 1727692800 Bytes
+  Transferred 1728860160 Bytes
+  Transferred 1730027520 Bytes
+  Transferred 1731194880 Bytes
+  Transferred 1732362240 Bytes
+  Transferred 1733529600 Bytes
+  Transferred 1734696960 Bytes
+  Transferred 1735864320 Bytes
+  Transferred 1737031680 Bytes
+  Transferred 1738199040 Bytes
+  Transferred 1739366400 Bytes
+  Transferred 1740533760 Bytes
+  Transferred 1741701120 Bytes
+  Transferred 1742868480 Bytes
+  Transferred 1744035840 Bytes
+  Transferred 1745203200 Bytes
+  Transferred 1746370560 Bytes
+  Transferred 1747537920 Bytes
+  Transferred 1748705280 Bytes
+  Transferred 1749872640 Bytes
+  Transferred 1751040000 Bytes
+  Transferred 1752207360 Bytes
+  Transferred 1753374720 Bytes
+  Transferred 1754542080 Bytes
+  Transferred 1755709440 Bytes
+  Transferred 1756876800 Bytes
+  Transferred 1758044160 Bytes
+  Transferred 1759211520 Bytes
+  Transferred 1760378880 Bytes
+  Transferred 1761546240 Bytes
+  Transferred 1762713600 Bytes
+  Transferred 1763880960 Bytes
+  Transferred 1765048320 Bytes
+  Transferred 1766215680 Bytes
+  Transferred 1767383040 Bytes
+  Transferred 1768550400 Bytes
+  Transferred 1769717760 Bytes
+  Transferred 1770885120 Bytes
+  Transferred 1772052480 Bytes
+  Transferred 1773219840 Bytes
+  Transferred 1774387200 Bytes
+  Transferred 1775554560 Bytes
+  Transferred 1776721920 Bytes
+  Transferred 1777889280 Bytes
+  Transferred 1779056640 Bytes
+  Transferred 1780224000 Bytes
+  Transferred 1781391360 Bytes
+  Transferred 1782558720 Bytes
+  Transferred 1783726080 Bytes
+  Transferred 1784893440 Bytes
+  Transferred 1786060800 Bytes
+  Transferred 1787228160 Bytes
+  Transferred 1788395520 Bytes
+  Transferred 1789562880 Bytes
+  Transferred 1790730240 Bytes
+  Transferred 1791897600 Bytes
+  Transferred 1793064960 Bytes
+  Transferred 1794232320 Bytes
+  Transferred 1795399680 Bytes
+  Transferred 1796567040 Bytes
+  Transferred 1797734400 Bytes
+  Transferred 1798901760 Bytes
+  Transferred 1800069120 Bytes
+  Transferred 1801236480 Bytes
+  Transferred 1802403840 Bytes
+  Transferred 1803571200 Bytes
+  Transferred 1804738560 Bytes
+  Transferred 1805905920 Bytes
+  Transferred 1807073280 Bytes
+  Transferred 1808240640 Bytes
+  Transferred 1809408000 Bytes
+  Transferred 1810575360 Bytes
+  Transferred 1811742720 Bytes
+  Transferred 1812910080 Bytes
+  Transferred 1814077440 Bytes
+  Transferred 1815244800 Bytes
+  Transferred 1816412160 Bytes
+  Transferred 1817579520 Bytes
+  Transferred 1818746880 Bytes
+  Transferred 1819914240 Bytes
+  Transferred 1821081600 Bytes
+  Transferred 1822248960 Bytes
+  Transferred 1823416320 Bytes
+  Transferred 1824583680 Bytes
+  Transferred 1825751040 Bytes
+  Transferred 1826918400 Bytes
+  Transferred 1828085760 Bytes
+  Transferred 1829253120 Bytes
+  Transferred 1830420480 Bytes
+  Transferred 1831587840 Bytes
+  Transferred 1832755200 Bytes
+  Transferred 1833922560 Bytes
+  Transferred 1835089920 Bytes
+  Transferred 1836257280 Bytes
+  Transferred 1837424640 Bytes
+  Transferred 1838592000 Bytes
+  Transferred 1839759360 Bytes
+  Transferred 1840926720 Bytes
+  Transferred 1842094080 Bytes
+  Transferred 1843261440 Bytes
+  Transferred 1844428800 Bytes
+  Transferred 1845596160 Bytes
+  Transferred 1846763520 Bytes
+  Transferred 1847930880 Bytes
+  Transferred 1849098240 Bytes
+  Transferred 1850265600 Bytes
+  Transferred 1851432960 Bytes
+  Transferred 1852600320 Bytes
+  Transferred 1853767680 Bytes
+  Transferred 1854935040 Bytes
+  Transferred 1856102400 Bytes
+  Transferred 1857269760 Bytes
+  Transferred 1858437120 Bytes
+  Transferred 1859604480 Bytes
+  Transferred 1860771840 Bytes
+  Transferred 1861939200 Bytes
+  Transferred 1863106560 Bytes
+  Transferred 1864273920 Bytes
+  Transferred 1865441280 Bytes
+  Transferred 1866608640 Bytes
+  Transferred 1867776000 Bytes
+  Transferred 1868943360 Bytes
+  Transferred 1870110720 Bytes
+  Transferred 1871278080 Bytes
+  Transferred 1872445440 Bytes
+  Transferred 1873612800 Bytes
+  Transferred 1874780160 Bytes
+  Transferred 1875947520 Bytes
+  Transferred 1877114880 Bytes
+  Transferred 1878282240 Bytes
+  Transferred 1879449600 Bytes
+  Transferred 1880616960 Bytes
+  Transferred 1881784320 Bytes
+  Transferred 1882951680 Bytes
+  Transferred 1884119040 Bytes
+  Transferred 1885286400 Bytes
+  Transferred 1886453760 Bytes
+  Transferred 1887621120 Bytes
+  Transferred 1888788480 Bytes
+  Transferred 1889955840 Bytes
+  Transferred 1891123200 Bytes
+  Transferred 1892290560 Bytes
+  Transferred 1893457920 Bytes
+  Transferred 1894625280 Bytes
+  Transferred 1895792640 Bytes
+  Transferred 1896960000 Bytes
+  Transferred 1898127360 Bytes
+  Transferred 1899294720 Bytes
+  Transferred 1900462080 Bytes
+  Transferred 1901629440 Bytes
+  Transferred 1902796800 Bytes
+  Transferred 1903964160 Bytes
+  Transferred 1905131520 Bytes
+  Transferred 1906298880 Bytes
+  Transferred 1907466240 Bytes
+  Transferred 1908633600 Bytes
+  Transferred 1909800960 Bytes
+  Transferred 1910968320 Bytes
+  Transferred 1912135680 Bytes
+  Transferred 1913303040 Bytes
+  Transferred 1914470400 Bytes
+  Transferred 1915637760 Bytes
+  Transferred 1916805120 Bytes
+  Transferred 1917972480 Bytes
+  Transferred 1919139840 Bytes
+  Transferred 1920307200 Bytes
+  Transferred 1921474560 Bytes
+  Transferred 1922641920 Bytes
+  Transferred 1923809280 Bytes
+  Transferred 1924976640 Bytes
+  Transferred 1926144000 Bytes
+  Transferred 1927311360 Bytes
+  Transferred 1928478720 Bytes
+  Transferred 1929646080 Bytes
+  Transferred 1930813440 Bytes
+  Transferred 1931980800 Bytes
+  Transferred 1933148160 Bytes
+  Transferred 1934315520 Bytes
+  Transferred 1935482880 Bytes
+  Transferred 1936650240 Bytes
+  Transferred 1937817600 Bytes
+  Transferred 1938984960 Bytes
+  Transferred 1940152320 Bytes
+  Transferred 1941319680 Bytes
+  Transferred 1942487040 Bytes
+  Transferred 1943654400 Bytes
+  Transferred 1944821760 Bytes
+  Transferred 1945989120 Bytes
+  Transferred 1947156480 Bytes
+  Transferred 1948323840 Bytes
+  Transferred 1949491200 Bytes
+  Transferred 1950658560 Bytes
+  Transferred 1951825920 Bytes
+  Transferred 1952993280 Bytes
+  Transferred 1954160640 Bytes
+  Transferred 1955328000 Bytes
+  Transferred 1956495360 Bytes
+  Transferred 1957662720 Bytes
+  Transferred 1958830080 Bytes
+  Transferred 1959997440 Bytes
+  Transferred 1961164800 Bytes
+  Transferred 1962332160 Bytes
+  Transferred 1963499520 Bytes
+  Transferred 1964666880 Bytes
+  Transferred 1965834240 Bytes
+  Transferred 1967001600 Bytes
+  Transferred 1968168960 Bytes
+  Transferred 1969336320 Bytes
+  Transferred 1970503680 Bytes
+  Transferred 1971671040 Bytes
+  Transferred 1972838400 Bytes
+  Transferred 1974005760 Bytes
+  Transferred 1975173120 Bytes
+  Transferred 1976340480 Bytes
+  Transferred 1977507840 Bytes
+  Transferred 1978675200 Bytes
+  Transferred 1979842560 Bytes
+  Transferred 1981009920 Bytes
+  Transferred 1982177280 Bytes
+  Transferred 1983344640 Bytes
+  Transferred 1984512000 Bytes
+  Transferred 1985679360 Bytes
+  Transferred 1986846720 Bytes
+  Transferred 1988014080 Bytes
+  Transferred 1989181440 Bytes
+  Transferred 1990348800 Bytes
+  Transferred 1991516160 Bytes
+  Transferred 1992683520 Bytes
+  Transferred 1993850880 Bytes
+  Transferred 1995018240 Bytes
+  Transferred 1996185600 Bytes
+  Transferred 1997352960 Bytes
+  Transferred 1998520320 Bytes
+  Transferred 1999687680 Bytes
+  Transferred 2000855040 Bytes
+  Transferred 2002022400 Bytes
+  Transferred 2003189760 Bytes
+  Transferred 2004357120 Bytes
+  Transferred 2005524480 Bytes
+  Transferred 2006691840 Bytes
+  Transferred 2007859200 Bytes
+  Transferred 2009026560 Bytes
+  Transferred 2010193920 Bytes
+  Transferred 2011361280 Bytes
+  Transferred 2012528640 Bytes
+  Transferred 2013696000 Bytes
+  Transferred 2014863360 Bytes
+  Transferred 2016030720 Bytes
+  Transferred 2017198080 Bytes
+  Transferred 2018365440 Bytes
+  Transferred 2019532800 Bytes
+  Transferred 2020700160 Bytes
+  Transferred 2021867520 Bytes
+  Transferred 2023034880 Bytes
+  Transferred 2024202240 Bytes
+  Transferred 2025369600 Bytes
+  Transferred 2026536960 Bytes
+  Transferred 2027704320 Bytes
+  Transferred 2028871680 Bytes
+  Transferred 2030039040 Bytes
+  Transferred 2031206400 Bytes
+  Transferred 2032373760 Bytes
+  Transferred 2033541120 Bytes
+  Transferred 2034708480 Bytes
+  Transferred 2035875840 Bytes
+  Transferred 2037043200 Bytes
+  Transferred 2038210560 Bytes
+  Transferred 2039377920 Bytes
+  Transferred 2040545280 Bytes
+  Transferred 2041712640 Bytes
+  Transferred 2042880000 Bytes
+  Transferred 2044047360 Bytes
+  Transferred 2045214720 Bytes
+  Transferred 2046382080 Bytes
+  Transferred 2047549440 Bytes
+  Transferred 2048716800 Bytes
+  Transferred 2049884160 Bytes
+  Transferred 2051051520 Bytes
+  Transferred 2052218880 Bytes
+  Transferred 2053386240 Bytes
+  Transferred 2054553600 Bytes
+  Transferred 2055720960 Bytes
+  Transferred 2056888320 Bytes
+  Transferred 2058055680 Bytes
+  Transferred 2059223040 Bytes
+  Transferred 2060390400 Bytes
+  Transferred 2061557760 Bytes
+  Transferred 2062725120 Bytes
+  Transferred 2063892480 Bytes
+  Transferred 2065059840 Bytes
+  Transferred 2066227200 Bytes
+  Transferred 2067394560 Bytes
+  Transferred 2068561920 Bytes
+  Transferred 2069729280 Bytes
+  Transferred 2070896640 Bytes
+  Transferred 2072064000 Bytes
+  Transferred 2073231360 Bytes
+  Transferred 2074398720 Bytes
+  Transferred 2075566080 Bytes
+  Transferred 2076733440 Bytes
+  Transferred 2077900800 Bytes
+  Transferred 2079068160 Bytes
+  Transferred 2080235520 Bytes
+  Transferred 2081402880 Bytes
+  Transferred 2082570240 Bytes
+  Transferred 2083737600 Bytes
+  Transferred 2084904960 Bytes
+  Transferred 2086072320 Bytes
+  Transferred 2087239680 Bytes
+  Transferred 2088407040 Bytes
+  Transferred 2089574400 Bytes
+  Transferred 2090741760 Bytes
+  Transferred 2091909120 Bytes
+  Transferred 2093076480 Bytes
+  Transferred 2094243840 Bytes
+  Transferred 2095411200 Bytes
+  Transferred 2096578560 Bytes
+  Transferred 2097745920 Bytes
+  Transferred 2098913280 Bytes
+  Transferred 2100080640 Bytes
+  Transferred 2101248000 Bytes
+  Transferred 2102415360 Bytes
+  Transferred 2103582720 Bytes
+  Transferred 2104750080 Bytes
+  Transferred 2105917440 Bytes
+  Transferred 2107084800 Bytes
+  Transferred 2108252160 Bytes
+  Transferred 2109419520 Bytes
+  Transferred 2110586880 Bytes
+  Transferred 2111754240 Bytes
+  Transferred 2112921600 Bytes
+  Transferred 2114088960 Bytes
+  Transferred 2115256320 Bytes
+  Transferred 2116423680 Bytes
+  Transferred 2117591040 Bytes
+  Transferred 2118758400 Bytes
+  Transferred 2119925760 Bytes
+  Transferred 2121093120 Bytes
+  Transferred 2122260480 Bytes
+  Transferred 2123427840 Bytes
+  Transferred 2124595200 Bytes
+  Transferred 2125762560 Bytes
+  Transferred 2126929920 Bytes
+  Transferred 2128097280 Bytes
+  Transferred 2129264640 Bytes
+  Transferred 2130432000 Bytes
+  Transferred 2131599360 Bytes
+  Transferred 2132766720 Bytes
+  Transferred 2133934080 Bytes
+  Transferred 2135101440 Bytes
+  Transferred 2136268800 Bytes
+  Transferred 2137436160 Bytes
+  Transferred 2138603520 Bytes
+  Transferred 2139770880 Bytes
+  Transferred 2140938240 Bytes
+  Transferred 2142105600 Bytes
+  Transferred 2143272960 Bytes
+  Transferred 2144440320 Bytes
+  Transferred 2145607680 Bytes
+  Transferred 2146775040 Bytes
+  Transferred 2147942400 Bytes
+  Transferred 2149109760 Bytes
+  Transferred 2150277120 Bytes
+  Transferred 2151444480 Bytes
+  Transferred 2152611840 Bytes
+  Transferred 2153779200 Bytes
+  Transferred 2154946560 Bytes
+  Transferred 2156113920 Bytes
+  Transferred 2157281280 Bytes
+  Transferred 2158448640 Bytes
+  Transferred 2159616000 Bytes
+  Transferred 2160783360 Bytes
+  Transferred 2161950720 Bytes
+  Transferred 2163118080 Bytes
+  Transferred 2164285440 Bytes
+  Transferred 2165452800 Bytes
+  Transferred 2166620160 Bytes
+  Transferred 2167787520 Bytes
+  Transferred 2168954880 Bytes
+  Transferred 2170122240 Bytes
+  Transferred 2171289600 Bytes
+  Transferred 2172456960 Bytes
+  Transferred 2173624320 Bytes
+  Transferred 2174791680 Bytes
+  Transferred 2175959040 Bytes
+  Transferred 2177126400 Bytes
+  Transferred 2178293760 Bytes
+  Transferred 2179461120 Bytes
+  Transferred 2180628480 Bytes
+  Transferred 2181795840 Bytes
+  Transferred 2182963200 Bytes
+  Transferred 2184130560 Bytes
+  Transferred 2185297920 Bytes
+  Transferred 2186465280 Bytes
+  Transferred 2187632640 Bytes
+  Transferred 2188800000 Bytes
+  Transferred 2189967360 Bytes
+  Transferred 2191134720 Bytes
+  Transferred 2192302080 Bytes
+  Transferred 2193469440 Bytes
+  Transferred 2194636800 Bytes
+  Transferred 2195804160 Bytes
+  Transferred 2196971520 Bytes
+  Transferred 2198138880 Bytes
+  Transferred 2199306240 Bytes
+  Transferred 2200473600 Bytes
+  Transferred 2201640960 Bytes
+  Transferred 2202808320 Bytes
+  Transferred 2203975680 Bytes
+  Transferred 2205143040 Bytes
+  Transferred 2206310400 Bytes
+  Transferred 2207477760 Bytes
+  Transferred 2208645120 Bytes
+  Transferred 2209812480 Bytes
+  Transferred 2210979840 Bytes
+  Transferred 2212147200 Bytes
+  Transferred 2213314560 Bytes
+  Transferred 2214481920 Bytes
+  Transferred 2215649280 Bytes
+  Transferred 2216816640 Bytes
+  Transferred 2217984000 Bytes
+  Transferred 2219151360 Bytes
+  Transferred 2220318720 Bytes
+  Transferred 2221486080 Bytes
+  Transferred 2222653440 Bytes
+  Transferred 2223820800 Bytes
+  Transferred 2224988160 Bytes
+  Transferred 2226155520 Bytes
+  Transferred 2227322880 Bytes
+  Transferred 2228490240 Bytes
+  Transferred 2229657600 Bytes
+  Transferred 2230824960 Bytes
+  Transferred 2231992320 Bytes
+  Transferred 2233159680 Bytes
+  Transferred 2234327040 Bytes
+  Transferred 2235494400 Bytes
+  Transferred 2236661760 Bytes
+  Transferred 2237829120 Bytes
+  Transferred 2238996480 Bytes
+  Transferred 2240163840 Bytes
+  Transferred 2241331200 Bytes
+  Transferred 2242498560 Bytes
+  Transferred 2243665920 Bytes
+  Transferred 2244833280 Bytes
+  Transferred 2246000640 Bytes
+  Transferred 2247168000 Bytes
+  Transferred 2248335360 Bytes
+  Transferred 2249502720 Bytes
+  Transferred 2249703424 Bytes
+  2249703424 bytes copied in 71 sec (31603172)bytes/sec
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show md5 file /harddisk:/ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
+
+Wed Apr  8 16:15:49.188 UTC
+61aeb6ce722dddd815baeb2f297b1c44
+RP/0/RP0/CPU0:ar3.BLB#show media
+
+Wed Apr  8 16:15:57.478 UTC
+
+Media Info for Location: node0_RP0_CPU0
+Partition                            Size     Used  Percent    Avail
+--------------------------------------------------------------------
+rootfs:                              3.9G     2.0G      53%     1.8G
+apphost:                             3.7G      29M       1%     3.5G
+/dev/sde                             969M     456M      51%     447M
+harddisk:                            5.6G     2.2G      41%     3.2G
+log:                                 459M     169M      40%     256M
+config:                              459M     3.4M       1%     421M
+disk0:                               2.0G      18M       1%     1.8G
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#configure terminal
+
+Wed Apr  8 16:15:57.632 UTC
+RP/0/RP0/CPU0:ar3.BLB(config)#
+
+RP/0/RP0/CPU0:ar3.BLB(config)#router isis COLT
+
+RP/0/RP0/CPU0:ar3.BLB(config-isis)#set-overload-bit
+
+RP/0/RP0/CPU0:ar3.BLB(config-isis)#
+
+RP/0/RP0/CPU0:ar3.BLB(config-isis)#commit
+
+Wed Apr  8 16:15:58.068 UTC
+RP/0/RP0/CPU0:ar3.BLB(config-isis)#
+
+RP/0/RP0/CPU0:ar3.BLB(config-isis)#end
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#sh isis instance COLT | in Overload
+
+Wed Apr  8 16:15:59.120 UTC
+  Overload Bit Level-1: configured, set
+  Overload Bit Level-2: configured, set
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#run mv /misc/disk1/ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso /misc/app_host/
+
+Wed Apr  8 16:15:59.286 UTC
+
+RP/0/RP0/CPU0:ar3.BLB#install replace /misc/app_host/ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso commit force noprompt
+
+Wed Apr  8 16:16:08.133 UTC
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-04-08 16:16:20 Install operation 391 started by admin:
+2026-04-08 16:16:20   install replace source /misc/app_host/ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso noprompt force commit
+2026-04-08 16:16:24 No install operation in progress at this moment
+2026-04-08 16:16:24 Checking system is ready for install operation
+2026-04-08 16:16:25 'install replace' in progress
+2026-04-08 16:16:25 Install replace with commit option is triggered
+2026-04-08 16:16:25 Install replace with force option is triggered
+2026-04-08 16:16:25 Label = NCS5501_7112
+2026-04-08 16:16:25 ISO ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso in input package list. Going to upgrade the system to version 7.11.2.
+********************************************************************************
+                                   WARNING !!!                                  
+    With 'force' option:                                                        
+i.  Auto-recovery is enabled. In the scenario of auto-recovery of any node(s)
+    debuggability data will be lost if the node(s) are re-imaged/reloaded for 
+    auto-recovery
+ii. Upgrade matrix check is not enforced.
+    In the scenario of an unsupported upgrade/downgrade, the install operation
+    may result in errors.
+********************************************************************************
+
+
+WARNING: Commit option is used. This will auto commit the software after the install activation completes successfully.
+However, if any login failures are seen after the reload, rollback would be possible with USB/PXE boot or appropriate workaround.
+
+2026-04-08 16:16:34 Scheme : localdisk
+2026-04-08 16:16:34 Hostname : localhost
+2026-04-08 16:16:34 Username : None
+2026-04-08 16:16:34 SourceDir : /misc/app_host
+2026-04-08 16:16:34 Collecting software state..
+2026-04-08 16:16:34 Getting platform
+2026-04-08 16:16:34 Getting supported architecture
+2026-04-08 16:16:34 Getting active packages from XR
+2026-04-08 16:16:35 Getting inactive packages from XR
+2026-04-08 16:16:41 Getting list of RPMs in local repo
+2026-04-08 16:16:42 Getting list of provides of all active packages
+2026-04-08 16:16:42 Getting provides of each rpm in repo
+2026-04-08 16:16:42 Getting requires of each rpm in repo
+2026-04-08 16:16:42 Fetching .... ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
+2026-04-08 16:17:20 Adding packages 
+	ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
+2026-04-08 16:17:20 Allocated operation ID 392 for install add
+2026-04-08 16:18:09 Activating ncs5500-goldenk9-x-7.11.2-NCS5501_7112
+2026-04-08 16:18:12 Optimized list to prepare after sanitizing input list for superseded packages:
+	ncs5500-goldenk9-x-7.11.2-NCS5501_7112
+2026-04-08 16:18:12 Package list:
+2026-04-08 16:18:12 	ncs5500-goldenk9-x-7.11.2-NCS5501_7112
+2026-04-08 16:18:12 The operation is past point-of-no-return and can no longer be stopped!
+2026-04-08 16:18:12 Action 1: install prepare action started
+2026-04-08 16:18:12 Triggering prepare operation.
+This may take a while...
+2026-04-08 16:23:03 Action 1: install prepare action completed successfully
+2026-04-08 16:23:05 Prepare operation completed. Trigger activate.
+This may take a while...
+2026-04-08 16:23:05 Prepare completed. Operation ID 391 will be taken up for activate operation
+2026-04-08 16:23:05 Autorecover marker file created
+2026-04-08 16:23:07 Activate operation ID is: 391 for 'install source' ID:391
+2026-04-08 16:23:09 Install operation 391 started:
+  install activate replace noprompt synchronous 
+2026-04-08 16:23:10 Action 1: install activate action started
+2026-04-08 16:23:11 The software will be activated with reload upgrade
+2026-04-08 16:23:13 Following nodes are available for System Upgrade activate:
+2026-04-08 16:23:13  0/RP0 
+2026-04-08 16:26:00 Action 1: install activate action completed successfully
+2026-04-08 16:26:17 Install operation 391 finished successfully
+2026-04-08 16:26:17 Ending operation 391
+
+
+
+RP/0/RP0/CPU0:ar3.BLB#terminal width 511
+
+Wed Apr  8 16:38:39.865 UTC
+terminal length 0
+RP/0/RP0/CPU0:ar3.BLB#terminal length 0
+
+Wed Apr  8 16:38:39.927 UTC
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show version
+
+Wed Apr  8 16:38:40.125 UTC
+Cisco IOS XR Software, Version 7.11.2
+Copyright (c) 2013-2024 by Cisco Systems, Inc.
+
+Build Information:
+ Built By     : swtools
+ Built On     : Fri Mar 29 15:19:15 PDT 2024
+ Built Host   : iox-ucs-063
+ Workspace    : /auto/srcarchive11/prod/7.11.2/ncs5500/ws
+ Version      : 7.11.2
+ Location     : /opt/cisco/XR/packages/
+ Label        : 7.11.2-NCS5501_7112
+
+cisco NCS-5500 () processor
+System uptime is 5 minutes
+
+RP/0/RP0/CPU0:ar3.BLB#install commit
+
+Wed Apr  8 16:38:40.200 UTC
+2026-04-08 16:38:44 Install operation 395 started by admin:
+  install commit 
+2026-04-08 16:38:46 Install operation will continue in the background
+RP/0/RP0/CPU0:ar3.BLB#2026-04-08 16:39:09 Install operation 395 finished successfully
+
+
+RP/0/RP0/CPU0:ar3.BLB#run rm /misc/app_host/ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
+
+Wed Apr  8 16:40:40.550 UTC
+
+RP/0/RP0/CPU0:ar3.BLB#show install active summary
+
+Wed Apr  8 16:40:40.703 UTC
+Label : 7.11.2-NCS5501_7112
+
+    Active Packages: 12
+        ncs5500-xr-7.11.2 version=7.11.2 [Boot image]
+        ncs5500-eigrp-1.0.0.0-r7112
+        ncs5500-healthcheck-1.0.0.0-r7112
+        ncs5500-isis-1.0.0.0-r7112
+        ncs5500-k9sec-1.0.0.0-r7112
+        ncs5500-li-1.0.0.0-r7112
+        ncs5500-lictrl-1.0.0.0-r7112
+        ncs5500-mcast-1.0.0.0-r7112
+        ncs5500-mgbl-1.0.0.0-r7112
+        ncs5500-mpls-1.0.0.0-r7112
+        ncs5500-mpls-te-rsvp-1.0.0.0-r7112
+        ncs5500-ospf-1.0.0.0-r7112
+
+RP/0/RP0/CPU0:ar3.BLB#admin show install active summary
+
+Wed Apr  8 16:40:42.090 UTC
+     Active Packages: 1
+        ncs5500-sysadmin-7.11.2 version=7.11.2 [Boot image]
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#show install committed summary
+
+Wed Apr  8 16:40:43.747 UTC
+Label : 7.11.2-NCS5501_7112
+
+    Committed Packages: 12
+        ncs5500-xr-7.11.2 version=7.11.2 [Boot image]
+        ncs5500-eigrp-1.0.0.0-r7112
+        ncs5500-healthcheck-1.0.0.0-r7112
+        ncs5500-isis-1.0.0.0-r7112
+        ncs5500-k9sec-1.0.0.0-r7112
+        ncs5500-li-1.0.0.0-r7112
+        ncs5500-lictrl-1.0.0.0-r7112
+        ncs5500-mcast-1.0.0.0-r7112
+        ncs5500-mgbl-1.0.0.0-r7112
+        ncs5500-mpls-1.0.0.0-r7112
+        ncs5500-mpls-te-rsvp-1.0.0.0-r7112
+        ncs5500-ospf-1.0.0.0-r7112
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#admin show install committed summary
+
+Wed Apr  8 16:40:44.748 UTC
+     Committed Packages: 1
+        ncs5500-sysadmin-7.11.2 version=7.11.2 [Boot image]
+
+RP/0/RP0/CPU0:ar3.BLB#
+
+RP/0/RP0/CPU0:ar3.BLB#exit

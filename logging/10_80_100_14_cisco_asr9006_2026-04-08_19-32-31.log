@@ -1,0 +1,26 @@
+2026-04-08_19:32:31 - INFO - [THREAD-128985163208384] [10_80_100_14_cisco_asr9006] Pipeline started at 2026-04-08 19:32:31.797154
+2026-04-08_19:32:31 - INFO - [10_80_100_14_cisco_asr9006] Connecting to 10.80.100.14
+2026-04-08_19:32:31 - INFO - Connecting to 10.80.100.14 using Netmiko...
+2026-04-08_19:32:34 - INFO - Login successful to 10.80.100.14
+2026-04-08_19:32:34 - INFO - [10_80_100_14_cisco_asr9006] Connected successfully to 10.80.100.14
+2026-04-08_19:32:34 - INFO - [10_80_100_14_cisco_asr9006] Connected to 10.80.100.14
+2026-04-08_19:32:34 - INFO - [10_80_100_14_cisco_asr9006] ── PHASE 1 COMPLETE — starting Phase 2
+2026-04-08_19:32:34 - INFO - [THREAD-128985163208384] [10_80_100_14_cisco_asr9006] Upgrade started at 2026-04-08 19:32:34.022314
+2026-04-08_19:32:34 - INFO - [10_80_100_14_cisco_asr9006] run_upgrade — host=10.80.100.14, vendor=cisco, model=asr9006, curr_os=7.6.2, total_hops=3
+2026-04-08_19:32:34 - DEBUG - [10_80_100_14_cisco_asr9006] Rollback chain seeded — image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, os=7.6.2
+2026-04-08_19:32:34 - INFO - Intermediate release is there. Checking the intermediate image details has been provided or not
+2026-04-08_19:32:34 - INFO - [10_80_100_14_cisco_asr9006]: Intermediate image details are provided. 
+2026-04-08_19:32:34 - INFO - [10_80_100_14_cisco_asr9006] ── Hop [0/2] ── image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, expected_os=7.6.2
+2026-04-08_19:32:34 - INFO - [10_80_100_14_cisco_asr9006] Hop [0] — image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, expected_os=7.6.2
+2026-04-08_19:32:34 - INFO - [cisco_asr9006] checkStorage — vendor: cisco
+2026-04-08_19:32:34 - INFO - [cisco_asr9006] checkStorage — 16 G available
+2026-04-08_19:32:34 - INFO - [cisco_asr9006] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_19:32:34 - INFO - [10_80_100_14_cisco_asr9006] storage OK
+2026-04-08_19:32:34 - ERROR - [10_80_100_14_cisco_asr9006] Upgrade hop [0] failed for asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso
+2026-04-08_19:32:34 - INFO - [10_80_100_14_cisco_asr9006] Triggering rollback...
+2026-04-08_19:32:34 - DEBUG - [10_80_100_14_cisco_asr9006] Rollback chain at failure: ['asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso']
+2026-04-08_19:32:34 - ERROR - [10_80_100_14_cisco_asr9006] Phase 2 FAILED — stopping device
+2026-04-08_19:32:34 - INFO - [10_80_100_14_cisco_asr9006] HTML report exported
+2026-04-08_19:32:34 - INFO - Logout successful from 10.80.100.14
+2026-04-08_19:32:34 - INFO - [10_80_100_14_cisco_asr9006] Disconnected from 10.80.100.14
+2026-04-08_19:32:34 - INFO - [THREAD-128985163208384] [10_80_100_14_cisco_asr9006] Pipeline finished at 2026-04-08 19:32:34.352307

@@ -1,0 +1,237 @@
+{
+  "10_80_109_249_cisco_ncs5501": {
+    "status": "",
+    "device_info": {
+      "host": "10.80.109.249",
+      "vendor": "cisco",
+      "model": "ncs5501",
+      "hostname": "",
+      "version": ""
+    },
+    "yaml": {
+      "host": "10.80.109.249",
+      "vendor": "cisco",
+      "model": "ncs5501",
+      "device_type": "cisco_xr",
+      "curr_image": "ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso",
+      "curr_os": "7.11.2",
+      "smu_upgrade": false,
+      "intermediate_release": true,
+      "image_storage": 2,
+      "upgrade_storage": 3,
+      "username": "admin",
+      "password": "Colt@123",
+      "imageDetails": [
+        {
+          "intermediate_image": "ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso",
+          "expected_os": "7.7.2",
+          "checksum": "98ea1cf2fa46700d4ec4896686b2934a",
+          "xr_committed_pkg": [
+            "ncs5500-isis-2.1.0.0-r772",
+            "ncs5500-mgbl-3.0.0.0-r772",
+            "ncs5500-mcast-3.0.0.0-r772",
+            "ncs5500-li-1.0.0.0-r772",
+            "ncs5500-eigrp-1.0.0.0-r772",
+            "ncs5500-k9sec-3.1.0.0-r772",
+            "ncs5500-ospf-2.0.0.0-r772",
+            "ncs5500-mpls-2.1.0.0-r772",
+            "ncs5500-mpls-te-rsvp-3.1.0.0-r772",
+            "ncs5500-lictrl-1.0.0.0-r772"
+          ],
+          "admin_committed_pkg": [
+            "ncs5500-sysadmin-7.7.2"
+          ]
+        },
+        {
+          "image": "ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso",
+          "expected_os": "7.11.2",
+          "checksum": "61aeb6ce722dddd815baeb2f297b1c44",
+          "xr_committed_pkg": [
+            "ncs5500-isis-1.0.0.0-r7112",
+            "ncs5500-k9sec-1.0.0.0-r7112",
+            "ncs5500-li-1.0.0.0-r7112",
+            "ncs5500-lictrl-1.0.0.0-r7112",
+            "ncs5500-mcast-1.0.0.0-r7112",
+            "ncs5500-mgbl-1.0.0.0-r7112",
+            "ncs5500-mpls-1.0.0.0-r7112",
+            "ncs5500-mpls-te-rsvp-1.0.0.0-r7112",
+            "ncs5500-ospf-1.0.0.0-r7112"
+          ],
+          "admin_committed_pkg": [
+            "ncs5500-sysadmin-7.11.2"
+          ]
+        },
+        {
+          "smu_images": [
+            {
+              "image": "ncs5500-7.11.2.CSCws66900.tar",
+              "checksum": "298fefd1bb034364cd30c82c4de8f9de"
+            },
+            {
+              "image": "ncs5500-7.11.2.CSCwk15658.tar",
+              "checksum": "12018fb06bffa4220b784110283d5643"
+            },
+            {
+              "image": "ncs5500-7.11.2.CSCwm31234.tar",
+              "checksum": "f5c139b4a289effc6ae9b397f65f78cc"
+            },
+            {
+              "image": "ncs5500-7.11.2.CSCwq09649.tar",
+              "checksum": "f4fa747ac5f627a334b3a5f0881a2a0e"
+            }
+          ],
+          "expected_os": "7.11.2",
+          "xr_committed_pkg": [
+            "ncs5500-os-support-1.0.0.7-r7112.CSCws66900",
+            "ncs5500-dpa-1.0.0.28-r7112.CSCws66900",
+            "ncs5500-dpa-fwding-1.0.0.18-r7112.CSCwq09649",
+            "ncs5500-infra-1.0.0.18-r7112.CSCws66900",
+            "ncs5500-fwding-1.0.0.6-r7112.CSCws66900",
+            "ncs5500-common-pd-fib-1.0.0.3-r7112.CSCwq09649",
+            "ncs5500-iosxr-fwding-1.0.0.8-r7112.CSCwm31234",
+            "ncs5500-os-1.0.0.1-r7112.CSCwk15658"
+          ],
+          "admin_committed_pkg": [
+            "ncs5500-sysadmin-7.11.2"
+          ]
+        }
+      ],
+      "image_path": "/home/colt/backup/gimages",
+      "smu_image_path": "/home/colt/Documents/SMU",
+      "remote_backup_server": "colt@10.80.109.133",
+      "remote_password": "kTRq8amH363r",
+      "cleanup_files": [
+        "cisco_ncs5501_2026-04-06_12-49-27-xr.cfg",
+        "cisco_ncs5501_2026-04-06_12-01-29-xr.cfg",
+        "ncs5500-goldenk9-x-7.6.2-NCS5500_762_GISO_291024.iso"
+      ],
+      "accepted_vendors": [
+        "juniper",
+        "cisco"
+      ]
+    },
+    "pre": {
+      "connect": {
+        "ping": "up",
+        "status": true,
+        "exception": ""
+      },
+      "execute_show_commands": {
+        "status": "not_started",
+        "exception": "",
+        "commands": []
+      },
+      "show_version": {
+        "status": "not_started",
+        "exception": "",
+        "version": "",
+        "platform": "",
+        "hostname": ""
+      },
+      "check_storage": {
+        "status": "ok",
+        "deleted_files": [],
+        "exception": "",
+        "sufficient": true
+      },
+      "backup_active_filesystem": {
+        "status": "not_started",
+        "exception": "",
+        "snapshot_slot": "",
+        "verified": false
+      },
+      "backup_running_config": {
+        "status": "not_started",
+        "exception": "",
+        "destination": "",
+        "config_file": ""
+      },
+      "transfer_image": [
+        {
+          "status": "not_started",
+          "exception": "",
+          "image": "",
+          "destination": ""
+        }
+      ],
+      "verify_checksum": [
+        {
+          "image": "",
+          "status": "not_started",
+          "exception": "",
+          "expected": "",
+          "computed": "",
+          "match": false
+        }
+      ],
+      "disable_re_protect_filter": {
+        "status": "not_started",
+        "exception": ""
+      }
+    },
+    "upgrade": {
+      "status": "failed",
+      "initial_os": "7.11.2",
+      "target_os": "7.11.2",
+      "exception": "Upgrade hop [0] failed for ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso",
+      "connect": {
+        "status": "not_started",
+        "exception": ""
+      },
+      "hops": [
+        {
+          "image": "",
+          "status": "not_started",
+          "exception": "",
+          "md5_match": false,
+          "connect": {
+            "status": "not_started",
+            "attempt": 0,
+            "exception": ""
+          }
+        },
+        {
+          "image": "ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso",
+          "status": "not_started",
+          "exception": "",
+          "md5_match": false,
+          "connect": {
+            "status": "not_started",
+            "attempt": 0,
+            "exception": ""
+          }
+        },
+        {
+          "image": "",
+          "status": "not_started",
+          "exception": "",
+          "md5_match": false,
+          "connect": {
+            "status": "not_started",
+            "attempt": 0,
+            "exception": ""
+          }
+        }
+      ]
+    },
+    "post": {
+      "show_version": {
+        "status": "not_started",
+        "exception": "",
+        "version": "",
+        "platform": "",
+        "hostname": ""
+      },
+      "execute_show_commands": {
+        "status": "not_started",
+        "exception": "",
+        "commands": []
+      },
+      "enable_re_protect_filter": {
+        "status": "",
+        "exception": ""
+      }
+    },
+    "diff": {}
+  }
+}

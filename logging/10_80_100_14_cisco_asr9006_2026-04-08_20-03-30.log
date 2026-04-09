@@ -1,0 +1,214 @@
+2026-04-08_20:03:30 - INFO - [THREAD-139725176321728] [10_80_100_14_cisco_asr9006] Pipeline started at 2026-04-08 20:03:30.837875
+2026-04-08_20:03:30 - INFO - [10_80_100_14_cisco_asr9006] Connecting to 10.80.100.14
+2026-04-08_20:03:30 - INFO - Connecting to 10.80.100.14 using Netmiko...
+2026-04-08_20:03:43 - INFO - Login successful to 10.80.100.14
+2026-04-08_20:03:43 - INFO - [10_80_100_14_cisco_asr9006] Connected successfully to 10.80.100.14
+2026-04-08_20:03:43 - INFO - [10_80_100_14_cisco_asr9006] Connected to 10.80.100.14
+2026-04-08_20:03:43 - INFO - [10_80_100_14_cisco_asr9006] ── PHASE 1 PRE-CHECKS starting
+2026-04-08_20:03:43 - INFO - models: [{'asr9k': ['asr9901', 'asr9006']}, {'ncs': ['ncs5501']}, {'single_re_junos': ['mx204']}, {'double_re_junos': ['mx240', 'mx480']}] and type: <class 'list'>
+2026-04-08_20:03:43 - INFO - [THREAD-139725176321728] [10_80_100_14_cisco_asr9006] Prechecks started at 2026-04-08 20:03:43.267657
+2026-04-08_20:03:43 - INFO - [10_80_100_14_cisco_asr9006] : Validating the device input file
+2026-04-08_20:03:43 - INFO - [10_80_100_14_cisco_asr9006] : Dictionary input validated successfully 
+2026-04-08_20:03:43 - INFO - [10_80_100_14_cisco_asr9006] Executing show commands
+2026-04-08_20:03:43 - INFO - [load_commands] Loaded 22 commands for 'cisco_asr9006'
+2026-04-08_20:03:43 - INFO - [10_80_100_14_cisco_asr9006] collect_outputs — 22 command(s), check_type=pre
+2026-04-08_20:03:43 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show install active summary'
+2026-04-08_20:03:45 - INFO - [10_80_100_14_cisco_asr9006] 'show install active summary' collected=True (842 chars)
+2026-04-08_20:03:45 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show isis adjacency'
+2026-04-08_20:03:46 - INFO - [10_80_100_14_cisco_asr9006] 'show isis adjacency' collected=True (1257 chars)
+2026-04-08_20:03:46 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show bfd session'
+2026-04-08_20:03:47 - INFO - [10_80_100_14_cisco_asr9006] 'show bfd session' collected=True (1045 chars)
+2026-04-08_20:03:47 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show route summary'
+2026-04-08_20:03:48 - INFO - [10_80_100_14_cisco_asr9006] 'show route summary' collected=True (964 chars)
+2026-04-08_20:03:48 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show bgp all all summary'
+2026-04-08_20:03:50 - INFO - [10_80_100_14_cisco_asr9006] 'show bgp all all summary' collected=True (14020 chars)
+2026-04-08_20:03:50 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show bgp vrf all summary'
+2026-04-08_20:04:00 - INFO - [10_80_100_14_cisco_asr9006] 'show bgp vrf all summary' collected=True (633757 chars)
+2026-04-08_20:04:00 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show ipv4 vrf all interface brief'
+2026-04-08_20:04:01 - INFO - [10_80_100_14_cisco_asr9006] 'show ipv4 vrf all interface brief' collected=True (98082 chars)
+2026-04-08_20:04:01 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show mpls ldp neighbor'
+2026-04-08_20:04:02 - INFO - [10_80_100_14_cisco_asr9006] 'show mpls ldp neighbor' collected=True (814 chars)
+2026-04-08_20:04:02 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show pim neighbor'
+2026-04-08_20:04:03 - INFO - [10_80_100_14_cisco_asr9006] 'show pim neighbor' collected=True (1011 chars)
+2026-04-08_20:04:03 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show pfm location all'
+2026-04-08_20:04:04 - INFO - [10_80_100_14_cisco_asr9006] 'show pfm location all' collected=True (2179 chars)
+2026-04-08_20:04:04 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show processes cpu'
+2026-04-08_20:04:05 - INFO - [10_80_100_14_cisco_asr9006] 'show processes cpu' collected=True (20332 chars)
+2026-04-08_20:04:05 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show watchdog memory-state location all'
+2026-04-08_20:04:05 - INFO - [10_80_100_14_cisco_asr9006] 'show watchdog memory-state location all' collected=True (554 chars)
+2026-04-08_20:04:05 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show redundancy'
+2026-04-08_20:04:06 - INFO - [10_80_100_14_cisco_asr9006] 'show redundancy' collected=True (891 chars)
+2026-04-08_20:04:06 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show interface description'
+2026-04-08_20:04:08 - INFO - [10_80_100_14_cisco_asr9006] 'show interface description' collected=True (51358 chars)
+2026-04-08_20:04:08 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show filesystem'
+2026-04-08_20:04:09 - INFO - [10_80_100_14_cisco_asr9006] 'show filesystem' collected=True (518 chars)
+2026-04-08_20:04:09 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show msdp peer'
+2026-04-08_20:04:10 - INFO - [10_80_100_14_cisco_asr9006] 'show msdp peer' collected=True (6448 chars)
+2026-04-08_20:04:10 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show l2vpn xconnect brief'
+2026-04-08_20:04:12 - INFO - [10_80_100_14_cisco_asr9006] 'show l2vpn xconnect brief' collected=True (697 chars)
+2026-04-08_20:04:12 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show hw-module fpd'
+2026-04-08_20:04:13 - INFO - [10_80_100_14_cisco_asr9006] 'show hw-module fpd' collected=True (5921 chars)
+2026-04-08_20:04:13 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show platform'
+2026-04-08_20:04:13 - INFO - [10_80_100_14_cisco_asr9006] 'show platform' collected=True (639 chars)
+2026-04-08_20:04:13 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show media'
+2026-04-08_20:04:14 - INFO - [10_80_100_14_cisco_asr9006] 'show media' collected=True (661 chars)
+2026-04-08_20:04:14 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'sh version'
+2026-04-08_20:04:15 - INFO - [10_80_100_14_cisco_asr9006] 'sh version' collected=True (416 chars)
+2026-04-08_20:04:15 - INFO - [10_80_100_14_cisco_asr9006] Sending: 'show interfaces'
+2026-04-08_20:04:25 - ERROR - [10_80_100_14_cisco_asr9006] 'show interfaces' send_command raised:
+Traceback (most recent call last):
+  File "/home/colt/Documents/ncs_testing/cisco_testing/lib/utilities.py", line 369, in collect_outputs
+    output = conn.send_command(cmd)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/colt/Documents/MS1Automation/venv/lib/python3.12/site-packages/netmiko/base_connection.py", line 111, in wrapper_decorator
+    return_val = func(self, *args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/colt/Documents/MS1Automation/venv/lib/python3.12/site-packages/netmiko/utilities.py", line 667, in wrapper_decorator
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/colt/Documents/MS1Automation/venv/lib/python3.12/site-packages/netmiko/base_connection.py", line 1841, in send_command
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+Pattern not detected: 'RP/0/RSP0/CPU0:sr6\\.BLB\\#' in output.
+
+Things you might try to fix this:
+1. Explicitly set your pattern using the expect_string argument.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+
+2026-04-08_20:04:25 - INFO - [10_80_100_14_cisco_asr9006] 'show interfaces' collected=False (0 chars)
+2026-04-08_20:04:25 - INFO - [10_80_100_14_cisco_asr9006] collect_outputs done — 22 entries stored
+2026-04-08_20:04:25 - ERROR - [10_80_100_14_cisco_asr9006] parser returned empty result 'show msdp peer':
+NoneType: None
+
+2026-04-08_20:04:25 - INFO - [10_80_100_14_cisco_asr9006] execute_show_commands OK
+2026-04-08_20:04:25 - INFO - [10_80_100_14_cisco_asr9006] get_show_version — phase=pre, sending 'show version'
+2026-04-08_20:04:28 - INFO - [10_80_100_14_cisco_asr9006] [pre] show_version parsed — hostname=  model=  version=7.6.2
+2026-04-08_20:04:28 - INFO - [10.80.100.14] preBackup — vendor: cisco
+2026-04-08_20:04:28 - INFO - 10_80_100_14_cisco_asr9006: active RSP :0/RSP0/CPU0
+2026-04-08_20:04:43 - INFO - [10_80_100_14_cisco_asr9006] backup config OK
+2026-04-08_20:04:43 - INFO - Starting Cisco FPD version verification...
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP0 TimingIC-A
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP0 Aldrin-0-FPGA
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP0 Beta-FPGA
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP0 CBC
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP0 IPU-DDR4
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP0 Orion-FPGA
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP0 Primary-BIOS
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP0 Sigma
+2026-04-08_20:04:43 - INFO - Skipping 0/RSP0 SSDa-MICRON: ATR status N/A
+2026-04-08_20:04:43 - INFO - Skipping 0/RSP0 SSDb-MICRON: ATR status N/A
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP0 TamFW-Sigma
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP0 Zenith-FPGA
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP1 TimingIC-A
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP1 Aldrin-0-FPGA
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP1 Beta-FPGA
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP1 CBC
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP1 IPU-DDR4
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP1 Orion-FPGA
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP1 Primary-BIOS
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP1 Sigma
+2026-04-08_20:04:43 - INFO - Skipping 0/RSP1 SSDa-MICRON: ATR status N/A
+2026-04-08_20:04:43 - INFO - Skipping 0/RSP1 SSDb-MICRON: ATR status N/A
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP1 TamFW-Sigma
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/RSP1 Zenith-FPGA
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/FT0 CBC
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/FT1 CBC
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/0 CBC
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/0 Dalla
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/0 IPU-FPGA
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/0 IPU-FSBL
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/0 IPU-Linux
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/0 Meldun-0
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/0 Meldun-1
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/0 Primary-BIOS
+2026-04-08_20:04:43 - INFO - Skipping 0/0 SSDa-SMART: ATR status N/A
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 TimingIC-A
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 TimingIC-B
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 Aldrin-FPGA
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 CBC
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 IPU-DDR4
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 Primary-BIOS
+2026-04-08_20:04:43 - INFO - Skipping 0/2 SSDa-INTEL: ATR status N/A
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 Sunstreaker
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 TAMFW-Sunstreaker
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 Trailbreaker-0
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 Trailbreaker-1
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 Windcharger-0
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/2 Windcharger-1
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/BPID0 CBC
+2026-04-08_20:04:43 - INFO - Skipping 0/PT0 PM0-EM-PriMCU: ATR status N/A
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/PT0 PM0-EM-Sec54vMCU
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/PT0 PM0-EM-Sec5vMCU
+2026-04-08_20:04:43 - INFO - Skipping 0/PT0 PM1-EM-PriMCU: ATR status N/A
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/PT0 PM1-EM-Sec54vMCU
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/PT0 PM1-EM-Sec5vMCU
+2026-04-08_20:04:43 - INFO - Skipping 0/PT0 PM2-EM-PriMCU: ATR status N/A
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/PT0 PM2-EM-Sec54vMCU
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/PT0 PM2-EM-Sec5vMCU
+2026-04-08_20:04:43 - INFO - Skipping 0/PT0 PM3-EM-PriMCU: ATR status N/A
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/PT0 PM3-EM-Sec54vMCU
+2026-04-08_20:04:43 - INFO - Up-to-date → 0/PT0 PM3-EM-Sec5vMCU
+2026-04-08_20:04:43 - INFO - All FPDs are up-to-date
+2026-04-08_20:04:43 - INFO - 10.80.100.14: Checking Auto FPD (Cisco XR)
+2026-04-08_20:04:51 - INFO - 10.80.100.14: Auto FPD already enabled in XR mode
+2026-04-08_20:04:51 - INFO - [10_80_100_14_cisco_asr9006] Auto FPD enabled: OK
+2026-04-08_20:04:51 - INFO - [THREAD-139725176321728] [10_80_100_14_cisco_asr9006] All pre-checks passed
+2026-04-08_20:04:51 - INFO - [10_80_100_14_cisco_asr9006] ── PHASE 1 COMPLETE — starting Phase 2
+2026-04-08_20:04:51 - INFO - [THREAD-139725176321728] [10_80_100_14_cisco_asr9006] Upgrade started at 2026-04-08 20:04:51.939210
+2026-04-08_20:04:51 - INFO - [10_80_100_14_cisco_asr9006] run_upgrade — host=10.80.100.14, vendor=cisco, model=asr9006, curr_os=7.6.2, total_hops=3
+2026-04-08_20:04:51 - DEBUG - [10_80_100_14_cisco_asr9006] Rollback chain seeded — image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, os=7.6.2
+2026-04-08_20:04:51 - INFO - Intermediate release is there. Checking the intermediate image details has been provided or not
+2026-04-08_20:04:51 - INFO - [10_80_100_14_cisco_asr9006]: Intermediate image details are provided. 
+2026-04-08_20:04:51 - INFO - [10_80_100_14_cisco_asr9006] ── Hop [0/2] ── image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, expected_os=7.6.2
+2026-04-08_20:04:51 - INFO - [10_80_100_14_cisco_asr9006] Hop [0] — image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, expected_os=7.6.2
+2026-04-08_20:04:51 - INFO - [cisco_asr9006] checkStorage — vendor: cisco
+2026-04-08_20:05:01 - ERROR - [cisco_asr9006] checkStorage failed: 
+Pattern not detected: '#' in output.
+
+Things you might try to fix this:
+1. Explicitly set your pattern using the expect_string argument.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+Traceback (most recent call last):
+  File "/home/colt/Documents/ncs_testing/cisco_testing/prechecks.py", line 613, in checkStorage
+    storage_output = conn.send_command("show media", expect_string=r"#")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/colt/Documents/MS1Automation/venv/lib/python3.12/site-packages/netmiko/base_connection.py", line 111, in wrapper_decorator
+    return_val = func(self, *args, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/colt/Documents/MS1Automation/venv/lib/python3.12/site-packages/netmiko/utilities.py", line 667, in wrapper_decorator
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/colt/Documents/MS1Automation/venv/lib/python3.12/site-packages/netmiko/base_connection.py", line 1841, in send_command
+    raise ReadTimeout(msg)
+netmiko.exceptions.ReadTimeout: 
+Pattern not detected: '#' in output.
+
+Things you might try to fix this:
+1. Explicitly set your pattern using the expect_string argument.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+2026-04-08_20:05:01 - ERROR - [10_80_100_14_cisco_asr9006] run_upgrade unhandled exception: 
+Pattern not detected: '#' in output.
+
+Things you might try to fix this:
+1. Explicitly set your pattern using the expect_string argument.
+2. Increase the read_timeout to a larger value.
+
+You can also look at the Netmiko session_log or debug log for more information.
+
+
+2026-04-08_20:05:01 - ERROR - [10_80_100_14_cisco_asr9006] Phase 2 FAILED — stopping device
+2026-04-08_20:05:02 - INFO - [10_80_100_14_cisco_asr9006] HTML report exported
+2026-04-08_20:05:02 - INFO - Logout successful from 10.80.100.14
+2026-04-08_20:05:02 - INFO - [10_80_100_14_cisco_asr9006] Disconnected from 10.80.100.14
+2026-04-08_20:05:02 - INFO - [THREAD-139725176321728] [10_80_100_14_cisco_asr9006] Pipeline finished at 2026-04-08 20:05:02.478219

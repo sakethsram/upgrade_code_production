@@ -1,0 +1,127 @@
+#juniper_mx204:
+#  - show arp no-resolve | no-more
+#  - show lldp neighbors | no-more
+#  - show chassis routing-engine | no-more
+#  - show system uptime | no-more
+#  - show ntp associations no-resolve | no-more
+#  - show vmhost version | no-more
+#  - show vmhost snapshot | no-more
+#  - show chassis hardware | no-more
+#  - show chassis fpc detail | no-more
+#  - show chassis alarms | no-more
+#  - show system alarms | no-more
+#  - show chassis environment | no-more
+#  - show system resource-monitor fpc | no-more
+#  - show system processes extensive | match rpd | no-more
+#  - show interface terse | no-more
+#  - show oam ethernet connectivity-fault-management interfaces extensive | no-more
+#  - show vrrp summary | no-more
+#  - show bfd session | no-more
+#  - show rsvp neighbor | no-more
+#  - show rsvp session | no-more
+#  - show route table inet.0 | no-more
+#  - show route table inet.3 | no-more
+#  - show route table mpls.0 | no-more
+#  - show mpls interface | no-more
+#  - show mpls lsp | no-more
+#  - show mpls lsp p2mp | no-more
+#  - show bgp summary | no-more
+#  - show bgp neighbor | no-more
+#  - show isis adjacency extensive | no-more
+#  - show route summary | no-more
+#  - show rsvp session | match DN | no-more
+#  - show mpls lsp unidirectional | match Dn | no-more
+#  - show ldp neighbor | no-more
+#  - show connections | no-more
+#  - show log messages | last 200 | no-more
+
+cisco_asr9006:
+   - show install active summary
+   - show isis adjacency
+   - show bfd session
+   - show route summary
+   - show bgp all all summary
+   - show bgp vrf all summary
+   - show ipv4 vrf all interface brief
+   - show mpls ldp neighbor
+   - show pim neighbor
+   - show pfm location all
+   - show processes cpu
+   - show watchdog memory-state location all
+   - show redundancy
+   - show interface description
+   - show filesystem
+   - show msdp peer
+   - show l2vpn xconnect brief
+   - show hw-module fpd
+   - show platform
+   - show media 
+   - sh version
+   - show interfaces
+
+cisco_ncs5501:
+    - show version
+    - show inventory
+    - show platform
+    - show install active summary
+    - show install committed summary
+    - show media
+    - show hw-module fpd
+    - show route summary
+    - show watchdog memory-state location all
+    - show controllers npu resources all location all
+    - show ipv4 vrf all interface brief
+    - show bgp l2vpn evpn summary
+    - show isis adjacency
+    - show mpls forwarding summary
+    - show bfd session detail
+    - show l2vpn xconnect summary
+    - show lldp neighbors
+    - show interface description
+    - show proc cpu
+    - sh l2vpn flexible-xconnect-service 
+    - show  bgp  l2vpn  evpn advertised
+
+juniper_mx240:
+  # Unique to MX240
+  - "show services sessions | no-more"
+  - "show services nat pool brief | no-more"
+  - "show services flows brief | no-more"
+  - "show services service-sets cpu-usage | no-more"
+  - "show services service-sets memory-usage | no-more"
+  - "show services service-sets summary | no-more"
+
+  # Common with MX204
+  - "show chassis routing-engine | no-more"
+  - "show arp no-resolve | no-more"
+  - "show lldp neighbors | no-more"
+  - "show system uptime | no-more"
+  - "show ntp associations no-resolve | no-more"
+  - "show chassis hardware | no-more"
+  - "show chassis fpc detail | no-more"
+  - "show chassis alarms | no-more"
+  - "show system alarms | no-more"
+  - "show chassis environment | no-more"
+  - "show system resource-monitor fpc | no-more"
+  - "show system processes extensive | match rpd | no-more"
+  - "show interface terse | no-more"
+  - "show oam ethernet connectivity-fault-management interfaces extensive | no-more"
+  - "show vrrp summary | no-more"
+  - "show bfd session | no-more"
+  - "show rsvp neighbor | no-more"
+  - "show rsvp session | no-more"
+  - "show route table inet.0 | no-more"
+  - "show route table inet.3 | no-more"
+  - "show route table mpls.0 | no-more"
+  - "show mpls interface | no-more"
+  - "show mpls lsp | no-more"
+  - "show mpls lsp p2mp | no-more"
+  - "show bgp summary | no-more"
+  - "show bgp neighbor | no-more"
+  - "show isis adjacency extensive | no-more"
+  - "show route summary | no-more"
+  - "show rsvp session | match DN | no-more"
+  - "show mpls lsp unidirectional | match Dn | no-more"
+  - "show ldp neighbor | no-more"
+  - "show connections | no-more"
+  - "show log messages | last 200 | no-more"

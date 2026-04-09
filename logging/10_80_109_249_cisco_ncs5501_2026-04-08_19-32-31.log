@@ -1,0 +1,26 @@
+2026-04-08_19:32:31 - INFO - [THREAD-128985154815680] [10_80_109_249_cisco_ncs5501] Pipeline started at 2026-04-08 19:32:31.797817
+2026-04-08_19:32:31 - INFO - [10_80_109_249_cisco_ncs5501] Connecting to 10.80.109.249
+2026-04-08_19:32:31 - INFO - Connecting to 10.80.109.249 using Netmiko...
+2026-04-08_19:32:32 - INFO - Login successful to 10.80.109.249
+2026-04-08_19:32:32 - INFO - [10_80_109_249_cisco_ncs5501] Connected successfully to 10.80.109.249
+2026-04-08_19:32:32 - INFO - [10_80_109_249_cisco_ncs5501] Connected to 10.80.109.249
+2026-04-08_19:32:32 - INFO - [10_80_109_249_cisco_ncs5501] ── PHASE 1 COMPLETE — starting Phase 2
+2026-04-08_19:32:32 - INFO - [THREAD-128985154815680] [10_80_109_249_cisco_ncs5501] Upgrade started at 2026-04-08 19:32:32.844361
+2026-04-08_19:32:32 - INFO - [10_80_109_249_cisco_ncs5501] run_upgrade — host=10.80.109.249, vendor=cisco, model=ncs5501, curr_os=7.11.2, total_hops=3
+2026-04-08_19:32:32 - DEBUG - [10_80_109_249_cisco_ncs5501] Rollback chain seeded — image=ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso, os=7.11.2
+2026-04-08_19:32:32 - INFO - Intermediate release is there. Checking the intermediate image details has been provided or not
+2026-04-08_19:32:32 - INFO - [10_80_109_249_cisco_ncs5501]: Intermediate image details are provided. 
+2026-04-08_19:32:32 - INFO - [10_80_109_249_cisco_ncs5501] ── Hop [0/2] ── image=ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso, expected_os=7.7.2
+2026-04-08_19:32:32 - INFO - [10_80_109_249_cisco_ncs5501] Hop [0] — image=ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso, expected_os=7.7.2
+2026-04-08_19:32:32 - INFO - [cisco_ncs5501] checkStorage — vendor: cisco
+2026-04-08_19:32:32 - INFO - [cisco_ncs5501] checkStorage — 5.3 G available
+2026-04-08_19:32:32 - INFO - [cisco_ncs5501] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_19:32:32 - INFO - [10_80_109_249_cisco_ncs5501] storage OK
+2026-04-08_19:32:32 - ERROR - [10_80_109_249_cisco_ncs5501] Upgrade hop [0] failed for ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso
+2026-04-08_19:32:32 - INFO - [10_80_109_249_cisco_ncs5501] Triggering rollback...
+2026-04-08_19:32:32 - DEBUG - [10_80_109_249_cisco_ncs5501] Rollback chain at failure: ['ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso']
+2026-04-08_19:32:32 - ERROR - [10_80_109_249_cisco_ncs5501] Phase 2 FAILED — stopping device
+2026-04-08_19:32:32 - INFO - [10_80_109_249_cisco_ncs5501] HTML report exported
+2026-04-08_19:32:33 - INFO - Logout successful from 10.80.109.249
+2026-04-08_19:32:33 - INFO - [10_80_109_249_cisco_ncs5501] Disconnected from 10.80.109.249
+2026-04-08_19:32:33 - INFO - [THREAD-128985154815680] [10_80_109_249_cisco_ncs5501] Pipeline finished at 2026-04-08 19:32:33.012526

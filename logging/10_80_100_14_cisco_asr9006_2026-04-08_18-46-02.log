@@ -1,0 +1,39 @@
+2026-04-08_18:46:02 - INFO - [THREAD-136532234090176] [10_80_100_14_cisco_asr9006] Pipeline started at 2026-04-08 18:46:02.118114
+2026-04-08_18:46:02 - INFO - [10_80_100_14_cisco_asr9006] Connecting to 10.80.100.14
+2026-04-08_18:46:02 - INFO - Connecting to 10.80.100.14 using Netmiko...
+2026-04-08_18:46:14 - INFO - Login successful to 10.80.100.14
+2026-04-08_18:46:14 - INFO - [10_80_100_14_cisco_asr9006] Connected successfully to 10.80.100.14
+2026-04-08_18:46:14 - INFO - [10_80_100_14_cisco_asr9006] Connected to 10.80.100.14
+2026-04-08_18:46:14 - INFO - [10_80_100_14_cisco_asr9006] ── PHASE 1 COMPLETE — starting Phase 2
+2026-04-08_18:46:14 - INFO - [THREAD-136532234090176] [10_80_100_14_cisco_asr9006] Upgrade started at 2026-04-08 18:46:14.590463
+2026-04-08_18:46:14 - INFO - [10_80_100_14_cisco_asr9006] run_upgrade — host=10.80.100.14, vendor=cisco, model=asr9006, curr_os=7.6.2, total_hops=3
+2026-04-08_18:46:14 - DEBUG - [10_80_100_14_cisco_asr9006] Rollback chain seeded — image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, os=7.6.2
+2026-04-08_18:46:14 - INFO - [10_80_100_14_cisco_asr9006] ── Hop [0/2] ── image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, expected_os=7.6.2
+2026-04-08_18:46:14 - INFO - [10_80_100_14_cisco_asr9006] Hop [0] — image=asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, expected_os=7.6.2
+2026-04-08_18:46:14 - INFO - [cisco_asr9006] checkStorage — vendor: cisco
+2026-04-08_18:46:14 - INFO - [cisco_asr9006] checkStorage — 16 G available
+2026-04-08_18:46:14 - INFO - [cisco_asr9006] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_18:46:14 - INFO - [10_80_100_14_cisco_asr9006] storage OK
+2026-04-08_18:46:14 - INFO - 10.80.100.14: Modifying LPTS policer
+2026-04-08_18:46:20 - INFO - LPTS modified successfully
+2026-04-08_18:46:20 - INFO - [10_80_100_14_cisco_asr9006] Change LPTS Rate OK
+2026-04-08_18:46:20 - INFO - [10.80.100.14] transferImage — asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, vendor: cisco
+2026-04-08_18:46:20 - INFO - [10.80.100.14] scpFile — colt@10.80.109.133:/home/colt/Documents/asr_testing/asr9006_images/asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso → /harddisk:
+2026-04-08_18:46:32 - INFO - [10.80.100.14] scpFile — transfer complete
+2026-04-08_18:46:32 - INFO - [10.80.100.14] transferImage — asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso transferred to /harddisk:
+2026-04-08_18:46:32 - INFO - [10_80_100_14_cisco_asr9006]  transfer image OK
+2026-04-08_18:46:32 - INFO - [10.80.100.14] verifyChecksum — image: asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso, vendor: cisco
+2026-04-08_18:46:32 - INFO - 10.80.100.14: Executing 'show md5 file /harddisk:/asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso'
+2026-04-08_18:46:38 - INFO - [10.80.100.14] verifyChecksum — match: OK
+2026-04-08_18:46:38 - INFO - [10_80_100_14_cisco_asr9006]  [0] checksum OK — asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso
+2026-04-08_18:46:38 - INFO - [cisco_asr9006] checkStorage — vendor: cisco
+2026-04-08_18:46:39 - INFO - [cisco_asr9006] checkStorage — 16 G available
+2026-04-08_18:46:39 - INFO - [cisco_asr9006] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_18:46:39 - INFO - [10_80_100_14_cisco_asr9006] storage OK
+2026-04-08_18:46:39 - INFO - Hostname->RP/0/RSP0/CPU0:sr6.BLB
+2026-04-08_18:46:39 - INFO - Hostname does not contain OSA or TYO
+2026-04-08_18:46:40 - INFO - route-policy created
+2026-04-08_18:46:42 - INFO - [10_80_100_14_cisco_asr9006]:: Detected BGP ASN -> 8220
+2026-04-08_18:46:42 - INFO - [10_80_100_14_cisco_asr9006]:: Starting deny-any policy for ASN 8220
+2026-04-08_18:46:47 - INFO - [10_80_100_14_cisco_asr9006]:: Applied DENY-ANY policy to PEER group
+2026-04-08_18:46:47 - INFO - [10_80_100_14_cisco_asr9006]:: Waiting 5 minutes for traffic drain

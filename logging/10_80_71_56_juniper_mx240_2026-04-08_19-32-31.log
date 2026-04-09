@@ -1,0 +1,94 @@
+2026-04-08_19:32:31 - INFO - [THREAD-128985146422976] [10_80_71_56_juniper_mx240] Pipeline started at 2026-04-08 19:32:31.800270
+2026-04-08_19:32:31 - INFO - [10_80_71_56_juniper_mx240] Connecting to 10.80.71.56
+2026-04-08_19:32:31 - INFO - Connecting to 10.80.71.56 using Netmiko...
+2026-04-08_19:32:37 - INFO - Login successful to 10.80.71.56
+2026-04-08_19:32:37 - INFO - [10_80_71_56_juniper_mx240] Connected successfully to 10.80.71.56
+2026-04-08_19:32:37 - INFO - [10_80_71_56_juniper_mx240] Connected to 10.80.71.56
+2026-04-08_19:32:37 - INFO - [10_80_71_56_juniper_mx240] ── PHASE 1 COMPLETE — starting Phase 2
+2026-04-08_19:32:37 - INFO - [THREAD-128985146422976] [10_80_71_56_juniper_mx240] Upgrade started at 2026-04-08 19:32:37.862082
+2026-04-08_19:32:37 - INFO - [10_80_71_56_juniper_mx240] run_upgrade — host=10.80.71.56, vendor=juniper, model=mx240, curr_os=22.2R3-S2.8, total_hops=1
+2026-04-08_19:32:37 - DEBUG - [10_80_71_56_juniper_mx240] Rollback chain seeded — image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, os=22.2R3-S2.8
+2026-04-08_19:32:37 - INFO - [10_80_71_56_juniper_mx240] ── Hop [0/0] ── image=junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz, expected_os=23.4R2-S3.9
+2026-04-08_19:32:37 - INFO - [10_80_71_56_juniper_mx240] Hop [0] — image=junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz, expected_os=23.4R2-S3.9
+2026-04-08_19:32:37 - INFO - [10_80_71_56_juniper_mx240] dual-RE model (mx240): checkStorageDualRE()
+2026-04-08_19:32:37 - INFO - [10.80.71.56] checkStorageDualRE — vendor: juniper
+2026-04-08_19:32:37 - INFO - [10.80.71.56] checkStorageDualRE — querying RE0
+2026-04-08_19:32:37 - INFO - [10.80.71.56] checkStorageDualRE — RE0 available: 4.90 GB
+2026-04-08_19:32:37 - INFO - [10.80.71.56] checkStorageDualRE — querying RE1
+2026-04-08_19:32:38 - INFO - [10.80.71.56] checkStorageDualRE — RE1 available: 5.10 GB
+2026-04-08_19:32:38 - ERROR - [10.80.71.56] : Not enough storage to transfer the image. Please do the device cleanup
+2026-04-08_19:32:38 - INFO - [juniper_mx240] checkStorage — vendor: juniper
+2026-04-08_19:32:38 - INFO - [10.80.71.56] checkStorage — 4.90 GB available
+2026-04-08_19:32:38 - INFO - [juniper_mx240] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True}
+2026-04-08_19:32:38 - INFO - [10_80_71_56_juniper_mx240] storage OK
+2026-04-08_19:32:38 - INFO - [10_80_71_56_juniper_mx240] using dual-RE upgrade path
+2026-04-08_19:32:38 - INFO - [10_80_71_56_juniper_mx240] PRE-FLIGHT — Checking chassis routing-engine state
+2026-04-08_19:32:38 - INFO - [10_80_71_56_juniper_mx240] PRE-FLIGHT chassis output:
+Routing Engine status:
+  Slot 0:
+    Current state                  Master
+    Election priority              Master (default)
+    Temperature                 39 degrees C / 102 degrees F
+    CPU temperature             61 degrees C / 141 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           5 percent
+    5 sec CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     2 percent
+      Interrupt                  0 percent
+      Idle                      97 percent
+    1 min CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     2 percent
+      Interrupt                  0 percent
+      Idle                      98 percent
+    5 min CPU utilization:
+      User                       0 percent
+      Background                 0 percent
+      Kernel                     2 percent
+      Interrupt                  0 percent
+      Idle                      98 percent
+    15 min CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     2 percent
+      Interrupt                  0 percent
+      Idle                      98 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7380
+    Start time                     2026-04-06 06:45:07 UTC
+    Uptime                         2 days, 7 hours, 20 minutes, 7 seconds
+    Last reboot reason             0x2000:hypervisor reboot
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.11       0.23       0.27
+Routing Engine status:
+  Slot 1:
+    Current state                  Backup
+    Election priority              Backup (default)
+    Temperature                 37 degrees C / 98 degrees F
+    CPU temperature             53 degrees C / 127 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           4 percent
+    5 sec CPU utilization:
+      User                       0 percent
+      Background                 0 percent
+      Kernel                     0 percent
+      Interrupt                  0 percent
+      Idle                     100 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7430
+    Start time                     2026-04-08 02:55:53 UTC
+    Uptime                         11 hours, 9 minutes, 23 seconds
+    Last reboot reason             0x1:power cycle/failure
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.16       0.14       0.15
+
+2026-04-08_19:32:38 - INFO - [10_80_71_56_juniper_mx240] PRE-FLIGHT OK — RE0=Master, RE1=Backup
+2026-04-08_19:32:38 - ERROR - [10_80_71_56_juniper_mx240] run_upgrade unhandled exception: name 'tid' is not defined
+2026-04-08_19:32:38 - ERROR - [10_80_71_56_juniper_mx240] Phase 2 FAILED — stopping device
+2026-04-08_19:32:38 - INFO - [10_80_71_56_juniper_mx240] HTML report exported
+2026-04-08_19:32:38 - INFO - Logout successful from 10.80.71.56
+2026-04-08_19:32:38 - INFO - [10_80_71_56_juniper_mx240] Disconnected from 10.80.71.56
+2026-04-08_19:32:38 - INFO - [THREAD-128985146422976] [10_80_71_56_juniper_mx240] Pipeline finished at 2026-04-08 19:32:38.229417
