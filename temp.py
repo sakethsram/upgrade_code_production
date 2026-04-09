@@ -1,0 +1,1162 @@
+#!/usr/bin/env python3
+"""
+workflow_report_generator.py
+Pre + Upgrade + Post driven by actual JSON data.
+"""
+
+from datetime import datetime
+import json
+import os
+import difflib as _dl
+
+
+PRE_TASK_TITLES = {
+    "connect":                   "Connect to Device",
+    "execute_show_commands":     "Collect Show Outputs",
+    "show_version":              "Show Version",
+    "check_storage":             "Check Storage",
+    "backup_active_filesystem":  "Backup Active Filesystem",
+    "backup_running_config":     "Backup Running Config",
+    "transfer_image":            "Transfer Image",
+    "verify_checksum":           "Verify Checksum",
+    "disable_re_protect_filter": "Disable RE Protect Filter",
+}
+
+UPGRADE_TASK_TITLES = {
+    "status"   :            "Upgrade status",
+    "connect":              "Connect to Device",
+    "hops"     :            "Image Details"           
+}
+
+POST_TASK_TITLES = {
+    "connect":               "Connect to Device",
+    "show_version":          "Show Version (Post-Upgrade)",
+    "execute_show_commands": "Collect Show Outputs (Post-Upgrade)",
+}
+
+PHASE_META = {
+    "pre":     {"label": "Pre-Checks",  "color": "#38bdf8"},
+    "upgrade": {"label": "Upgrade",     "color": "#a78bfa"},
+    "post":    {"label": "Post-Checks", "color": "#34d399"},
+    "report":  {"label": "Report",      "color": "#fb923c"},
+}
+
+
+# ─── helpers ──────────────────────────────────────────────────────────────────
+
+def _esc(s):
+    return (str(s)
+            .replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace('"', "&quot;"))
+
+
+def _norm_status(raw) -> str:
+    if raw is True:  return "ok"
+    if raw is False: return "failed"
+    if isinstance(raw, str):
+        s = raw.strip().lower()
+        if s in ("success", "true", "completed", "ok", "passed",
+                 "skipped", "generated", "low_space_cleaned"):
+            return "ok"
+        if s in ("failed", "false", "error", "rollback_failed"):
+            return "failed"
+        if s == "not_started":               return "not_started"
+        if s in ("in_progress", "rolled_back"): return s
+        if s == "":                          return ""
+        return raw
+    return str(raw) if raw is not None else ""
+
+
+def _badge(status: str) -> str:
+    m = {
+        "ok":             '<span class="badge b-ok">OK</span>',
+        "failed":         '<span class="badge b-fail">Failed</span>',
+        "rollback_failed":'<span class="badge b-fail">Failed</span>',
+        "not_started":    '<span class="badge b-ns">—</span>',
+        "":               '<span class="badge b-ns">—</span>',
+        "rolled_back":    '<span class="badge b-warn">Rolled Back</span>',
+        "in_progress":    '<span class="badge b-ip">In Progress</span>',
+        "low_space_cleaned": '<span class="badge b-warn">Cleaned</span>',
+    }
+    return m.get(status, f'<span class="badge b-ns">{_esc(status)}</span>')
+
+
+def _remark(exc: str) -> str:
+    return (f'<span class="remark-err">{_esc(exc)}</span>'
+            if exc else '<span class="remark-na">—</span>')
+
+
+# ─── command output drawer ────────────────────────────────────────────────────
+
+def _cmd_drawer(cmds: list, prefix: str, phase: str) -> str:
+    did = f"cmds-{prefix}-{phase}"
+    if not cmds:
+        return (f'<div class="cmd-drawer" hidden id="{did}">'
+                f'<div class="cmd-empty">No commands collected.</div></div>')
+    items = []
+    for i, e in enumerate(cmds):
+        lbl    = _esc(e.get("cmd", ""))
+        raw    = _esc(e.get("output", "") or "(empty)")
+        jobj   = e.get("json", {})
+        jstr   = _esc(json.dumps(jobj, indent=2)) if jobj else "(not parsed)"
+        exc    = _esc(e.get("exception", "") or "")
+        ok     = exc == ""
+        rid, jid, eid = (f"raw-{prefix}-{phase}-{i}",
+                         f"jsn-{prefix}-{phase}-{i}",
+                         f"exc-{prefix}-{phase}-{i}")
+        err_btn = (f'<button class="mini-btn mini-err" onclick="tgl(\'{eid}\')">Why?</button>'
+                   if not ok else "")
+        items.append(f"""<div class="{'cmd-row ok' if ok else 'cmd-row fail'}">
+  <div class="cm-hd">
+    <span class="dot {'dot-ok' if ok else 'dot-fail'}"></span>
+    <code class="cm-cmd">{lbl}</code>
+    <div class="cm-btns">
+      <button class="mini-btn" onclick="tgl('{rid}')">Raw</button>
+      <button class="mini-btn" onclick="tgl('{jid}')">JSON</button>
+      {err_btn}
+    </div>
+  </div>
+  <div id="{rid}" class="log-box" hidden><pre>{raw}</pre></div>
+  <div id="{jid}" class="log-box" hidden><pre>{jstr}</pre></div>
+  {"" if ok else f'<div id="{eid}" class="log-box err-box" hidden><pre>{exc}</pre></div>'}
+</div>""")
+    return (f'<div class="cmd-drawer" hidden id="{did}">'
+            f'<div class="cmd-list">{"".join(items)}</div></div>')
+
+# ─── image transfer list ─────────────────────────────────────────────────────
+def _image_drawer(entries: list, prefix: str):
+    if not entries:
+        return "", ""
+
+    rows = []
+    for i, e in enumerate(entries):
+        status = _norm_status(e.get("status", "not_started"))
+        image = _esc(e.get("image", "—"))
+        exc = _esc(e.get("exception", "") or "")
+        destination = _esc(e.get("destination", "") or "")
+
+        rows.append(
+            f'<tr class="task-row">'
+            f'<td class="subtask-cell mono">{i+1}</td>'
+            f'<td class="subtask-cell mono" style="word-break:break-all;font-size:.65rem;">{image}</td>'
+            f'<td class="status-cell">{_badge(status)}</td>'
+            f'<td class="subtask-cell mono" style="font-size:.63rem;line-height:1.7;">'
+            f'<span style="color:var(--muted2);">path:</span> {destination}</td>'
+            f'<td class="remark-cell mono">'
+            f'{("<span class=remark-err>" + exc + "</span>") if exc else "<span class=remark-na>—</span>"}'
+            f'</td></tr>'
+        )
+
+    cid = f"chk-image-{prefix}"
+    toggle = f'<button class="mini-btn" onclick="tgl(\'{cid}\')">Images ({len(entries)})</button>'
+
+    drawer = (
+        f'<div class="drawer-slot">'
+        f'<div class="cmd-drawer overlay" hidden id="{cid}">'
+        f'<table class="hop-table"><tbody>{"".join(rows)}</tbody></table>'
+        f'</div></div>'
+    )
+    return toggle, drawer
+
+# ─── verify_checksum list ─────────────────────────────────────────────────────
+def _checksum_drawer(entries: list, prefix: str):
+    if not entries:
+        return "", ""
+
+    rows = []
+    for i, e in enumerate(entries):
+        image = _esc(e.get("image", "—"))
+        status = _norm_status(e.get("status", "not_started"))
+        match = e.get("match")
+        expected = _esc(e.get("expected", "—"))
+        computed = _esc(e.get("computed", "—") or "—")
+        exc = _esc(e.get("exception", "") or "")
+
+        match_html = (
+            '<span class="badge b-ok">✓ Match</span>' if match is True else
+            '<span class="badge b-fail">✗ Mismatch</span>' if match is False else
+            '<span class="badge b-ns">—</span>'
+        )
+
+        rows.append(
+            f'<tr class="task-row">'
+            f'<td class="subtask-cell mono">{i+1}</td>'
+            f'<td class="subtask-cell mono" style="word-break:break-all;font-size:.65rem;">{image}</td>'
+            f'<td class="status-cell">{_badge(status)}</td>'
+            f'<td class="status-cell">{match_html}</td>'
+            f'<td class="remark-cell mono" style="font-size:.63rem;">'
+            f'<span style="color:var(--muted2);">exp:</span> {expected}<br>'
+            f'<span style="color:var(--muted2);">got:</span> {computed}'
+            f'{("<br><span class=remark-err>" + exc + "</span>") if exc else ""}'
+            f'</td></tr>'
+        )
+
+    cid = f"chk-checksum-{prefix}"
+    toggle = f'<button class="mini-btn" onclick="tgl(\'{cid}\')">Checksums ({len(entries)})</button>'
+
+    drawer = (
+        f'<div class="drawer-slot">'
+        f'<div class="cmd-drawer overlay" hidden id="{cid}">'
+        f'<table class="hop-table"><tbody>{"".join(rows)}</tbody></table>'
+        f'</div></div>'
+    )
+    return toggle, drawer
+# ─── upgrade hops ─────────────────────────────────────────────────────────────
+
+def _hops_rows(hops: list) -> str:
+    rows = []
+    for i, hop in enumerate(hops):
+        image  = hop.get("image", "—")
+        status = _norm_status(hop.get("status", "not_started"))
+        exc    = _esc(hop.get("exception", "") or "")
+        md5    = hop.get("md5_match", None)
+        conn   = hop.get("connect") if isinstance(hop.get("connect"), dict) else {}
+        conn_st = _norm_status(conn.get("status", "not_started")) if conn else "not_started"
+        conn_at = conn.get("attempt", "") if conn else ""
+        conn_html = (f'<span class="badge b-ok">✓{" att "+str(conn_at) if conn_at else ""}</span>'
+                     if conn_st == "ok" else _badge(conn_st))
+        md5_html = ('<span class="badge b-ok">✓</span>'    if md5 is True  else
+                    '<span class="badge b-fail">✗</span>'  if md5 is False else
+                    '<span class="badge b-ns">—</span>')
+        if isinstance(image, (list, set)): 
+            nested_rows = [] 
+            for j, img in enumerate(image): 
+                nested_rows.append(
+                    f"<tr><td class='subtask-cell mono'>{i + 1}.{j}</td>"
+                    f"<td class ='subtask-cell mono' style='word-break:break-all;font-size:.65rem;'>{_esc(img)}</td></tr>"
+                )
+            image_html = (
+                f'<table class="hop-table nested"><thead><tr>'
+                f'<th>#</th><th>SMU Image</th>'
+                f'</tr></thead><tbody>{"".join(nested_rows)}</tbody></table>'
+            )
+        else: 
+            image_html = _esc(image)
+
+        rows.append(
+            f'<tr class="task-row{"" if status in ("ok","not_started","") else " failed-row"}">'
+            f'<td class="hop-num-cell">{i+1}</td>'
+            f'<td class="hop-image-cell">{image_html}</td>'
+            f'<td class="hop-status-cell">{_badge(status)}</td>'
+            f'<td class="hop-status-cell">{md5_html}</td>'
+            f'<td class="hop-status-cell">{conn_html}</td>'
+            f'<td class="hop-remark-cell">{"<span class=remark-err>" + exc + "</span>" if exc else "<span class=remark-na>—</span>"}</td>'
+            f'</tr>'
+        )
+    return "\n".join(rows)
+
+
+# ─── pre-phase rows ───────────────────────────────────────────────────────────
+
+def _pre_rows(tasks: dict, prefix: str) -> tuple:
+    color = PHASE_META["pre"]["color"]
+    label = PHASE_META["pre"]["label"]
+    items = [(n, d) for n, d in tasks.items() if isinstance(d, (dict, list))]
+    count = len(items)
+    rows  = []
+    total = success = failed = 0
+    first = True
+
+    for name, data in items:
+        # ── image details is a LIST ─────────────────────────────────────────
+        if name == "transfer_image" and isinstance(data, list): 
+            if not data:
+                agg = "not_started"
+            elif all(_norm_status(e.get("status","")) == "ok" for e in data):
+                agg = "ok"
+            elif any(_norm_status(e.get("status","")) == "failed" for e in data):
+                agg = "failed"
+            else:
+                agg = _norm_status(data[0].get("status", "not_started"))
+
+            is_blank = agg in ("", "not_started")
+            total += 1
+            if agg == "ok":   success += 1
+            elif not is_blank: failed += 1
+
+            toggle, drawer = _image_drawer(data, prefix)
+            pc = (f'<td class="phase-cell" rowspan="{count}" '
+                  f'style="border-left:3px solid {color};">'
+                  f'<span class="phase-lbl" style="color:{color};">{label}</span></td>'
+                  ) if first else ""
+            first = False
+            rows.append(
+                f'<tr class="task-row{"" if (agg == "ok" or is_blank) else " failed-row"}">'
+                f'{pc}'
+                f'<td class="subtask-cell"><span class="mono">'
+                f'{PRE_TASK_TITLES.get(name, name)}</span> {toggle}{drawer}</td>'
+                f'<td class="status-cell">{_badge(agg)}</td>'
+                f'<td class="remark-cell"><span class="remark-na">—</span></td>'
+                f'</tr>'
+            )
+            continue
+            
+
+        # ── verify_checksum is a LIST ─────────────────────────────────────────
+        if name == "verify_checksum" and isinstance(data, list):
+            if not data:
+                agg = "not_started"
+            elif all(_norm_status(e.get("status","")) == "ok" for e in data):
+                agg = "ok"
+            elif any(_norm_status(e.get("status","")) == "failed" for e in data):
+                agg = "failed"
+            else:
+                agg = _norm_status(data[0].get("status", "not_started"))
+
+            is_blank = agg in ("", "not_started")
+            total += 1
+            if agg == "ok":   success += 1
+            elif not is_blank: failed += 1
+
+            toggle, drawer = _checksum_drawer(data, prefix)
+            pc = (f'<td class="phase-cell" rowspan="{count}" '
+                  f'style="border-left:3px solid {color};">'
+                  f'<span class="phase-lbl" style="color:{color};">{label}</span></td>'
+                 ) if first else ""
+            first = False
+            rows.append(
+                    f'<tr class="task-row{"" if (agg == "ok" or is_blank) else " failed-row"}">'
+                    f'{pc}'
+                    f'<td class="subtask-cell"><span class="mono">'
+                    f'{PRE_TASK_TITLES.get(name, name)}</span> {toggle}{drawer}</td>'
+                    f'<td class="status-cell">{_badge(agg)}</td>'
+                    f'<td class="remark-cell"><span class="remark-na">—</span></td>'
+                    f'</tr>'
+            )
+            continue
+
+        # ── standard dict task ────────────────────────────────────────────────
+        status   = _norm_status(data.get("status", ""))
+        is_blank = status in ("", "not_started")
+        exc      = data.get("exception", "") or ""
+        display  = PRE_TASK_TITLES.get(name, name.replace("_", " ").title())
+
+        total += 1
+        if status == "ok":   success += 1
+        elif not is_blank:   failed  += 1
+
+        pc = (f'<td class="phase-cell" rowspan="{count}" '
+              f'style="border-left:3px solid {color};">'
+              f'<span class="phase-lbl" style="color:{color};">{label}</span></td>'
+              ) if first else ""
+        first = False
+
+        toggle = drawer = ""
+        if name == "execute_show_commands":
+            cmds   = data.get("commands", [])
+            bid    = f"cmds-{prefix}-pre"
+            toggle = f'<button class="mini-btn" onclick="tgl(\'{bid}\')">Outputs ({len(cmds)})</button>'
+            drawer = _cmd_drawer(cmds, prefix, "pre")
+
+        # task-specific remarks
+        if name == "connect":
+            ping = data.get("ping", None)
+            parts = []
+            if ping is not None:
+                p = str(ping).lower()
+                parts.append(f'<span class="remark-ok">ping: {_esc(p)}</span>'
+                              if p in ("up","true")
+                              else f'<span class="remark-err">ping: {_esc(p)}</span>')
+            if exc: parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
+            remark = " &nbsp;·&nbsp; ".join(parts) or '<span class="remark-na">—</span>'
+
+        elif name == "check_storage":
+            parts = []
+            deleted = data.get("deleted_files", [])
+            if deleted: parts.append('<span class="remark-ok">files cleaned</span>')
+            if data.get("sufficient") is False and status != "ok":
+                parts.append('<span class="remark-err">insufficient space</span>')
+            if exc: parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
+            remark = " &nbsp;·&nbsp; ".join(parts) or '<span class="remark-na">—</span>'
+
+        elif name == "backup_active_filesystem":
+            dc = data.get("disk_count", "")
+            parts = []
+            if dc: parts.append(f'<span class="mono" style="color:var(--muted2);">disks: {_esc(dc)}</span>')
+            if exc: parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
+            remark = " &nbsp;·&nbsp; ".join(parts) or '<span class="remark-na">—</span>'
+
+        elif name == "backup_running_config":
+            cfg  = data.get("config_file","") or data.get("log_file","")
+            dest = data.get("destination","")
+            parts = []
+            if cfg:  parts.append(f'<span class="mono" style="color:var(--muted2);">{_esc(cfg)}</span>')
+            if dest: parts.append(f'<span class="mono" style="color:var(--muted2);">&#8594; {_esc(dest)}</span>')
+            if exc:  parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
+            remark = " ".join(parts) or '<span class="remark-na">—</span>'
+
+        elif name == "show_version":
+            ver  = data.get("version","")
+            plat = data.get("platform","")
+            hn   = data.get("hostname","")
+            parts = []
+            if hn:   parts.append(f'<span class="mono" style="color:var(--accent);">{_esc(hn)}</span>')
+            if plat: parts.append(f'<span class="mono" style="color:var(--muted2);">{_esc(plat)}</span>')
+            if ver:  parts.append(f'<span class="mono" style="color:var(--muted2);">v{_esc(ver)}</span>')
+            if exc:  parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
+            remark = " &nbsp;·&nbsp; ".join(parts) or '<span class="remark-na">—</span>'
+
+        else:
+            remark = _remark(exc)
+
+        row_cls = "" if (status == "ok" or is_blank) else " failed-row"
+        rows.append(
+            f'<tr class="task-row{row_cls}">'
+            f'{pc}'
+            f'<td class="subtask-cell"><span class="mono">{_esc(display)}</span>'
+            f' {toggle}{drawer}</td>'
+            f'<td class="status-cell">{_badge(status)}</td>'
+            f'<td class="remark-cell">{remark}</td>'
+            f'</tr>'
+        )
+
+#    rows.append('<tr class="phase-sep"><td colspan="4"></td></tr>')
+    return "\n".join(rows), total, success, failed
+
+
+# ─── upgrade rows ─────────────────────────────────────────────────────────────
+
+def _upgrade_rows(upg: dict, prefix: str) -> tuple:
+    color      = PHASE_META["upgrade"]["color"]
+    label      = PHASE_META["upgrade"]["label"]
+    rows       = []
+    total   = success = failed = 0
+    items = [(n, d) for n, d in upg.items()]
+    count = len(items)
+    first = True
+    
+    # ── Dynamic subtasks (dict/list only) ─────────────────────────────
+    for name, data in items:
+        
+        # ── hops is a LIST ───────────────────────────────────────────────
+        if name == "hops" and isinstance(data, list): 
+            if not data: 
+                agg = "not_started"
+            elif all(_norm_status(e.get("status","")) == "ok" for e in data):
+                agg = "ok"
+            elif any(_norm_status(e.get("status","")) == "failed" for e in data):
+                agg = "failed"
+            else:
+                agg = _norm_status(data[0].get("status", "not_started"))
+            
+            is_blank = agg in ("", "not_started")
+            total += 1 
+            if agg == "ok": success += 1 
+            elif not is_blank: failed += 1 
+            
+
+            toggle = (f'<button class="mini-btn" onclick="tglHops(\'hops-{prefix}\')">'
+                      f'Hops ({len(data)})</button>')
+            drawer = (f'<div class="hops-inline" hidden id="hops-{prefix}">'
+                      f'<div class="hop-table-wrap">'
+                      f'<table class="hop-table"><thead><tr>'
+                      f'<th>#</th><th>Image</th><th>Status</th><th>MD5</th>'
+                      f'<th>Reconnect</th><th>Remark</th>'
+                      f'</tr></thead><tbody>{_hops_rows(data)}</tbody></table>'
+                      f'</div></div>')
+            
+            pc = (f'<td class="phase-cell" rowspan="{count}" '
+                  f'style="border-left:3px solid {color};">'
+                  f'<span class="phase-lbl" style="color:{color};">{label}</span></td>'
+                  ) if first else ""
+            first = False
+
+            rows.append(
+                f'<tr class="task-row{"" if (agg == "ok" or is_blank) else " failed-row"}">'
+                f'{pc}'
+                f'<td class="subtask-cell"><span class="mono">'
+                f'{UPGRADE_TASK_TITLES.get(name, name)}</span> {toggle}{drawer}</td>'
+                f'<td class="status-cell">{_badge(agg)}</td>'
+                f'<td class="remark-cell"><span class="remark-na">—</span></td>'
+                f'</tr>'
+            )
+            continue
+        
+        pc = (f'<td class="phase-cell" rowspan="{count}" '
+              f'style="border-left:3px solid {color};">'
+              f'<span class="phase-lbl" style="color:{color};">{label}</span></td>'
+              ) if first else ""
+        first = False
+
+        toggle = drawer = ""
+        
+        # ── handle strings ───────────────────────────────
+        if isinstance(data, str) :
+            
+            if name.lower() == "initial_os":
+                initial_os = _esc(upg.get("initial_os", "—") or "—")
+                target_os = _esc(upg.get("target_os", "—") or "—")
+                rows.append(
+                    f'<tr class="task-row">'
+                    f'<td class="subtask-cell"><span class="mono">OS Path</span></td>'
+                    f'<td class="status-cell"></td>'
+                    f'<td class="remark-cell mono" style="color:var(--muted2);">'
+                    f'{initial_os} &#8594; {target_os}</td>'
+                    f'</tr>'
+                )
+                continue
+            
+            if name.lower() == "target_os" or name.lower() == "exception": 
+                continue
+                
+            display = UPGRADE_TASK_TITLES.get(name, name.replace("_", " ").title())
+            status = _norm_status(data)
+            exc = _esc(upg.get("exception", "") or "")
+            row_cls = "" if status in ("ok", "", "not_started") else " failed-row"
+            rows.append(
+                f'<tr class="task-row{row_cls}">'
+                f'{pc}'
+                f'<td class="subtask-cell"><span class="mono">{_esc(display)}</span></td>'
+                f'<td class="status-cell">{_badge(status)}</td>'
+                f'<td class="remark-cell">{_remark(exc)}</td>'
+                f'</tr>'
+            )
+            continue
+        
+        # ── standard dict task ────────────────────────────────────────────────
+        if isinstance(data, dict):
+            status = _norm_status(data.get("status", ""))
+            is_blank = status in ("", "not_started")
+            exc = data.get("exception", "") or ""
+            display = UPGRADE_TASK_TITLES.get(name, name.replace("_", " ").title())
+
+            total += 1
+            if status == "ok":
+                success += 1
+            elif not is_blank:
+                failed += 1
+
+            row_cls = "" if (status == "ok" or is_blank) else " failed-row"
+            rows.append(
+                f'<tr class="task-row{row_cls}">'
+                f'{pc}'
+                f'<td class="subtask-cell"><span class="mono">{_esc(display)}</span></td>'
+                f'<td class="status-cell">{_badge(status)}</td>'
+                f'<td class="remark-cell">{_remark(exc)}</td>'
+                f'</tr>'
+            )
+    
+    rows.append('<tr class="phase-sep"><td colspan="4"></td></tr>')
+    
+    return "\n".join(rows), total, success, failed
+
+   
+# ─── post rows (real data) ────────────────────────────────────────────────────
+def _post_rows(post: dict, prefix: str) -> tuple:
+    color = PHASE_META["post"]["color"]
+    label = PHASE_META["post"]["label"]
+
+    items = [(n, d) for n, d in post.items()]
+    count = len(items)
+    rows   = []
+    total  = success = failed = 0
+    first  = True
+
+
+    for name, data in items:
+
+        status   = _norm_status(data.get("status", ""))
+        is_blank = status in ("", "not_started")
+        exc      = data.get("exception", "") or ""
+        display = POST_TASK_TITLES.get(name, name.replace("_", " ").title())
+        
+        total += 1
+        if status == "ok":   success += 1
+        elif not is_blank:   failed  += 1
+
+        pc = (f'<td class="phase-cell" rowspan="{count}" '
+              f'style="border-left:3px solid {color};">'
+              f'<span class="phase-lbl" style="color:{color};">{label}</span></td>'
+              ) if first else ""
+        first = False
+
+        toggle = drawer = ""
+
+        if name == "execute_show_commands":
+            cmds   = data.get("commands", [])
+            bid    = f"cmds-{prefix}-post"
+            toggle = f'<button class="mini-btn" onclick="tgl(\'{bid}\')">Outputs ({len(cmds)})</button>'
+            drawer = _cmd_drawer(cmds, prefix, "post")
+
+        if name == "connect":
+            ping = data.get("ping", None)
+            parts = []
+            if ping is not None:
+                p = str(ping).lower()
+                parts.append(f'<span class="remark-ok">ping: {_esc(p)}</span>'
+                              if p in ("up","true")
+                              else f'<span class="remark-err">ping: {_esc(p)}</span>')
+            if exc: parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
+            remark = " &nbsp;·&nbsp; ".join(parts) or '<span class="remark-na">—</span>'
+
+        elif name == "show_version":
+            ver  = data.get("version","")
+            plat = data.get("platform","")
+            hn   = data.get("hostname","")
+            parts = []
+            if hn:   parts.append(f'<span class="mono" style="color:var(--accent);">{_esc(hn)}</span>')
+            if plat: parts.append(f'<span class="mono" style="color:var(--muted2);">{_esc(plat)}</span>')
+            if ver:  parts.append(f'<span class="mono" style="color:#86efac;">v{_esc(ver)}</span>')
+            if exc:  parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
+            remark = " &nbsp;·&nbsp; ".join(parts) or '<span class="remark-na">—</span>'
+        else:
+            remark = _remark(exc)
+
+        row_cls = "" if (status == "ok" or is_blank) else " failed-row"
+        rows.append(
+            f'<tr class="task-row{row_cls}">'
+            f'{pc}'
+            f'<td class="subtask-cell"><span class="mono">{_esc(display)}</span>'
+            f' {toggle}{drawer}</td>'
+            f'<td class="status-cell">{_badge(status)}</td>'
+            f'<td class="remark-cell">{remark}</td>'
+            f'</tr>'
+        )
+
+    rows.append('<tr class="phase-sep"><td colspan="4"></td></tr>')
+    
+    return "\n".join(rows), total, success, failed
+
+
+# ─── report / diff phase ──────────────────────────────────────────────────────
+
+import difflib as _difflib
+
+
+def _inline_diff_html(pre_out: str, post_out: str) -> tuple:
+    """
+    Given two full command outputs (multi-line strings), returns
+    (pre_html, post_html) with highlighted tokens.
+    """
+    pre_lines  = pre_out.splitlines() if pre_out else []
+    post_lines = post_out.splitlines() if post_out else []
+    matcher    = _difflib.SequenceMatcher(None, pre_lines, post_lines, autojunk=False)
+
+    pre_col  = []
+    post_col = []
+
+    def _mark_line_diff(a: str, b: str):
+        sm     = _difflib.SequenceMatcher(None, a, b, autojunk=False)
+        ha, hb = [], []
+        for tag, i1, i2, j1, j2 in sm.get_opcodes():
+            if tag == "equal":
+                ha.append(_esc(a[i1:i2]))
+                hb.append(_esc(b[j1:j2]))
+            elif tag == "replace":
+                ha.append(f'<mark class="diff-del">{_esc(a[i1:i2])}</mark>')
+                hb.append(f'<mark class="diff-ins">{_esc(b[j1:j2])}</mark>')
+            elif tag == "delete":
+                ha.append(f'<mark class="diff-del">{_esc(a[i1:i2])}</mark>')
+            elif tag == "insert":
+                hb.append(f'<mark class="diff-ins">{_esc(b[j1:j2])}</mark>')
+        return "".join(ha), "".join(hb)
+
+    for tag, i1, i2, j1, j2 in matcher.get_opcodes():
+        if tag == "equal":
+            for ln in pre_lines[i1:i2]:
+                pre_col.append(f'<span class="diff-eq">{_esc(ln)}</span>')
+                post_col.append(f'<span class="diff-eq">{_esc(ln)}</span>')
+        elif tag == "replace":
+            a_blk = pre_lines[i1:i2]
+            b_blk = post_lines[j1:j2]
+            pairs = min(len(a_blk), len(b_blk))
+            for k in range(pairs):
+                ha, hb = _mark_line_diff(a_blk[k], b_blk[k])
+                pre_col.append(f'<span class="diff-line-del">{ha}</span>')
+                post_col.append(f'<span class="diff-line-ins">{hb}</span>')
+            for k in range(pairs, len(a_blk)):
+                pre_col.append(f'<span class="diff-line-del">{_esc(a_blk[k])}</span>')
+                post_col.append(f'<span class="diff-na">N/A</span>')
+            for k in range(pairs, len(b_blk)):
+                pre_col.append(f'<span class="diff-na">N/A</span>')
+                post_col.append(f'<span class="diff-line-ins">{_esc(b_blk[k])}</span>')
+        elif tag == "delete":
+            for ln in pre_lines[i1:i2]:
+                pre_col.append(f'<span class="diff-line-del">{_esc(ln)}</span>')
+                post_col.append(f'<span class="diff-na">N/A</span>')
+        elif tag == "insert":
+            for ln in post_lines[j1:j2]:
+                pre_col.append(f'<span class="diff-na">N/A</span>')
+                post_col.append(f'<span class="diff-line-ins">{_esc(ln)}</span>')
+
+    pre_html  = "\n".join(pre_col)  or "<span class='diff-na'>(empty)</span>"
+    post_html = "\n".join(post_col) or "<span class='diff-na'>(empty)</span>"
+    return pre_html, post_html
+
+
+def _report_rows(diff: dict, device_data: dict, prefix: str) -> str:
+    """
+    Renders Phase 4 summary rows in the table.
+    Shows only two summary lines: Diff Status + Commands compared/changed.
+    Per-command rows and orange badges are removed.
+    """
+    color = PHASE_META["report"]["color"]
+
+    if not diff:
+        rows = [
+            (f'<tr class="task-row">'
+             f'<td class="phase-cell" rowspan="2" style="border-left:3px solid {color};">'
+             f'<span class="phase-lbl" style="color:{color};">Report</span></td>'
+             f'<td class="subtask-cell"><span class="mono">Diff Status</span></td>'
+             f'<td class="status-cell"><span class="badge b-ns">Pending</span></td>'
+             f'<td class="remark-cell"><span class="remark-na">—</span></td>'
+             f'</tr>'),
+            (f'<tr class="task-row">'
+             f'<td class="subtask-cell" colspan="3">'
+             f'<div class="diff-none">Diff will be available after post-checks complete.</div>'
+             f'</td></tr>'),
+            '<tr class="phase-sep"><td colspan="4"></td></tr>',
+        ]
+        return "\n".join(rows)
+
+    changed_cmds = sorted(diff.keys())
+    total_cmds   = len(changed_cmds)
+
+    pre_cmds  = device_data.get("pre",  {}).get("execute_show_commands", {}).get("commands", [])
+    post_cmds = device_data.get("post", {}).get("execute_show_commands", {}).get("commands", [])
+    pre_map   = {c["cmd"]: c.get("output", "") for c in pre_cmds}
+    post_map  = {c["cmd"]: c.get("output", "") for c in post_cmds}
+    total_compared = len(set(pre_map) | set(post_map))
+
+    # Build "Show Diff" buttons for each changed command inline in the summary row
+    diff_buttons = " ".join(
+        f'<button class="mini-btn" style="font-size:.5rem;" onclick="tglDiff(\'diff-{prefix}-{abs(hash(cmd)) % 999999}\')">'
+        f'{_esc(cmd)}</button>'
+        for cmd in changed_cmds
+    )
+
+    rows = [
+        # Row 1: Diff Status
+        (f'<tr class="task-row">'
+         f'<td class="phase-cell" rowspan="2" style="border-left:3px solid {color};">'
+         f'<span class="phase-lbl" style="color:{color};">Report</span></td>'
+         f'<td class="subtask-cell"><span class="mono">Diff Status</span></td>'
+         f'<td class="status-cell"><span class="badge b-ok">Complete</span></td>'
+         f'<td class="remark-cell mono" style="color:var(--muted2);">'
+         f'{total_cmds} changed &nbsp;·&nbsp; {total_compared} compared</td>'
+         f'</tr>'),
+        # Row 2: Show Diff buttons (vertical stack)
+        (f'<tr class="task-row">'
+         f'<td class="subtask-cell" colspan="3">'
+         f'<span class="mono" style="color:var(--muted2);font-size:.63rem;display:block;margin-bottom:.3rem;">Show diff:</span>'
+         f'<div style="display:flex;flex-direction:column;align-items:flex-start;gap:.25rem;">{diff_buttons}</div>'
+         f'</td></tr>'),
+        '<tr class="phase-sep"><td colspan="4"></td></tr>',
+    ]
+
+    return "\n".join(rows)
+
+
+def _diff_section(diff: dict, device_data: dict, prefix: str) -> str:
+    """
+    Renders the full-width diff section that lives BELOW the main table.
+    """
+    if not diff:
+        return ""
+
+    pre_cmds  = device_data.get("pre",  {}).get("execute_show_commands", {}).get("commands", [])
+    post_cmds = device_data.get("post", {}).get("execute_show_commands", {}).get("commands", [])
+    pre_map   = {c["cmd"]: c.get("output", "") for c in pre_cmds}
+    post_map  = {c["cmd"]: c.get("output", "") for c in post_cmds}
+
+    blocks = []
+    for cmd in sorted(diff.keys()):
+        pre_out  = pre_map.get(cmd, "")
+        post_out = post_map.get(cmd, "")
+        pre_html, post_html = _inline_diff_html(pre_out, post_out)
+        did = f"diff-{prefix}-{abs(hash(cmd)) % 999999}"
+
+        blocks.append(f"""
+<div class="diff-block" id="{did}" hidden>
+  <div class="diff-block-hdr">
+    <div class="diff-block-cmd">
+      <code class="diff-block-cmdname">{_esc(cmd)}</code>
+    </div>
+    <button class="mini-btn mini-err" onclick="tglDiff('{did}')">Close</button>
+  </div>
+  <div class="diff-grid">
+    <div class="diff-col-hdr">Pre-Upgrade</div>
+    <div class="diff-col-hdr">Post-Upgrade</div>
+    <div class="diff-pane"><pre>{pre_html}</pre></div>
+    <div class="diff-pane"><pre>{post_html}</pre></div>
+  </div>
+</div>""")
+
+    return f'<div class="diff-section" id="diffsec-{prefix}">{"".join(blocks)}</div>'
+
+
+# ─── full tbody ───────────────────────────────────────────────────────────────
+
+def build_tbody(device_data: dict, device_key: str) -> tuple:
+    prefix   = device_key.replace(".", "_").replace("-", "_")
+    all_rows = []
+    total = success = failed = 0
+
+    pre = device_data.get("pre", {})
+    if pre:
+        r, t, s, f = _pre_rows(pre, prefix)
+        all_rows.append(r); total += t; success += s; failed += f
+        all_rows.append('<tr class="phase-sep"><td colspan="4"></td></tr>')
+
+    upg = device_data.get("upgrade", {})
+    if upg:
+        r, t, s, f = _upgrade_rows(upg, prefix)
+        all_rows.append(r); total += t; success += s; failed += f
+        all_rows.append('<tr class="phase-sep"><td colspan="4" style="border-top:2px solid #999; height:8px;"></td></tr>')
+
+    post = device_data.get("post", {})
+    if post:
+        r, t, s, f = _post_rows(post, prefix)
+        all_rows.append(r); total += t; success += s; failed += f
+        all_rows.append('<tr class="phase-sep"><td colspan="4" style="border-top:2px solid #999; height:8px;"></td></tr>')
+
+    diff = device_data.get("diff", {})
+    all_rows.append(_report_rows(diff, device_data, prefix))
+
+    return "\n".join(all_rows), total, success, failed
+
+
+# ─── phase summary for cards ──────────────────────────────────────────────────
+
+def _phase_summary(device_data: dict) -> dict:
+    out = {}
+
+    pre = device_data.get("pre", {})
+    t = s = f = 0
+    for name, td in pre.items():
+        if isinstance(td, list):
+            if not td: continue
+            st = ("ok"     if all(_norm_status(e.get("status","")) == "ok" for e in td) else
+                  "failed" if any(_norm_status(e.get("status","")) == "failed" for e in td) else
+                  _norm_status(td[0].get("status","not_started")))
+        elif isinstance(td, dict):
+            st = _norm_status(td.get("status",""))
+        else:
+            continue
+        if st in ("","not_started"): continue
+        t += 1
+        if st == "ok": s += 1
+        else: f += 1
+    out["pre"] = (t, s, f)
+
+    hops = device_data.get("upgrade", {}).get("hops", [])
+    hok  = sum(1 for h in hops if _norm_status(h.get("status","")) == "ok")
+    out["upgrade"] = (len(hops), hok, len(hops) - hok)
+
+    post = device_data.get("post", {})
+    pt = ps = pf = 0
+    for name in ("connect", "show_version", "execute_show_commands"):
+        td = post.get(name, {})
+        if not td: continue
+        st = _norm_status(td.get("status",""))
+        if st in ("","not_started"): continue
+        pt += 1
+        if st == "ok": ps += 1
+        else: pf += 1
+    out["post"] = (pt, ps, pf)
+
+    diff = device_data.get("diff", {})
+    out["report"] = (len(diff), len(diff), 0) if diff else (0, 0, 0)
+    return out
+
+
+# ─── device panel ─────────────────────────────────────────────────────────────
+def build_device_panel(device_key: str, device_data: dict, is_first: bool) -> str:
+    dk = _esc(device_key)
+
+    tbody, total, success, failed = build_tbody(device_data, device_key)
+    summary = _phase_summary(device_data)
+    prefix = device_key.replace(".", "_").replace("-", "_")
+    diff = device_data.get("diff", {})
+    diff_sec = _diff_section(diff, device_data, prefix)
+
+    pill_cls = (
+        "ok" if failed == 0 and total > 0 else
+        "fail" if success == 0 and total > 0 else "partial"
+    )
+    pill_txt = (
+        "ALL PASSED" if failed == 0 and total > 0 else
+        f"{failed} FAILED" if total > 0 else "NO TASKS"
+    )
+
+    def phase_card(key):
+        t, s, f = summary.get(key, (0, 0, 0))
+        meta = PHASE_META[key]
+
+        if key == "report":
+            cls, inner, pct = "ok", "1/1 Report", 100
+        else:
+            pct = round(s / t * 100) if t else 0
+            cls = "ok" if f == 0 and t > 0 else ("fail" if s == 0 and t > 0 else "partial")
+            label = "Hops" if key == "upgrade" else "Tasks"
+            inner = f"{s}/{t} {label}" if t > 0 else "—"
+
+        return (
+            f'<div class="ph-card">'
+            f'<div class="ph-top">'
+            f'<span class="ph-lbl" style="color:{meta["color"]};">{meta["label"]}</span>'
+            f'<span class="pill {cls}" style="font-size:.58rem;">{inner}</span>'
+            f'</div>'
+            f'<div class="prog"><div class="progbar" '
+            f'style="width:{pct}%;background:{meta["color"]};"></div></div>'
+            f'</div>'
+        )
+
+# ─── overall stats ────────────────────────────────────────────────────────────
+
+def _overall_stats(workflow_data: dict) -> tuple:
+    total = success = failed = 0
+    for dd in workflow_data.values():
+        for name, td in dd.get("pre", {}).items():
+            if isinstance(td, list):
+                if not td: continue
+                st = ("ok"     if all(_norm_status(e.get("status","")) == "ok" for e in td) else
+                      "failed" if any(_norm_status(e.get("status","")) == "failed" for e in td) else
+                      _norm_status(td[0].get("status","not_started")))
+            elif isinstance(td, dict):
+                st = _norm_status(td.get("status",""))
+            else:
+                continue
+            if st in ("","not_started"): continue
+            total += 1
+            if st == "ok": success += 1
+            else: failed += 1
+
+        st = _norm_status(dd.get("upgrade",{}).get("status",""))
+        if st not in ("","not_started"):
+            total += 1
+            if st == "ok": success += 1
+            else: failed += 1
+
+        for name in ("connect", "show_version", "execute_show_commands"):
+            td = dd.get("post",{}).get(name, {})
+            if not td: continue
+            st = _norm_status(td.get("status",""))
+            if st in ("","not_started"): continue
+            total += 1
+            if st == "ok": success += 1
+            else: failed += 1
+
+    return total, success, failed
+
+
+def _device_info_json(workflow_data: dict) -> str:
+    out = {}
+    for dk, dd in workflow_data.items():
+        pre_ver  = dd.get("pre",  {}).get("show_version", {}).get("version", "") or "—"
+        post_ver = dd.get("post", {}).get("show_version", {}).get("version", "") or "—"
+        out[dk] = {
+            "host":         dd.get("device_info",{}).get("host","—") or "—",
+            "vendor":       (dd.get("device_info",{}).get("vendor","—") or "—").upper(),
+            "model":        (dd.get("device_info",{}).get("model","—") or "—").upper(),
+            "hostname":     dd.get("device_info",{}).get("hostname","—") or "—",
+            "pre_version":  pre_ver,
+            "post_version": post_ver,
+        }
+    return json.dumps(out)
+
+
+# ─── HTML generation ──────────────────────────────────────────────────────────
+
+def generate_html_report(workflow_data: dict, output_dir: str = ".", stem: str = None) -> str:
+    safe_data = {
+        dk: {k: v for k, v in slot.items() if k not in ("conn","yaml")}
+        for dk, slot in workflow_data.items()
+    }
+    device_keys = list(safe_data.keys())
+    now         = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    ts_file     = datetime.now().strftime("%d_%m_%y_%H_%M_%S")
+    total_all, success_all, failed_all = _overall_stats(safe_data)
+
+    pill_cls = "ok" if failed_all == 0 else ("fail" if success_all == 0 else "partial")
+    pill_txt = (f"ALL {total_all} TASKS PASSED" if failed_all == 0
+                else f"{failed_all} TASK(S) FAILED")
+
+    dropdown_opts = "\n".join(
+        f'<option value="{_esc(dk)}"{" selected" if i==0 else ""}>'
+        f'{_esc(dk)} — {_esc(safe_data[dk].get("device_info",{}).get("host","—"))}'
+        f'</option>'
+        for i, dk in enumerate(device_keys)
+    )
+    device_panels = "\n".join(
+        build_device_panel(dk, safe_data[dk], i==0)
+        for i, dk in enumerate(device_keys)
+    )
+    di_json   = _device_info_json(safe_data)
+    json_html = _esc(json.dumps(safe_data, indent=2, default=str))
+    first_key = _esc(device_keys[0]) if device_keys else ""
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Workflow Report — {len(device_keys)} Device(s)</title>
+
+https://fonts.googleapis.com
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=@400;500;600;700&display=swap
+
+<style>
+/* ─────────────────────────────────────────────
+   EXISTING CSS (UNCHANGED)
+   ───────────────────────────────────────────── */
+
+*,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
+:root{{
+  --bg:#0a0c10;--surf:#111318;--surf2:#181c24;--surf3:#1e2330;
+  --border:#1f2535;--border2:#2a3044;
+  --text:#dde3f0;--muted:#4a5568;--muted2:#8896aa;
+  --accent:#38bdf8;--ok:#22c55e;--err:#f43f5e;--warn:#f59e0b;
+  --mono:"JetBrains Mono",monospace;--sans:"DM Sans",sans-serif;
+  --r:6px;
+}}
+
+body{{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;
+      padding:2rem 1rem 4rem;font-size:14px}}
+
+.wrap{{max-width:1160px;margin:0 auto}}
+
+/* -------------- existing styles continue -------------- */
+/* (NO CHANGES ABOVE THIS LINE) */
+
+
+/* ─────────────────────────────────────────────
+   CHANGE 3: RIGHT‑SIDE OVERLAY DRAWERS
+   (Images / Transfer Images / Hops)
+   ───────────────────────────────────────────── */
+
+.drawer-slot {{
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: .4rem;
+}}
+
+/* Overlay drawers open to the right */
+.cmd-drawer.overlay,
+.hops-inline.overlay {{
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-left: .6rem;
+
+  width: 640px;
+  max-width: 70vw;
+
+  background: var(--surf2);
+  border: 1px solid var(--border2);
+  border-radius: var(--r);
+
+  z-index: 20;
+  box-shadow: 0 10px 25px rgba(0,0,0,.45);
+}}
+
+/* Prevent table row jump */
+.cmd-drawer,
+.hops-inline {{
+  margin-top: 0;
+}}
+
+/* ─────────────────────────────────────────────
+   EXISTING CSS CONTINUES UNCHANGED
+   ───────────────────────────────────────────── */
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<header class="hdr">
+  <div>
+    <h1>Network Device <span>Workflow Report</span></h1>
+    <p class="sub">Generated: {now} · {len(device_keys)} device(s)</p>
+  </div>
+  <span class="pill {pill_cls}">{_esc(pill_txt)}</span>
+</header>
+
+<div class="sel-bar">
+  <label for="dev-sel">Device</label>
+  <select id="dev-sel" class="dev-sel" onchange="selectDevice(this.value)">
+    {dropdown_opts}
+  </select>
+  <span class="dev-cnt">{len(device_keys)} device(s)</span>
+</div>
+
+{device_panels}
+
+<details class="json-sec">
+  <summary>▶ Raw JSON (all devices)</summary>
+  <pre class="jb">{json_html}</pre>
+</details>
+
+<footer class="ft">
+  workflow_report_generator.py · {now}
+</footer>
+</div>
+
+<script>
+var DI = {di_json};
+
+function updateInfo(key) {{
+  var d = DI[key]; if (!d) return;
+  var set = function(id,v){{ var el=document.getElementById(id); if(el) el.textContent=v||'—'; }};
+  set('di-host-'+key,         d.host);
+  set('di-vendor-'+key,       d.vendor);
+  set('di-model-'+key,        d.model);
+  set('di-hostname-'+key,     d.hostname);
+  set('di-pre-version-'+key,  d.pre_version);
+  set('di-post-version-'+key, d.post_version);
+}}
+
+function selectDevice(key) {{
+  document.querySelectorAll('.device-panel').forEach(function(p){{p.style.display='none';}});
+  var p=document.getElementById('panel-'+key);
+  if(p) p.style.display='block';
+  updateInfo(key);
+}}
+
+function tgl(id) {{
+  var el=document.getElementById(id);
+  if(el) el.hidden=!el.hidden;
+}}
+
+function tglHops(id) {{
+  var el=document.getElementById(id);
+  if(!el) return;
+  el.hidden=!el.hidden;
+}}
+document.addEventListener('DOMContentLoaded',function(){{
+  updateInfo('{first_key}');
+}});
+</script>
+</body>
+</html>
+"""
+
+    os.makedirs(output_dir, exist_ok=True)
+    import glob
+    for old in glob.glob(os.path.join(output_dir, "workflow_report_*.html")):
+        os.remove(old)
+
+    filename  = f"{stem}.html" if stem else f"workflow_report_{ts_file}.html"
+    file_path = os.path.join(output_dir, filename)
+
+    if os.path.exists(file_path):
+        os.remove(file_path)
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(html)
+
+    return file_path
+
+if __name__ == "__main__":
+    import sys
+    from pathlib import Path
+
+    if len(sys.argv) < 2:
+        print("Usage: workflow_report_generator.py <input.json>")
+        sys.exit(1)
+
+        
