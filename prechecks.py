@@ -560,7 +560,7 @@ class PreCheck:
                         "re1_space":  round(re1_space, 2),
                     }
             else:
-                if not re0_low and not re1_low:
+                if re0_low and re1_low:
                     msg = "Not enough storage to transfer the image. Please do the device cleanup"
                     logger.error(f"[{self.device_key}] : {msg}")
                     return  {
@@ -610,7 +610,7 @@ class PreCheck:
                 logger.info(f"[{self.device_key}] checkStorage — {avail_space:.2f} GB available")
 
             if self.vendor == "cisco":
-                storage_output = conn.send_command("show media", expect_string=r"#")
+                storage_output = conn.send_command("show media", expect_string=r"#",read_timeout=120)
 
                 match=re.search(r"harddisk:\s+\S+\s+\S+\s+\S+\s+(\S+)", storage_output, re.M).group(1)
                 size_val   = match[:-1]

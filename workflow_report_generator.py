@@ -15,17 +15,15 @@ PRE_TASK_TITLES = {
     "execute_show_commands":     "Collect Show Outputs",
     "show_version":              "Show Version",
     "check_storage":             "Check Storage",
-    "backup_active_filesystem":  "Backup Active Filesystem",
     "backup_running_config":     "Backup Running Config",
     "transfer_image":            "Transfer Image",
     "verify_checksum":           "Verify Checksum",
-    "disable_re_protect_filter": "Disable RE Protect Filter",
 }
 
 UPGRADE_TASK_TITLES = {
     "status"   :            "Upgrade status",
     "connect":              "Connect to Device",
-    "hops"     :            "Image Details"           
+    "hops"     :            "Image Details",
 }
 
 POST_TASK_TITLES = {
@@ -1009,11 +1007,17 @@ def _count_failed_devices(workflow_data: dict) -> tuple:
     failed  = 0
     for dd in workflow_data.values():
         upg_st = _norm_status(dd.get("upgrade", {}).get("status", ""))
+
         pre_ok = all(
-            _norm_status((td[0] if isinstance(td, list) and td else td).get("status","")) != "failed"
+            _norm_status(
+                td[0].get("status", "") if isinstance(td, list) and td and isinstance(td[0], dict)
+                else td.get("status", "") if isinstance(td, dict)
+                else ""
+            ) != "failed"
             for td in dd.get("pre", {}).values()
             if isinstance(td, (dict, list))
         )
+
         if upg_st == "failed" or not pre_ok:
             failed += 1
     return total, failed

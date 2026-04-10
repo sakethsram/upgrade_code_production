@@ -120,42 +120,14 @@ def init_device_results(device_key: str, host: str, vendor: str, model: str, dev
             "exception":     "",
             "sufficient":    False,
         },
-        "backup_active_filesystem": {
-            "status":        "not_started",
-            "exception":     "",
-            "snapshot_slot": "",
-            "verified":      False,
-        },
         "backup_running_config": {
             "status":      "not_started",
             "exception":   "",
             "destination": "",
             "config_file": "",
         },
-        "transfer_image": [
-          {
-            "status":      "not_started",
-            "exception":   "",
-            "image":       img.get("image", ""),
-            "destination": "",
-          }
-          for img in image_details
-        ],
-        "verify_checksum": [
-            {
-                "image":     img.get("image", ""),
-                "status":    "not_started",
-                "exception": "",
-                "expected":  img.get("checksum", ""),
-                "computed":  "",
-                "match":     False,
-            }
-            for img in image_details
-        ],
-        "disable_re_protect_filter": {
-            "status":    "not_started",
-            "exception": "",
-        },
+        "transfer_image": [],
+        "verify_checksum": []
     },
     "upgrade": {
         "status":     "not_started",
@@ -184,11 +156,7 @@ def init_device_results(device_key: str, host: str, vendor: str, model: str, dev
             "status":    "not_started",
             "exception": "",
             "commands":  [],
-        },
-        "enable_re_protect_filter": {   
-            "status":    "",
-            "exception": "",
-        },
+        }
     },
     "diff": {},
     }
@@ -352,8 +320,8 @@ def build_cisco_registries():
         ("cisco", "show hw-module fpd"):                      show_hw_module_fpd,
         ("cisco", "show platform"):                           show_platform,
         ("cisco", "show media"):                              show_media,
-        ("cisco", "show version"):                            ncs_show_version, 
-        ("cisco", "sh version"):                            show_asr_version,
+        ("cisco", "show version"):                            ncs_show_version,
+        ("cisco", "sh version"):                              show_asr_version,
         ("cisco", "show inventory"):                          show_inventory,
         ("cisco", "show install committed summary"):          show_install_committed_summary,
         ("cisco", "show route summary"):                      show_route_summary,
@@ -365,11 +333,11 @@ def build_cisco_registries():
         ("cisco", "sh l2vpn flexible-xconnect-service"):      show_l2vpn_flexible_xconnect_service,
         ("cisco", "show bgp l2vpn evpn advertised"):          show_bgp_l2vpn_evpn_advertised,
         ("cisco", "show controllers npu resources all location all"):   show_controllers_npu_resources_all_location,
-        ("cisco", "show bfd session detail"):                 show_bfd_session_detail,  
+        ("cisco", "show bfd session detail"):                 show_bfd_session_detail,
         ("cisco", "show bgp l2vpn evpn summary"):          show_bgp_l2vpn_evpn_summary,
         ("cisco", "show proc cpu"):                      show_proc_cpu,
         ("cisco", "show interfaces"):                      show_interfaces,
-        
+
     }
     return {
         (vendor, normalise(cmd)): fn
@@ -380,7 +348,7 @@ VENDOR_REGISTRY = {
     "juniper": build_juniper_registries(),
     "cisco":   build_cisco_registries()
 }
- 
+
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -400,7 +368,7 @@ def collect_outputs(device_key: str, vendor: str, commands: list,
         exception_str = ""
         output        = ""
         try:
-            output = conn.send_command(cmd)
+            output = conn.send_command(cmd, read_timeout=120)
             print(f"[{device_key}] '{cmd}' — {len(output)} chars received")
         except Exception:
             exception_str = tb.format_exc()
@@ -471,7 +439,7 @@ def parse_outputs(device_key: str, vendor: str, check_type: str,model: str ,log)
                 continue
             entry["json"]      = result
             entry["exception"] = ""
-            if "error" in result: 
+            if "error" in result:
                 entry["exception"] = result
                 log.error(f"[{device_key}] parser failed for '{cmd}':\n{tb.format_exc()}")
                 all_ok = False
@@ -580,7 +548,7 @@ def export_device_summary(device_key: str):
     with results_lock:
         all_devices_summary[device_key] = printable
 
-    output_dir = os.path.join(os.getcwd(), "precheck_jsons")
+    output_dir = os.path.join(os.getcwd(), "config_jsons")
     os.makedirs(output_dir, exist_ok=True)
     timestamp    = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     device_info  = slot.get("device_info", {})
