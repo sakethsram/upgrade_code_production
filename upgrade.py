@@ -44,7 +44,7 @@ class Upgrade:
             ip_clean_upgrade = self.host.replace(".", "_")
             model_clean      = str(self.device.get('model', 'unknown')).lower().replace("-", "")
             session_log_file = (
-                f"{ip_clean_upgrade}_{self.vendor.lower()}_{model_clean}_{datetime.now().strftime("%Y-%m-%d")}_session.txt"
+                f"{ip_clean_upgrade}_{self.vendor.lower()}_{model_clean}_{datetime.now().strftime('%Y-%m-%d')}_session.txt"
             )
             session_log_path = os.path.join(session_log_dir, session_log_file)
             logger.debug(f"[{self.device_key}]:: [connect] Session log -> {session_log_path}")
@@ -273,7 +273,7 @@ class Upgrade:
                         logger.error(msg)
                         return conn, False
                     except Exception as e:
-                      msg = f"Not able to commit the SMU packages for {smu_image}: {e}"
+                      msg = f"Not able to commit the SMU packages for {target_image}: {e}"
                       logger.error(msg)
                       return conn, False
 
@@ -1107,7 +1107,7 @@ class Upgrade:
             return conn, False
 
 
-    def run_upgrade_dualRE(self, conn,image_details,curr_os, curr_image, logger):
+    def run_upgrade_dualRE(self, conn, image_details, curr_os, curr_image, logger):
         device_results[self.device_key]["upgrade"]["status"] = "in_progress"
 
         logger.info(f"[{self.device_key}] PRE-FLIGHT — Checking chassis routing-engine state")
@@ -1119,7 +1119,6 @@ class Upgrade:
                 read_timeout=60,
             )
             logger.info(f"[{self.device_key}] PRE-FLIGHT chassis output:\n{preflight_output}")
-
 
             re0_master = re.search(
                 r"Slot\s+0.*?Current state\s+Master",
@@ -1146,6 +1145,14 @@ class Upgrade:
                 return conn, False
 
             logger.info(f"[{self.device_key}] PRE-FLIGHT OK — RE0=Master, RE1=Backup")
+
+            # ── CHANGE 1: Capture pre-upgrade versions of both REs and store them ──
+            ver_output_pre = conn.send_command(
+                "show version invoke-on all-routing-engines", read_timeout=60
+            )
+            pre_versions = self.extract_junos_versions(ver_output_pre)
+            device_results[self.device_key]["upgrade"]["pre_versions"] = pre_versions
+            logger.info(f"[{self.device_key}] Pre-upgrade RE versions: {pre_versions}")
 
         except Exception as e:
             msg = f"PRE-FLIGHT chassis check exception: {e}"
@@ -1192,15 +1199,6 @@ class Upgrade:
                     device_results[self.device_key]["upgrade"]["status"]    = "failed"
                     device_results[self.device_key]["upgrade"]["exception"] = msg
                     device_results[self.device_key]["upgrade"]["hops"][hop_idx]["status"] = "failed"
-                    # RE1 touched, RE0 unchanged, RE0 still Master
-                    # Rollback: reinstall curr_image on RE1 only
-                    logger.info(f"[{self.device_key}] Triggering rollback — failed_act=1")
-                    conn, _ = run_rollback_dualRE(
-                        conn, device, device_key,
-                        curr_image=curr_image, curr_os=curr_os,
-                        failed_act=1,
-                        accepted_vendors=accepted_vendors, logger=logger,
-                    )
                     return conn, False
 
                 logger.info(f"[{self.device_key}] │  VERIFY OK: RE1={expected_os}  RE0={curr_os}  (RE0 still Master)")
@@ -1208,9 +1206,6 @@ class Upgrade:
 
                 logger.info(f"[{self.device_key}] ┌─ HOP [{hop_idx}] ACT 2 START @ {datetime.now().strftime('%H:%M:%S')} ─────────────────────")
                 logger.info(f"[{self.device_key}] │  Action  : switchover RE0→RE1 (RE1 becomes Master)")
-                logger.info(f"[{self.device_key}] │  Command : request chassis routing-engine master switch  → yes (after 5 s)")
-                logger.info(f"[{self.device_key}] │  Wait    : 2 hours for RE1 to stabilise as Master")
-                logger.info(f"[{self.device_key}] │  Expect  : RE1=Master/{expected_os}  RE0=Backup/{curr_os}")
 
                 conn, switchover_ok = self.switchoverMaster(
                     conn, hop_idx, expected_new_master="re1", logger=logger
@@ -1224,16 +1219,10 @@ class Upgrade:
                     device_results[self.device_key]["upgrade"]["status"]    = "failed"
                     device_results[self.device_key]["upgrade"]["exception"] = msg
                     device_results[self.device_key]["upgrade"]["hops"][hop_idx]["status"] = "failed"
-
-                    logger.info(f"[{self.device_key}] Triggering rollback — failed_act=2")
-                    conn, _ = run_rollback_dualRE(
-                        conn, device, device_key,
-                        curr_image=curr_image, curr_os=curr_os,
-                        failed_act=2,
-                        accepted_vendors=accepted_vendors, logger=logger,
-                    )
                     return conn, False
 
+                # ── CHANGE 2: Record first switchover (RE0→RE1) in the hop ──
+                device_results[self.device_key]["upgrade"]["hops"][hop_idx]["switchover_1"] = "RE0(M)→RE1(M)"
                 logger.info(f"[{self.device_key}] │  VERIFY OK: RE1=Master  RE0=Backup  (chassis state confirmed)")
                 logger.info(f"[{self.device_key}] └─ HOP [{hop_idx}] ACT 2 COMPLETE @ {datetime.now().strftime('%H:%M:%S')} ────────────────────")
 
@@ -1241,8 +1230,6 @@ class Upgrade:
                 logger.info(f"[{self.device_key}] │  Target  : RE0 (Backup)")
                 logger.info(f"[{self.device_key}] │  Image   : {image}")
                 logger.info(f"[{self.device_key}] │  Action  : install → reboot RE0 (10 min wait) → verify version")
-                logger.info(f"[{self.device_key}] │  Prior   : RE1=Master/{expected_os}  RE0=Backup/{curr_os}")
-                logger.info(f"[{self.device_key}] │  Expect  : RE1=Master/{expected_os}  RE0=Backup/{expected_os}")
 
                 conn, ok = self.imageUpgradeDualRE(conn, expected_os, image, "re0", hop_idx, logger)
                 if not ok:
@@ -1255,14 +1242,6 @@ class Upgrade:
                     device_results[self.device_key]["upgrade"]["status"]    = "failed"
                     device_results[self.device_key]["upgrade"]["exception"] = msg
                     device_results[self.device_key]["upgrade"]["hops"][hop_idx]["status"] = "failed"
-
-                    logger.info(f"[{self.device_key}] Triggering rollback — failed_act=3")
-                    conn, _ = run_rollback_dualRE(
-                        conn, device, device_key,
-                        curr_image=curr_image, curr_os=curr_os,
-                        failed_act=3,
-                        accepted_vendors=accepted_vendors, logger=logger,
-                    )
                     return conn, False
 
                 logger.info(f"[{self.device_key}] │  VERIFY OK: RE0={expected_os}  RE1={expected_os}  (RE1 still Master)")
@@ -1270,10 +1249,6 @@ class Upgrade:
 
                 logger.info(f"[{self.device_key}] ┌─ HOP [{hop_idx}] ACT 4 START @ {datetime.now().strftime('%H:%M:%S')} ─────────────────────")
                 logger.info(f"[{self.device_key}] │  Action  : switchover RE1→RE0 (RE0 restored as Master)")
-                logger.info(f"[{self.device_key}] │  Command : request chassis routing-engine master switch  → yes (after 5 s)")
-                logger.info(f"[{self.device_key}] │  Wait    : 2 hours for RE0 to stabilise as Master")
-                logger.info(f"[{self.device_key}] │  Prior   : RE1=Master/{expected_os}  RE0=Backup/{expected_os}")
-                logger.info(f"[{self.device_key}] │  Expect  : RE0=Master/{expected_os}  RE1=Backup/{expected_os}")
 
                 conn, switchover_ok = self.switchoverMaster(
                     conn, hop_idx, expected_new_master="re0", logger=logger
@@ -1287,21 +1262,24 @@ class Upgrade:
                     device_results[self.device_key]["upgrade"]["status"]    = "failed"
                     device_results[self.device_key]["upgrade"]["exception"] = msg
                     device_results[self.device_key]["upgrade"]["hops"][hop_idx]["status"] = "failed"
-
-                    logger.info(f"[{self.device_key}] Triggering rollback — failed_act=4")
-                    conn, _ = run_rollback_dualRE(
-                        conn, device, device_key,
-                        curr_image=curr_image, curr_os=curr_os,
-                        failed_act=4,
-                        accepted_vendors=accepted_vendors, logger=logger,
-                    )
                     return conn, False
 
+                # ── CHANGE 3: Record second switchover (RE1→RE0) in the hop ──
+                device_results[self.device_key]["upgrade"]["hops"][hop_idx]["switchover_2"] = "RE1(M)→RE0(M)"
                 logger.info(f"[{self.device_key}] │  VERIFY OK: RE0=Master  RE1=Backup  (chassis state confirmed)")
                 logger.info(f"[{self.device_key}] └─ HOP [{hop_idx}] ACT 4 COMPLETE @ {datetime.now().strftime('%H:%M:%S')} ────────────────────")
 
                 # All 4 ACTs passed — mark this hop as successful
                 device_results[self.device_key]["upgrade"]["hops"][hop_idx]["status"] = "success"
+
+                # ── CHANGE 4: Capture post-hop versions of both REs ──
+                ver_output_post = conn.send_command(
+                    "show version invoke-on all-routing-engines", read_timeout=60
+                )
+                post_versions = self.extract_junos_versions(ver_output_post)
+                device_results[self.device_key]["upgrade"]["hops"][hop_idx]["post_versions"] = post_versions
+                logger.info(f"[{self.device_key}] Post-hop [{hop_idx}] RE versions: {post_versions}")
+
                 # Update baseline for next hop
                 curr_image = image
                 curr_os    = expected_os
