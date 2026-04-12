@@ -2,13 +2,13 @@ accepted_vendors:
   - "juniper"
   - "cisco"
 
-models: 
-  - "asr9k": 
-      - "asr9901" 
+models:
+  - "asr9k":
+      - "asr9901"
       - "asr9006"
-  - "ncs": 
+  - "ncs":
       - "ncs5501"
-  - "single_re_junos": 
+  - "single_re_junos":
       - "mx204"
   - "double_re_junos":
       - "mx240"
@@ -16,247 +16,202 @@ models:
 
 devices:
 
-# ═════════════════════════════════════════════════════════════════════════════
-# JUNIPER MX204  —  10.80.71.55
-# ═════════════════════════════════════════════════════════════════════════════
+# # ═════════════════════════════════════════════════════════════════════════════
+# # JUNIPER MX204  —  10.80.71.55
+# # ═════════════════════════════════════════════════════════════════════════════
 
-# ─────────────────────────────────────────────────────────────────────────────
-# JUNIPER UPGRADE  →  22.4R3.25  →  23.4R2-S5.6  →  23.4R2-S6.9   (ACTIVE)
-# ─────────────────────────────────────────────────────────────────────────────
-#  - host: "10.80.71.55"
-#    vendor: "juniper"
-#    model: mx204
-#    device_type: "juniper"
-#    curr_simage: junos-vmhost-install-mx-x86-64-22.4R3.25.tgz
-#    curr_os: 22.4R3.25
-#    intermediate_release: True
-#    min_disk_gb: 6
-#    username: "lab"
-#    password: "lab123"
-#    imageDetails:
-#      - image: junos-vmhost-install-mx-x86-64-23.4R2-S5.6.tgz
-#        expected_os: 23.4R2-S5.6
-#        checksum: 3e97c983380ac3a1b28e143219c8960a
-#      - image: junos-vmhost-install-mx-x86-64-23.4R2-S6.9.tgz
-#        expected_os: 23.4R2-S6.9
-#        checksum: dec5349a0d238dad686dc01f468a0bbe
-#    #checksum: dec5349a0d238dad686dc01f468a0bbe
-#    image_path: "/home/automation2/software/juniper/junos/MX204"
-#    remote_backup_server: "automation2@10.80.109.134"
-#    remote_password: "kTRq8amH888r"
-#    cleanup_files:
-#      - juniper_mx204_2026-*
-#      - /var/tmp/juniper_mx204_2026-*
+# #  - host: "10.80.71.55"
+# #    vendor: "juniper"
+# #    model: mx204
+# #    device_type: "juniper"
+# #    curr_simage: junos-vmhost-install-mx-x86-64-22.4R3.25.tgz
+# #    curr_os: 22.4R3.25
+# #    intermediate_release: True
+# #    min_disk_gb: 6
+# #    username: "lab"
+# #    password: "lab123"
+# #    imageDetails:
+# #      - image: junos-vmhost-install-mx-x86-64-23.4R2-S5.6.tgz
+# #        expected_os: 23.4R2-S5.6
+# #        checksum: 3e97c983380ac3a1b28e143219c8960a
+# #      - image: junos-vmhost-install-mx-x86-64-23.4R2-S6.9.tgz
+# #        expected_os: 23.4R2-S6.9
+# #        checksum: dec5349a0d238dad686dc01f468a0bbe
+# #    #checksum: dec5349a0d238dad686dc01f468a0bbe
+# #    image_path: "/home/automation2/software/juniper/junos/MX204"
+# #    remote_backup_server: "automation2@10.80.109.134"
+# #    remote_password: "kTRq8amH888r"
+# #    cleanup_files:
+# #      - juniper_mx204_2026-*
+# #      - /var/tmp/juniper_mx204_2026-*
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# JUNIPER DOWNGRADE  →  23.4R2-S6.9  →  23.4R2-S5.6  →  22.4R3.25 (COMMENTED)
-# ─────────────────────────────────────────────────────────────────────────────
-#  - host: "10.80.71.55"
-#    vendor: "juniper"
-#    model: mx204
-#    device_type: "juniper"
-#    curr_image: junos-vmhost-install-mx-x86-64-23.4R2-S6.9.tgz
-#    curr_os: 23.4R2-S6.9
-#    intermediate_release: True
-#    min_disk_gb: 6
-#    username: "lab"
-#    password: "lab123"
-#    imageDetails:
-#      - image: junos-vmhost-install-mx-x86-64-23.4R2-S5.6.tgz
-#        expected_os: 23.4R2-S5.6
-#        checksum: 3e97c983380ac3a1b28e143219c8960a
-#      - image: junos-vmhost-install-mx-x86-64-22.4R3.25.tgz
-#        expected_os: 22.4R3.25
-#        checksum: d866fae12b23e414469da93c0845008c
-#    image_path: "/home/automation2/software/juniper/junos/MX204"
-#    remote_backup_server: "automation2@10.80.109.134"
-#    remote_password: "kTRq8amH888r"
-#    cleanup_files:
-#      - juniper_mx204_2026-*
-#      - /var/tmp/juniper_mx204_2026-*
+# # ═════════════════════════════════════════════════════════════════════════════
+# # CISCO ASR9006  —  10.80.100.14
+# # ═════════════════════════════════════════════════════════════════════════════
 
+#   - host: "10.80.100.14"
+#     vendor: "cisco"
+#     model: asr9006
+#     device_type: "cisco_xr"
+#     curr_image: asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso
+#     curr_os: 7.6.2
+#     intermediate_release: True
+#     image_storage: 3
+#     upgrade_storage: 2.5
+#     username: "iqnet-local"
+#     password: "QH0_*6{i,%3Cn}bj4Q_R"
+#     smu_upgrade: True
+#     imageDetails:
+#       - intermediate_image: asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso
+#         expected_os: 7.6.2
+#         checksum: 12a54fac4140ae1c6afa22101071d195
+#         xr_committed_pkg:
+#           - asr9k-xr-7.6.2
+#           - asr9k-isis-x64-1.1.0.0-r762
+#           - asr9k-mgbl-x64-2.0.0.0-r762
+#           - asr9k-mpls-x64-2.0.0.0-r762
+#         admin_committed_pkg:
+#           - asr9k-sysadmin-shared-7.6.2.1-r762.CSCwd16969
+#           - asr9k-sysadmin-asr9k-7.6.2.3-r762.CSCwc84823
+#       - image: asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso
+#         expected_os: 7.11.21
+#         checksum: a3a36c06d1a2f056fefaea5586662676
+#         xr_committed_pkg:
+#           - asr9k-xr-7.11.21
+#           - asr9k-mcast-x64-1.0.0.0-r71121
+#           - asr9k-mgbl-x64-1.0.0.0-r71121
+#           - asr9k-optic-x64-1.0.0.0-r71121
+#           - asr9k-services-x64-1.0.0.0-r71121
+#         admin_committed_pkg:
+#           - asr9k-sysadmin-7.11.21
+#       - smu_images:
+#           - image: asr9k-x64-7.11.21.CSCwo28487.tar
+#             checksum: 3a5ea3ebaf576bb28284986f64d92302
+#           - image: asr9k-x64-7.11.21.CSCwj53500.tar
+#             checksum: d54d773d23182d29ed4f11fc0ba1433c
+#           - image: asr9k-x64-7.11.21.CSCwn09916.tar
+#             checksum: fa70dbaa6bfd24cf492675b3aa926006
+#           - image: asr9k-x64-7.11.21.CSCwp17370.tar
+#             checksum: 78626bb32f67ff31b01b75fcf38d7129
+#         expected_os: 7.11.21
+#         xr_committed_pkg:
+#           - asr9k-common-pd-fib-64-1.0.0.1-r71121.CSCwn09916
+#           - asr9k-gcp-fwding-64-1.0.0.8-r71121.CSCwp17370
+#           - asr9k-os-supp-64-1.0.0.2-r71121.CSCwj53500
+#           - asr9k-fwding-64-1.0.0.14-r71121.CSCwo28487
+#         admin_committed_pkg:
+#           - asr9k-sysadmin-7.11.21
+#     image_path: "/home/colt/Documents/asr_testing/asr9006_images"
+#     smu_image_path: "/home/colt/Documents/SMU"
+#     remote_backup_server: "colt@10.80.109.133"
+#     remote_password: "kTRq8amH363r"
+#     cleanup_files:
+#      - cisco_asr9910_2026-*
 
-# ═════════════════════════════════════════════════════════════════════════════
-# CISCO ASR9006  —  10.80.100.14
-# ═════════════════════════════════════════════════════════════════════════════
-
-  - host: "10.80.100.14"
-    vendor: "cisco"
-    model: asr9006
-    device_type: "cisco_xr"
-    curr_image: asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso
-    curr_os: 7.6.2
-    intermediate_release: True
-    image_storage: 3
-    upgrade_storage: 2.5
-    username: "iqnet-local"
-    password: "QH0_*6{i,%3Cn}bj4Q_R"
-    smu_upgrade: True
-    imageDetails:
-      - intermediate_image: asr9k-goldenk9-x64-7.6.2-BASE_SMU_V1.iso
-        expected_os: 7.6.2
-        checksum: 12a54fac4140ae1c6afa22101071d195
-        xr_committed_pkg:
-          - asr9k-mgbl-x64-2.0.0.0-r762
-          - asr9k-mpls-x64-2.0.0.0-r762
-          - asr9k-mpls-te-rsvp-x64-2.1.0.0-r762
-          - asr9k-services-x64-1.0.0.0-r762
-          - asr9k-mcast-x64-2.0.0.0-r762
-          - asr9k-m2m-x64-2.0.0.0-r762
-          - asr9k-optic-x64-1.0.0.0-r762
-          - asr9k-k9sec-x64-2.1.0.0-r762
-          - asr9k-iosxr-routing-64-1.0.0.1-r762.CSCwd14969
-          - asr9k-iosxr-fwding-64-1.1.0.8-r762.CSCwc81922
-          - asr9k-iosxr-infra-64-2.0.0.1-r762.CSCwc94082
-          - asr9k-gcp-fwding-64-1.0.0.2-r762.CSCwd13786
-          - asr9k-os-supp-64-4.0.0.2-r762.CSCwc87977
-          - asr9k-fwding-64-4.0.0.3-r762.CSCwd22196
-          - asr9k-base-64-4.0.0.2-r762.CSCwc47668
-          - asr9k-isis-x64-1.1.0.3-r762.CSCwe22538
-        admin_committed_pkg:
-          - asr9k-sysadmin-shared-7.6.2.1-r762.CSCwd16969
-          - asr9k-sysadmin-asr9k-7.6.2.3-r762.CSCwc84823
-      - image: asr9k-goldenk9-x64-7.11.21-BASE_SMU_V1.iso
-        expected_os: 7.11.21
-        checksum: a3a36c06d1a2f056fefaea5586662676
-        xr_committed_pkg:
-          - asr9k-mcast-x64-1.0.0.0-r71121
-          - asr9k-mgbl-x64-1.0.0.0-r71121
-          -  asr9k-optic-x64-1.0.0.0-r71121
-          - asr9k-services-x64-1.0.0.0-r71121
-          - asr9k-isis-x64-1.0.0.0-r71121
-          - asr9k-mpls-x64-1.0.0.0-r71121
-          - asr9k-mpls-te-rsvp-x64-1.0.0.0-r71121
-          - asr9k-m2m-x64-1.0.0.0-r71121
-          - asr9k-k9sec-x64-1.0.0.0-r71121
-          - asr9k-iosxr-fwding-64-1.0.0.1-r71121.CSCwn19162
-        admin_committed_pkg:
-          - asr9k-sysadmin-7.11.21
-      - smu_images:
-          - image: asr9k-x64-7.11.21.CSCwo28487.tar
-            checksum: 3a5ea3ebaf576bb28284986f64d92302
-          - image: asr9k-x64-7.11.21.CSCwj53500.tar
-            checksum: d54d773d23182d29ed4f11fc0ba1433c
-          - image: asr9k-x64-7.11.21.CSCwn09916.tar
-            checksum: fa70dbaa6bfd24cf492675b3aa926006
-          - image: asr9k-x64-7.11.21.CSCwp17370.tar
-            checksum: 78626bb32f67ff31b01b75fcf38d7129
-        expected_os: 7.11.21
-        xr_committed_pkg:
-          - asr9k-common-pd-fib-64-1.0.0.1-r71121.CSCwn09916
-          - asr9k-gcp-fwding-64-1.0.0.8-r71121.CSCwp17370
-          - asr9k-os-supp-64-1.0.0.2-r71121.CSCwj53500
-          - asr9k-fwding-64-1.0.0.14-r71121.CSCwo28487
-        admin_committed_pkg:
-          - asr9k-sysadmin-7.11.21
-    image_path: "/home/colt/Documents/asr_testing/asr9006_images"
-    smu_image_path: "/home/colt/Documents/SMU"
-    remote_backup_server: "colt@10.80.109.133"
-    remote_password: "kTRq8amH363r"
-    cleanup_files:
-     - cisco_asr9910_2026-*
- 
 
 # ═════════════════════════════════════════════════════════════════════════════
 # CISCO NCS5501  —  10.80.109.249
 # ═════════════════════════════════════════════════════════════════════════════
-  - host: "10.80.109.249"
-    vendor: "cisco"
-    model: ncs5501
-    device_type: "cisco_xr"
-    curr_image: ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
-    curr_os: 7.11.2
-    smu_upgrade: False # Default: False
-    intermediate_release: True
-    image_storage: 2
-    upgrade_storage: 3
-    username: "admin"
-    password: "Colt@123"
-    imageDetails:
-      - intermediate_image: ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso
-        expected_os: 7.7.2
-        checksum: 98ea1cf2fa46700d4ec4896686b2934a
-        xr_committed_pkg: 
-          - ncs5500-isis-2.1.0.0-r772
-          - ncs5500-mgbl-3.0.0.0-r772
-          - ncs5500-mcast-3.0.0.0-r772
-          - ncs5500-li-1.0.0.0-r772
-          - ncs5500-eigrp-1.0.0.0-r772
-          - ncs5500-k9sec-3.1.0.0-r772
-          - ncs5500-ospf-2.0.0.0-r772
-          - ncs5500-mpls-2.1.0.0-r772
-          - ncs5500-mpls-te-rsvp-3.1.0.0-r772
-          - ncs5500-lictrl-1.0.0.0-r772
-        admin_committed_pkg:
-          - ncs5500-sysadmin-7.7.2
-      - image:  ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
-        expected_os: 7.11.2 
-        checksum: 61aeb6ce722dddd815baeb2f297b1c44
-        xr_committed_pkg:
-          - ncs5500-isis-1.0.0.0-r7112
-          - ncs5500-k9sec-1.0.0.0-r7112
-          - ncs5500-li-1.0.0.0-r7112
-          - ncs5500-lictrl-1.0.0.0-r7112
-          - ncs5500-mcast-1.0.0.0-r7112
-          - ncs5500-mgbl-1.0.0.0-r7112
-          - ncs5500-mpls-1.0.0.0-r7112
-          - ncs5500-mpls-te-rsvp-1.0.0.0-r7112
-          - ncs5500-ospf-1.0.0.0-r7112
-        admin_committed_pkg:
-          - ncs5500-sysadmin-7.11.2
-      - smu_images: 
-          - image: ncs5500-7.11.2.CSCws66900.tar
-            checksum: 298fefd1bb034364cd30c82c4de8f9de
-          - image: ncs5500-7.11.2.CSCwk15658.tar
-            checksum: 12018fb06bffa4220b784110283d5643
-          - image: ncs5500-7.11.2.CSCwm31234.tar
-            checksum: f5c139b4a289effc6ae9b397f65f78cc
-          - image: ncs5500-7.11.2.CSCwq09649.tar
-            checksum: f4fa747ac5f627a334b3a5f0881a2a0e
-        expected_os: 7.11.2
-        xr_committed_pkg:
-          - ncs5500-os-support-1.0.0.7-r7112.CSCws66900 
-          - ncs5500-dpa-1.0.0.28-r7112.CSCws66900 
-          - ncs5500-dpa-fwding-1.0.0.18-r7112.CSCwq09649 
-          - ncs5500-infra-1.0.0.18-r7112.CSCws66900 
-          - ncs5500-fwding-1.0.0.6-r7112.CSCws66900 
-          - ncs5500-common-pd-fib-1.0.0.3-r7112.CSCwq09649 
-          - ncs5500-iosxr-fwding-1.0.0.8-r7112.CSCwm31234 
-          - ncs5500-os-1.0.0.1-r7112.CSCwk15658 
-        admin_committed_pkg:
-          - ncs5500-sysadmin-7.11.2
-    image_path: "/home/colt/backup/gimages"
-    smu_image_path: "/home/colt/Documents/SMU"
-    remote_backup_server: "colt@10.80.109.133"
-    remote_password: "kTRq8amH363r"
-    cleanup_files:
-      - cisco_ncs5501_2026-04-06_12-49-27-xr.cfg
-      - cisco_ncs5501_2026-04-06_12-01-29-xr.cfg
-      - ncs5500-goldenk9-x-7.6.2-NCS5500_762_GISO_291024.iso
+#  - host: "10.80.109.249"
+#    vendor: "cisco"
+#    model: ncs5501
+#    device_type: "cisco_xr"
+#    curr_image: ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
+#    curr_os: 7.11.2
+#    smu_upgrade: False # Default: False
+#    intermediate_release: False
+#    image_storage: 2
+#    upgrade_storage: 3
+#    username: "admin"
+#    password: "Colt@123"
+#    imageDetails:
+#      - intermediate_image: ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso
+#        expected_os: 7.7.2
+#        checksum: 98ea1cf2fa46700d4ec4896686b2934a
+#        xr_committed_pkg:
+#          - ncs5500-isis-2.1.0.0-r772
+#          - ncs5500-mgbl-3.0.0.0-r772
+#          - ncs5500-mcast-3.0.0.0-r772
+#          - ncs5500-li-1.0.0.0-r772
+#          - ncs5500-eigrp-1.0.0.0-r772
+#          - ncs5500-k9sec-3.1.0.0-r772
+#          - ncs5500-ospf-2.0.0.0-r772
+#          - ncs5500-mpls-2.1.0.0-r772
+#          - ncs5500-mpls-te-rsvp-3.1.0.0-r772
+#          - ncs5500-lictrl-1.0.0.0-r772
+#        admin_committed_pkg:
+#          - ncs5500-sysadmin-7.7.2
+#      - image:  ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
+#        expected_os: 7.11.2
+#        checksum: 61aeb6ce722dddd815baeb2f297b1c44
+#        xr_committed_pkg:
+#          - ncs5500-isis-1.0.0.0-r7112
+#          - ncs5500-k9sec-1.0.0.0-r7112
+#          - ncs5500-li-1.0.0.0-r7112
+#          - ncs5500-lictrl-1.0.0.0-r7112
+#          - ncs5500-mcast-1.0.0.0-r7112
+#          - ncs5500-mgbl-1.0.0.0-r7112
+#          - ncs5500-mpls-1.0.0.0-r7112
+#          - ncs5500-mpls-te-rsvp-1.0.0.0-r7112
+#          - ncs5500-ospf-1.0.0.0-r7112
+#        admin_committed_pkg:
+#          - ncs5500-sysadmin-7.11.2
+#      - smu_images:
+#          - image: ncs5500-7.11.2.CSCws66900.tar
+#            checksum: 298fefd1bb034364cd30c82c4de8f9de
+#          - image: ncs5500-7.11.2.CSCwk15658.tar
+#            checksum: 12018fb06bffa4220b784110283d5643
+#          - image: ncs5500-7.11.2.CSCwm31234.tar
+#            checksum: f5c139b4a289effc6ae9b397f65f78cc
+#          - image: ncs5500-7.11.2.CSCwq09649.tar
+#            checksum: f4fa747ac5f627a334b3a5f0881a2a0e
+#        expected_os: 7.11.2
+#        xr_committed_pkg:
+#          - ncs5500-os-support-1.0.0.7-r7112.CSCws66900
+#          - ncs5500-dpa-1.0.0.28-r7112.CSCws66900
+#          - ncs5500-dpa-fwding-1.0.0.18-r7112.CSCwq09649
+#          - ncs5500-infra-1.0.0.18-r7112.CSCws66900
+#          - ncs5500-fwding-1.0.0.6-r7112.CSCws66900
+#          - ncs5500-common-pd-fib-1.0.0.3-r7112.CSCwq09649
+#          - ncs5500-iosxr-fwding-1.0.0.8-r7112.CSCwm31234
+#          - ncs5500-os-1.0.0.1-r7112.CSCwk15658
+#        admin_committed_pkg:
+#          - ncs5500-sysadmin-7.11.2
+#    image_path: "/home/colt/backup/gimages"
+#    smu_image_path: ""
+#    remote_backup_server: "colt@10.80.109.133"
+#    remote_password: "kTRq8amH363r"
+#    cleanup_files:
+#      - cisco_ncs5501_2026-04-10_11-*
+#      - cisco_ncs5501_2026-04-10_12-34-29-xr
+#      - cisco_ncs5501_2026-04-10_12-20-09-xr
+#      - ncs5500-goldenk9-x-7.11.2-NCS5501_7112.iso
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # CISCO MX240  —  10.80.71.56
 # ─────────────────────────────────────────────────────────────────────────────
-  - host: "10.80.71.56"
-    vendor: "juniper"
-    model: "mx240"
-    device_type: "juniper"
-    curr_image: junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
-    curr_os: 22.2R3-S2.8
-    intermediate_release: False
-    smu_upgrade: False
-    image_storage: 2
-    upgrade_storage: 4
-    username: "lab"
-    password: "lab123"
-    imageDetails:
-      - image: junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz
-        expected_os: 23.4R2-S3.9
-        checksum: eff137c3db585058eab9c8820cfb6c01
-    remote_backup_server: "colt@10.80.109.133"
-    remote_password: "kTRq8amH363r"
-    image_path: "/home/colt/backup/junos/MX240"
-    smu_image_path: ""
-    cleanup_files: 
-     - juniper_mx240_2026-*
-     - /var/tmp/juniper_mx240_2026-*
+#  - host: "10.80.71.56"
+#    vendor: "juniper"
+#    model: "mx240"
+#    device_type: "juniper"
+#    curr_image: junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz
+#    curr_os: 23.4R2-S3.9
+#    intermediate_release: False
+#    smu_upgrade: False
+#    image_storage: 2
+#    upgrade_storage: 4
+#    username: "lab"
+#    password: "lab123"
+#    imageDetails:
+#      - image: junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
+#        expected_os: 22.2R3-S2.8
+#        checksum: b4a3f7da81ca94831eac6d06f5644140
+#    remote_backup_server: "colt@10.80.109.133"
+#    remote_password: "kTRq8amH363r"
+#    image_path: "/home/colt/backup/JUNOS/MX240"
+#    smu_image_path: ""
+#    cleanup_files:
+#     - juniper_mx240_2026-*
+#     - /var/tmp/juniper_mx240_2026-*
