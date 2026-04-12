@@ -27,11 +27,12 @@ class PreCheck:
         self.device_key      = device_key
         self.accepted_vendors = device.get("accepted_vendors", [])
 
-
+    #---────────────────────────────────────────────────────────────────────
+    # pingDevice
+    # ─────────────────────────────────────────────────────────────────────────
     def preBackupDiskDualRE(self, conn, logger):
         try:
             logger.info(f"[{self.device_key}] preBackupDiskDualRE  — vendor: {self.vendor}")
-
 
             logger.info(f"[{self.device_key}] preBackupDiskDualRE — running request system snapshot")
             snapshot_output = conn.send_command(
@@ -45,7 +46,7 @@ class PreCheck:
 
             if "NOTICE: Snapshot" not in snapshot_output:
                 msg = (
-                    f"[{self.device_key}] preBackupDiskDualRE — Gate A failed: " # here GateA is confusing
+                    f"[{self.device_key}] preBackupDiskDualRE — Gate A failed: "
                     f"'NOTICE: Snapshot' not found in snapshot command output"
                 )
                 logger.error(msg)
@@ -56,6 +57,7 @@ class PreCheck:
                     "snapshot_name": "",
                     "creation_date": "",
                     "junos_version": "",
+                    "remark":        "Snapshot command ran but NOTICE string not found in output",
                 }
 
             snap_name_from_cmd = ""
@@ -83,7 +85,7 @@ class PreCheck:
                     f"[{self.device_key}] preBackupDiskDualRE — Gate B failed: "
                     f"'Configuration: yes' not found in show system snapshot output"
                 )
-                logger.error(msg) # log msg are confusing
+                logger.error(msg)
                 return {
                     "status":        "failed",
                     "exception":     msg,
@@ -91,6 +93,7 @@ class PreCheck:
                     "snapshot_name": snap_name_from_cmd,
                     "creation_date": "",
                     "junos_version": "",
+                    "remark":        f"Snapshot {snap_name_from_cmd} created but 'Configuration: yes' not confirmed",
                 }
 
             snapshot_name = snap_name_from_cmd
@@ -121,6 +124,7 @@ class PreCheck:
                 "snapshot_name": snapshot_name,
                 "creation_date": creation_date,
                 "junos_version": junos_version,
+                "remark":        f"Snapshot {snapshot_name} verified — JunOS {junos_version} ({creation_date})",
             }
 
         except Exception as e:
@@ -133,10 +137,8 @@ class PreCheck:
                 "snapshot_name": "",
                 "creation_date": "",
                 "junos_version": "",
+                "remark":        f"Exception during snapshot: {str(e)[:80]}",
             }
-    # ─────────────────────────────────────────────────────────────────────────
-    # pingDevice
-    # ─────────────────────────────────────────────────────────────────────────
     def pingDevice(self, logger, interval, max_wait, packet_size=5, count=2, timeout=2):
         logger.debug(
             f"{self.host}: [pingDevice] count={count}, packet_size={packet_size}, timeout={timeout}s"
@@ -458,9 +460,7 @@ class PreCheck:
                 "status":     "failed",
                 "exception":  str(e)
             }
-
-    # ─────────────────────────────────────────────────────────────────────────
-    def checkStorageDualRE(self, conn, min_disk_gb, logger, cleanup = False):
+    def checkStorageDualRE(self, conn, min_disk_gb, logger, cleanup=False):
         try:
             logger.info(f"[{self.device_key}] checkStorageDualRE — vendor: {self.vendor}")
 
@@ -559,19 +559,20 @@ class PreCheck:
                         "sufficient": False,
                         "re0_space":  round(re0_space, 2),
                         "re1_space":  round(re1_space, 2),
+                        "remark":     f"Still low after cleanup — RE0: {round(re0_space,2)}GB  RE1: {round(re1_space,2)}GB (min: {min_disk_gb}GB)",
                     }
             else:
                 if re0_low and re1_low:
                     msg = "Not enough storage to transfer the image. Please do the device cleanup"
                     logger.error(f"[{self.device_key}] : {msg}")
-                    return  {
+                    return {
                         "status":     "failed",
-                        "exception":  "",
+                        "exception":  msg,
                         "sufficient": False,
                         "re0_space":  round(re0_space, 2),
                         "re1_space":  round(re1_space, 2),
+                        "remark":     f"Insufficient — RE0: {round(re0_space,2)}GB  RE1: {round(re1_space,2)}GB (min: {min_disk_gb}GB)",
                     }
-
 
             result = {
                 "status":     "ok",
@@ -579,6 +580,7 @@ class PreCheck:
                 "sufficient": True,
                 "re0_space":  round(re0_space, 2),
                 "re1_space":  round(re1_space, 2),
+                "remark":     f"RE0: {round(re0_space,2)}GB  RE1: {round(re1_space,2)}GB — both above {min_disk_gb}GB threshold",
             }
             logger.info(f"[{self.device_key}] checkStorageDualRE — both REs OK: {result}")
             return result
@@ -587,7 +589,6 @@ class PreCheck:
             msg = f"[{self.device_key}] checkStorageDualRE failed: {e}"
             logger.exception(msg)
             raise
-
     def checkStorage(self, conn, min_disk_gb, logger, cleanup):
         try:
             logger.info(f"[{self.vendor}_{self.model}] checkStorage — vendor: {self.vendor}")

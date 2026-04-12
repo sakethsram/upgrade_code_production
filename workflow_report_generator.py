@@ -418,8 +418,14 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
             remark = " &nbsp;·&nbsp; ".join(parts) or '<span class="remark-na">—</span>'
 
         else:
-            remark = _remark(exc)
-
+            task_remark = data.get("remark", "")
+            if exc:
+                remark = f'<span class="remark-err">{_esc(exc)}</span>'
+            elif task_remark:
+                remark = f'<span class="remark-na">{_esc(task_remark)}</span>'
+            else:
+                remark = '<span class="remark-na">—</span>'
+                
         row_cls = "" if (status == "ok" or is_blank) else " failed-row"
         rows.append(
             f'<tr class="task-row{row_cls}">'
