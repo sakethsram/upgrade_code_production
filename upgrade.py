@@ -44,7 +44,7 @@ class Upgrade:
             ip_clean_upgrade = self.host.replace(".", "_")
             model_clean      = str(self.device.get('model', 'unknown')).lower().replace("-", "")
             session_log_file = (
-                f"{ip_clean_upgrade}_{self.vendor.lower()}_{model_clean}_{datetime.now().strftime('%Y-%m-%d')}_session.txt"
+                f"{ip_clean_upgrade}_{self.vendor.lower()}_{model_clean}_{datetime.now().strftime("%Y-%m-%d")}_session.txt"
             )
             session_log_path = os.path.join(session_log_dir, session_log_file)
             logger.debug(f"[{self.device_key}]:: [connect] Session log -> {session_log_path}")
@@ -211,7 +211,7 @@ class Upgrade:
                 if self.model in ncs_models:
                     command = f"run mv /misc/disk1/{target_image} /misc/app_host/"
 
-                    move_file = conn.send_command(command)
+                    move_file = conn.send_command_timing(command, read_timeout=0, last_read=30)
 
                     if "No space left on device" in move_file:
                         msg = f"[{self.device_key}]: error writing '/misc/app_host/ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso': No space left on device"
@@ -223,6 +223,24 @@ class Upgrade:
                     logger.info(f"upgrade: {output}")
 
                 if self.model in asr_models:
+
+                    try:
+                      cmd = "install commit"
+                      logger.info(f"[{self.device_key}]: running 'install commit' to change the device state to committed state")
+                      output = conn.send_command_timing(cmd, read_timeout = 0, last_read = 60)
+                      logger.info(f"[{self.device_key}]:: install commit output -> {output}")
+
+                      if not output:
+                        msg = f"[{self.device_key}]: Not able to change the device state"
+                        logger.error(msg)
+                        return conn, False
+                    except Exception as e:
+                      msg = f"Not able to change the device state to committed state: {e}"
+                      logger.error(msg)
+                      return conn, False
+
+                    logger.info(f"[{self.device_key}] : The device is in committed state")
+
                     output=conn.send_command_timing(f"install replace harddisk:/{target_image} commit noprompt",read_timeout = 0, last_read = 450)
 
                     logger.info(f"upgrade: {output}")
@@ -273,7 +291,7 @@ class Upgrade:
                         logger.error(msg)
                         return conn, False
                     except Exception as e:
-                      msg = f"Not able to commit the SMU packages for {target_image}: {e}"
+                      msg = f"Not able to commit the SMU packages for {smu_image}: {e}"
                       logger.error(msg)
                       return conn, False
 
@@ -310,7 +328,7 @@ class Upgrade:
 
                     pkg_committed = self.validate_upgrade(conn, xr_committed_pkg, admin_committed_pkg, logger)
                     if not pkg_committed:
-                      mgs = f"[{self.device_key}]: not found committed packages "
+                      msg = f"[{self.device_key}]: not found committed packages "
                       logger.error(msg)
                       self._write_hop(hop_index, {"image": f"{target_image}", "status": "failed", "exception": msg, "smu_upgrade": False})
                       return conn, False
@@ -406,7 +424,7 @@ class Upgrade:
     def get_asn(self, conn, logger):
         """Extract local BGP ASN"""
         try:
-            output = conn.send_command("show bgp summary")
+            output = conn.send_command_timing("show bgp summary", read_timeout = 0, last_read=30)
             match = re.search(r"local AS number (\d+)", output)
             if match:
                 asn = match.group(1)
@@ -423,8 +441,8 @@ class Upgrade:
         try:
             ipv4_neighbors = []
             ipv6_neighbors = []
-            ipv4_output = conn.send_command("show bgp summary ")
-            ipv6_output = conn.send_command("show bgp ipv6 unicast summary")
+            ipv4_output = conn.send_command_timing("show bgp summary", read_timeout = 0, last_read=30)
+            ipv6_output = conn.send_command_timing("show bgp ipv6 unicast summary", read_timeout = 0, last_read=30)
             for line in ipv4_output.splitlines():
                 parts = line.split()
                 if parts:
@@ -450,7 +468,6 @@ class Upgrade:
             if not asn:
               logger.error(f"[{self.device_key}]:: Aborting DENY-ANY apply (ASN not found)")
               return False
-            print(f"ASN : {asn}")
             ipv4_neighbors, ipv6_neighbors = self.get_neighbors(conn, logger)
             for nbr in ipv4_neighbors:
                 commands = [
@@ -462,6 +479,7 @@ class Upgrade:
                 ]
                 logger.info(f"[{self.device_key}]:: Applying DENY-ANY to IPv4 neighbor {nbr}")
                 conn.send_config_set(commands, cmd_verify=False, read_timeout=60)
+                conn.exit_config_mode()
             for nbr in ipv6_neighbors:
                 commands = [
                     f"router bgp {asn}",
@@ -472,6 +490,7 @@ class Upgrade:
                 ]
                 logger.info(f"[{self.device_key}]:: Applying DENY-ANY to IPv6 neighbor {nbr}")
                 conn.send_config_set(commands, cmd_verify=False, read_timeout=60)
+                conn.exit_config_mode()
             return True
 
         except Exception as e:
@@ -489,7 +508,7 @@ class Upgrade:
             ncs_models = next(d['ncs'] for d in models if 'ncs' in d)
 
             if self.model in asr_models:
-                policy_check = conn.send_command("show running-config route-policy DENY-ANY")
+                policy_check = conn.send_command_timing("show running-config route-policy DENY-ANY", read_timeout = 0, last_read = 30)
                 if "route-policy DENY-ANY" not in policy_check:
                     msg = "creating route-policy DENY-ANY"
                     logger.info(msg)
@@ -497,18 +516,18 @@ class Upgrade:
                     policy_commands = [
                         "route-policy DENY-ANY",
                         "drop",
-                        "end-policy"
+                        "end-policy",
+                        "commit"
                     ]
                     conn.send_config_set(policy_commands)
-                    conn.send_command("commit")
+                    conn.exit_config_mode()
                 msg="route-policy created"
                 logger.info(msg)
-                print(msg)
 
                 asn = self.get_asn(conn, logger)
                 print(f"ASN->{asn}")
                 logger.info(f"[{self.device_key}]:: Starting deny-any policy for ASN {asn}")
-                bgp_config = conn.send_command( "show running-config router bgp | include neighbor-group PEER")
+                bgp_config = conn.send_command_timing( "show running-config router bgp | include neighbor-group PEER", read_timeout = 0, last_read=30)
                 if "neighbor-group PEER" in bgp_config:
                     peer_commands = [
                       f"router bgp {asn}",
@@ -519,23 +538,26 @@ class Upgrade:
                       "address-family ipv6 labeled-unicast",
                       "route-policy DENY-ANY out",
                       "route-policy DENY-ANY in",
+                      "commit"
                     ]
                     conn.send_config_set(peer_commands)
-                    conn.send_command("commit")
+                    conn.exit_config_mode()
+#                    conn.send_command("commit")
                     logger.info(f"[{self.device_key}]:: Applied DENY-ANY policy to PEER group")
                     logger.info(f"[{self.device_key}]:: Waiting 5 minutes for traffic drain")
                     time.sleep(300)
+
             isis_commands = [
                 "router isis COLT",
-                "set-overload-bit"
+                "set-overload-bit",
+                "commit"
             ]
 
             conn.send_config_set(isis_commands)
-            conn.send_command("commit")
             conn.exit_config_mode()
 
             validateOLbit = 'sh isis instance COLT | in Overload'
-            output = conn.send_command(validateOLbit, expect_string = r"#")
+            output = conn.send_command_timing(validateOLbit, read_timeout = 0, last_read = 30)
             if "configured, set" not in output:
                 msg = f"ISIS Overload bit is not SET"
                 logger.error(f"[{self.device_key}]: {msg}")
@@ -655,17 +677,28 @@ class Upgrade:
                 xr_comm_output = conn.send_command("show install committed summary") # 1 liner
 
                 if not xr_comm_output:
-                    msg = f"[{self.device_key}] Not getting output of committed summary. Please check the command"
-                    logger.error(msg)
+                    logger.warning(f"[{self.device_key}] Not getting output of committed summary. Please check the command")
                     return False
+
+                retry_count = 0
+                max_retries = 5
+                while (
+                    retry_count < max_retries
+                    and (
+                        "Install operation is in progress" in xr_comm_output)):
+                    logger.info(
+                        f"{self.device_key}: Install in progress... retry {retry_count + 1}/5 after 60s"
+                    )
+                    time.sleep(60)
+                    xr_comm_output = conn.send_command("show install committed summary")
+                    retry_count += 1
 
                 for pkg in xr_committed_pkg:
                     if pkg in xr_comm_output:
-                        msg = f"[{self.device_key}] : {pkg} is committed"
-                        logger.info(msg)
+                        logger.info(f"[{self.device_key}] : {pkg} is committed" )
                         continue
-                    msg = f"[{self.device_key}]: {pkg} is not committed. Upgrade is not succesfull"
-                    logger.error(msg)
+
+                    logger.warning(f"[{self.device_key}]: {pkg} is not committed. Upgrade is not succesfull")
                     return  False
 
                 logger.info(f"[{self.device_key}]: Packages are committed in XR mode")
@@ -679,7 +712,7 @@ class Upgrade:
                 )
                 if not admin_comm_output:
                     msg = f"Not getting output of committed summary. Please check the command"
-                    logger.error(msg)
+                    logger.warning(msg)
                     return False
 
                 for pkg in admin_committed_pkg: # club the xr and admin
@@ -687,7 +720,7 @@ class Upgrade:
                         msg = f"[{self.device_key}] : admin {pkg} is committed"
                         logger.info(msg)
                         continue
-                    msg = f"admin {pkg} is not committed. Upgrade is not succesfull"
+                    logger.warning(f"admin {pkg} is not committed. Upgrade is not succesfull")
                     return  False
                 logger.info(f"[{self.device_key}]: Packages are committed in Admin mode")
                 return True
@@ -697,7 +730,7 @@ class Upgrade:
                 xr_output = conn.send_command("show install active summary", expect_string=r"[#>]", read_timeout=120)
                 if not xr_output:
                     msg = "Not getting output of active summary. Please check the command"
-                    logger.error(msg)
+                    logger.warning(msg)
                     return False
 
                 retry_count = 0
@@ -729,7 +762,7 @@ class Upgrade:
                 )
                 if not admin_output:
                     msg = f"Not getting output of active summary. Please check the command"
-                    logger.error(msg)
+                    logger.warning(msg)
                     return False
 
                 while (
@@ -805,29 +838,22 @@ class Upgrade:
             if reboot_system:
               #----------- Monitor the install active ---------------#
               cmd = "sh install request"
-
-              interval=120
-              while interval < 900:
+              while True:
                   output = conn.send_command(cmd, read_timeout=600)
 
                   if "reload" in output.lower():
                       logger.info("Device is reloading ....")
                       break
                   else:
-                      logger.info("Still waiting... sleeping for 120 seconds")
-                      time.sleep(interval)  # wait before retrying
-                  interval += interval
+                      logger.info("Activating packages .... ")
+                      time.sleep(60)  # wait before retrying
 
-              if interval > 900:
-                  msg = "Device still not started reload. Please check the device"
-                  logger.error(f"[{self.device_key}] : {msg}")
-                  self._write_hop(hop_index, {"image": smu_image.split(" /"), "status": "failed", "exception": msg, "md5_match": False})
-                  return conn, False
-
-              msg = "Device rebooted, waiting for SSH to come back"
-              logger.info(f"[{self.device_key}]:: Device rebooted, waiting for SSH to come back")
+              time.sleep(120)
+              logger.info(f"[{self.device_key}]:: Device rebooting.., waiting for SSH to come back")
               conn, output = self.reconnect_and_verify(hop_index, logger)
 
+            else:
+              logger.info(f"[{self.device_key}] : Pakages are already activated. Skipping reload ...")
 
             #------ Committing the packages -----------------------#
             try:
@@ -1330,4 +1356,3 @@ class Upgrade:
                                 break
                     break
 
-        return result

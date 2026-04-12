@@ -80,6 +80,7 @@ def validate_device_dict(data: dict, device_key, logger):
             errors.append(msg)
             logger.error(f"[{device_key}] : {msg}")
 
+
     # Validate imageDetails entries
     if "imageDetails" in data and isinstance(data["imageDetails"], list):
         for idx, entry in enumerate(data["imageDetails"], start=1):
@@ -93,16 +94,28 @@ def validate_device_dict(data: dict, device_key, logger):
                 errors.append(msg)
                 logger.error(f"[{device_key}] : {msg}")
 
-            if data.get("smu_upgrade", False):
-                if "xr_committed_pkg" in entry and not isinstance(entry["xr_committed_pkg"], list):
-                    msg = f"imageDetails[{idx}].xr_committed_pkg must be a list"
+            if data.get("intermediate_release", False):
+                if "intermediate_image" not in entry and idx == 1:
+                    msg = f"imageDetails[{idx}] missing 'intermediate_image' for intermediate release"
                     errors.append(msg)
                     logger.error(f"[{device_key}] : {msg}")
 
-                if "admin_committed_pkg" in entry and not isinstance(entry["admin_committed_pkg"], list):
-                    msg = f"imageDetails[{idx}].admin_committed_pkg must be a list"
+
+            if data.get("smu_upgrade", False):
+                if "smu_images" not in entry and idx == len(data["imageDetails"]):
+                    msg = f"imageDetails[{idx}] missing 'smu_images' for SMU Upgrade"
                     errors.append(msg)
                     logger.error(f"[{device_key}] : {msg}")
+
+            if "xr_committed_pkg" in entry and not isinstance(entry["xr_committed_pkg"], list):
+                msg = f"imageDetails[{idx}].xr_committed_pkg must be a list"
+                errors.append(msg)
+                logger.error(f"[{device_key}] : {msg}")
+
+            if "admin_committed_pkg" in entry and not isinstance(entry["admin_committed_pkg"], list):
+                msg = f"imageDetails[{idx}].admin_committed_pkg must be a list"
+                errors.append(msg)
+                logger.error(f"[{device_key}] : {msg}")
 
     # Validate cleanup_files entries
     if "cleanup_files" in data and isinstance(data["cleanup_files"], list):
@@ -114,7 +127,7 @@ def validate_device_dict(data: dict, device_key, logger):
     if errors:
         return {"status": "failed", "exception": errors}
 
-    return {"status": "ok", "exception": "Dictionary input validated successfully"}
+    return {"status": "ok", "exception": "Validated Input files"}
 
 # ─────────────────────────────────────────────────────────────────────────────
 # run_prechecks
@@ -265,15 +278,21 @@ def run_prechecks(conn, dev: dict, device_key: str, models: list, logger):
           if isinstance(validate_FPD, dict) and validate_FPD.get("status") == "failed":
             raise RuntimeError(validate_FPD.get("exception", "Validate FPD failed"))
 
-          check_auto_fpd = precheck.check_auto_fpd(conn,logger)
+          check_auto_fpd = precheck.check_auto_fpd(conn,logger, models)
           if not check_auto_fpd:
             msg = f"{host}: check_auto_fpd() failed"
-            logger.error(f" STEP 4 Auto_FPD_check failed — {msg}")
+            logger.error(f" PRE - Auto_FPD_check failed — {msg}")
             device_results[device_key]["pre"]["check_auto_fpd"]["exception"] = msg
             return False
 
+          if check_auto_fpd.get("status") == "failed":
+              msg = f"{host}: check_auto_fpd() failed"
+              logger.error(f" PRE - Auto_FPD_check failed — {msg}")
+              device_results[device_key]["pre"]["check_auto_fpd"] = check_auto_fpd
+              return False
+
           device_results[device_key]["pre"]["check_auto_fpd"] = check_auto_fpd
-          logger.info(f"[{device_key}] Auto FPD enabled: OK")
+          logger.info(f"[{device_key}] Auto FPD enabled: {check_auto_fpd.get("status")}")
 
 
         # ── Merge pre results into device_results ─────────────────────
@@ -480,18 +499,15 @@ def run_upgrade(conn, device: dict, device_key: str, accepted_vendors: list, log
                 hostname = prompt.replace("#","").strip()
                 msg = f"Hostname->{hostname}"
                 logger.info(msg)
-                print(msg)
                 if "OSA" in hostname or "TYO" in hostname:
                   apply_deny_any=upgrade.apply_deny_policy(conn,logger)
                   if not apply_deny_any:
                     msg = "Failed to apply_deny_any policy to neighbors"
                     logger.info(msg)
-                    print(msg)
                     return False
 
                 msg="Hostname does not contain OSA or TYO"
                 logger.info(msg)
-                print(msg)
 
               #Set overload bit
               set_overload_bit=upgrade.set_overload_bit(conn,logger, models)
@@ -534,23 +550,6 @@ def run_upgrade(conn, device: dict, device_key: str, accepted_vendors: list, log
                 )
                 print(f"[{device_key}] Upgrade failed — starting rollback") # input set for rollback with current device state, timestmap, image, version.
                 return conn, False
-
-
-#              if vendor.lower() == "juniper":
-#                  conn, rollback_ok = run_rollback(
-#                      conn, device, device_key, vendor, rollback_image,
-#                      accepted_vendors, logger
-#                  )
-#                  logger.info(f"[{device_key}] run_rollback completed — rollback_ok={rollback_ok}")
-#
-#                  if not rollback_ok:
-#                      msg = f"Rollback also failed for {device_key} — stopping device"
-#                      logger.error(f"[{device_key}] {msg}")
-#                      device_results[device_key]["upgrade"]["exception"] = (
-#                          device_results[device_key]["upgrade"]["exception"]
-#                          + " | ROLLBACK ALSO FAILED"
-#                      )
-
 
             # Hop succeeded — add to rollback chain so we can unwind to here if needed
             rollback_image.append({"image": image, "expected_os": expected_os})
@@ -690,79 +689,259 @@ def run_smu_upgrade(conn, device: dict, device_key: str, accepted_vendors: list,
 # ─────────────────────────────────────────────────────────────────────────────
 # run_rollback
 # ─────────────────────────────────────────────────────────────────────────────
-def run_rollback(conn, device: dict, device_key: str, vendor: str,
-                 rollback_image: list, accepted_vendors: list, logger):
+def run_rollback(conn, device: dict, device_key: str, accepted_vendors: list, logger):
     host        = device.get("host")
     original_os = device.get("curr_os")
+    vendor        = device.get("vendor").lower()
+    model         = str(device.get("model")).lower().replace("-", "")
+    image_details = device.get("imageDetails", [])
+    curr_image    = device.get("curr_image")
+    curr_os       = device.get("curr_os")
+    smu_upgrade   = device.get("smu_upgrade")
+    image_storage = device.get("image_storage")
+    upgrade_storage = device.get("upgrade_storage")
+
+    tid = threading.get_ident()
+    logger.info(f"[THREAD-{tid}] [{device_key}] Upgrade started at {datetime.now()}")
+    logger.info(
+        f"[{device_key}] run_upgrade — host={host}, vendor={vendor}, model={model}, "
+        f"curr_os={curr_os}, total_hops={len(image_details)}"
+    )
+    logger.info(f"[{device_key}] Running Upgrade...")
+
+
+
+
+    device_results[device_key]["upgrade"]["status"] = "in_progress"
+
+    upgrade = Upgrade(device_key, device, accepted_vendors)
+
+    image_path = device.get("image_path")
+    precheck = PreCheck(device, device_key)
 
     logger.info(f"[{device_key}] Rollback started at {datetime.now()}")
     logger.info(
         f"[{device_key}] run_rollback — host={host}, vendor={vendor}, "
-        f"original_os={original_os}, chain_length={len(rollback_image)}"
-    )
-    print(f"[{device_key}] Running Rollback...")
+        f"curr_os={curr_os}")
+    logger.inffo(f"[{device_key}] Running Rollback...")
 
     upgrade = Upgrade(device_key, device, accepted_vendors)
 
     try:
-        if vendor == "juniper":
-            reversed_list = rollback_image[::-1]
 
-            log_lines = ["\n===== ROLLBACK CHAIN (REVERSED) ====="]
-            for i, entry in enumerate(reversed_list, start=1):
-                log_lines.append(
-                    f"{i}. image={entry.get('image')}, expected_os={entry.get('expected_os')}"
+        for i, details in enumerate(image_details):
+
+            if details.get("intermediate_image"):
+                image = details.get("intermediate_image")
+                expected_os = details.get("expected_os")
+                checksum = details.get("checksum")
+                xr_committed_pkg = details.get("xr_committed_pkg")
+                admin_committed_pkg = details.get("admin_committed_pkg")
+            elif details.get("smu_images"):
+                continue
+            else:
+                image       = details.get("image")
+                expected_os = details.get("expected_os")
+                checksum    = details.get("checksum")
+                xr_committed_pkg = details.get("xr_committed_pkg")
+                admin_committed_pkg = details.get("admin_committed_pkg")
+
+            logger.info(
+                f"[{device_key}] ── Hop [{i}/{len(image_details)-1}] ── "
+                f"image={image}, expected_os={expected_os}"
+            )
+
+            if not image or not expected_os or not checksum:
+                msg = (
+                    f"{host}: imageDetails[{i}] missing one of: "
+                    f"image, expected_os, checksum"
                 )
-            log_lines.append("=====================================\n")
-            logger.info("\n".join(log_lines))
+                logger.error(f"[{device_key}] {msg}")
+                device_results[device_key]["upgrade"]["status"]    = "failed"
+                device_results[device_key]["upgrade"]["exception"] = msg
+                return conn, False
 
-            for step_idx, details in enumerate(reversed_list):
-                rollback_img = details.get("image")
-                expected_os  = details.get("expected_os")
+            logger.info(f"[{device_key}] Hop [{i}] — image={image}, expected_os={expected_os}")
+            print(f"[{device_key}] Hop [{i}] upgrading with {image}")
 
-                logger.info(
-                    f"[{device_key}] Rollback step [{step_idx+1}/{len(reversed_list)}] — "
-                    f"image={rollback_img}, expected_os={expected_os}"
-                )
+            # ── CheckStorage for transfer image ─────────────────────
 
-                if not rollback_img or not expected_os:
-                    msg = "Rollback entry missing image or expected_os — aborting rollback"
-                    logger.error(f"[{device_key}] {msg}")
-                    return conn, False
+            if vendor == "juniper":
+              if model in DUAL_RE_MODELS:
+                  logger.info(f"[{device_key}] dual-RE model ({model}): checkStorageDualRE()")
+                  storage = precheck.checkStorageDualRE(conn, image_storage, logger, cleanup = False)
+              else:
+                  logger.info(f"[{device_key}] single-RE model ({model}): checkStorage()")
 
-                step_msg = f"Rollback Step → Installing: {rollback_img}, expecting OS: {expected_os}"
-                logger.info(f"[{device_key}] {step_msg}")
-                print(f"[{device_key}] {step_msg}")
+            storage  = precheck.checkStorage(conn, image_storage, logger, cleanup = False)
+            if not storage:
+                msg = f"{host}: checkStorage() failed for image transfer. Please clean up the device to transfer image into device for upgrade."
+                logger.error(f"[{device_key}] STORAGE failed for transfering image — {msg}")
+                device_results[device_key]["pre"]["check_storage"]["exception"] = msg
+                return False
+            device_results[device_key]["pre"]["check_storage"] = storage
+            logger.info(f"[{device_key}] storage OK")
 
-                conn, is_rollback = upgrade.imageUpgrade(
-                    conn, expected_os, rollback_img, -1, logger
-                )
-                logger.debug(
-                    f"[{device_key}] Rollback step [{step_idx+1}] imageUpgrade returned "
-                    f"is_rollback={is_rollback}"
-                )
+            # ── Change LPTS rate for file transfer ─────────────────────
+            if vendor == "cisco":
+                lpts_rate = precheck.changeLpts(conn, logger)
+                if not lpts_rate:
+                    msg = f"changeLpts() failed"
+                    logger.error(f"[{device_key}] Not able to change the LPTS rate - {msg}")
+                    device_results[device_key]["pre"]["change_lpts_rate"]["exception"] = msg
+                    return False
+                device_results[device_key]["pre"]["change_lpts_rate"] = lpts_rate
+                logger.info(f"[{device_key}] Change LPTS Rate OK")
 
-                if not is_rollback:
-                    msg = f"Rollback step failed for {rollback_img}"
-                    logger.error(f"[{device_key}] {msg}")
-                    return conn, False
+            # ── Transfering image and Verify MD5 checksum for every image in imageDetails ───────
+            try:
+                try:
+                    transfer = precheck.transferImage(conn, image_path, image, logger, models)
+                    device_results[device_key]["pre"]["transfer_image"].append({
+                      "status":    transfer.get("status"),
+                      "exception": transfer.get("exception", ""),
+                      "image":  transfer.get("image", ""),
+                      "destination": transfer.get("destination", "")
+                    })
+                    if transfer.get("status") == "failed":
+                        raise RuntimeError(transfer.get("exception", "Image transfer failed"))
+                except Exception as e:
+                    logger.error(f"[{device_key}] TRANSFER IMAGE failed — {e}")
+                    device_results[device_key]["pre"]["transfer_image"].append({
+                      "status":    "failed",
+                      "exception": str(e),
+                      "image":  image,
+                      "destination": ""
+                    })
+                    return False
 
-                if expected_os == original_os:
-                    done_msg = (
-                        f"{device_key}: Original OS {original_os} restored. "
-                        f"Rollback complete."
-                    )
-                    logger.info(done_msg)
-                    print(f"[{device_key}] {done_msg}")
-                    return conn, True
+                logger.info(f"[{device_key}]  transfer image OK")
+                checksum_result = precheck.verifyChecksum(conn, image, checksum, logger)
 
-        logger.info(f"[{device_key}] Multi-step rollback completed")
-        print(f"[{device_key}] Rollback successful")
+                print(f" checksum_result   = {checksum_result}")
+
+                device_results[device_key]["pre"]["verify_checksum"].append({
+                    "image":     checksum_result.get("image"),
+                    "status":    checksum_result.get("status"),
+                    "exception": checksum_result.get("exception", ""),
+                    "expected":  checksum_result.get("expected", ""),
+                    "computed":  checksum_result.get("computed", ""),
+                    "match":     checksum_result.get("match", False),
+                })
+
+                if not checksum_result.get("match"):
+                    print(f" FAILED for image [{i}]: {image}")
+                    logger.error(f"[{device_key}]  VERIFY CHECKSUM failed — {image}")
+                    return False
+
+                print(f" image [{i}] checksum OK — {image}")
+                logger.info(f"[{device_key}]  [{i}] checksum OK — {image}")
+
+            except Exception as e:
+                logger.error(f"[{device_key}] exception for image [{i}] {image} — {e}")
+                print(f" EXCEPTION image [{i}]: {e}")
+                device_results[device_key]["pre"]["verify_checksum"].append({
+                    "image":     image,
+                    "status":    "failed",
+                    "exception": str(e),
+                    "expected":  checksum,
+                    "computed":  "",
+                    "match":     False,
+                })
+                return False
+
+            # ── CheckStorage for Device ─────────────────────
+            if vendor == "juniper":
+              if model in DUAL_RE_MODELS:
+                  logger.info(f"[{device_key}] dual-RE model ({model}): checkStorageDualRE()")
+                  storage = precheck.checkStorageDualRE(conn, image_storage, logger, cleanup = True)
+              else:
+                  logger.info(f"[{device_key}] single-RE model ({model}): checkStorage()")
+
+            storage  = precheck.checkStorage(conn, upgrade_storage, logger, cleanup = True)
+            if not storage:
+                msg = f"{host}: checkStorage() failed for Upgrade"
+                logger.error(f"[{device_key}] STORAGE failed — {msg}")
+                device_results[device_key]["pre"]["check_storage"]["exception"] = msg
+                return False
+
+            device_results[device_key]["pre"]["check_storage"] = storage
+            logger.info(f"[{device_key}] storage OK")
+
+
+            if vendor =="cisco" :
+              asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)
+              ncs_models = next(d['ncs'] for d in models if 'ncs' in d)
+              if model in asr_models:
+                prompt = conn.find_prompt()
+                hostname = prompt.replace("#","").strip()
+                msg = f"Hostname->{hostname}"
+                logger.info(msg)
+                print(msg)
+                if "OSA" in hostname or "TYO" in hostname:
+                  apply_deny_any=upgrade.apply_deny_policy(conn,logger)
+                  if not apply_deny_any:
+                    msg = "Failed to apply_deny_any policy to neighbors"
+                    logger.info(msg)
+                    print(msg)
+                    return False
+
+                msg="Hostname does not contain OSA or TYO"
+                logger.info(msg)
+                print(msg)
+
+              #Set overload bit
+              set_overload_bit=upgrade.set_overload_bit(conn,logger, models)
+              if not set_overload_bit:
+                msg = "Failed to set overload bit"
+                logger.error(f"[{device_key} set_overload_bit fialed - {msg}]")
+                device_results[device_key]["upgrade"]["set_overload_bit"]["exception"] = msg
+                return False
+
+              device_results[device_key]["upgrade"]["set_overload_bit"]= set_overload_bit
+              logger.info(f"[{device_key}]  Overload bit Set OK")
+
+              if not xr_committed_pkg or not admin_committed_pkg: # validate in prechecks.
+                msg = f"No committed packages provided. Please provide the packages to validate the upgrade"
+                logger.error(f"[{device_key}]: committed packages are not provided")
+                return False
+              logger.info(f"[{device_key}]  Committed packages are provide for both XR and admin")
+
+              logger.info(f"[{device_key}] Starting Image Upgrade ")
+              conn, is_upgrade = upgrade.imageUpgrade(conn, expected_os, image,i, logger, models, xr_committed_pkg, admin_committed_pkg)
+
+            if vendor == "juniper":
+                if model in DUAL_RE_MODELS:
+                    logger.info(f"[{device_key}] using dual-RE upgrade path")
+                    conn, is_upgrade = upgrade.run_upgrade_dualRE(conn,image_details, curr_os, curr_image, logger)
+                else:
+                    logger.info(f"[{device_key}] Starting Image Upgrade ")
+                    conn, is_upgrade = upgrade.imageUpgrade(conn, expected_os, image, i, logger, models )
+
+            if not is_upgrade:
+                msg = f"Upgrade hop [{i}] failed for {image}"
+                logger.error(f"[{device_key}] {msg}")
+                device_results[device_key]["upgrade"]["status"]    = "failed"
+                device_results[device_key]["upgrade"]["exception"] = msg
+                return conn, False
+
+
+
+            # Hop succeeded — add to rollback chain so we can unwind to here if needed
+            logger.info(f"[{device_key}] Hop [{i}] succeeded")
+
+        msg = f"All {len(image_details)} upgrade hop(s) successful"
+        logger.info(f"[{device_key}] {msg}")
+        print(f"[{device_key}] {msg}")
+        device_results[device_key]["upgrade"]["status"]    = "success"
+        device_results[device_key]["upgrade"]["exception"] = ""
         return conn, True
 
     except Exception as e:
-        msg = f"run_rollback unhandled exception: {e}"
+        msg = f"run_upgrade unhandled exception: {e}"
         logger.error(f"[{device_key}] {msg}")
+        device_results[device_key]["upgrade"]["status"]    = "failed"
+        device_results[device_key]["upgrade"]["exception"] = str(e)
         return conn, False
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -778,7 +957,7 @@ def run_rollback(conn, device: dict, device_key: str, vendor: str,
 #   2. execute show commands — fatal    (same rule as pre STEP 1)
 #   3. enable_re_protect_filter — stub slot, set aside for future
 # ─────────────────────────────────────────────────────────────────────────────
-def run_postchecks(conn, dev: dict, device_key: str, logger):
+def run_postchecks(conn, dev: dict, device_key: str, logger, models):
     tid       = threading.get_ident()
     vendor_lc = dev["vendor"].lower()
     model_lc  = str(dev["model"]).lower().replace("-", "")
@@ -813,20 +992,20 @@ def run_postchecks(conn, dev: dict, device_key: str, logger):
             #---------- Clear configuration inconsistency --------------------------------#
             try:
 
-                logger.info(f"[{self.device_key}] : Clearing the configuration inconsistency")
+                logger.info(f"[{device_key}] : Clearing the configuration inconsistency")
                 cmd = "clear configuration inconsistency"
                 output = conn.send_command(cmd)
                 if not output:
                   msg = "Not able to clear the configuration inconsistency"
-                  logger.error(f"[{self.device_key}] : {msg}")
+                  logger.error(f"[{device_key}] : {msg}")
                   device_results[device_key]["post"]["config_inconsistency"] = {"status": "failed", "exception": msg,  "inconsistency": "" }
                   return False
 
-                logger.info(f"[{self.device_key}]:: Config inconsistency cleared")
+                logger.info(f"[{device_key}]:: Config inconsistency cleared")
                 device_results[device_key]["post"]["config_inconsistency"] = {"status": "ok", "exception": "",  "inconsistency": "cleared" }
 
             except Exception as e:
-                logger.error(f"[{self.device_key}]:: Failed to clear config inconsistency: {e}")
+                logger.error(f"[{device_key}]:: Failed to clear config inconsistency: {e}")
                 device_results[device_key]["post"]["config_inconsistency"] = {"status": "failed", "exception": str(e),  "inconsistency": "" }
                 return False
 
@@ -869,7 +1048,7 @@ def run_postchecks(conn, dev: dict, device_key: str, logger):
                 logger.info(F"[{device_key}] : {msg}")
 
             #remove Set overload bit
-            remove_overload_bit=postcheck.remove_overload_bit(conn,logger)
+            remove_overload_bit=postcheck.remove_overload_bit(conn,logger, models)
             if not remove_overload_bit:
               msg = "Failed to remove set overload bit"
               logger.error(f"[{device_key} remove_overload_bit fialed - {msg}]")
@@ -1044,6 +1223,7 @@ def run_device_pipeline(dev: dict, accepted_vendors: list, models: list):
     vendor     = dev.get("vendor").lower()
     model      = str(dev.get("model")).lower().replace("-", "")
     host       = dev.get("host")
+    smu_upgrade = dev.get("smu_upgrade")
     ip_clean   = host.replace(".", "_")
     device_key = f"{ip_clean}_{vendor}_{model}"
 
@@ -1079,47 +1259,59 @@ def run_device_pipeline(dev: dict, accepted_vendors: list, models: list):
 
         logger.info(f"[{device_key}] Connected to {host}")
 
-        # ── PHASE 1: PRE-CHECKS ───────────────────────────────────────────────
-        logger.info(f"[{device_key}] ── PRE-CHECKS starting...")
+        # ──--- PRE-CHECKS ───────────────────────────────────────────────
+#        logger.info(f"[{device_key}] ── PRE-CHECKS starting...")
+#
+#        precheck_ok = run_prechecks(conn, dev, device_key, models, logger)
+#        if not precheck_ok:
+#            msg = f"[{device_key}] PRE-CHECKS FAILED — skipping upgrade"
+#            logger.error(msg)
+#            return False
+#
+#
+#        logger.info(f"[{device_key}] ── Pre-Checks COMPLETE — starting UPGRADE ...")
 
-        precheck_ok = run_prechecks(conn, dev, device_key, models, logger)
-        if not precheck_ok:
-            msg = f"[{device_key}] PRE-CHECKS FAILED — skipping upgrade"
+        # ──--- UPGRADE ──────────────────────────────────────────────────
+        conn, upgrade_ok = run_upgrade(conn, dev, device_key, accepted_vendors, logger, models)
+        device_results[device_key]["conn"] = conn
+
+        if not upgrade_ok:
+            msg = f"[{device_key}] UPGRADE FAILED — stopping device"
             logger.error(msg)
             return False
 
-        # Phase 1 fully returned True — Phase 2 now starts
-        logger.info(f"[{device_key}] ── Pre-Checks COMPLETE — starting UPGRADE ...")
+        # ──--- SMU UPGRADE ──────────────────────────────────────────────────
+        if vendor == "cisco" and smu_upgrade:
+            conn, smu_upgrade = run_smu_upgrade(conn, dev, device_key, accepted_vendors, logger, models)
+            device_results[device_key]["conn"] = conn
 
-        # ── PHASE 2: UPGRADE ──────────────────────────────────────────────────
-#        conn, upgrade_ok = run_upgrade(conn, dev, device_key, accepted_vendors, logger, models)
-#        device_results[device_key]["conn"] = conn
+            if not smu_upgrade:
+              msg = f"[{device_key}]: SMU Upgrade Failed - Stopping device"
+              logger.error(msg)
+              return False
+            logger.info(f"[{device_key}] ── SMU Upgrade Completed")
+
+
+        logger.info(f"[{device_key}] ── Upgrade COMPLETE — starting PostCheck")
+
+        # ──--- ROLLBACK ──────────────────────────────────────────────────
+#        conn, rollback_ok = run_rollback(conn, dev, device_key, accepted_vendors, logger, models)
+#        logger.info(f"[{device_key}] run_rollback completed — rollback_ok={rollback_ok}")
 #
-#        if not upgrade_ok:
-#            msg = f"[{device_key}] UPGRADE FAILED — stopping device"
-#            logger.error(msg)
-#            return False
-##
-#        if vendor == "cisco":
-#            conn, smu_upgrade = run_smu_upgrade(conn, dev, device_key, accepted_vendors, logger, models)
-#            device_results[device_key]["conn"] = conn
-#
-#            if not smu_upgrade:
-#              msg = f"[{device_key}]: SMU Upgrade Failed - Stopping device"
-#              logger.error(msg)
-#              return False
-#            logger.info(f"[{device_key}] ── SMU Upgrade Completed")
-#
-#
-#        # Phase 2 fully returned True — Phase 3 now starts
-#        logger.info(f"[{device_key}] ── Upgrade COMPLETE — starting PostCheck")
-#
-#        # ── PHASE 3: POST-CHECKS ──────────────────────────────────────────────
-#        postcheck_ok = run_postchecks(conn, dev, device_key, logger)
-#        if not postcheck_ok:
-#            logger.warning(f"[{device_key}] POST-CHECK completed with errors — run_postcheck() failed")
-#        else:
-#            logger.info(f"[{device_key}] ── POST-CHECK COMPLETE")
+#        if not rollback_ok:
+#            msg = f"Rollback also failed for {device_key} — stopping device"
+#            logger.error(f"[{device_key}] {msg}")
+#            device_results[device_key]["upgrade"]["exception"] = (
+#                device_results[device_key]["upgrade"]["exception"]
+#                + " | ROLLBACK FAILED"
+#            )
+
+        # ──--------POST-CHECKS ──────────────────────────────────────────────
+        postcheck_ok = run_postchecks(conn, dev, device_key, logger, models)
+        if not postcheck_ok:
+            logger.warning(f"[{device_key}] POST-CHECK completed with errors — run_postcheck() failed")
+        else:
+            logger.info(f"[{device_key}] ── POST-CHECK COMPLETE")
 
         # Phase 3 fully returned — Phase 4 now starts.
         # pre.execute_show_commands and post.execute_show_commands are both
@@ -1178,3 +1370,5 @@ def main():
     sys.exit(0)
 
 
+if __name__ == "__main__":
+    main()

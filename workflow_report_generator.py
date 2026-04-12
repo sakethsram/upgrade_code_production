@@ -36,7 +36,7 @@ PHASE_META = {
     "pre":     {"label": "Pre-Checks",  "color": "#38bdf8"},
     "upgrade": {"label": "Upgrade",     "color": "#a78bfa"},
     "post":    {"label": "Post-Checks", "color": "#34d399"},
-    # "report" card is intentionally removed — it was misleading
+    "report":  {"label": "Report",      "color": "#fb923c"},
 }
 
 
@@ -204,12 +204,7 @@ def _checksum_drawer(entries: list, prefix: str):
 
 # ─── upgrade hops ─────────────────────────────────────────────────────────────
 
-def _hops_rows(hops: list, pre_versions: dict) -> str:
-    """
-    Render hop rows. pre_versions is the dict captured before any upgrade
-    ({"re0": "21.2R3", "re1": "21.2R3"}) stored at upgrade["pre_versions"].
-    Each hop may also carry post_versions, switchover_1, switchover_2.
-    """
+def _hops_rows(hops: list) -> str:
     rows = []
     for i, hop in enumerate(hops):
         image  = hop.get("image", "—")
@@ -230,49 +225,19 @@ def _hops_rows(hops: list, pre_versions: dict) -> str:
         re1 = hop.get("re1")
         re_html = ""
         if re0 is not None or re1 is not None:
-            def _re_cell(label, re_data, pre_ver):
+            def _re_cell(label, re_data):
                 if not re_data:
                     return f'<span class="re-chip re-ns">{label} —</span>'
                 st  = _norm_status(re_data.get("status", "not_started"))
                 ver = _esc(re_data.get("version", "") or "")
                 cls = "re-ok" if st == "ok" else ("re-fail" if st == "failed" else "re-ns")
-                # Show pre→post version arrow if we have both
-                if pre_ver and ver and pre_ver != ver:
-                    ver_part = (
-                        f' <span class="re-ver" style="color:var(--muted2);">{_esc(pre_ver)}</span>'
-                        f'<span class="re-arrow">→</span>'
-                        f'<span class="re-ver">{ver}</span>'
-                    )
-                elif ver:
-                    ver_part = f' <span class="re-ver">{ver}</span>'
-                else:
-                    ver_part = ""
+                ver_part = f' <span class="re-ver">{ver}</span>' if ver else ""
                 return f'<span class="re-chip {cls}">{label}{ver_part}</span>'
-
-            pre_re0 = (pre_versions or {}).get("re0") or ""
-            pre_re1 = (pre_versions or {}).get("re1") or ""
-
-            # ── Switchover arrows (ACT2 and ACT4) ────────────────────────────
-            sw1 = hop.get("switchover_1", "")   # e.g. "RE0(M)→RE1(M)"
-            sw2 = hop.get("switchover_2", "")   # e.g. "RE1(M)→RE0(M)"
-            sw_html = ""
-            if sw1 or sw2:
-                sw_parts = []
-                if sw1:
-                    sw_parts.append(f'<span class="sw-chip">{_esc(sw1)}</span>')
-                if sw2:
-                    sw_parts.append(f'<span class="sw-chip">{_esc(sw2)}</span>')
-                sw_html = f'<div class="sw-row">{"".join(sw_parts)}</div>'
-
-            # ── Post-hop versions ─────────────────────────────────────────────
-            post_ver = hop.get("post_versions") or {}
-
             re_html = (
                 f'<div class="re-chips">'
-                f'{_re_cell("RE0", re0, pre_re0)}'
-                f'{_re_cell("RE1", re1, pre_re1)}'
+                f'{_re_cell("RE0", re0)}'
+                f'{_re_cell("RE1", re1)}'
                 f'</div>'
-                f'{sw_html}'
             )
 
         if isinstance(image, (list, set)):
@@ -327,11 +292,9 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
                 agg = _norm_status(data[0].get("status", "not_started"))
 
             is_blank = agg in ("", "not_started")
-            # CHANGE: only count toward total if actually started
-            if not is_blank:
-                total += 1
-                if agg == "ok":   success += 1
-                else:             failed += 1
+            total += 1
+            if agg == "ok":   success += 1
+            elif not is_blank: failed += 1
 
             toggle, drawer = _image_drawer(data, prefix)
             pc = (f'<td class="phase-cell" rowspan="{count}" '
@@ -362,11 +325,9 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
                 agg = _norm_status(data[0].get("status", "not_started"))
 
             is_blank = agg in ("", "not_started")
-            # CHANGE: only count toward total if actually started
-            if not is_blank:
-                total += 1
-                if agg == "ok":   success += 1
-                else:             failed += 1
+            total += 1
+            if agg == "ok":   success += 1
+            elif not is_blank: failed += 1
 
             toggle, drawer = _checksum_drawer(data, prefix)
             pc = (f'<td class="phase-cell" rowspan="{count}" '
@@ -391,11 +352,9 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
         exc      = data.get("exception", "") or ""
         display  = PRE_TASK_TITLES.get(name, name.replace("_", " ").title())
 
-        # CHANGE: only count toward total if actually started
-        if not is_blank:
-            total += 1
-            if status == "ok":   success += 1
-            else:                failed  += 1
+        total += 1
+        if status == "ok":   success += 1
+        elif not is_blank:   failed  += 1
 
         pc = (f'<td class="phase-cell" rowspan="{count}" '
               f'style="border-left:3px solid {color};">'
@@ -486,14 +445,7 @@ def _upgrade_rows(upg: dict, prefix: str) -> tuple:
     count = len(items)
     first = True
 
-    # Pull pre_versions once — passed down to _hops_rows
-    pre_versions = upg.get("pre_versions") or {}
-
     for name, data in items:
-
-        # Skip internal tracking keys — not rendered as rows
-        if name in ("pre_versions",):
-            continue
 
         # ── hops is a LIST ───────────────────────────────────────────────
         if name == "hops" and isinstance(data, list):
@@ -507,11 +459,9 @@ def _upgrade_rows(upg: dict, prefix: str) -> tuple:
                 agg = _norm_status(data[0].get("status", "not_started"))
 
             is_blank = agg in ("", "not_started")
-            # CHANGE: only count if started
-            if not is_blank:
-                total += 1
-                if agg == "ok": success += 1
-                else:           failed += 1
+            total += 1
+            if agg == "ok": success += 1
+            elif not is_blank: failed += 1
 
             toggle = (f'<button class="mini-btn" onclick="tglHops(\'hops-{prefix}\')">'
                       f'Hops ({len(data)})</button>')
@@ -519,9 +469,9 @@ def _upgrade_rows(upg: dict, prefix: str) -> tuple:
                       f'<div class="hops-inline" hidden id="hops-{prefix}">'
                       f'<div class="hop-table-wrap">'
                       f'<table class="hop-table"><thead><tr>'
-                      f'<th>#</th><th>Image / RE Versions</th><th>Status</th><th>MD5</th>'
+                      f'<th>#</th><th>Image</th><th>Status</th><th>MD5</th>'
                       f'<th>Reconnect</th><th>Remark</th>'
-                      f'</tr></thead><tbody>{_hops_rows(data, pre_versions)}</tbody></table>'
+                      f'</tr></thead><tbody>{_hops_rows(data)}</tbody></table>'
                       f'</div></div></div>')
 
             pc = (f'<td class="phase-cell" rowspan="{count}" '
@@ -572,12 +522,6 @@ def _upgrade_rows(upg: dict, prefix: str) -> tuple:
             display = UPGRADE_TASK_TITLES.get(name, name.replace("_", " ").title())
             status  = _norm_status(data)
             exc     = _esc(upg.get("exception", "") or "")
-            is_blank = status in ("", "not_started")
-            # CHANGE: only count if started
-            if not is_blank:
-                total += 1
-                if status == "ok": success += 1
-                else:              failed += 1
             row_cls = "" if status in ("ok", "", "not_started") else " failed-row"
             rows.append(
                 f'<tr class="task-row{row_cls}">'
@@ -596,11 +540,9 @@ def _upgrade_rows(upg: dict, prefix: str) -> tuple:
             exc      = data.get("exception", "") or ""
             display  = UPGRADE_TASK_TITLES.get(name, name.replace("_", " ").title())
 
-            # CHANGE: only count if started
-            if not is_blank:
-                total += 1
-                if status == "ok":   success += 1
-                else:                failed  += 1
+            total += 1
+            if status == "ok":   success += 1
+            elif not is_blank:   failed  += 1
 
             row_cls = "" if (status == "ok" or is_blank) else " failed-row"
             rows.append(
@@ -635,11 +577,9 @@ def _post_rows(post: dict, prefix: str) -> tuple:
         exc      = data.get("exception", "") or ""
         display  = POST_TASK_TITLES.get(name, name.replace("_", " ").title())
 
-        # CHANGE: only count if started
-        if not is_blank:
-            total += 1
-            if status == "ok":   success += 1
-            else:                failed  += 1
+        total += 1
+        if status == "ok":   success += 1
+        elif not is_blank:   failed  += 1
 
         pc = (f'<td class="phase-cell" rowspan="{count}" '
               f'style="border-left:3px solid {color};">'
@@ -757,7 +697,7 @@ def _inline_diff_html(pre_out: str, post_out: str) -> tuple:
 
 
 def _report_rows(diff: dict, device_data: dict, prefix: str) -> str:
-    color = "#fb923c"   # report phase colour kept for the diff section only
+    color = PHASE_META["report"]["color"]
 
     if not diff:
         rows = [
@@ -894,7 +834,6 @@ def _phase_summary(device_data: dict) -> dict:
             st = _norm_status(td.get("status",""))
         else:
             continue
-        # CHANGE: only count if actually started
         if st in ("","not_started"): continue
         t += 1
         if st == "ok": s += 1
@@ -902,10 +841,8 @@ def _phase_summary(device_data: dict) -> dict:
     out["pre"] = (t, s, f)
 
     hops = device_data.get("upgrade", {}).get("hops", [])
-    # CHANGE: only count hops that have been started
-    started_hops = [h for h in hops if _norm_status(h.get("status","")) not in ("","not_started")]
-    hok  = sum(1 for h in started_hops if _norm_status(h.get("status","")) == "ok")
-    out["upgrade"] = (len(started_hops), hok, len(started_hops) - hok)
+    hok  = sum(1 for h in hops if _norm_status(h.get("status","")) == "ok")
+    out["upgrade"] = (len(hops), hok, len(hops) - hok)
 
     post = device_data.get("post", {})
     pt = ps = pf = 0
@@ -913,13 +850,14 @@ def _phase_summary(device_data: dict) -> dict:
         td = post.get(name, {})
         if not td: continue
         st = _norm_status(td.get("status",""))
-        # CHANGE: only count if actually started
         if st in ("","not_started"): continue
         pt += 1
         if st == "ok": ps += 1
         else: pf += 1
     out["post"] = (pt, ps, pf)
 
+    diff = device_data.get("diff", {})
+    out["report"] = (len(diff), len(diff), 0) if diff else (0, 0, 0)
     return out
 
 
@@ -941,21 +879,13 @@ def build_device_panel(device_key: str, device_data: dict, is_first: bool) -> st
     def phase_card(key):
         t, s, f = summary.get(key, (0, 0, 0))
         meta = PHASE_META[key]
-        if t == 0:
-            # Phase not started yet — render as dimmed/incomplete
-            return (
-                f'<div class="ph-card ph-card-inactive">'
-                f'<div class="ph-top">'
-                f'<span class="ph-lbl" style="color:var(--muted);">{meta["label"]}</span>'
-                f'<span class="pill partial" style="font-size:.58rem;opacity:.45;">Not Started</span>'
-                f'</div>'
-                f'<div class="prog"><div class="progbar" style="width:0%;background:var(--border2);"></div></div>'
-                f'</div>'
-            )
-        pct = round(s / t * 100) if t else 0
-        cls = "ok" if f == 0 else ("fail" if s == 0 else "partial")
-        label = "Hops" if key == "upgrade" else "Tasks"
-        inner = f"{s}/{t} {label}"
+        if key == "report":
+            cls, inner, pct = "ok", "1/1 Report", 100
+        else:
+            pct = round(s / t * 100) if t else 0
+            cls = "ok" if f == 0 and t > 0 else ("fail" if s == 0 and t > 0 else "partial")
+            label = "Hops" if key == "upgrade" else "Tasks"
+            inner = f"{s}/{t} {label}" if t > 0 else "—"
         return (
             f'<div class="ph-card">'
             f'<div class="ph-top">'
@@ -967,8 +897,7 @@ def build_device_panel(device_key: str, device_data: dict, is_first: bool) -> st
             f'</div>'
         )
 
-    # CHANGE: "report" card removed from phase_cards entirely
-    phase_cards = "".join(phase_card(k) for k in ("pre", "upgrade", "post"))
+    phase_cards = "".join(phase_card(k) for k in ("pre","upgrade","post","report"))
 
     display = "block" if is_first else "none"
     return f"""
@@ -1072,49 +1001,26 @@ def _device_info_json(workflow_data: dict) -> str:
 
 # ─── overall device-level pass/fail ──────────────────────────────────────────
 
-def _count_device_states(workflow_data: dict) -> tuple:
-    """
-    Return (total_devices, passed, failed, in_progress).
-
-    CHANGE: A device is only 'passed' when:
-      - upgrade status == "success"  AND
-      - at least one post check has completed OK
-    A device is 'failed' when upgrade status == "failed" OR any pre task failed.
-    Everything else is 'in_progress' (upgrade not yet started, or still running).
-    """
-    total       = len(workflow_data)
-    passed      = 0
-    failed      = 0
-    in_progress = 0
-
+def _count_failed_devices(workflow_data: dict) -> tuple:
+    """Return (total_devices, failed_devices) based on upgrade status or any failed task."""
+    total   = len(workflow_data)
+    failed  = 0
     for dd in workflow_data.values():
         upg_st = _norm_status(dd.get("upgrade", {}).get("status", ""))
 
-        # Check if any pre task explicitly failed
-        pre_failed = any(
+        pre_ok = all(
             _norm_status(
                 td[0].get("status", "") if isinstance(td, list) and td and isinstance(td[0], dict)
                 else td.get("status", "") if isinstance(td, dict)
                 else ""
-            ) == "failed"
+            ) != "failed"
             for td in dd.get("pre", {}).values()
             if isinstance(td, (dict, list))
         )
 
-        # Post check completion: at least show_version or execute_show_commands done
-        post_done = any(
-            _norm_status(dd.get("post", {}).get(k, {}).get("status", "")) == "ok"
-            for k in ("show_version", "execute_show_commands")
-        )
-
-        if pre_failed or upg_st == "failed":
+        if upg_st == "failed" or not pre_ok:
             failed += 1
-        elif upg_st == "success" and post_done:
-            passed += 1
-        else:
-            in_progress += 1
-
-    return total, passed, failed, in_progress
+    return total, failed
 
 
 # ─── HTML generation ──────────────────────────────────────────────────────────
@@ -1128,21 +1034,14 @@ def generate_html_report(workflow_data: dict, output_dir: str = ".", stem: str =
     now         = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     ts_file     = datetime.now().strftime("%d_%m_%y_%H_%M_%S")
 
-    # CHANGE: use the new 4-value counter for the top-right pill
-    total_dev, passed_dev, failed_dev, inprog_dev = _count_device_states(safe_data)
+    total_dev, failed_dev = _count_failed_devices(safe_data)
+    passed_dev = total_dev - failed_dev
 
-    if failed_dev > 0 and passed_dev == 0:
-        pill_cls = "fail"
-        pill_txt = f"{failed_dev}/{total_dev} DEVICE(S) FAILED"
-    elif failed_dev > 0:
-        pill_cls = "partial"
-        pill_txt = f"{passed_dev} PASSED · {failed_dev} FAILED · {inprog_dev} IN PROGRESS"
-    elif inprog_dev > 0:
-        pill_cls = "partial"
-        pill_txt = f"{inprog_dev}/{total_dev} DEVICE(S) IN PROGRESS"
-    else:
-        pill_cls = "ok"
-        pill_txt = f"ALL {total_dev} DEVICE(S) PASSED"
+    pill_cls = "ok" if failed_dev == 0 else ("fail" if passed_dev == 0 else "partial")
+    pill_txt = (
+        f"ALL {total_dev} DEVICE(S) PASSED" if failed_dev == 0
+        else f"{failed_dev} DEVICE(S) FAILED"
+    )
 
     dropdown_opts = "\n".join(
         f'<option value="{_esc(dk)}"{" selected" if i==0 else ""}>'
@@ -1292,7 +1191,7 @@ body{{
 /* ── phase cards ─────────────────────────────────────────────────────────── */
 .ph-cards{{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:0;
   border:1px solid var(--border);
   border-top:none;
@@ -1304,9 +1203,6 @@ body{{
   border-right:1px solid var(--border);
 }}
 .ph-card:last-child{{border-right:none}}
-.ph-card-inactive{{
-  opacity:.45;
-}}
 .ph-top{{display:flex;align-items:center;justify-content:space-between;margin-bottom:.4rem}}
 .ph-lbl{{font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}}
 .prog{{height:3px;background:var(--border2);border-radius:2px;overflow:hidden}}
@@ -1590,34 +1486,6 @@ body{{
 .re-fail{{background:rgba(244,63,94,.12);color:#fb7185;border-color:rgba(244,63,94,.2)}}
 .re-ns{{background:var(--surf3);color:var(--muted);border-color:var(--border2)}}
 .re-ver{{font-weight:400;opacity:.8}}
-.re-arrow{{
-  color:var(--muted2);
-  font-size:.55rem;
-  margin:0 .1rem;
-}}
-
-/* ── switchover arrow chips ──────────────────────────────────────────────── */
-.sw-row{{
-  display:flex;
-  align-items:center;
-  gap:.35rem;
-  margin-top:.3rem;
-  flex-wrap:wrap;
-}}
-.sw-chip{{
-  display:inline-flex;
-  align-items:center;
-  gap:.2rem;
-  padding:.1rem .4rem;
-  border-radius:4px;
-  font-family:var(--mono);
-  font-size:.58rem;
-  font-weight:600;
-  background:rgba(167,139,250,.1);
-  color:#c4b5fd;
-  border:1px solid rgba(167,139,250,.25);
-  letter-spacing:.02em;
-}}
 
 /* ── diff section ────────────────────────────────────────────────────────── */
 .diff-section{{margin-top:1rem}}
@@ -1847,8 +1715,12 @@ if __name__ == "__main__":
     with open(input_path, "r", encoding="utf-8") as fh:
         data = json.load(fh)
 
+    # The JSON may be a single device dict or a multi-device summary dict.
+    # A single device dict has keys like "pre", "post", "upgrade", "diff", "device_info".
+    # A multi-device summary dict has device_keys as top-level keys.
     single_device_keys = {"pre", "post", "upgrade", "diff", "device_info", "status", "conn", "yaml"}
     if set(data.keys()) <= single_device_keys | {"conn", "yaml"}:
+        # looks like a single device — wrap it
         stem_key = input_path.stem
         workflow_data = {stem_key: data}
     else:

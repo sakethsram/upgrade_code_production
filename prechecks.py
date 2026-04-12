@@ -243,7 +243,7 @@ class PreCheck:
     #---------------------
     # verify auto-fpd
     #---------------------
-    def check_auto_fpd(self, conn, logger):
+    def check_auto_fpd(self, conn, logger, models):
         """
         Auto FPD check & enable.
         """
@@ -256,10 +256,11 @@ class PreCheck:
                 logger.info(msg)
                 commands = [
                     "fpd auto-upgrade enable",
-                    "commit"
+                    "commit",
+                    "exit"
                 ]
                 # ---------------- XR MODE ----------------
-                xr_output = conn.send_command("show running-config formal | include fpd")
+                xr_output = conn.send_command_timing("show running-config formal | include fpd", read_timeout=0, last_read=60)
 
                 if "fpd auto-upgrade enable" in xr_output:
                     msg = f"{self.host}: Auto FPD already enabled in XR mode"
@@ -268,12 +269,13 @@ class PreCheck:
                 else:
                     logger.warning(f"{self.host}: Enabling Auto FPD in XR mode")
                     conn.send_config_set(commands)
+                    conn.exit_config_mode()
                     xr_fpd_enabled = True
 
                 # ---------------- ADMIN MODE ----------------
-                if self.model == "asr*":  # Club the admin and xr command. Create cmd lst on the go using the while
-                    conn.send_command("admin", expect_string=r"#")
-                    admin_output = conn.send_command("show running-config | include fpd")
+                asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)
+                if self.model in asr_models:  # Club the admin and xr command. Create cmd lst on the go using the while
+                    admin_output = conn.send_command_timing("admin show running-config | include fpd", read_timeout = 0, last_read = 60)
 
                     if "fpd auto-upgrade enable" in admin_output:
                         msg = f"{self.host}: Auto FPD already enabled in Admin mode"
@@ -282,10 +284,9 @@ class PreCheck:
                     else:
                         logger.warning(f"{self.host}: Enabling Auto FPD in Admin mode")
                         conn.send_config_set(commands)
+                        conn.exit_config_mode()
                         admin_fpd_enabled = True
 
-                    conn.send_command("exit",expect_string=r"#")
-                    logger.info("Exited admin mode")
                 result = {
                     "status": "ok",
                     "xr_fpd_enabled": xr_fpd_enabled,
@@ -610,8 +611,7 @@ class PreCheck:
                 logger.info(f"[{self.device_key}] checkStorage — {avail_space:.2f} GB available")
 
             if self.vendor == "cisco":
-                storage_output = conn.send_command("show media", expect_string=r"#",read_timeout=120)
-
+                storage_output = conn.send_command_timing("show media", read_timeout = 0, last_read=30)
                 match=re.search(r"harddisk:\s+\S+\s+\S+\s+\S+\s+(\S+)", storage_output, re.M).group(1)
                 size_val   = match[:-1]
                 size_unit  = match[-1:]
@@ -619,7 +619,6 @@ class PreCheck:
                 avail_space = size_val * unit_to_gb.get(size_unit, 1)
                 msg = f"[{self.vendor}_{self.model}] checkStorage — {avail_space} G available"
                 logger.info(msg)
-                print(msg)
 
             # Enough space
             if float(avail_space) > min_disk_gb:
@@ -686,6 +685,11 @@ class PreCheck:
                     "sufficient":    False,
                 }
 
+                is_space = self.checkStorage(conn, min_disk_gb, logger, cleanup=False)
+                if is_space.get("status") == "ok":
+                    logger.info(f"[{self.device_key}] : Sufficient Space after cleanup ")
+                    return result
+
                 #storage recheck after deleting files
                 if float(avail_space) <= min_disk_gb:
                   msg = f"[{self.vendor}_{self.model}] still low storage after cleanup"
@@ -696,7 +700,7 @@ class PreCheck:
                 logger.info(msg)
                 return result
             else:
-                msg = f"[{self.vendor}_{self.model}] Not enough space for image transfer"
+                msg = f"[{self.vendor}_{self.model}] Not enough space in the device"
                 logger.info(msg)
                 return False
 
@@ -715,14 +719,14 @@ class PreCheck:
             if self.vendor == "juniper":
                 cmd = [
                     "start shell", "\n",
-                    f"scp -C {src} {dest}", "\n",
+                    f"scp -C {src} {dest}", "yes","\n",
                     self.remote_password, "\n",
                     "exit", "\n",
                 ]
             if self.vendor == "cisco":
                 if self.model == "asr9910" or self.model == "asr9006": # model in the list.
                     cmd = [
-                        f"scp {src} {dest} source-interface MgmtEth 0/RSP1/CPU0/0",
+                        f"scp {src} {dest} source-interface MgmtEth 0/RSP0/CPU0/0",
                         self.remote_password
                     ]
                 if self.model == "ncs5501": # list in model and lowerc
@@ -969,28 +973,29 @@ class PreCheck:
         Example: change SSH rate limit
         """
         try:
-
-            msg = f"{self.host}: Modifying LPTS policer"
+            msg = f"[{self.device_key}] : Modifying LPTS policer"
             logger.info(msg)
             print(msg)
-            commands = [
+
+            #  Clear leftover buffer after show commands
+            conn.clear_buffer()
+
+            #  Enter config mode manually (XR-safe)
+            conn.send_command("configure terminal", expect_string=r"\(config\)#")
+
+            #  Apply LPTS command safely on IOS-XR
+            conn.send_command(
                 "lpts pifib hardware police flow ssh known rate 50000",
-                "commit",
-                "exit"
-            ]
+                expect_string=r"\(config\)#"
+            )
 
-            output = conn.send_config_set(commands, cmd_verify=False) + "\n"
+            #  Commit
+            conn.send_command("commit", expect_string=r"#")
 
-            if not output:
-                msg = f"{self.vendor}_{self.model}: Not able to change the lpts rate "
-                logger.info(msg)
-                return {
-                    "status": "failed",
-                    "exception": msg,
-                    "lpts rate": 50000
-                }
+            #  Exit config mode
+            conn.send_command("end", expect_string=r"#")
 
-            msg="LPTS modified successfully"
+            msg = "LPTS modified successfully"
             logger.info(msg)
             return {
                 "status": "ok",
@@ -999,7 +1004,7 @@ class PreCheck:
             }
 
         except Exception as e:
-            logger.exception(f"{self.host}: Control-plane protection change failed")
+            logger.exception(f"[{self.device_key}] : Control-plane protection change failed")
             raise
 
     # ─────────────────────────────────────────────────────────────────────────
