@@ -272,7 +272,7 @@ class Upgrade:
             if reboot_system:
                 logger.info(f"[{self.device_key}]:: Device rebooted, waiting for SSH to come back")
                 conn, output = self.reconnect_and_verify(hop_index,logger)
-                print(f"[imageUpgrade] post-reboot output: {output}")
+                # print(f"[imageUpgrade] post-reboot output: {output}")
 
                 if self.vendor == "juniper":
                     version_pattern = re.search(r"Junos:\s*(?P<version>\S+)", output, re.IGNORECASE)
@@ -922,7 +922,7 @@ class Upgrade:
                 "show version invoke-on all-routing-engines",
                 read_timeout=60,
             )
-            logger.info(f"{self.device_key}: [systemRebootDualRE] Version output:\n{version_output}")
+            # logger.info(f"{self.device_key}: [systemRebootDualRE] Version output:\n{version_output}")
 
             versions = self.extract_junos_versions(version_output)
 
@@ -1096,7 +1096,7 @@ class Upgrade:
                 expect_string=r".*>",
                 read_timeout=60,
             )
-            logger.info(f"[{self.device_key}]: [switchoverMaster] chassis output:\n{chassis_output}")
+            # logger.info(f"[{self.device_key}]: [switchoverMaster] chassis output:\n{chassis_output}")
 
             expected_slot = expected_new_master.replace("re", "").strip()
             master_match  = re.search(
