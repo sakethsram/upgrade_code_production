@@ -5,11 +5,6 @@ from typing import Any, Dict
 
 import re
 from typing import Any, Dict, List, Optional
-<<<<<<< HEAD
-from models.juniper.juniper_mx240 import *
-
-=======
-
 from models.juniper.juniper_mx240 import *
 
 def parse_show_vrrp_summary(text_content: str) -> Dict[str, Any]:
@@ -65,7 +60,6 @@ def parse_show_vrrp_summary(text_content: str) -> Dict[str, Any]:
 
     except Exception as e:
         return {"error": f"Error parsing {cmd}: {str(e)}"}
->>>>>>> d033279 (adding more data)
 def parse_show_bgp_summary(text_content: str) -> Dict[str, Any]:
     cmd = "show bgp summary | no-more"
     try:
@@ -734,3 +728,4 @@ def parse_show_oam_cfm_interfaces(text_content: str) -> Dict[str, Any]:
 
     except Exception as e:
         return {"error": f"Error parsing {cmd}: {str(e)}"}
+	

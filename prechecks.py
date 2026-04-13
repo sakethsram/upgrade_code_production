@@ -40,9 +40,9 @@ class PreCheck:
                 expect_string=r'.*>',
                 read_timeout=900,
             )
-            logger.info(
-                f"[{self.device_key}] preBackupDiskDualRE — snapshot output:\n{snapshot_output}"
-            )
+            # logger.info(
+            #     f"[{self.device_key}] preBackupDiskDualRE — snapshot output:\n{snapshot_output}"
+            # )
 
             if "NOTICE: Snapshot" not in snapshot_output:
                 msg = (
@@ -60,7 +60,7 @@ class PreCheck:
                     "remark":        "Snapshot command ran but NOTICE string not found in output",
                 }
 
-            snap_name_from_cmd = ""
+            snap_name_from_cmd = "" 
             m = re.search(r"NOTICE:\s+Snapshot\s+(\S+)\s+created successfully", snapshot_output)
             if m:
                 snap_name_from_cmd = m.group(1)
@@ -75,10 +75,10 @@ class PreCheck:
                 expect_string=r'.*>',
                 read_timeout=60,
             )
-            logger.info(
-                f"[{self.device_key}] preBackupDiskDualRE — show system snapshot output:\n"
-                f"{verify_output}"
-            )
+            # logger.info(
+            #     f"[{self.device_key}] preBackupDiskDualRE — show system snapshot output:\n"
+            #     f"{verify_output}"
+            # )
 
             if "Configuration: yes" not in verify_output:
                 msg = (
@@ -100,6 +100,7 @@ class PreCheck:
             m = re.search(r"Snapshot\s+(snap\.\S+?):", verify_output)
             if m:
                 snapshot_name = m.group(1)
+
 
             creation_date = ""
             m = re.search(r"Creation date:\s+(.+)", verify_output)

@@ -2,6 +2,46 @@
 from dataclasses import dataclass, field
 from typing import List, Optional, Any, Dict
 from dataclasses import asdict
+
+
+
+@dataclass
+class ShowVrrpSummaryAddress:
+    type: str
+    address: str
+
+    def to_dict(self) -> dict:
+        return {"type": self.type, "address": self.address}
+
+
+@dataclass
+class ShowVrrpSummaryEntry:
+    interface: str
+    state: str
+    group: int
+    vr_state: str
+    vr_mode: str
+    addresses: List[ShowVrrpSummaryAddress] = field(default_factory=list)
+
+    def to_dict(self) -> dict:
+        return {
+            "interface": self.interface,
+            "state": self.state,
+            "group": self.group,
+            "vr_state": self.vr_state,
+            "vr_mode": self.vr_mode,
+            "addresses": [a.to_dict() for a in self.addresses],
+        }
+
+
+@dataclass
+class ShowVrrpSummary:
+    entries: List[ShowVrrpSummaryEntry] = field(default_factory=list)
+
+    def to_dict(self) -> dict:
+        return {"entries": [e.to_dict() for e in self.entries]}
+
+
 # ────────────────────────────────────────────────────────────────────────────────
 # show services flows brief | no-more
 # ────────────────────────────────────────────────────────────────────────────────

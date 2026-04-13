@@ -21,7 +21,7 @@ class Upgrade:
     def __init__(self, device_key: str, device: dict, accepted_vendors: list):
         self.device_key      = device_key
         self.device          = device
-        self.host            = device.get("host")
+        self.host            = device.get("host") 	
         self.vendor          = device.get("vendor")
         self.model = device.get("model")
         self.accepted_vendor = accepted_vendors
