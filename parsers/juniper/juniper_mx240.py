@@ -5,8 +5,67 @@ from typing import Any, Dict
 
 import re
 from typing import Any, Dict, List, Optional
+<<<<<<< HEAD
 from models.juniper.juniper_mx240 import *
 
+=======
+
+from models.juniper.juniper_mx240 import *
+
+def parse_show_vrrp_summary(text_content: str) -> Dict[str, Any]:
+    cmd = "show vrrp summary | no-more"
+    try:
+        result = ShowVrrpSummary()
+        s = (text_content or "").strip()
+
+        # subsystem not running or empty
+        if not s or re.search(r'vrrp subsystem not running', s, re.IGNORECASE):
+            return result.to_dict()
+
+        # main entry line:
+        # ae2.44  up  1  master  Active  lcl  44.0.0.2
+        entry_re = re.compile(
+            r'^(\S+)\s+'          # interface
+            r'(up|down)\s+'       # state
+            r'(\d+)\s+'           # group
+            r'(\S+)\s+'           # vr_state  (master/backup)
+            r'(\S+)\s+'           # vr_mode   (Active/Standby)
+            r'lcl\s+'             # literal "lcl"
+            r'([\d.]+)',          # local address
+            re.IGNORECASE,
+        )
+
+        # vip continuation line (indented, no interface/state/group):
+        # "                                      vip    44.0.0.254"
+        vip_re = re.compile(r'vip\s+([\d.]+)', re.IGNORECASE)
+
+        current: VrrpSummaryEntry | None = None
+
+        for line in s.splitlines():
+            m = entry_re.match(line)
+            if m:
+                current = VrrpSummaryEntry(
+                    interface     = m.group(1),
+                    state         = m.group(2),
+                    group         = int(m.group(3)),
+                    vr_state      = m.group(4),
+                    vr_mode       = m.group(5),
+                    local_address = m.group(6),
+                )
+                result.entries.append(current)
+                continue
+
+            if current is not None:
+                vip_m = vip_re.search(line)
+                if vip_m:
+                    current.virtual_address = vip_m.group(1)
+
+        result.total_entries = len(result.entries)
+        return result.to_dict()
+
+    except Exception as e:
+        return {"error": f"Error parsing {cmd}: {str(e)}"}
+>>>>>>> d033279 (adding more data)
 def parse_show_bgp_summary(text_content: str) -> Dict[str, Any]:
     cmd = "show bgp summary | no-more"
     try:
@@ -403,27 +462,50 @@ def parse_show_services_service_sets_cpu_usage(text_content: str) -> Dict[str, A
     except Exception as e:
         return {"error": f"Error parsing {cmd}: {str(e)}"}
 # ────────────────────────────────────────────────────────────────────────────
-def parse_show_services_service_sets_memory_usage(text_content: str) -> Dict[str, Any]:
-    cmd = "show services service-sets memory-usage | no-more"
-    try:
-        result = ShowServicesServiceSetsMemoryUsage()
+def parse_show_system_alarms(text_content: str) -> Dict[str, Any]:
+    cmd = "show system alarms | no-more"
+    result = ShowSystemAlarms()
 
-        # "ms-2/2/0    system    1553079792"
-        row_re = re.compile(
-            r'^(ms-\S+)\s+(\S+)\s+(\d+)',
-            re.MULTILINE
+    try:
+        s = (text_content or "").strip()
+
+        # empty / no alarms
+        if not s or re.search(r'(no alarms currently active|0 alarms)', s, re.IGNORECASE):
+            return result.to_dict()
+
+        # alarm count
+        count_m = re.search(r'(\d+)\s+alarm', s, re.IGNORECASE)
+        if count_m:
+            result.alarm_count = int(count_m.group(1))
+
+        # alarm entries
+        alarm_re = re.compile(
+            r'(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\s+\S+)\s+'
+            r'(Major|Minor|Warning)\s+'
+            r'(.+?)$',
+            re.IGNORECASE | re.MULTILINE,
         )
 
-        for match in row_re.finditer(text_content):
-            result.entries.append(ServiceSetMemoryEntry(
-                interface   = match.group(1),
-                service_set = match.group(2),
-                bytes_used  = int(match.group(3)),
-            ))
+        for m in alarm_re.finditer(s):
+            result.alarms.append(
+                AlarmEntry(
+                    alarm_time=m.group(1).strip(),
+                    alarm_class=m.group(2).strip(),
+                    description=m.group(3).strip(),
+                )
+            )
+
+        # fallback count
+        if result.alarms and result.alarm_count == 0:
+            result.alarm_count = len(result.alarms)
 
         return result.to_dict()
+
     except Exception as e:
-        return {"error": f"Error parsing {cmd}: {str(e)}"}
+        return {
+            **result.to_dict(),
+            "error": f"Error parsing {cmd}: {str(e)}"
+        }
 # ────────────────────────────────────────────────────────────────────────────
 def parse_show_services_service_sets_summary(text_content: str) -> Dict[str, Any]:
 
@@ -492,41 +574,51 @@ def parse_show_services_flows_brief(text_content: str) -> Dict[str, Any]:
 
     except Exception as e:
         return {"error": f"Error parsing {cmd}: {str(e)}"}
+
 def parse_show_chassis_alarms(text_content: str) -> Dict[str, Any]:
     cmd = "show chassis alarms | no-more"
+    result = ShowChassisAlarms()
+
     try:
-        result = ShowChassisAlarms()
         s = (text_content or "").strip()
 
-        # no alarms or empty output
-        if not s or re.search(r'no alarms currently active', s, re.IGNORECASE):
+        # Handle empty / no alarms cases
+        if not s or re.search(r'(no alarms currently active|0 alarms)', s, re.IGNORECASE):
             return result.to_dict()
 
-        # alarm count line: "2 alarms currently active"
+        # Extract alarm count (if present)
         count_m = re.search(r'(\d+)\s+alarm', s, re.IGNORECASE)
         if count_m:
             result.alarm_count = int(count_m.group(1))
 
-        # each alarm line: "2026-03-19 09:22:07 UTC  Major  Host 1 fxp0 : Ethernet Link Down"
+        # Extract alarm entries
         alarm_re = re.compile(
-            r'(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\s+\S+)\s+'
-            r'(Major|Minor|Warning)\s+'
-            r'(.+)',
-            re.IGNORECASE,
+            r'(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\s+\S+)\s+'  # timestamp
+            r'(Major|Minor|Warning)\s+'                         # severity
+            r'(.+?)$',                                         # description
+            re.IGNORECASE | re.MULTILINE,
         )
+
         for m in alarm_re.finditer(s):
             result.alarms.append(
                 AlarmEntry(
-                    alarm_time  = m.group(1).strip(),
-                    alarm_class = m.group(2).strip(),
-                    description = m.group(3).strip(),
+                    alarm_time=m.group(1).strip(),
+                    alarm_class=m.group(2).strip(),
+                    description=m.group(3).strip(),
                 )
             )
+
+        # Fallback: if count not found but alarms exist
+        if result.alarms and result.alarm_count == 0:
+            result.alarm_count = len(result.alarms)
 
         return result.to_dict()
 
     except Exception as e:
-        return {"error": f"Error parsing {cmd}: {str(e)}"}
+        return {
+            **result.to_dict(),
+            "error": f"Error parsing {cmd}: {str(e)}"
+        }
 # ────────────────────────────────────────────────────────────────────────────────
 def parse_show_system_alarms(text_content: str) -> Dict[str, Any]:
     cmd = "show system alarms | no-more"
