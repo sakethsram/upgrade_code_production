@@ -1272,27 +1272,27 @@ def run_device_pipeline(dev: dict, accepted_vendors: list, models: list):
         logger.info(f"[{device_key}] ── Pre-Checks COMPLETE — starting UPGRADE ...")
 
         # ──--- UPGRADE ──────────────────────────────────────────────────
-        # conn, upgrade_ok = run_upgrade(conn, dev, device_key, accepted_vendors, logger, models)
-        # device_results[device_key]["conn"] = conn
+        conn, upgrade_ok = run_upgrade(conn, dev, device_key, accepted_vendors, logger, models)
+        device_results[device_key]["conn"] = conn
 
-        # if not upgrade_ok:
-        #     msg = f"[{device_key}] UPGRADE FAILED — stopping device"
-        #     logger.error(msg)
-        #     return False
+        if not upgrade_ok:
+            msg = f"[{device_key}] UPGRADE FAILED — stopping device"
+            logger.error(msg)
+            return False
 
-        # # ──--- SMU UPGRADE ──────────────────────────────────────────────────
-        # if vendor == "cisco" and smu_upgrade:
-        #     conn, smu_upgrade = run_smu_upgrade(conn, dev, device_key, accepted_vendors, logger, models)
-        #     device_results[device_key]["conn"] = conn
+        # ──--- SMU UPGRADE ──────────────────────────────────────────────────
+        if vendor == "cisco" and smu_upgrade:
+            conn, smu_upgrade = run_smu_upgrade(conn, dev, device_key, accepted_vendors, logger, models)
+            device_results[device_key]["conn"] = conn
 
-        #     if not smu_upgrade:
-        #       msg = f"[{device_key}]: SMU Upgrade Failed - Stopping device"
-        #       logger.error(msg)
-        #       return False
-        #     logger.info(f"[{device_key}] ── SMU Upgrade Completed")
+            if not smu_upgrade:
+              msg = f"[{device_key}]: SMU Upgrade Failed - Stopping device"
+              logger.error(msg)
+              return False
+            logger.info(f"[{device_key}] ── SMU Upgrade Completed")
 
 
-        # logger.info(f"[{device_key}] ── Upgrade COMPLETE — starting PostCheck")
+        logger.info(f"[{device_key}] ── Upgrade COMPLETE — starting PostCheck")
 
         # ──--- ROLLBACK ──────────────────────────────────────────────────
 #        conn, rollback_ok = run_rollback(conn, dev, device_key, accepted_vendors, logger, models)
@@ -1306,34 +1306,34 @@ def run_device_pipeline(dev: dict, accepted_vendors: list, models: list):
 #                + " | ROLLBACK FAILED"
 #            )
 
-        # # ──--------POST-CHECKS ──────────────────────────────────────────────
-        # postcheck_ok = run_postchecks(conn, dev, device_key, logger, models)
-        # if not postcheck_ok:
-        #     logger.warning(f"[{device_key}] POST-CHECK completed with errors — run_postcheck() failed")
-        # else:
-        #     logger.info(f"[{device_key}] ── POST-CHECK COMPLETE")
+        # ──--------POST-CHECKS ──────────────────────────────────────────────
+        postcheck_ok = run_postchecks(conn, dev, device_key, logger, models)
+        if not postcheck_ok:
+            logger.warning(f"[{device_key}] POST-CHECK completed with errors — run_postcheck() failed")
+        else:
+            logger.info(f"[{device_key}] ── POST-CHECK COMPLETE")
 
-        # # Phase 3 fully returned — Phase 4 now starts.
-        # # pre.execute_show_commands and post.execute_show_commands are both
-        # # fully written into device_results at this point.
+        # Phase 3 fully returned — Phase 4 now starts.
+        # pre.execute_show_commands and post.execute_show_commands are both
+        # fully written into device_results at this point.
 
-        # # ── PHASE 4: DIFF ─────────────────────────────────────────────────────
-        # logger.info(f"[{device_key}] ── Comparison between PreCheck and PostCheck show commands starting ...")
+        # ── PHASE 4: DIFF ─────────────────────────────────────────────────────
+        logger.info(f"[{device_key}] ── Comparison between PreCheck and PostCheck show commands starting ...")
 
-        # try:
-        #     from diff import diff_devices
-        #     diff_input  = {device_key: device_results.get(device_key, {})}
-        #     diff_result = diff_devices(data=diff_input)
-        #     device_results[device_key]["diff"] = diff_result.get(device_key, {})
-        #     changed = len(device_results[device_key]["diff"])
-        #     logger.info(f"[{device_key}] ── Comparison COMPLETE — {changed} command(s) with changes")
+        try:
+            from diff import diff_devices
+            diff_input  = {device_key: device_results.get(device_key, {})}
+            diff_result = diff_devices(data=diff_input)
+            device_results[device_key]["diff"] = diff_result.get(device_key, {})
+            changed = len(device_results[device_key]["diff"])
+            logger.info(f"[{device_key}] ── Comparison COMPLETE — {changed} command(s) with changes")
 
-        # except Exception as e:
-        #     logger.error(f"[{device_key}] Comparison failed — {e}")
-        #     device_results[device_key]["diff"] = {}
+        except Exception as e:
+            logger.error(f"[{device_key}] Comparison failed — {e}")
+            device_results[device_key]["diff"] = {}
 
-        # # Phase 4 fully returned — finally{} now runs
-        # return True
+        # Phase 4 fully returned — finally{} now runs
+        return True
 
     finally:
         try:
