@@ -1,202 +1,302 @@
 (venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test$ p main.py
-2026-04-13 10:41:19,187 - INFO - [THREAD-128047747798720] [10_80_71_56_juniper_mx240] Pipeline started at 2026-04-13 10:41:19.187783
-2026-04-13 10:41:19,188 - INFO - [10_80_71_56_juniper_mx240] ===== PIPELINE STARTED =====
-2026-04-13 10:41:19,188 - INFO - [10_80_71_56_juniper_mx240] Connecting to 10.80.71.56
-2026-04-13 10:41:19,188 - INFO - Connecting to 10.80.71.56 using Netmiko...
-2026-04-13 10:41:19,213 - INFO - Connected (version 2.0, client OpenSSH_7.5)
-2026-04-13 10:41:24,458 - INFO - Authentication (password) successful!
-2026-04-13 10:41:25,256 - INFO - Login successful to 10.80.71.56
-2026-04-13 10:41:25,256 - INFO - [10_80_71_56_juniper_mx240] Connected successfully to 10.80.71.56
-2026-04-13 10:41:25,256 - INFO - [10_80_71_56_juniper_mx240] Connected to 10.80.71.56
-2026-04-13 10:41:25,256 - INFO - [10_80_71_56_juniper_mx240] ── PRE-CHECKS starting...
-2026-04-13 10:41:25,256 - INFO - models: [{'asr9k': ['asr9901', 'asr9006']}, {'ncs': ['ncs5501']}, {'single_re_junos': ['mx204']}, {'double_re_junos': ['mx240', 'mx480']}] and type: <class 'list'>
-2026-04-13 10:41:25,257 - INFO - [THREAD-128047747798720] [10_80_71_56_juniper_mx240] Prechecks started at 2026-04-13 10:41:25.257045
-2026-04-13 10:41:25,257 - INFO - [10_80_71_56_juniper_mx240] : Validating the device input file
-2026-04-13 10:41:25,257 - INFO - [10_80_71_56_juniper_mx240] : Validated Input files
+2026-04-13 14:38:32,106 - INFO - [THREAD-133369182918336] [10_80_71_56_juniper_mx240] Pipeline started at 2026-04-13 14:38:32.106078
+2026-04-13 14:38:32,106 - INFO - [10_80_71_56_juniper_mx240] ===== PIPELINE STARTED =====
+2026-04-13 14:38:32,106 - INFO - [10_80_71_56_juniper_mx240] Connecting to 10.80.71.56
+2026-04-13 14:38:32,106 - INFO - Connecting to 10.80.71.56 using Netmiko...
+2026-04-13 14:38:32,131 - INFO - Connected (version 2.0, client OpenSSH_7.5)
+2026-04-13 14:38:37,382 - INFO - Authentication (password) successful!
+2026-04-13 14:38:38,180 - INFO - Login successful to 10.80.71.56
+2026-04-13 14:38:38,180 - INFO - [10_80_71_56_juniper_mx240] Connected successfully to 10.80.71.56
+2026-04-13 14:38:38,180 - INFO - [10_80_71_56_juniper_mx240] Connected to 10.80.71.56
+2026-04-13 14:38:38,180 - INFO - [10_80_71_56_juniper_mx240] ── PRE-CHECKS starting...
+2026-04-13 14:38:38,181 - INFO - models: [{'asr9k': ['asr9901', 'asr9006']}, {'ncs': ['ncs5501']}, {'single_re_junos': ['mx204']}, {'double_re_junos': ['mx240', 'mx480']}] and type: <class 'list'>
+2026-04-13 14:38:38,181 - INFO - [THREAD-133369182918336] [10_80_71_56_juniper_mx240] Prechecks started at 2026-04-13 14:38:38.181130
+2026-04-13 14:38:38,181 - INFO - [10_80_71_56_juniper_mx240] : Validating the device input file
+2026-04-13 14:38:38,181 - INFO - [10_80_71_56_juniper_mx240] : Validated Input files
 [10_80_71_56_juniper_mx240] Executing show commands
-2026-04-13 10:41:25,257 - INFO - [10_80_71_56_juniper_mx240] Executing show commands
-2026-04-13 10:41:25,261 - INFO - [load_commands] Loaded 39 commands for 'juniper_mx240'
-2026-04-13 10:41:25,261 - INFO - [10_80_71_56_juniper_mx240] collect_outputs — 39 command(s), check_type=pre
-2026-04-13 10:41:25,261 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services sessions | no-more'
+2026-04-13 14:38:38,181 - INFO - [10_80_71_56_juniper_mx240] Executing show commands
+2026-04-13 14:38:38,186 - INFO - [load_commands] Loaded 39 commands for 'juniper_mx240'
+2026-04-13 14:38:38,186 - INFO - [10_80_71_56_juniper_mx240] collect_outputs — 39 command(s), check_type=pre
+2026-04-13 14:38:38,186 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services sessions | no-more'
 [10_80_71_56_juniper_mx240] 'show services sessions | no-more' — 0 chars received
-2026-04-13 10:41:25,750 - INFO - [10_80_71_56_juniper_mx240] 'show services sessions | no-more' collected=False (0 chars)
-2026-04-13 10:41:25,750 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services nat pool brief | no-more'
+2026-04-13 14:38:38,675 - INFO - [10_80_71_56_juniper_mx240] 'show services sessions | no-more' collected=False (0 chars)
+2026-04-13 14:38:38,675 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services nat pool brief | no-more'
 [10_80_71_56_juniper_mx240] 'show services nat pool brief | no-more' — 1667 chars received
-2026-04-13 10:41:26,339 - INFO - [10_80_71_56_juniper_mx240] 'show services nat pool brief | no-more' collected=True (1657 chars)
-2026-04-13 10:41:26,339 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services flows brief | no-more'
+2026-04-13 14:38:39,163 - INFO - [10_80_71_56_juniper_mx240] 'show services nat pool brief | no-more' collected=True (1657 chars)
+2026-04-13 14:38:39,163 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services flows brief | no-more'
 [10_80_71_56_juniper_mx240] 'show services flows brief | no-more' — 0 chars received
-2026-04-13 10:41:26,827 - INFO - [10_80_71_56_juniper_mx240] 'show services flows brief | no-more' collected=False (0 chars)
-2026-04-13 10:41:26,827 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets cpu-usage | no-more'
+2026-04-13 14:38:39,651 - INFO - [10_80_71_56_juniper_mx240] 'show services flows brief | no-more' collected=False (0 chars)
+2026-04-13 14:38:39,651 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets cpu-usage | no-more'
 [10_80_71_56_juniper_mx240] 'show services service-sets cpu-usage | no-more' — 549 chars received
-2026-04-13 10:41:27,366 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets cpu-usage | no-more' collected=True (477 chars)
-2026-04-13 10:41:27,366 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets memory-usage | no-more'
+2026-04-13 14:38:40,139 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets cpu-usage | no-more' collected=True (477 chars)
+2026-04-13 14:38:40,139 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets memory-usage | no-more'
 [10_80_71_56_juniper_mx240] 'show services service-sets memory-usage | no-more' — 244 chars received
-2026-04-13 10:41:27,980 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets memory-usage | no-more' collected=True (243 chars)
-2026-04-13 10:41:27,980 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets summary | no-more'
+2026-04-13 14:38:40,728 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets memory-usage | no-more' collected=True (243 chars)
+2026-04-13 14:38:40,728 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets summary | no-more'
 [10_80_71_56_juniper_mx240] 'show services service-sets summary | no-more' — 230 chars received
-2026-04-13 10:41:28,897 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets summary | no-more' collected=True (216 chars)
-2026-04-13 10:41:28,897 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis routing-engine | no-more'
-[10_80_71_56_juniper_mx240] 'show chassis routing-engine | no-more' — 2731 chars received
-2026-04-13 10:41:29,385 - INFO - [10_80_71_56_juniper_mx240] 'show chassis routing-engine | no-more' collected=True (2730 chars)
-2026-04-13 10:41:29,385 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show arp no-resolve | no-more'
+2026-04-13 14:38:41,443 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets summary | no-more' collected=True (216 chars)
+2026-04-13 14:38:41,443 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis routing-engine | no-more'
+[10_80_71_56_juniper_mx240] 'show chassis routing-engine | no-more' — 2724 chars received
+2026-04-13 14:38:41,931 - INFO - [10_80_71_56_juniper_mx240] 'show chassis routing-engine | no-more' collected=True (2723 chars)
+2026-04-13 14:38:41,932 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show arp no-resolve | no-more'
 [10_80_71_56_juniper_mx240] 'show arp no-resolve | no-more' — 1270 chars received
-2026-04-13 10:41:29,873 - INFO - [10_80_71_56_juniper_mx240] 'show arp no-resolve | no-more' collected=True (1269 chars)
-2026-04-13 10:41:29,873 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show lldp neighbors | no-more'
+2026-04-13 14:38:42,419 - INFO - [10_80_71_56_juniper_mx240] 'show arp no-resolve | no-more' collected=True (1269 chars)
+2026-04-13 14:38:42,420 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show lldp neighbors | no-more'
 [10_80_71_56_juniper_mx240] 'show lldp neighbors | no-more' — 1821 chars received
-2026-04-13 10:41:30,361 - INFO - [10_80_71_56_juniper_mx240] 'show lldp neighbors | no-more' collected=True (1808 chars)
-2026-04-13 10:41:30,361 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system uptime | no-more'
+2026-04-13 14:38:42,908 - INFO - [10_80_71_56_juniper_mx240] 'show lldp neighbors | no-more' collected=True (1808 chars)
+2026-04-13 14:38:42,908 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system uptime | no-more'
 [10_80_71_56_juniper_mx240] 'show system uptime | no-more' — 300 chars received
-2026-04-13 10:41:30,874 - INFO - [10_80_71_56_juniper_mx240] 'show system uptime | no-more' collected=True (299 chars)
-2026-04-13 10:41:30,874 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show ntp associations no-resolve | no-more'
+2026-04-13 14:38:43,421 - INFO - [10_80_71_56_juniper_mx240] 'show system uptime | no-more' collected=True (299 chars)
+2026-04-13 14:38:43,422 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show ntp associations no-resolve | no-more'
 [10_80_71_56_juniper_mx240] 'show ntp associations no-resolve | no-more' — 353 chars received
-2026-04-13 10:41:31,362 - INFO - [10_80_71_56_juniper_mx240] 'show ntp associations no-resolve | no-more' collected=True (347 chars)
-2026-04-13 10:41:31,362 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis hardware | no-more'
+2026-04-13 14:38:43,909 - INFO - [10_80_71_56_juniper_mx240] 'show ntp associations no-resolve | no-more' collected=True (347 chars)
+2026-04-13 14:38:43,909 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis hardware | no-more'
 [10_80_71_56_juniper_mx240] 'show chassis hardware | no-more' — 3359 chars received
-2026-04-13 10:41:32,102 - INFO - [10_80_71_56_juniper_mx240] 'show chassis hardware | no-more' collected=True (3358 chars)
-2026-04-13 10:41:32,102 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis fpc detail | no-more'
-[10_80_71_56_juniper_mx240] 'show chassis fpc detail | no-more' — 1313 chars received
-2026-04-13 10:41:32,590 - INFO - [10_80_71_56_juniper_mx240] 'show chassis fpc detail | no-more' collected=True (1312 chars)
-2026-04-13 10:41:32,590 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis alarms | no-more'
+2026-04-13 14:38:44,398 - INFO - [10_80_71_56_juniper_mx240] 'show chassis hardware | no-more' collected=True (3358 chars)
+2026-04-13 14:38:44,398 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis fpc detail | no-more'
+[10_80_71_56_juniper_mx240] 'show chassis fpc detail | no-more' — 1315 chars received
+2026-04-13 14:38:45,364 - INFO - [10_80_71_56_juniper_mx240] 'show chassis fpc detail | no-more' collected=True (1314 chars)
+2026-04-13 14:38:45,365 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis alarms | no-more'
 [10_80_71_56_juniper_mx240] 'show chassis alarms | no-more' — 119 chars received
-2026-04-13 10:41:33,078 - INFO - [10_80_71_56_juniper_mx240] 'show chassis alarms | no-more' collected=True (118 chars)
-2026-04-13 10:41:33,078 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system alarms | no-more'
+2026-04-13 14:38:45,852 - INFO - [10_80_71_56_juniper_mx240] 'show chassis alarms | no-more' collected=True (118 chars)
+2026-04-13 14:38:45,852 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system alarms | no-more'
 [10_80_71_56_juniper_mx240] 'show system alarms | no-more' — 119 chars received
-2026-04-13 10:41:33,566 - INFO - [10_80_71_56_juniper_mx240] 'show system alarms | no-more' collected=True (118 chars)
-2026-04-13 10:41:33,566 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis environment | no-more'
+2026-04-13 14:38:46,340 - INFO - [10_80_71_56_juniper_mx240] 'show system alarms | no-more' collected=True (118 chars)
+2026-04-13 14:38:46,341 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis environment | no-more'
 [10_80_71_56_juniper_mx240] 'show chassis environment | no-more' — 5297 chars received
-2026-04-13 10:41:34,105 - INFO - [10_80_71_56_juniper_mx240] 'show chassis environment | no-more' collected=True (5296 chars)
-2026-04-13 10:41:34,105 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system resource-monitor fpc | no-more'
+2026-04-13 14:38:46,955 - INFO - [10_80_71_56_juniper_mx240] 'show chassis environment | no-more' collected=True (5296 chars)
+2026-04-13 14:38:46,955 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system resource-monitor fpc | no-more'
 [10_80_71_56_juniper_mx240] 'show system resource-monitor fpc | no-more' — 673 chars received
-2026-04-13 10:41:34,593 - INFO - [10_80_71_56_juniper_mx240] 'show system resource-monitor fpc | no-more' collected=True (672 chars)
-2026-04-13 10:41:34,593 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system processes extensive | match rpd | no-more'
+2026-04-13 14:38:47,443 - INFO - [10_80_71_56_juniper_mx240] 'show system resource-monitor fpc | no-more' collected=True (672 chars)
+2026-04-13 14:38:47,444 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system processes extensive | match rpd | no-more'
 [10_80_71_56_juniper_mx240] 'show system processes extensive | match rpd | no-more' — 2404 chars received
-2026-04-13 10:41:35,081 - INFO - [10_80_71_56_juniper_mx240] 'show system processes extensive | match rpd | no-more' collected=True (2403 chars)
-2026-04-13 10:41:35,081 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show interface terse | no-more'
+2026-04-13 14:38:47,932 - INFO - [10_80_71_56_juniper_mx240] 'show system processes extensive | match rpd | no-more' collected=True (2403 chars)
+2026-04-13 14:38:47,932 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show interface terse | no-more'
 [10_80_71_56_juniper_mx240] 'show interface terse | no-more' — 15636 chars received
-2026-04-13 10:41:35,754 - INFO - [10_80_71_56_juniper_mx240] 'show interface terse | no-more' collected=True (15635 chars)
-2026-04-13 10:41:35,754 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show oam ethernet connectivity-fault-management interfaces extensive | no-more'
+2026-04-13 14:38:48,630 - INFO - [10_80_71_56_juniper_mx240] 'show interface terse | no-more' collected=True (15635 chars)
+2026-04-13 14:38:48,630 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show oam ethernet connectivity-fault-management interfaces extensive | no-more'
 [10_80_71_56_juniper_mx240] 'show oam ethernet connectivity-fault-management interfaces extensive | no-more' — 101 chars received
-2026-04-13 10:41:36,375 - INFO - [10_80_71_56_juniper_mx240] 'show oam ethernet connectivity-fault-management interfaces extensive | no-more' collected=True (100 chars)
-2026-04-13 10:41:36,376 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show vrrp summary | no-more'
+2026-04-13 14:38:49,241 - INFO - [10_80_71_56_juniper_mx240] 'show oam ethernet connectivity-fault-management interfaces extensive | no-more' collected=True (100 chars)
+2026-04-13 14:38:49,241 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show vrrp summary | no-more'
 [10_80_71_56_juniper_mx240] 'show vrrp summary | no-more' — 1642 chars received
-2026-04-13 10:41:36,864 - INFO - [10_80_71_56_juniper_mx240] 'show vrrp summary | no-more' collected=True (1632 chars)
-2026-04-13 10:41:36,864 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bfd session | no-more'
+2026-04-13 14:38:49,729 - INFO - [10_80_71_56_juniper_mx240] 'show vrrp summary | no-more' collected=True (1632 chars)
+2026-04-13 14:38:49,729 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bfd session | no-more'
 [10_80_71_56_juniper_mx240] 'show bfd session | no-more' — 473 chars received
-2026-04-13 10:41:37,352 - INFO - [10_80_71_56_juniper_mx240] 'show bfd session | no-more' collected=True (422 chars)
-2026-04-13 10:41:37,352 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp neighbor | no-more'
+2026-04-13 14:38:50,217 - INFO - [10_80_71_56_juniper_mx240] 'show bfd session | no-more' collected=True (422 chars)
+2026-04-13 14:38:50,217 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp neighbor | no-more'
 [10_80_71_56_juniper_mx240] 'show rsvp neighbor | no-more' — 221 chars received
-2026-04-13 10:41:37,840 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp neighbor | no-more' collected=True (220 chars)
-2026-04-13 10:41:37,840 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp session | no-more'
+2026-04-13 14:38:50,705 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp neighbor | no-more' collected=True (220 chars)
+2026-04-13 14:38:50,705 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp session | no-more'
 [10_80_71_56_juniper_mx240] 'show rsvp session | no-more' — 704 chars received
-2026-04-13 10:41:38,328 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp session | no-more' collected=True (703 chars)
-2026-04-13 10:41:38,328 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table inet.0 | no-more'
+2026-04-13 14:38:51,193 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp session | no-more' collected=True (703 chars)
+2026-04-13 14:38:51,193 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table inet.0 | no-more'
 [10_80_71_56_juniper_mx240] 'show route table inet.0 | no-more' — 9482 chars received
-2026-04-13 10:41:38,893 - INFO - [10_80_71_56_juniper_mx240] 'show route table inet.0 | no-more' collected=True (9480 chars)
-2026-04-13 10:41:38,893 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table inet.3 | no-more'
+2026-04-13 14:38:51,758 - INFO - [10_80_71_56_juniper_mx240] 'show route table inet.0 | no-more' collected=True (9480 chars)
+2026-04-13 14:38:51,758 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table inet.3 | no-more'
 [10_80_71_56_juniper_mx240] 'show route table inet.3 | no-more' — 2027 chars received
-2026-04-13 10:41:39,432 - INFO - [10_80_71_56_juniper_mx240] 'show route table inet.3 | no-more' collected=True (2025 chars)
-2026-04-13 10:41:39,432 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table mpls.0 | no-more'
+2026-04-13 14:38:52,297 - INFO - [10_80_71_56_juniper_mx240] 'show route table inet.3 | no-more' collected=True (2025 chars)
+2026-04-13 14:38:52,298 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table mpls.0 | no-more'
 [10_80_71_56_juniper_mx240] 'show route table mpls.0 | no-more' — 4532 chars received
-2026-04-13 10:41:39,972 - INFO - [10_80_71_56_juniper_mx240] 'show route table mpls.0 | no-more' collected=True (4530 chars)
-2026-04-13 10:41:39,972 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls interface | no-more'
+2026-04-13 14:38:52,837 - INFO - [10_80_71_56_juniper_mx240] 'show route table mpls.0 | no-more' collected=True (4530 chars)
+2026-04-13 14:38:52,838 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls interface | no-more'
 [10_80_71_56_juniper_mx240] 'show mpls interface | no-more' — 656 chars received
-2026-04-13 10:41:40,460 - INFO - [10_80_71_56_juniper_mx240] 'show mpls interface | no-more' collected=True (655 chars)
-2026-04-13 10:41:40,460 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp | no-more'
+2026-04-13 14:38:53,325 - INFO - [10_80_71_56_juniper_mx240] 'show mpls interface | no-more' collected=True (655 chars)
+2026-04-13 14:38:53,326 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp | no-more'
 [10_80_71_56_juniper_mx240] 'show mpls lsp | no-more' — 926 chars received
-2026-04-13 10:41:40,948 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp | no-more' collected=True (925 chars)
-2026-04-13 10:41:40,949 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp p2mp | no-more'
+2026-04-13 14:38:53,813 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp | no-more' collected=True (925 chars)
+2026-04-13 14:38:53,814 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp p2mp | no-more'
 [10_80_71_56_juniper_mx240] 'show mpls lsp p2mp | no-more' — 681 chars received
-2026-04-13 10:41:41,437 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp p2mp | no-more' collected=True (680 chars)
-2026-04-13 10:41:41,437 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bgp summary | no-more'
-[10_80_71_56_juniper_mx240] 'show bgp summary | no-more' — 3357 chars received
-2026-04-13 10:41:41,925 - INFO - [10_80_71_56_juniper_mx240] 'show bgp summary | no-more' collected=True (3356 chars)
-2026-04-13 10:41:41,925 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bgp neighbor | no-more'
-[10_80_71_56_juniper_mx240] 'show bgp neighbor | no-more' — 26033 chars received
-2026-04-13 10:41:42,440 - INFO - [10_80_71_56_juniper_mx240] 'show bgp neighbor | no-more' collected=True (26032 chars)
-2026-04-13 10:41:42,440 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show isis adjacency extensive | no-more'
+2026-04-13 14:38:54,302 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp p2mp | no-more' collected=True (680 chars)
+2026-04-13 14:38:54,302 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bgp summary | no-more'
+[10_80_71_56_juniper_mx240] 'show bgp summary | no-more' — 3355 chars received
+2026-04-13 14:38:54,790 - INFO - [10_80_71_56_juniper_mx240] 'show bgp summary | no-more' collected=True (3354 chars)
+2026-04-13 14:38:54,790 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bgp neighbor | no-more'
+[10_80_71_56_juniper_mx240] 'show bgp neighbor | no-more' — 26356 chars received
+2026-04-13 14:38:55,305 - INFO - [10_80_71_56_juniper_mx240] 'show bgp neighbor | no-more' collected=True (26355 chars)
+2026-04-13 14:38:55,305 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show isis adjacency extensive | no-more'
 [10_80_71_56_juniper_mx240] 'show isis adjacency extensive | no-more' — 544 chars received
-2026-04-13 10:41:42,928 - INFO - [10_80_71_56_juniper_mx240] 'show isis adjacency extensive | no-more' collected=True (535 chars)
-2026-04-13 10:41:42,928 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route summary | no-more'
+2026-04-13 14:38:55,793 - INFO - [10_80_71_56_juniper_mx240] 'show isis adjacency extensive | no-more' collected=True (535 chars)
+2026-04-13 14:38:55,793 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route summary | no-more'
 [10_80_71_56_juniper_mx240] 'show route summary | no-more' — 9261 chars received
-2026-04-13 10:41:43,416 - INFO - [10_80_71_56_juniper_mx240] 'show route summary | no-more' collected=True (9260 chars)
-2026-04-13 10:41:43,417 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp session | match DN | no-more'
+2026-04-13 14:38:56,282 - INFO - [10_80_71_56_juniper_mx240] 'show route summary | no-more' collected=True (9260 chars)
+2026-04-13 14:38:56,282 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp session | match DN | no-more'
 [10_80_71_56_juniper_mx240] 'show rsvp session | match DN | no-more' — 0 chars received
-2026-04-13 10:41:43,904 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp session | match DN | no-more' collected=False (0 chars)
-2026-04-13 10:41:43,905 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp unidirectional | match Dn | no-more'
+2026-04-13 14:38:56,770 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp session | match DN | no-more' collected=False (0 chars)
+2026-04-13 14:38:56,770 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp unidirectional | match Dn | no-more'
 [10_80_71_56_juniper_mx240] 'show mpls lsp unidirectional | match Dn | no-more' — 230 chars received
-2026-04-13 10:41:44,393 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp unidirectional | match Dn | no-more' collected=True (229 chars)
-2026-04-13 10:41:44,393 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show ldp neighbor | no-more'
+2026-04-13 14:38:57,258 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp unidirectional | match Dn | no-more' collected=True (229 chars)
+2026-04-13 14:38:57,258 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show ldp neighbor | no-more'
 [10_80_71_56_juniper_mx240] 'show ldp neighbor | no-more' — 384 chars received
-2026-04-13 10:41:44,880 - INFO - [10_80_71_56_juniper_mx240] 'show ldp neighbor | no-more' collected=True (383 chars)
-2026-04-13 10:41:44,881 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show connections | no-more'
+2026-04-13 14:38:57,746 - INFO - [10_80_71_56_juniper_mx240] 'show ldp neighbor | no-more' collected=True (383 chars)
+2026-04-13 14:38:57,746 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show connections | no-more'
 [10_80_71_56_juniper_mx240] 'show connections | no-more' — 31 chars received
-2026-04-13 10:41:45,368 - INFO - [10_80_71_56_juniper_mx240] 'show connections | no-more' collected=True (30 chars)
-2026-04-13 10:41:45,368 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show log messages | last 200 | no-more'
-[10_80_71_56_juniper_mx240] 'show log messages | last 200 | no-more' — 28817 chars received
-2026-04-13 10:41:45,908 - INFO - [10_80_71_56_juniper_mx240] 'show log messages | last 200 | no-more' collected=True (28816 chars)
-2026-04-13 10:41:45,908 - INFO - [10_80_71_56_juniper_mx240] collect_outputs done — 39 entries stored
-2026-04-13 10:41:45,915 - ERROR - [10_80_71_56_juniper_mx240] parser failed for 'show vrrp summary | no-more':
+2026-04-13 14:38:58,234 - INFO - [10_80_71_56_juniper_mx240] 'show connections | no-more' collected=True (30 chars)
+2026-04-13 14:38:58,235 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show log messages | last 200 | no-more'
+[10_80_71_56_juniper_mx240] 'show log messages | last 200 | no-more' — 27995 chars received
+2026-04-13 14:38:58,724 - INFO - [10_80_71_56_juniper_mx240] 'show log messages | last 200 | no-more' collected=True (27994 chars)
+2026-04-13 14:38:58,724 - INFO - [10_80_71_56_juniper_mx240] collect_outputs done — 39 entries stored
+2026-04-13 14:38:58,727 - ERROR - [10_80_71_56_juniper_mx240] parser returned empty result 'show services service-sets memory-usage | no-more':
 NoneType: None
 
-2026-04-13 10:41:45,924 - INFO - [10_80_71_56_juniper_mx240] execute_show_commands OK
-2026-04-13 10:41:45,924 - INFO - [10_80_71_56_juniper_mx240] get_show_version — phase=pre, sending 'show version'
-2026-04-13 10:41:46,691 - INFO - [10_80_71_56_juniper_mx240] [pre] show_version parsed — hostname=EFFPER02  model=mx240  version=23.4R2-S3.9
-2026-04-13 10:41:46,691 - INFO - [10_80_71_56_juniper_mx240] PRE — dual-RE model (mx240): preBackupDiskDualRE()
-2026-04-13 10:41:46,691 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE  — vendor: juniper
-2026-04-13 10:41:46,692 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — running request system snapshot
-2026-04-13 10:41:46,980 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — snapshot output:
-NOTICE: Snapshot snap.20260413.051415 created successfully
+2026-04-13 14:38:58,731 - ERROR - [10_80_71_56_juniper_mx240] parser failed for 'show vrrp summary | no-more':
+NoneType: None
 
-2026-04-13 10:41:46,981 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — Gate A snapshot name: snap.20260413.051415
-2026-04-13 10:41:46,981 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — running show system snapshot
-2026-04-13 10:41:47,118 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — show system snapshot output:
+2026-04-13 14:38:58,741 - INFO - [10_80_71_56_juniper_mx240] execute_show_commands OK
+2026-04-13 14:38:58,741 - INFO - [10_80_71_56_juniper_mx240] get_show_version — phase=pre, sending 'show version'
+2026-04-13 14:38:59,507 - INFO - [10_80_71_56_juniper_mx240] [pre] show_version parsed — hostname=EFFPER02  model=mx240  version=23.4R2-S3.9
+2026-04-13 14:38:59,507 - INFO - [10_80_71_56_juniper_mx240] PRE — dual-RE model (mx240): preBackupDiskDualRE()
+2026-04-13 14:38:59,508 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE  — vendor: juniper
+2026-04-13 14:38:59,508 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — running request system snapshot
+2026-04-13 14:38:59,772 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — Gate A snapshot name: snap.20260413.091127
+2026-04-13 14:38:59,772 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — running show system snapshot
+2026-04-13 14:38:59,936 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — both gates passed: snapshot_name=snap.20260413.040754, creation_date=Apr 13 04:07:55 2026, junos_version=23.4R2-S3.9
+2026-04-13 14:38:59,936 - INFO - [10_80_71_56_juniper_mx240]  backup disk OK
+2026-04-13 14:38:59,936 - INFO - [10_80_71_56_juniper_mx240] preBackup — vendor: juniper
+2026-04-13 14:39:02,580 - INFO - [10_80_71_56_juniper_mx240] preBackup — config saved, SCP to remote server
+2026-04-13 14:39:02,580 - INFO - [10_80_71_56_juniper_mx240] scpFile — /var/home/lab/juniper_mx240_2026-04-13_14-38-59 → colt@10.80.109.133:/var/tmp/juniper_mx240_2026-04-13_14-38-59
+2026-04-13 14:39:32,142 - INFO - [10_80_71_56_juniper_mx240] scpFile — transfer complete
+2026-04-13 14:39:32,142 - INFO - [10_80_71_56_juniper_mx240] preBackup — waiting for command to complete: request support information | save /var/log/juniper_mx240_2026-04-13_14-38-59.txt
+[preBackup] sending: request support information | save /var/log/juniper_mx240_2026-04-13_14-38-59.txt
+2026-04-13 14:40:37,901 - INFO - [10_80_71_56_juniper_mx240] preBackup — waiting for command to complete: file archive compress source /var/log/* destination /var/tmp/juniper_mx240_2026-04-13_14-38-59.tgz
+[preBackup] sending: file archive compress source /var/log/* destination /var/tmp/juniper_mx240_2026-04-13_14-38-59.tgz
+2026-04-13 14:40:47,112 - INFO - [10_80_71_56_juniper_mx240] preBackup — logs archived, SCP to remote server
+2026-04-13 14:40:47,112 - INFO - [10_80_71_56_juniper_mx240] scpFile — /var/tmp/juniper_mx240_2026-04-13_14-38-59.tgz → colt@10.80.109.133:/var/tmp/juniper_mx240_2026-04-13_14-38-59.tgz
+2026-04-13 14:41:20,975 - INFO - [10_80_71_56_juniper_mx240] scpFile — transfer complete
+2026-04-13 14:41:20,975 - INFO - [10_80_71_56_juniper_mx240] backup config OK
+2026-04-13 14:41:20,975 - INFO - [merge] device_key='10_80_71_56_juniper_mx240' merged into device_results
+2026-04-13 14:41:20,976 - INFO - [THREAD-133369182918336] [10_80_71_56_juniper_mx240] All pre-checks passed
+2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] ── Pre-Checks COMPLETE — starting UPGRADE ...
+2026-04-13 14:41:20,976 - INFO - [THREAD-133369182918336] [10_80_71_56_juniper_mx240] Upgrade started at 2026-04-13 14:41:20.976233
+2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] run_upgrade — host=10.80.71.56, vendor=juniper, model=mx240, curr_os=23.4R2-S3.9, total_hops=1
+2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] Running Upgrade...
+2026-04-13 14:41:20,976 - DEBUG - [10_80_71_56_juniper_mx240] Rollback chain seeded — image=junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz, os=23.4R2-S3.9
+2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] ── Hop [0/0] ── image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, expected_os=22.2R3-S2.8
+2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] Hop [0] — image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, expected_os=22.2R3-S2.8
+[10_80_71_56_juniper_mx240] Hop [0] upgrading with junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
+2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] dual-RE model (mx240): checkStorageDualRE()
+2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — vendor: juniper
+2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — querying RE0
+2026-04-13 14:41:21,014 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — RE0 available: 4.10 GB
+2026-04-13 14:41:21,014 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — querying RE1
+2026-04-13 14:41:21,253 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — RE1 available: 4.70 GB
+2026-04-13 14:41:21,253 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — both REs OK: {'status': 'ok', 'exception': '', 'sufficient': True, 're0_space': 4.1, 're1_space': 4.7, 'remark': 'RE0: 4.1GB  RE1: 4.7GB — both above 2GB threshold'}
+2026-04-13 14:41:21,253 - INFO - [juniper_mx240] checkStorage — vendor: juniper
+2026-04-13 14:41:21,289 - INFO - [10_80_71_56_juniper_mx240] checkStorage — 4.10 GB available
+2026-04-13 14:41:21,290 - INFO - [juniper_mx240] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True, 'avail_space_gb': 4.1}
+2026-04-13 14:41:21,290 - INFO - [10_80_71_56_juniper_mx240] storage OK
+2026-04-13 14:41:21,290 - INFO - [10_80_71_56_juniper_mx240] transferImage — junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, vendor: juniper
+2026-04-13 14:41:21,290 - INFO - [10_80_71_56_juniper_mx240] scpFile — colt@10.80.109.133:/home/colt/backup/JUNOS/MX240/junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz → /var/tmp/
+2026-04-13 14:47:58,244 - INFO - [10_80_71_56_juniper_mx240] scpFile — transfer complete
+2026-04-13 14:47:58,244 - INFO - [10_80_71_56_juniper_mx240] transferImage — junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz transferred to /var/tmp/
+2026-04-13 14:47:58,244 - INFO - [10_80_71_56_juniper_mx240]  transfer image OK
+2026-04-13 14:47:58,245 - INFO - [10_80_71_56_juniper_mx240] verifyChecksum — image: junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, vendor: juniper
+2026-04-13 14:48:16,124 - INFO - [10_80_71_56_juniper_mx240] verifyChecksum — match: OK
+ checksum_result   = {'image': 'junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz', 'status': 'ok', 'exception': '', 'expected': 'b4a3f7da81ca94831eac6d06f5644140', 'computed': 'b4a3f7da81ca94831eac6d06f5644140', 'match': True}
+ image [0] checksum OK — junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
+2026-04-13 14:48:16,124 - INFO - [10_80_71_56_juniper_mx240]  [0] checksum OK — junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
+2026-04-13 14:48:16,124 - INFO - [10_80_71_56_juniper_mx240] dual-RE model (mx240): checkStorageDualRE()
+2026-04-13 14:48:16,125 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — vendor: juniper
+2026-04-13 14:48:16,125 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — querying RE0
+2026-04-13 14:48:16,161 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — RE0 available: 4.10 GB
+2026-04-13 14:48:16,161 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — querying RE1
+2026-04-13 14:48:16,399 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — RE1 available: 4.70 GB
+2026-04-13 14:48:16,400 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — both REs OK: {'status': 'ok', 'exception': '', 'sufficient': True, 're0_space': 4.1, 're1_space': 4.7, 'remark': 'RE0: 4.1GB  RE1: 4.7GB — both above 2GB threshold'}
+2026-04-13 14:48:16,400 - INFO - [juniper_mx240] checkStorage — vendor: juniper
+2026-04-13 14:48:16,436 - INFO - [10_80_71_56_juniper_mx240] checkStorage — 4.10 GB available
+2026-04-13 14:48:16,436 - INFO - [juniper_mx240] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True, 'avail_space_gb': 4.1}
+2026-04-13 14:48:16,436 - INFO - [10_80_71_56_juniper_mx240] storage OK
+2026-04-13 14:48:16,437 - INFO - [10_80_71_56_juniper_mx240] using dual-RE upgrade path
+2026-04-13 14:48:16,437 - INFO - [10_80_71_56_juniper_mx240] PRE-FLIGHT — Checking chassis routing-engine state
+2026-04-13 14:48:16,474 - INFO - [10_80_71_56_juniper_mx240] PRE-FLIGHT chassis output:
+Routing Engine status:
+  Slot 0:
+    Current state                  Master
+    Election priority              Master (default)
+    Temperature                 43 degrees C / 109 degrees F
+    CPU temperature             68 degrees C / 154 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           5 percent
+    5 sec CPU utilization:
+      User                      17 percent
+      Background                 0 percent
+      Kernel                    10 percent
+      Interrupt                  0 percent
+      Idle                      73 percent
+    1 min CPU utilization:
+      User                       7 percent
+      Background                 0 percent
+      Kernel                     6 percent
+      Interrupt                  4 percent
+      Idle                      84 percent
+    5 min CPU utilization:
+      User                       4 percent
+      Background                 0 percent
+      Kernel                     5 percent
+      Interrupt                  4 percent
+      Idle                      88 percent
+    15 min CPU utilization:
+      User                       2 percent
+      Background                 0 percent
+      Kernel                     3 percent
+      Interrupt                  3 percent
+      Idle                      92 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7380
+    Start time                     2026-04-13 03:59:38 UTC
+    Uptime                         5 hours, 21 minutes, 5 seconds
+    Last reboot reason             0x2000:hypervisor reboot
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.89       0.71       0.54
+Routing Engine status:
+  Slot 1:
+    Current state                  Backup
+    Election priority              Backup (default)
+    Temperature                 40 degrees C / 104 degrees F
+    CPU temperature             56 degrees C / 132 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           4 percent
+    5 sec CPU utilization:
+      User                       0 percent
+      Background                 0 percent
+      Kernel                     0 percent
+      Interrupt                  0 percent
+      Idle                     100 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7430
+    Start time                     2026-04-13 08:24:30 UTC
+    Uptime                         56 minutes, 4 seconds
+    Last reboot reason             0x2000:hypervisor reboot
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.22       0.19       0.17
 
-Non-recovery snapshots:
-Snapshot snap.20260413.040754:
-Location: /packages/sets/snap.20260413.040754
-Configuration: yes
-Creation date: Apr 13 04:07:55 2026
-Junos version: 23.4R2-S3.9
-
-Snapshot snap.20260413.051415:
-Location: /packages/sets/snap.20260413.051415
-Configuration: yes
-Creation date: Apr 13 05:14:15 2026
-Junos version: 23.4R2-S3.9
-
-Total non-recovery snapshots: 2
-
-Recovery Snapshots:
-No recovery snapshots available on the OAM volume
-
-2026-04-13 10:41:47,119 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — both gates passed: snapshot_name=snap.20260413.040754, creation_date=Apr 13 04:07:55 2026, junos_version=23.4R2-S3.9
-2026-04-13 10:41:47,120 - INFO - [10_80_71_56_juniper_mx240]  backup disk OK
-2026-04-13 10:41:47,120 - INFO - [10_80_71_56_juniper_mx240] preBackup — vendor: juniper
-2026-04-13 10:41:49,763 - INFO - [10_80_71_56_juniper_mx240] preBackup — config saved, SCP to remote server
-2026-04-13 10:41:49,763 - INFO - [10_80_71_56_juniper_mx240] scpFile — /var/home/lab/juniper_mx240_2026-04-13_10-41-47 → colt@10.80.109.133:/var/tmp/juniper_mx240_2026-04-13_10-41-47
-2026-04-13 10:42:19,324 - INFO - [10_80_71_56_juniper_mx240] scpFile — transfer complete
-2026-04-13 10:42:19,325 - INFO - [10_80_71_56_juniper_mx240] preBackup — waiting for command to complete: request support information | save /var/log/juniper_mx240_2026-04-13_10-41-47.txt
-[preBackup] sending: request support information | save /var/log/juniper_mx240_2026-04-13_10-41-47.txt
-2026-04-13 10:43:33,248 - INFO - [10_80_71_56_juniper_mx240] preBackup — waiting for command to complete: file archive compress source /var/log/* destination /var/tmp/juniper_mx240_2026-04-13_10-41-47.tgz
-[preBackup] sending: file archive compress source /var/log/* destination /var/tmp/juniper_mx240_2026-04-13_10-41-47.tgz
-2026-04-13 10:43:40,492 - INFO - [10_80_71_56_juniper_mx240] preBackup — logs archived, SCP to remote server
-2026-04-13 10:43:40,492 - INFO - [10_80_71_56_juniper_mx240] scpFile — /var/tmp/juniper_mx240_2026-04-13_10-41-47.tgz → colt@10.80.109.133:/var/tmp/juniper_mx240_2026-04-13_10-41-47.tgz
-2026-04-13 10:44:12,255 - INFO - [10_80_71_56_juniper_mx240] scpFile — transfer complete
-2026-04-13 10:44:12,255 - INFO - [10_80_71_56_juniper_mx240] backup config OK
-2026-04-13 10:44:12,255 - INFO - [merge] device_key='10_80_71_56_juniper_mx240' merged into device_results
-2026-04-13 10:44:12,256 - INFO - [THREAD-128047747798720] [10_80_71_56_juniper_mx240] All pre-checks passed
-2026-04-13 10:44:12,256 - INFO - [10_80_71_56_juniper_mx240] ── Pre-Checks COMPLETE — starting UPGRADE ...
-[EXPORT] Summary JSON saved -> /home/colt/Documents/saketh_test/config_jsons/10_80_71_56_juniper_mx240_2026-04-13_10-44-12.json
+2026-04-13 14:48:16,475 - INFO - [10_80_71_56_juniper_mx240] PRE-FLIGHT OK — RE0=Master, RE1=Backup
+2026-04-13 14:48:17,948 - INFO - [10_80_71_56_juniper_mx240] Pre-upgrade RE versions: None
+2026-04-13 14:48:17,948 - INFO - [10_80_71_56_juniper_mx240] ════════ HOP [0] START ════════ image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, expected_os=22.2R3-S2.8
+2026-04-13 14:48:17,948 - INFO - [10_80_71_56_juniper_mx240] ┌─ HOP [0] ACT 1 START @ 14:48:17 ─────────────────────
+2026-04-13 14:48:17,949 - INFO - [10_80_71_56_juniper_mx240] │  Target  : RE1 (Backup)
+2026-04-13 14:48:17,949 - INFO - [10_80_71_56_juniper_mx240] │  Image   : junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
+2026-04-13 14:48:17,949 - INFO - [10_80_71_56_juniper_mx240] │  Action  : install → reboot RE1 (10 min wait) → verify version
+2026-04-13 14:48:17,949 - INFO - [10_80_71_56_juniper_mx240] │  Expect  : RE0=Master/23.4R2-S3.9  RE1=Backup/22.2R3-S2.8
+2026-04-13 14:48:17,949 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] Starting — target_re=re1, hop_index=0, target_image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, expected_os=22.2R3-S2.8
+2026-04-13 14:48:19,320 - ERROR - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] Unhandled exception: 'NoneType' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/home/colt/Documents/saketh_test/upgrade.py", line 952, in imageUpgradeDualRE
+    if versions.get(target_re) == expected_os:
+       ^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'get'
+2026-04-13 14:48:19,322 - ERROR - [10_80_71_56_juniper_mx240] └─ ACT 1 FAILED  ── HOP [0] ACT 1 FAILED — RE1 install/reboot/verify did not complete successfully (image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, expected_os=22.2R3-S2.8)
+2026-04-13 14:48:19,323 - ERROR - [10_80_71_56_juniper_mx240] Upgrade hop [0] failed for junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
+2026-04-13 14:48:19,323 - INFO - [10_80_71_56_juniper_mx240] Triggering rollback...
+2026-04-13 14:48:19,323 - DEBUG - [10_80_71_56_juniper_mx240] Rollback chain at failure: ['junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz']
+[10_80_71_56_juniper_mx240] Upgrade failed — starting rollback
+2026-04-13 14:48:19,323 - ERROR - [10_80_71_56_juniper_mx240] UPGRADE FAILED — stopping device
+[EXPORT] Summary JSON saved -> /home/colt/Documents/saketh_test/config_jsons/10_80_71_56_juniper_mx240_2026-04-13_14-48-19.json
 [LOGS] Device log : logging/10_80_71_56_juniper_mx240_*.log
        Session log: outputs/10_80_71_56_juniper_mx240_*.log
-[REPORT] /home/colt/Documents/saketh_test/reports/10_80_71_56_juniper_mx240_2026-04-13_10-44-12.html
-2026-04-13 10:44:12,280 - INFO - [10_80_71_56_juniper_mx240] HTML report exported
-2026-04-13 10:44:12,291 - INFO - Logout successful from 10.80.71.56
-2026-04-13 10:44:12,291 - INFO - [10_80_71_56_juniper_mx240] Disconnected from 10.80.71.56
-2026-04-13 10:44:12,291 - INFO - [THREAD-128047747798720] [10_80_71_56_juniper_mx240] Pipeline finished at 2026-04-13 10:44:12.291397
-2026-04-13 10:44:12,291 - INFO - [10_80_71_56_juniper_mx240] ===== PIPELINE FINISHED =====
-(venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test$ nano config_jsons/10_80_71_56_juniper_mx240_2026-04-13_10-44-12.json
-(venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test$ ^C
-(venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test$ ^C
-(venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test$ ^C
+[REPORT] /home/colt/Documents/saketh_test/reports/10_80_71_56_juniper_mx240_2026-04-13_14-48-19.html
+2026-04-13 14:48:19,346 - INFO - [10_80_71_56_juniper_mx240] HTML report exported
+2026-04-13 14:48:19,357 - INFO - Logout successful from 10.80.71.56
+2026-04-13 14:48:19,357 - INFO - [10_80_71_56_juniper_mx240] Disconnected from 10.80.71.56
+2026-04-13 14:48:19,357 - INFO - [THREAD-133369182918336] [10_80_71_56_juniper_mx240] Pipeline finished at 2026-04-13 14:48:19.357675
+2026-04-13 14:48:19,357 - INFO - [10_80_71_56_juniper_mx240] ===== PIPELINE FINISHED =====
 (venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test$
