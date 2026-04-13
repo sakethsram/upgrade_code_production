@@ -5,43 +5,8 @@ from typing import Any, Dict
 
 import re
 from typing import Any, Dict, List, Optional
-# from models.juniper.juniper_mx240 import (
-#     ShowBgpSummary,
-#     BgpSummaryTableEntry,
-#     BgpSummaryPeerEntry,
-
-#     ShowBgpNeighbor,
-#     BgpNeighborEntry,
-#     BgpNeighborTable,
-
-#     ShowServicesSessions,
-#     ServiceSession,
-#     ServiceSessionFlow,
-
-#     ShowServicesNatPoolBrief,
-#     NatPoolInterface,
-#     NatPoolEntry,
-
-#     ShowServicesServiceSetsCpuUsage,
-#     ServiceSetCpuEntry,
-
-#     ShowServicesServiceSetsMemoryUsage,
-#     ServiceSetMemoryEntry,
-
-#     ShowServicesServiceSetsSummary,
-#     ServiceSetSummaryEntry,
-
-#     ShowServicesFlowsBrief,
-#     ShowServicesFlowsBriefEntry,
-
-#     ShowChassisAlarms,
-#     ShowSystemAlarms,
-#     AlarmEntry,
-
-#     ShowOamCfmInterfaces,
-#     OamCfmInterface,
-# )
 from models.juniper.juniper_mx240 import *
+
 def parse_show_bgp_summary(text_content: str) -> Dict[str, Any]:
     cmd = "show bgp summary | no-more"
     try:
