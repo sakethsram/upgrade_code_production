@@ -196,7 +196,7 @@ class Upgrade:
                 cmd    = f"request vmhost software add /var/tmp/{target_image} no-validate"
                 logger.debug(f"[{self.device_key}]:: [imageUpgrade] Sending: {cmd} (read_timeout=600s)")
                 output = conn.send_command(cmd, read_timeout=600)
-                print(f"[imageUpgrade] install output: {output}")
+                # print(f"[imageUpgrade] install output: {output}")
 
                 if not output:
                     msg = f"{target_image} is not installed. Please check imageUpgrade()"
@@ -962,9 +962,9 @@ class Upgrade:
 
             output = conn.send_command(cmd, read_timeout=900, expect_string=r".*>")
 
-            logger.info(f"{self.device_key}: [imageUpgradeDualRE] ─────────────── INSTALL OUTPUT ({target_re}) ───────────────")
-            logger.info(f"\n{output}")
-            logger.info(f"{self.device_key}: [imageUpgradeDualRE] ────────────────────────────────────────────────────────────")
+            # logger.info(f"{self.device_key}: [imageUpgradeDualRE] ─────────────── INSTALL OUTPUT ({target_re}) ───────────────")
+            # logger.info(f"\n{output}")
+            # logger.info(f"{self.device_key}: [imageUpgradeDualRE] ────────────────────────────────────────────────────────────")
 
             if not output:
                 msg = f"Install returned no output for {target_image} on {target_re}"
@@ -993,7 +993,7 @@ class Upgrade:
                 read_timeout=60,
             )
 
-            logger.info(f"{self.device_key}: [imageUpgradeDualRE] Version output:\n{version_output}")
+            #logger.info(f"{self.device_key}: [imageUpgradeDualRE] Version output:\n{version_output}")
 
             versions = self.extract_junos_versions(version_output)
 

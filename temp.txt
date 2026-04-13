@@ -1,308 +1,474 @@
-(venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test$ p main.py
-2026-04-13 14:38:32,106 - INFO - [THREAD-133369182918336] [10_80_71_56_juniper_mx240] Pipeline started at 2026-04-13 14:38:32.106078
-2026-04-13 14:38:32,106 - INFO - [10_80_71_56_juniper_mx240] ===== PIPELINE STARTED =====
-2026-04-13 14:38:32,106 - INFO - [10_80_71_56_juniper_mx240] Connecting to 10.80.71.56
-2026-04-13 14:38:32,106 - INFO - Connecting to 10.80.71.56 using Netmiko...
-2026-04-13 14:38:32,131 - INFO - Connected (version 2.0, client OpenSSH_7.5)
-2026-04-13 14:38:37,382 - INFO - Authentication (password) successful!
-2026-04-13 14:38:38,180 - INFO - Login successful to 10.80.71.56
-2026-04-13 14:38:38,180 - INFO - [10_80_71_56_juniper_mx240] Connected successfully to 10.80.71.56
-2026-04-13 14:38:38,180 - INFO - [10_80_71_56_juniper_mx240] Connected to 10.80.71.56
-2026-04-13 14:38:38,180 - INFO - [10_80_71_56_juniper_mx240] ── PRE-CHECKS starting...
-2026-04-13 14:38:38,181 - INFO - models: [{'asr9k': ['asr9901', 'asr9006']}, {'ncs': ['ncs5501']}, {'single_re_junos': ['mx204']}, {'double_re_junos': ['mx240', 'mx480']}] and type: <class 'list'>
-2026-04-13 14:38:38,181 - INFO - [THREAD-133369182918336] [10_80_71_56_juniper_mx240] Prechecks started at 2026-04-13 14:38:38.181130
-2026-04-13 14:38:38,181 - INFO - [10_80_71_56_juniper_mx240] : Validating the device input file
-2026-04-13 14:38:38,181 - INFO - [10_80_71_56_juniper_mx240] : Validated Input files
-[10_80_71_56_juniper_mx240] Executing show commands
-2026-04-13 14:38:38,181 - INFO - [10_80_71_56_juniper_mx240] Executing show commands
-2026-04-13 14:38:38,186 - INFO - [load_commands] Loaded 39 commands for 'juniper_mx240'
-2026-04-13 14:38:38,186 - INFO - [10_80_71_56_juniper_mx240] collect_outputs — 39 command(s), check_type=pre
-2026-04-13 14:38:38,186 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services sessions | no-more'
-[10_80_71_56_juniper_mx240] 'show services sessions | no-more' — 0 chars received
-2026-04-13 14:38:38,675 - INFO - [10_80_71_56_juniper_mx240] 'show services sessions | no-more' collected=False (0 chars)
-2026-04-13 14:38:38,675 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services nat pool brief | no-more'
-[10_80_71_56_juniper_mx240] 'show services nat pool brief | no-more' — 1667 chars received
-2026-04-13 14:38:39,163 - INFO - [10_80_71_56_juniper_mx240] 'show services nat pool brief | no-more' collected=True (1657 chars)
-2026-04-13 14:38:39,163 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services flows brief | no-more'
-[10_80_71_56_juniper_mx240] 'show services flows brief | no-more' — 0 chars received
-2026-04-13 14:38:39,651 - INFO - [10_80_71_56_juniper_mx240] 'show services flows brief | no-more' collected=False (0 chars)
-2026-04-13 14:38:39,651 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets cpu-usage | no-more'
-[10_80_71_56_juniper_mx240] 'show services service-sets cpu-usage | no-more' — 549 chars received
-2026-04-13 14:38:40,139 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets cpu-usage | no-more' collected=True (477 chars)
-2026-04-13 14:38:40,139 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets memory-usage | no-more'
-[10_80_71_56_juniper_mx240] 'show services service-sets memory-usage | no-more' — 244 chars received
-2026-04-13 14:38:40,728 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets memory-usage | no-more' collected=True (243 chars)
-2026-04-13 14:38:40,728 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets summary | no-more'
-[10_80_71_56_juniper_mx240] 'show services service-sets summary | no-more' — 230 chars received
-2026-04-13 14:38:41,443 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets summary | no-more' collected=True (216 chars)
-2026-04-13 14:38:41,443 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis routing-engine | no-more'
-[10_80_71_56_juniper_mx240] 'show chassis routing-engine | no-more' — 2724 chars received
-2026-04-13 14:38:41,931 - INFO - [10_80_71_56_juniper_mx240] 'show chassis routing-engine | no-more' collected=True (2723 chars)
-2026-04-13 14:38:41,932 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show arp no-resolve | no-more'
-[10_80_71_56_juniper_mx240] 'show arp no-resolve | no-more' — 1270 chars received
-2026-04-13 14:38:42,419 - INFO - [10_80_71_56_juniper_mx240] 'show arp no-resolve | no-more' collected=True (1269 chars)
-2026-04-13 14:38:42,420 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show lldp neighbors | no-more'
-[10_80_71_56_juniper_mx240] 'show lldp neighbors | no-more' — 1821 chars received
-2026-04-13 14:38:42,908 - INFO - [10_80_71_56_juniper_mx240] 'show lldp neighbors | no-more' collected=True (1808 chars)
-2026-04-13 14:38:42,908 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system uptime | no-more'
-[10_80_71_56_juniper_mx240] 'show system uptime | no-more' — 300 chars received
-2026-04-13 14:38:43,421 - INFO - [10_80_71_56_juniper_mx240] 'show system uptime | no-more' collected=True (299 chars)
-2026-04-13 14:38:43,422 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show ntp associations no-resolve | no-more'
-[10_80_71_56_juniper_mx240] 'show ntp associations no-resolve | no-more' — 353 chars received
-2026-04-13 14:38:43,909 - INFO - [10_80_71_56_juniper_mx240] 'show ntp associations no-resolve | no-more' collected=True (347 chars)
-2026-04-13 14:38:43,909 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis hardware | no-more'
-[10_80_71_56_juniper_mx240] 'show chassis hardware | no-more' — 3359 chars received
-2026-04-13 14:38:44,398 - INFO - [10_80_71_56_juniper_mx240] 'show chassis hardware | no-more' collected=True (3358 chars)
-2026-04-13 14:38:44,398 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis fpc detail | no-more'
-[10_80_71_56_juniper_mx240] 'show chassis fpc detail | no-more' — 1315 chars received
-2026-04-13 14:38:45,364 - INFO - [10_80_71_56_juniper_mx240] 'show chassis fpc detail | no-more' collected=True (1314 chars)
-2026-04-13 14:38:45,365 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis alarms | no-more'
-[10_80_71_56_juniper_mx240] 'show chassis alarms | no-more' — 119 chars received
-2026-04-13 14:38:45,852 - INFO - [10_80_71_56_juniper_mx240] 'show chassis alarms | no-more' collected=True (118 chars)
-2026-04-13 14:38:45,852 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system alarms | no-more'
-[10_80_71_56_juniper_mx240] 'show system alarms | no-more' — 119 chars received
-2026-04-13 14:38:46,340 - INFO - [10_80_71_56_juniper_mx240] 'show system alarms | no-more' collected=True (118 chars)
-2026-04-13 14:38:46,341 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis environment | no-more'
-[10_80_71_56_juniper_mx240] 'show chassis environment | no-more' — 5297 chars received
-2026-04-13 14:38:46,955 - INFO - [10_80_71_56_juniper_mx240] 'show chassis environment | no-more' collected=True (5296 chars)
-2026-04-13 14:38:46,955 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system resource-monitor fpc | no-more'
-[10_80_71_56_juniper_mx240] 'show system resource-monitor fpc | no-more' — 673 chars received
-2026-04-13 14:38:47,443 - INFO - [10_80_71_56_juniper_mx240] 'show system resource-monitor fpc | no-more' collected=True (672 chars)
-2026-04-13 14:38:47,444 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system processes extensive | match rpd | no-more'
-[10_80_71_56_juniper_mx240] 'show system processes extensive | match rpd | no-more' — 2404 chars received
-2026-04-13 14:38:47,932 - INFO - [10_80_71_56_juniper_mx240] 'show system processes extensive | match rpd | no-more' collected=True (2403 chars)
-2026-04-13 14:38:47,932 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show interface terse | no-more'
-[10_80_71_56_juniper_mx240] 'show interface terse | no-more' — 15636 chars received
-2026-04-13 14:38:48,630 - INFO - [10_80_71_56_juniper_mx240] 'show interface terse | no-more' collected=True (15635 chars)
-2026-04-13 14:38:48,630 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show oam ethernet connectivity-fault-management interfaces extensive | no-more'
-[10_80_71_56_juniper_mx240] 'show oam ethernet connectivity-fault-management interfaces extensive | no-more' — 101 chars received
-2026-04-13 14:38:49,241 - INFO - [10_80_71_56_juniper_mx240] 'show oam ethernet connectivity-fault-management interfaces extensive | no-more' collected=True (100 chars)
-2026-04-13 14:38:49,241 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show vrrp summary | no-more'
-[10_80_71_56_juniper_mx240] 'show vrrp summary | no-more' — 1642 chars received
-2026-04-13 14:38:49,729 - INFO - [10_80_71_56_juniper_mx240] 'show vrrp summary | no-more' collected=True (1632 chars)
-2026-04-13 14:38:49,729 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bfd session | no-more'
-[10_80_71_56_juniper_mx240] 'show bfd session | no-more' — 473 chars received
-2026-04-13 14:38:50,217 - INFO - [10_80_71_56_juniper_mx240] 'show bfd session | no-more' collected=True (422 chars)
-2026-04-13 14:38:50,217 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp neighbor | no-more'
-[10_80_71_56_juniper_mx240] 'show rsvp neighbor | no-more' — 221 chars received
-2026-04-13 14:38:50,705 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp neighbor | no-more' collected=True (220 chars)
-2026-04-13 14:38:50,705 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp session | no-more'
-[10_80_71_56_juniper_mx240] 'show rsvp session | no-more' — 704 chars received
-2026-04-13 14:38:51,193 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp session | no-more' collected=True (703 chars)
-2026-04-13 14:38:51,193 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table inet.0 | no-more'
-[10_80_71_56_juniper_mx240] 'show route table inet.0 | no-more' — 9482 chars received
-2026-04-13 14:38:51,758 - INFO - [10_80_71_56_juniper_mx240] 'show route table inet.0 | no-more' collected=True (9480 chars)
-2026-04-13 14:38:51,758 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table inet.3 | no-more'
-[10_80_71_56_juniper_mx240] 'show route table inet.3 | no-more' — 2027 chars received
-2026-04-13 14:38:52,297 - INFO - [10_80_71_56_juniper_mx240] 'show route table inet.3 | no-more' collected=True (2025 chars)
-2026-04-13 14:38:52,298 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table mpls.0 | no-more'
-[10_80_71_56_juniper_mx240] 'show route table mpls.0 | no-more' — 4532 chars received
-2026-04-13 14:38:52,837 - INFO - [10_80_71_56_juniper_mx240] 'show route table mpls.0 | no-more' collected=True (4530 chars)
-2026-04-13 14:38:52,838 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls interface | no-more'
-[10_80_71_56_juniper_mx240] 'show mpls interface | no-more' — 656 chars received
-2026-04-13 14:38:53,325 - INFO - [10_80_71_56_juniper_mx240] 'show mpls interface | no-more' collected=True (655 chars)
-2026-04-13 14:38:53,326 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp | no-more'
-[10_80_71_56_juniper_mx240] 'show mpls lsp | no-more' — 926 chars received
-2026-04-13 14:38:53,813 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp | no-more' collected=True (925 chars)
-2026-04-13 14:38:53,814 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp p2mp | no-more'
-[10_80_71_56_juniper_mx240] 'show mpls lsp p2mp | no-more' — 681 chars received
-2026-04-13 14:38:54,302 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp p2mp | no-more' collected=True (680 chars)
-2026-04-13 14:38:54,302 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bgp summary | no-more'
-[10_80_71_56_juniper_mx240] 'show bgp summary | no-more' — 3355 chars received
-2026-04-13 14:38:54,790 - INFO - [10_80_71_56_juniper_mx240] 'show bgp summary | no-more' collected=True (3354 chars)
-2026-04-13 14:38:54,790 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bgp neighbor | no-more'
-[10_80_71_56_juniper_mx240] 'show bgp neighbor | no-more' — 26356 chars received
-2026-04-13 14:38:55,305 - INFO - [10_80_71_56_juniper_mx240] 'show bgp neighbor | no-more' collected=True (26355 chars)
-2026-04-13 14:38:55,305 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show isis adjacency extensive | no-more'
-[10_80_71_56_juniper_mx240] 'show isis adjacency extensive | no-more' — 544 chars received
-2026-04-13 14:38:55,793 - INFO - [10_80_71_56_juniper_mx240] 'show isis adjacency extensive | no-more' collected=True (535 chars)
-2026-04-13 14:38:55,793 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route summary | no-more'
-[10_80_71_56_juniper_mx240] 'show route summary | no-more' — 9261 chars received
-2026-04-13 14:38:56,282 - INFO - [10_80_71_56_juniper_mx240] 'show route summary | no-more' collected=True (9260 chars)
-2026-04-13 14:38:56,282 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp session | match DN | no-more'
-[10_80_71_56_juniper_mx240] 'show rsvp session | match DN | no-more' — 0 chars received
-2026-04-13 14:38:56,770 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp session | match DN | no-more' collected=False (0 chars)
-2026-04-13 14:38:56,770 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp unidirectional | match Dn | no-more'
-[10_80_71_56_juniper_mx240] 'show mpls lsp unidirectional | match Dn | no-more' — 230 chars received
-2026-04-13 14:38:57,258 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp unidirectional | match Dn | no-more' collected=True (229 chars)
-2026-04-13 14:38:57,258 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show ldp neighbor | no-more'
-[10_80_71_56_juniper_mx240] 'show ldp neighbor | no-more' — 384 chars received
-2026-04-13 14:38:57,746 - INFO - [10_80_71_56_juniper_mx240] 'show ldp neighbor | no-more' collected=True (383 chars)
-2026-04-13 14:38:57,746 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show connections | no-more'
-[10_80_71_56_juniper_mx240] 'show connections | no-more' — 31 chars received
-2026-04-13 14:38:58,234 - INFO - [10_80_71_56_juniper_mx240] 'show connections | no-more' collected=True (30 chars)
-2026-04-13 14:38:58,235 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show log messages | last 200 | no-more'
-[10_80_71_56_juniper_mx240] 'show log messages | last 200 | no-more' — 27995 chars received
-2026-04-13 14:38:58,724 - INFO - [10_80_71_56_juniper_mx240] 'show log messages | last 200 | no-more' collected=True (27994 chars)
-2026-04-13 14:38:58,724 - INFO - [10_80_71_56_juniper_mx240] collect_outputs done — 39 entries stored
-2026-04-13 14:38:58,727 - ERROR - [10_80_71_56_juniper_mx240] parser returned empty result 'show services service-sets memory-usage | no-more':
-NoneType: None
+Proceeding with install
+Copied the config and other data to the aux disk.
+Transfer junos-host-upgrade.sh
+Transfer Done
+Transfer /packages/db/pkginst.53247/junos-vmhost-install*.tgz
+Transfer Done
+Transfer /packages/db/pkginst.53247/attributes
+Transfer Done
+Starting upgrade ...
+Preparing for upgrade...
+/junos/install/pkg-s1C/unpack/install/
+tar --directory=/junos/install/pkg-s1C/unpack/install/ -xvf /junos/install/install.tgz
+./
+./vmhost/
+./vmhost/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img.gz
+./vmhost/README
+./vmhost-pkgs-version
+./vm/
+./vm/note
+./vm/grub.cfg.ngre
+./vmhost-version
+./vmhost-version.sh
+./hostd/
+./hostd/jhost_core-1.0-2308171134.x86_64.rpm
+./hostd/vehostd-note.txt
+./hostd/vehostd-ovp-install.sh
+./chotu/
+./chotu/vmhost-chotu-install.sh
+./chotu/vmhost-chotu-grub-install.sh
+./junos/
+./junos/junos-mtre-install.sh
+./junos/junos-mtre-upgrade.sh
+./junos/junos-unified-backup.sh
+./scripts/
+./scripts/mk-mtre-upgrade.sh
+./scripts/mk-mtre-partition.sh
+./scripts/vmhost-platform-grub-install.sh
+./scripts/mount-usb-img.sh
+./scripts/tvp-platform-functions.sh
+./scripts/unified-disk-defines.sh
+./scripts/target-scripts/
+./scripts/target-scripts/mk-mtre-partition.sh
+./scripts/target-scripts/mtre-ssd-version.sh
+./scripts/target-scripts/mcelog.override
+./scripts/target-scripts/jmodutilsPost.service
+./scripts/target-scripts/simulate-halt.service
+./scripts/target-scripts/vmhost-misc.inc
+./scripts/target-scripts/post-tp-install-ops.sh
+./scripts/target-scripts/01boot_setup.sh
+./scripts/target-scripts/platform_specific_init
+./scripts/target-scripts/vmhost-fipsmode-functions.sh
+./scripts/target-scripts/S04modutilsPost.sh
+./scripts/target-scripts/tvp-platform-functions.sh
+./scripts/target-scripts/S08jhostrpminstall.sh
+./scripts/target-scripts/mk-mtre-downgrade.service
+./scripts/target-scripts/vmhost-partition.inc
+./scripts/target-scripts/unified-disk-defines.sh
+./scripts/target-scripts/biosrecovery
+./scripts/target-scripts/rpm.sh
+./scripts/target-scripts/rsyslog_config.sh
+./scripts/target-scripts/03boot_info.sh
+./scripts/target-scripts/savelog
+./scripts/target-scripts/failure_handler@.service
+./scripts/target-scripts/boardinfo
+./scripts/target-scripts/vmhost-kdump-configure
+./scripts/target-scripts/README.service
+./scripts/target-scripts/00read_only_root.sh
+./scripts/target-scripts/platform-functions.sh
+./scripts/target-scripts/vmhost-kdump-input.sh
+./scripts/target-scripts/unified-disk-functions.sh
+./scripts/target-scripts/vmhost-kdump.inc
+./scripts/target-scripts/01vehostd_setup.sh
+./scripts/target-scripts/jrootunion.service
+./scripts/target-scripts/config_br_mac.sh
+./scripts/target-scripts/i40e_installer.service
+./scripts/target-scripts/vmhost-fipsmode
+./scripts/target-scripts/jlvmrootrw_files_cleanup.sh
+./scripts/target-scripts/gcore
+./scripts/target-scripts/monit.override
+./scripts/target-scripts/jrootunion.sh
+./scripts/target-scripts/04CheckDisk.sh
+./scripts/target-scripts/S05rootunion.sh
+./scripts/target-scripts/vehostd.service
+./scripts/target-scripts/rasdaemon.service
+./scripts/target-scripts/vmhost_lvmpvscan.service
+./scripts/target-scripts/mtre-ssd-rollback.sh
+./scripts/target-scripts/S05ovprootrwS.sh
+./scripts/target-scripts/dhclient.override
+./scripts/target-scripts/mk-mtre-root-snapshot.sh
+./scripts/target-scripts/eth-lldp-stop.sh
+./scripts/target-scripts/011tvp_setup.sh
+./scripts/target-scripts/00junos_setup.sh
+./scripts/target-scripts/05fips-check.sh
+./scripts/target-scripts/vmhost-grub-update.sh
+./scripts/target-scripts/setup_bridges.sh
+./scripts/target-scripts/reboot.override
+./scripts/target-scripts/nextboot-downgrade.sh
+./scripts/target-scripts/vmhost-sb-bios.sh
+./scripts/target-scripts/mk-mtre-rollback.sh
+./scripts/target-scripts/platform_init_lts.override
+./scripts/target-scripts/watchdog.service
+./scripts/target-scripts/smartd.override
+./scripts/target-scripts/lsbinit-functions
+./scripts/target-scripts/vmhost-kdump-process.sh
+./scripts/target-scripts/common-functions.sh
+./scripts/target-scripts/01setup_environment.sh
+./scripts/target-scripts/S05rootunionS.sh
+./scripts/target-scripts/gcov-dump
+./scripts/target-scripts/mtre-ssd-snapshot.sh
+./scripts/target-scripts/rpm_installer_utils.sh
+./scripts/target-scripts/02start_services.sh
+./scripts/target-scripts/junos_create_unified.sh
+./scripts/target-scripts/eth_wedge_protection.sh
+./scripts/target-scripts/sysctl.conf
+./scripts/target-scripts/eth_mon.sh
+./scripts/target-scripts/gt-mtre-version.sh
+./scripts/target-scripts/mk-mtre-snapshot.sh
+./scripts/target-scripts/vmhost_ssh
+./scripts/target-scripts/mk-mtre-downgrade.sh
+./scripts/target-scripts/disk-functions.sh
+./scripts/target-scripts/xinetd.override
+./scripts/target-scripts/01bios_check.sh
+./scripts/target-scripts/eth-lldp-disable.sh
+./scripts/target-scripts/ssh.config.update
+./scripts/target-scripts/platform_init.override
+./scripts/target-scripts/rc.local
+./scripts/target-scripts/vmhost_unified.service
+./scripts/target-scripts/mgmt_port_shaper
+./scripts/target-scripts/mk-mtre-zeroize.sh
+./scripts/target-scripts/vmhost-kdump-usb-format.sh
+./scripts/target-scripts/monit-eapps.conf
+./scripts/target-scripts/junos-unified-current.sh
+./scripts/target-scripts/daemon_fail_check.service
+./scripts/target-scripts/jsntp.service
+./scripts/target-scripts/resild.service
+./scripts/target-scripts/vsmartd.service
+./scripts/target-scripts/mgmtif
+./scripts/target-scripts/riofeb.service
+./scripts/target-scripts/root_login
+./scripts/target-scripts/09persona_cleanup.sh
+./scripts/target-scripts/ht_config.sh
+./scripts/target-scripts/vmhost_version_get_major.sh
+./scripts/target-scripts/libvirtd.override
+./scripts/target-scripts/daemon_fail.sh
+./scripts/target-scripts/daemon_fail_check.timer
+./scripts/target-scripts/mtre-ssd-zeroize.sh
+./scripts/target-scripts/rc-local.override
+./scripts/target-scripts/mgmtif-policer
+./scripts/target-scripts/boardreset
+./scripts/target-scripts/vmhost-kdump-configure.override
+./scripts/target-scripts/S05ovprootrw.sh
+./scripts/target-scripts/downgrade_cleanup_file_list
+./scripts/target-scripts/mk-unified-junos-partition.sh
+./scripts/mk-part-mtre-install.sh
+./scripts/validate_pkg_for_the_sku.sh
+./scripts/boardinfo
+./scripts/platform-functions.sh
+./scripts/unified-disk-functions.sh
+./scripts/vmhost-platform-lc-install.sh
+./scripts/mtre-installer.sh
+./scripts/mtre-ssd-installer.sh
+./scripts/vmhost-i40e.sh
+./scripts/vmhost-sb-bios.sh
+./scripts/vmhost-platform-install.sh
+./scripts/common-functions.sh
+./scripts/mtre-ssd-upgrade.sh
+./scripts/grub.cfg.ngre
+./scripts/vmhost-systemd-install.sh
+./scripts/ddimage
+./scripts/ssd-ovp-installer.sh
+./scripts/boardreset
+junos/
+junos/junos-install-mx-x86-64-22.2R3-S2.8.img.gz
+./vmhost-core-x86-64-22.2R3-S2.8.tgz
+/junos/install/pkg-s1C/unpack/install//
+sh /junos/install/pkg-s1C/unpack/install///scripts/mtre-ssd-upgrade.sh /junos/install/pkg-s1C/unpack/install//
+Current root details,           Device sda, Label: jrootb_P, Partition: sda4
+Copying /junos/install/pkg-s1C/unpack/install///vmhost/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img.gz to tmp dir: /tmp/install-ruo4yR ...
+Testing /tmp/install-ruo4yR/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img.gz for compression ...
+Uncompressing Linux: /tmp/install-ruo4yR/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img.gz ...
+Image details
+=============
+    image: '/tmp/install-ruo4yR/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img'
+     size: 2584739840 bytes
+ modified: 2026-04-13 10:07:56.170450799 +0000
+     type: DOS/MBR boot sector; partition 1 : ID=0xe, active, start-CHS (0x0,32,33), end-CHS (0x10,113,33), startsector 2048, 262144 sectors; partition 2 : ID=0x83, start-CHS (0x10,113,34), end-CHS (0x13a,62,4), startsector 264192, 4784128 sectors
 
-2026-04-13 14:38:58,731 - ERROR - [10_80_71_56_juniper_mx240] parser failed for 'show vrrp summary | no-more':
-NoneType: None
+NVM_version: 7.00
+DRV_version: 2.8.43
+Finding alternate root for upgrade
+Preserve Last Known good BIOS..
+Preserving Last Known Good
+Preserve /tmp/bootchk-efi_P-EfWvdH/EFI/Juniper/REH_L_MTR1.efi.candidate to /tmp/LKNWNGD-efi_P/REH_L_MTR1.efi.candidate
+Upgrading software on jrootp_P ...
+Inputs: jrootp_P p /dev/sda /tmp/install-ruo4yR/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img P /junos/install/pkg-s1C/unpack/install//
 
-2026-04-13 14:38:58,741 - INFO - [10_80_71_56_juniper_mx240] execute_show_commands OK
-2026-04-13 14:38:58,741 - INFO - [10_80_71_56_juniper_mx240] get_show_version — phase=pre, sending 'show version'
-2026-04-13 14:38:59,507 - INFO - [10_80_71_56_juniper_mx240] [pre] show_version parsed — hostname=EFFPER02  model=mx240  version=23.4R2-S3.9
-2026-04-13 14:38:59,507 - INFO - [10_80_71_56_juniper_mx240] PRE — dual-RE model (mx240): preBackupDiskDualRE()
-2026-04-13 14:38:59,508 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE  — vendor: juniper
-2026-04-13 14:38:59,508 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — running request system snapshot
-2026-04-13 14:38:59,772 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — Gate A snapshot name: snap.20260413.091127
-2026-04-13 14:38:59,772 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — running show system snapshot
-2026-04-13 14:38:59,936 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — both gates passed: snapshot_name=snap.20260413.040754, creation_date=Apr 13 04:07:55 2026, junos_version=23.4R2-S3.9
-2026-04-13 14:38:59,936 - INFO - [10_80_71_56_juniper_mx240]  backup disk OK
-2026-04-13 14:38:59,936 - INFO - [10_80_71_56_juniper_mx240] preBackup — vendor: juniper
-2026-04-13 14:39:02,580 - INFO - [10_80_71_56_juniper_mx240] preBackup — config saved, SCP to remote server
-2026-04-13 14:39:02,580 - INFO - [10_80_71_56_juniper_mx240] scpFile — /var/home/lab/juniper_mx240_2026-04-13_14-38-59 → colt@10.80.109.133:/var/tmp/juniper_mx240_2026-04-13_14-38-59
-2026-04-13 14:39:32,142 - INFO - [10_80_71_56_juniper_mx240] scpFile — transfer complete
-2026-04-13 14:39:32,142 - INFO - [10_80_71_56_juniper_mx240] preBackup — waiting for command to complete: request support information | save /var/log/juniper_mx240_2026-04-13_14-38-59.txt
-[preBackup] sending: request support information | save /var/log/juniper_mx240_2026-04-13_14-38-59.txt
-2026-04-13 14:40:37,901 - INFO - [10_80_71_56_juniper_mx240] preBackup — waiting for command to complete: file archive compress source /var/log/* destination /var/tmp/juniper_mx240_2026-04-13_14-38-59.tgz
-[preBackup] sending: file archive compress source /var/log/* destination /var/tmp/juniper_mx240_2026-04-13_14-38-59.tgz
-2026-04-13 14:40:47,112 - INFO - [10_80_71_56_juniper_mx240] preBackup — logs archived, SCP to remote server
-2026-04-13 14:40:47,112 - INFO - [10_80_71_56_juniper_mx240] scpFile — /var/tmp/juniper_mx240_2026-04-13_14-38-59.tgz → colt@10.80.109.133:/var/tmp/juniper_mx240_2026-04-13_14-38-59.tgz
-2026-04-13 14:41:20,975 - INFO - [10_80_71_56_juniper_mx240] scpFile — transfer complete
-2026-04-13 14:41:20,975 - INFO - [10_80_71_56_juniper_mx240] backup config OK
-2026-04-13 14:41:20,975 - INFO - [merge] device_key='10_80_71_56_juniper_mx240' merged into device_results
-2026-04-13 14:41:20,976 - INFO - [THREAD-133369182918336] [10_80_71_56_juniper_mx240] All pre-checks passed
-2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] ── Pre-Checks COMPLETE — starting UPGRADE ...
-2026-04-13 14:41:20,976 - INFO - [THREAD-133369182918336] [10_80_71_56_juniper_mx240] Upgrade started at 2026-04-13 14:41:20.976233
-2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] run_upgrade — host=10.80.71.56, vendor=juniper, model=mx240, curr_os=23.4R2-S3.9, total_hops=1
-2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] Running Upgrade...
-2026-04-13 14:41:20,976 - DEBUG - [10_80_71_56_juniper_mx240] Rollback chain seeded — image=junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz, os=23.4R2-S3.9
-2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] ── Hop [0/0] ── image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, expected_os=22.2R3-S2.8
-2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] Hop [0] — image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, expected_os=22.2R3-S2.8
-[10_80_71_56_juniper_mx240] Hop [0] upgrading with junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
-2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] dual-RE model (mx240): checkStorageDualRE()
-2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — vendor: juniper
-2026-04-13 14:41:20,976 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — querying RE0
-2026-04-13 14:41:21,014 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — RE0 available: 4.10 GB
-2026-04-13 14:41:21,014 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — querying RE1
-2026-04-13 14:41:21,253 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — RE1 available: 4.70 GB
-2026-04-13 14:41:21,253 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — both REs OK: {'status': 'ok', 'exception': '', 'sufficient': True, 're0_space': 4.1, 're1_space': 4.7, 'remark': 'RE0: 4.1GB  RE1: 4.7GB — both above 2GB threshold'}
-2026-04-13 14:41:21,253 - INFO - [juniper_mx240] checkStorage — vendor: juniper
-2026-04-13 14:41:21,289 - INFO - [10_80_71_56_juniper_mx240] checkStorage — 4.10 GB available
-2026-04-13 14:41:21,290 - INFO - [juniper_mx240] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True, 'avail_space_gb': 4.1}
-2026-04-13 14:41:21,290 - INFO - [10_80_71_56_juniper_mx240] storage OK
-2026-04-13 14:41:21,290 - INFO - [10_80_71_56_juniper_mx240] transferImage — junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, vendor: juniper
-2026-04-13 14:41:21,290 - INFO - [10_80_71_56_juniper_mx240] scpFile — colt@10.80.109.133:/home/colt/backup/JUNOS/MX240/junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz → /var/tmp/
-2026-04-13 14:47:58,244 - INFO - [10_80_71_56_juniper_mx240] scpFile — transfer complete
-2026-04-13 14:47:58,244 - INFO - [10_80_71_56_juniper_mx240] transferImage — junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz transferred to /var/tmp/
-2026-04-13 14:47:58,244 - INFO - [10_80_71_56_juniper_mx240]  transfer image OK
-2026-04-13 14:47:58,245 - INFO - [10_80_71_56_juniper_mx240] verifyChecksum — image: junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, vendor: juniper
-2026-04-13 14:48:16,124 - INFO - [10_80_71_56_juniper_mx240] verifyChecksum — match: OK
- checksum_result   = {'image': 'junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz', 'status': 'ok', 'exception': '', 'expected': 'b4a3f7da81ca94831eac6d06f5644140', 'computed': 'b4a3f7da81ca94831eac6d06f5644140', 'match': True}
- image [0] checksum OK — junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
-2026-04-13 14:48:16,124 - INFO - [10_80_71_56_juniper_mx240]  [0] checksum OK — junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
-2026-04-13 14:48:16,124 - INFO - [10_80_71_56_juniper_mx240] dual-RE model (mx240): checkStorageDualRE()
-2026-04-13 14:48:16,125 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — vendor: juniper
-2026-04-13 14:48:16,125 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — querying RE0
-2026-04-13 14:48:16,161 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — RE0 available: 4.10 GB
-2026-04-13 14:48:16,161 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — querying RE1
-2026-04-13 14:48:16,399 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — RE1 available: 4.70 GB
-2026-04-13 14:48:16,400 - INFO - [10_80_71_56_juniper_mx240] checkStorageDualRE — both REs OK: {'status': 'ok', 'exception': '', 'sufficient': True, 're0_space': 4.1, 're1_space': 4.7, 'remark': 'RE0: 4.1GB  RE1: 4.7GB — both above 2GB threshold'}
-2026-04-13 14:48:16,400 - INFO - [juniper_mx240] checkStorage — vendor: juniper
-2026-04-13 14:48:16,436 - INFO - [10_80_71_56_juniper_mx240] checkStorage — 4.10 GB available
-2026-04-13 14:48:16,436 - INFO - [juniper_mx240] checkStorage — sufficient space: {'status': 'ok', 'deleted_files': [], 'exception': '', 'sufficient': True, 'avail_space_gb': 4.1}
-2026-04-13 14:48:16,436 - INFO - [10_80_71_56_juniper_mx240] storage OK
-2026-04-13 14:48:16,437 - INFO - [10_80_71_56_juniper_mx240] using dual-RE upgrade path
-2026-04-13 14:48:16,437 - INFO - [10_80_71_56_juniper_mx240] PRE-FLIGHT — Checking chassis routing-engine state
-2026-04-13 14:48:16,474 - INFO - [10_80_71_56_juniper_mx240] PRE-FLIGHT chassis output:
-Routing Engine status:
-  Slot 0:
-    Current state                  Master
-    Election priority              Master (default)
-    Temperature                 43 degrees C / 109 degrees F
-    CPU temperature             68 degrees C / 154 degrees F
-    DRAM                      49096 MB (49152 MB installed)
-    Memory utilization           5 percent
-    5 sec CPU utilization:
-      User                      17 percent
-      Background                 0 percent
-      Kernel                    10 percent
-      Interrupt                  0 percent
-      Idle                      73 percent
-    1 min CPU utilization:
-      User                       7 percent
-      Background                 0 percent
-      Kernel                     6 percent
-      Interrupt                  4 percent
-      Idle                      84 percent
-    5 min CPU utilization:
-      User                       4 percent
-      Background                 0 percent
-      Kernel                     5 percent
-      Interrupt                  4 percent
-      Idle                      88 percent
-    15 min CPU utilization:
-      User                       2 percent
-      Background                 0 percent
-      Kernel                     3 percent
-      Interrupt                  3 percent
-      Idle                      92 percent
-    Model                          RE-S-2X00x6
-    Serial ID                      CASF7380
-    Start time                     2026-04-13 03:59:38 UTC
-    Uptime                         5 hours, 21 minutes, 5 seconds
-    Last reboot reason             0x2000:hypervisor reboot
-    Load averages:                 1 minute   5 minute  15 minute
-                                       0.89       0.71       0.54
-Routing Engine status:
-  Slot 1:
-    Current state                  Backup
-    Election priority              Backup (default)
-    Temperature                 40 degrees C / 104 degrees F
-    CPU temperature             56 degrees C / 132 degrees F
-    DRAM                      49096 MB (49152 MB installed)
-    Memory utilization           4 percent
-    5 sec CPU utilization:
-      User                       0 percent
-      Background                 0 percent
-      Kernel                     0 percent
-      Interrupt                  0 percent
-      Idle                     100 percent
-    Model                          RE-S-2X00x6
-    Serial ID                      CASF7430
-    Start time                     2026-04-13 08:24:30 UTC
-    Uptime                         56 minutes, 4 seconds
-    Last reboot reason             0x2000:hypervisor reboot
-    Load averages:                 1 minute   5 minute  15 minute
-                                       0.22       0.19       0.17
+Mounting images and device in preparation for upgrade...
+USBIMG_BOOT_OFFSET: 1048576, USBIMG_BOOT_SIZELIMIT: 134217728, USBIMG_ROOT_OFFSET: 135266304, USBIMG_ROOT_SIZELIMIT: 2449473536
+Cleaning target ROOTFS jrootp_P
+Copying ROOTFS files...
+INIT system is systemd
+Future vmhost version:7
+Copying systemd scripts
+PLATFORM is MX
+remove stale modified sshd_config...
+Upgrading administrative Junos context ...
+Testing /tmp/partdisk-1lfZMD/jlvmjunosfs/Current.p/junos-install-mx-x86-64-22.2R3-S2.8.img.gz for compression ...
+Uncompressing Junos: /tmp/partdisk-1lfZMD/jlvmjunosfs/Current.p/junos-install-mx-x86-64-22.2R3-S2.8.img.gz ...
+Done with Junos Upgrade
+Upgrading hostd content ...
+./
+./e1000e-3.8.4_install.sh
+./i2cd_install.sh
+./iqvlinux_install.sh
+./i40e_pkg_7.0-1.0-0.x86_64.rpm
+./jsntp_install.sh
+./vehostd_install.sh
+./tpm-upgrade-1.01.2168.00-1.x86_64.rpm
+./rasdaemon-0.5.6-1.x86_64.rpm
+./jdid_install.sh
+./igb-5.3.6_install.sh
+./igb-5.3.6-0.x86_64.rpm
+./common/
+./common/iqvlinux_install.sh
+./common/jsntp_install.sh
+./common/coredump-1.0-0.x86_64.rpm
+./common/lanconf64e_install.sh
+./common/jsntp-1.0-0.x86_64.rpm
+./common/vm-1.0-0.x86_64.rpm
+./common/lanconf64e-1.0-0.x86_64.rpm
+./common/coredump_install.sh
+./common/iqvlinux-1.2.0.8-0.x86_64.rpm
+./common/vm_install.sh
+./i40e_pkg-2.0-0.x86_64.rpm
+./jhost_core-1.0-2308171134.x86_64.rpm
+./libbind_install.sh
+./vmhost-version
+./lanconf64e_install.sh
+./vmhost-version.sh
+./libi2cdev-1.0-0.x86_64.rpm
+./libi2cdev_install.sh
+./bios_pkg_install.sh
+./vsmartd_install.sh
+./resild_install.sh
+./e1000e-3.8.4-0.x86_64.rpm
+./jdid_nonTVP-1.0-0.x86_64.rpm
+./tpm-upgrade_install.sh
+./vmhost-firmware-x86_64-22.2R3-S2-20230817_1125.builder.cd6ccefc3_builder.tar
+./i40e-2.8.43_install.sh
+./i40e_pkg_install.sh
+./re_fpga-1.0-0.x86_64.rpm
+./i2cd-1.0-0.x86_64.rpm
+./jdid-1.0-0.x86_64.rpm
+./coredump_install.sh
+./rasdaemon_install.sh
+./pfe_app_launcher_install.sh
+./re_fpga_install.sh
+./i40e-2.8.43-0.x86_64.rpm
+./pfe_app_launcher-1.0-0.x86_64.rpm
+./jdid_nonTVP_install.sh
+./vm_install.sh
+./bios_pkg-1.0-0.x86_64.rpm
+./resild-1.0-0.x86_64.rpm
+./vsmartd-1.0-0.x86_64.rpm
+./diagnostics-1.1-1.x86_64.rpm
+./diagnostics_install.sh
+aft-ulc-1.0-0-22.2R3-S2.8.x86_64.rpm
+bcm-1.0-0-22.2R3-S2.8.x86_64.rpm
+bcm-6.5-16-22.2R3-S2.8.x86_64.rpm
+fabric-1.0-0-22.2R3-S2.8.x86_64.rpm
+fabric-mx-10-m-1.0-0-22.2R3-S2.8.x86_64.rpm
+fabric-mx-10k2-m-1.0-0-22.2R3-S2.8.x86_64.rpm
+grpc-util-1.0-0-22.2R3-S2.8.x86_64.rpm
+ice-1.4.11-0-22.2R3-S2.8.x86_64.rpm
+ieps-1.2.0-0-22.2R3-S2.8.x86_64.rpm
+igb-5.3.4.4-0-22.2R3-S2.8.x86_64.rpm
+lclksyncd-1.0-0-22.2R3-S2.8.x86_64.rpm
+lcmd-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-acx-5448-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-acx-5448d-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-acx-5448m-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-ex-925x-m-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-mx-10-m-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-mx-10k2-m-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-qfx-1-f-1.0-0-22.2R3-S2.8.x86_64.rpm
+netproxy-1-1-22.2R3-S2.8.x86_64.rpm
+relpcfpga-1.0-0-22.2R3-S2.8.x86_64.rpm
+srx-re3-meta-data-1.0-0-22.2R3-S2.8.x86_64.rpm
+util-1.0-0-22.2R3-S2.8.x86_64.rpm
+diagnostics_install.sh
+lclksyncd_install.sh
+Creating mount points for JUNOSFS and VMFS: /junos, /vm
+Copying /tmp/partdisk-1lfZMD/unpack/jhost_core-1.0-2308171134.x86_64.rpm to /tmp/partdisk-1lfZMD/jrootfs/hostd ...
+Installing Hostd image jhost_core-1.0-2308171134.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/jhost_core-1.0-2308171134.x86_64.rpm
+########################################
+########################################
+Updating / installing...
+########################################
+Please wait while configuration is in progress...
+Installation successful...
+Done with hostd Install
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/vsmartd-1.0-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+adding module to kernel...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/resild-1.0-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+adding module to kernel...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/rasdaemon-0.5.6-1.x86_64.rpm
+########################################
+########################################
+Updating / installing...
+########################################
+Installing coredump image coredump-1.0-0.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/coredump-1.0-0.x86_64.rpm
+########################################
+########################################
+Updating / installing...
+########################################
+Done with coredump Install...
+Installing iqvlinux image iqvlinux-1.2.0.8-0.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/iqvlinux-1.2.0.8-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+Done with iqvlinux Install...
+Installing jsntp image jsntp-1.0-0.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/jsntp-1.0-0.x86_64.rpm
+########################################
+########################################
+Preparing jsntp install ...
+Updating / installing...
+########################################
+Finished jsntp install...
+Done with jsntp Install...
+Installing lanconf64e image lanconf64e-1.0-0.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/lanconf64e-1.0-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+Done with lanconf64e Install...
+Installing vm image vm-1.0-0.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/vm-1.0-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+Done with vm Install...
+Target kernel version: 5.2.60-rt15-LTS19
+sh /junos/install/pkg-s1C/unpack/install///scripts/vmhost-platform-install.sh /tmp/partdisk-1lfZMD/unpack /tmp/partdisk-1lfZMD/jrootfs /junos/install/pkg-s1C/unpack/install// /tmp/partdisk-1lfZMD/jlvmjunosfs p
+MX
+Personality is mx
+sh /tmp/partdisk-1lfZMD/unpack/tpm-upgrade_install.sh /tmp/partdisk-1lfZMD/unpack /tmp/partdisk-1lfZMD/jrootfs
+Installing TPM Upgrade image /tmp/partdisk-1lfZMD/unpack/tpm-upgrade-1.01.2168.00-1.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/tpm-upgrade-1.01.2168.00-1.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+Installing /tmp/partdisk-1lfZMD/unpack/tpm-upgrade-1.01.2168.00-1.x86_64.rpm ... done.\n
+Current Firmware Version
+Invalid TPM firmware version. Skipping firmware update.
+Target OS version is: 1
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/re_fpga-1.0-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs
+rpm -ih --force --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/i40e-2.8.43-0.x86_64.rpm
+########################################
+########################################
+Updating / installing...
+########################################
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/i40e_pkg_7.0-1.0-0.x86_64.rpm
+########################################
+########################################
+Updating / installing...
+########################################
+NVM_version: 7.00
+DRV_version: 2.8.43
+Fortville NVM Firmware Version: 7.00
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs
+rpm -ih --force --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/igb-5.3.6-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+adding module to kernel...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-1lfZMD/jrootfs
+rpm -ih --force --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/e1000e-3.8.4-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+adding module to kernel...
+Updating boot partition...
+sh /junos/install/pkg-s1C/unpack/install///scripts/vmhost-platform-grub-install.sh /tmp/partdisk-1lfZMD/espfs/EFI/BOOT/grub.cfg.p /junos/install/pkg-s1C/unpack/install// jrootp_P 6 /tmp/partdisk-1lfZMD/espfs/EFI/BOOT 19
+MX
+Upgrade complete.
+Restore Last Known good BIOS..
+Restoring Last Known Good
+Restore last known good from /tmp/LKNWNGD-efi_P/REH_L_MTR1.efi.candidate to /tmp/bootchk-efi_P-oiJqJV/EFI/Juniper/REH_L_MTR1.efi.candidate
+Cmos Write successfull
+Cmos Write successfull for Boot_retry
+Cmos Write successfull for Boot_retry
+eth-lldp-disable.sh already present
+eth-lldp-stop.sh already present
+mk-mtre-downgrade.sh already present
+downgrade_cleanup_file_list  already present
+0
+/tmp/partdisk-1lfZMD/unpack/tpm-upgrade_install.sh: line 59: /usr/sbin/TPMFactoryUpd: No such file or directory
+... upgrade complete.
+A REBOOT IS REQUIRED TO LOAD THIS SOFTWARE CORRECTLY.
+Use the 'request vmhost reboot' command to reboot the system.
 
-2026-04-13 14:48:16,475 - INFO - [10_80_71_56_juniper_mx240] PRE-FLIGHT OK — RE0=Master, RE1=Backup
-2026-04-13 14:48:17,948 - INFO - [10_80_71_56_juniper_mx240] Pre-upgrade RE versions: None
-2026-04-13 14:48:17,948 - INFO - [10_80_71_56_juniper_mx240] ════════ HOP [0] START ════════ image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, expected_os=22.2R3-S2.8
-2026-04-13 14:48:17,948 - INFO - [10_80_71_56_juniper_mx240] ┌─ HOP [0] ACT 1 START @ 14:48:17 ─────────────────────
-2026-04-13 14:48:17,949 - INFO - [10_80_71_56_juniper_mx240] │  Target  : RE1 (Backup)
-2026-04-13 14:48:17,949 - INFO - [10_80_71_56_juniper_mx240] │  Image   : junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
-2026-04-13 14:48:17,949 - INFO - [10_80_71_56_juniper_mx240] │  Action  : install → reboot RE1 (10 min wait) → verify version
-2026-04-13 14:48:17,949 - INFO - [10_80_71_56_juniper_mx240] │  Expect  : RE0=Master/23.4R2-S3.9  RE1=Backup/22.2R3-S2.8
-2026-04-13 14:48:17,949 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] Starting — target_re=re1, hop_index=0, target_image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, expected_os=22.2R3-S2.8
-2026-04-13 14:48:19,320 - ERROR - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] Unhandled exception: 'NoneType' object has no attribute 'get'
-Traceback (most recent call last):
-  File "/home/colt/Documents/saketh_test/upgrade.py", line 952, in imageUpgradeDualRE
-    if versions.get(target_re) == expected_os:
-       ^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'get'
-2026-04-13 14:48:19,322 - ERROR - [10_80_71_56_juniper_mx240] └─ ACT 1 FAILED  ── HOP [0] ACT 1 FAILED — RE1 install/reboot/verify did not complete successfully (image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, expected_os=22.2R3-S2.8)
-2026-04-13 14:48:19,323 - ERROR - [10_80_71_56_juniper_mx240] Upgrade hop [0] failed for junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
-2026-04-13 14:48:19,323 - INFO - [10_80_71_56_juniper_mx240] Triggering rollback...
-2026-04-13 14:48:19,323 - DEBUG - [10_80_71_56_juniper_mx240] Rollback chain at failure: ['junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz']
-[10_80_71_56_juniper_mx240] Upgrade failed — starting rollback
-2026-04-13 14:48:19,323 - ERROR - [10_80_71_56_juniper_mx240] UPGRADE FAILED — stopping device
-[EXPORT] Summary JSON saved -> /home/colt/Documents/saketh_test/config_jsons/10_80_71_56_juniper_mx240_2026-04-13_14-48-19.json
-[LOGS] Device log : logging/10_80_71_56_juniper_mx240_*.log
-       Session log: outputs/10_80_71_56_juniper_mx240_*.log
-[REPORT] /home/colt/Documents/saketh_test/reports/10_80_71_56_juniper_mx240_2026-04-13_14-48-19.html
-2026-04-13 14:48:19,346 - INFO - [10_80_71_56_juniper_mx240] HTML report exported
-2026-04-13 14:48:19,357 - INFO - Logout successful from 10.80.71.56
-2026-04-13 14:48:19,357 - INFO - [10_80_71_56_juniper_mx240] Disconnected from 10.80.71.56
-2026-04-13 14:48:19,357 - INFO - [THREAD-133369182918336] [10_80_71_56_juniper_mx240] Pipeline finished at 2026-04-13 14:48:19.357675
-2026-04-13 14:48:19,357 - INFO - [10_80_71_56_juniper_mx240] ===== PIPELINE FINISHED =====
-(venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test$ ^C
-(venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test$
+2026-04-13_15:38:03 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] ────────────────────────────────────────────────────────────
+2026-04-13_15:38:03 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Starting — target_re=re1
+2026-04-13_15:38:03 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Sending: request vmhost reboot re1
+2026-04-13_15:38:08 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Reboot output:
+request vmhost reboot re1
+Reboot the vmhost ? [yes,no] (no) yes
 
 
+2026-04-13_15:38:08 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Sleeping 600s (10 min) for re1 to come back...
+2026-04-13_15:48:08 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Running post-reboot version check
+2026-04-13_15:48:09 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Version output:
 re0:
 --------------------------------------------------------------------------
 Hostname: EFFPER02
@@ -406,6 +572,102 @@ re1:
 --------------------------------------------------------------------------
 Hostname: EFFPER02
 Model: mx240
+Junos: 22.2R3-S2.8
+JUNOS OS Kernel 64-bit  [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS libs [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS time zone information [20230531.cf35cdf_builder_stable_12_222]
+JUNOS network stack and utilities [20230902.110149_builder_junos_222_r3_s2]
+JUNOS libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS libs compat32 [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS 32-bit compatibility [20230531.cf35cdf_builder_stable_12_222]
+JUNOS libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS runtime [20230902.110149_builder_junos_222_r3_s2]
+Junos vmguest package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS sflow mx [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py extensions [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py base [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS vmguest [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS crypto [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS boot-ve files [20230531.cf35cdf_builder_stable_12_222]
+JUNOS na telemetry [22.2R3-S2.8]
+JUNOS Security Intelligence [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx runtime [20230902.110149_builder_junos_222_r3_s2]
+JUNOS RPD Telemetry Application [22.2R3-S2.8]
+JUNOS Routing mpls-oam-basic [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing mpls-oam-advanced [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing lsys [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-internal [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-external [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing 32-bit Compatible Version [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing aggregated [20230902.110149_builder_junos_222_r3_s2]
+Redis [20230902.110149_builder_junos_222_r3_s2]
+JUNOS probe utility [20230902.110149_builder_junos_222_r3_s2]
+JUNOS common platform support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Openconfig [22.2R3-S2.8]
+JUNOS mtx network modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS L2 RSI Scripts [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SQL Sync Daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mtx Data Plane Crypto Support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Broadband Edge User Plane Apps [22.2R3-S2.8]
+Junos Remote Attestation package [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS appidd-mx application-identification daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS TPM2 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services URL Filter package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TLB Service PIC package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Telemetry [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TCP-LOG [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SSL [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SOFTWIRE [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Stateful Firewall [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RTCOM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RPM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services PCEF package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services NAT [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Mobile Subscriber Service Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services MobileNext Software package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Logging Report Framework package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services LL-PDF Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Jflow Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Deep Packet Inspection package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IPSec [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IDS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS IDP Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services HTTP Content Management package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services DNS Filter package (i386) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Crypto [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Captive Portal and Content Delivery Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services COS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS AppId Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Application Level Gateways [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services AACL Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SDN Software Suite [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Extension Toolkit [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Phone-home [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (wrlinux9) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX/EX92XX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (M/T Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (aft) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Juniper Malware Removal Tool (JMRT) [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS J-Insight [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jfirmware [20230518.103303_builder_junos_222_r3_s1]
+JUNOS Online Documentation [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jail runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS dsa dsa [22.2R3-S2.8]
+
+2026-04-13_15:48:09 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] STEP 3 — Verifying versions on all REs after re1 reboot
+2026-04-13_15:48:11 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] Version output:
+re0:
+--------------------------------------------------------------------------
+Hostname: EFFPER02
+Model: mx240
 Junos: 23.4R2-S3.9
 JUNOS OS Kernel 64-bit  [20240604.39c9257_builder_stable_12_234]
 JUNOS OS libs [20240604.39c9257_builder_stable_12_234]
@@ -500,3 +762,1274 @@ JUNOS jfirmware [20241018.050548_builder_junos_234_r2_s3]
 JUNOS Online Documentation [20241119.054100_builder_junos_234_r2_s3]
 JUNOS jail runtime [20240604.39c9257_builder_stable_12_234]
 JUNOS dsa [20241119.054100_builder_junos_234_r2_s3]
+
+re1:
+--------------------------------------------------------------------------
+Hostname: EFFPER02
+Model: mx240
+Junos: 22.2R3-S2.8
+JUNOS OS Kernel 64-bit  [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS libs [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS time zone information [20230531.cf35cdf_builder_stable_12_222]
+JUNOS network stack and utilities [20230902.110149_builder_junos_222_r3_s2]
+JUNOS libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS libs compat32 [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS 32-bit compatibility [20230531.cf35cdf_builder_stable_12_222]
+JUNOS libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS runtime [20230902.110149_builder_junos_222_r3_s2]
+Junos vmguest package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS sflow mx [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py extensions [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py base [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS vmguest [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS crypto [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS boot-ve files [20230531.cf35cdf_builder_stable_12_222]
+JUNOS na telemetry [22.2R3-S2.8]
+JUNOS Security Intelligence [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx runtime [20230902.110149_builder_junos_222_r3_s2]
+JUNOS RPD Telemetry Application [22.2R3-S2.8]
+JUNOS Routing mpls-oam-basic [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing mpls-oam-advanced [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing lsys [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-internal [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-external [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing 32-bit Compatible Version [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing aggregated [20230902.110149_builder_junos_222_r3_s2]
+Redis [20230902.110149_builder_junos_222_r3_s2]
+JUNOS probe utility [20230902.110149_builder_junos_222_r3_s2]
+JUNOS common platform support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Openconfig [22.2R3-S2.8]
+JUNOS mtx network modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS L2 RSI Scripts [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SQL Sync Daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mtx Data Plane Crypto Support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Broadband Edge User Plane Apps [22.2R3-S2.8]
+Junos Remote Attestation package [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS appidd-mx application-identification daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS TPM2 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services URL Filter package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TLB Service PIC package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Telemetry [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TCP-LOG [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SSL [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SOFTWIRE [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Stateful Firewall [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RTCOM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RPM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services PCEF package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services NAT [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Mobile Subscriber Service Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services MobileNext Software package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Logging Report Framework package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services LL-PDF Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Jflow Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Deep Packet Inspection package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IPSec [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IDS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS IDP Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services HTTP Content Management package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services DNS Filter package (i386) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Crypto [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Captive Portal and Content Delivery Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services COS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS AppId Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Application Level Gateways [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services AACL Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SDN Software Suite [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Extension Toolkit [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Phone-home [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (wrlinux9) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX/EX92XX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (M/T Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (aft) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Juniper Malware Removal Tool (JMRT) [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS J-Insight [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jfirmware [20230518.103303_builder_junos_222_r3_s1]
+JUNOS Online Documentation [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jail runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS dsa dsa [22.2R3-S2.8]
+
+2026-04-13_15:48:11 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] STEP 3 OK — re1 confirmed at expected_os=22.2R3-S2.8
+2026-04-13_15:48:11 - INFO - [10_80_71_56_juniper_mx240] │  VERIFY OK: RE1=22.2R3-S2.8  RE0=23.4R2-S3.9  (RE0 still Master)
+2026-04-13_15:48:11 - INFO - [10_80_71_56_juniper_mx240] └─ HOP [0] ACT 1 COMPLETE @ 15:48:11 ────────────────────
+2026-04-13_15:48:11 - INFO - [10_80_71_56_juniper_mx240] ┌─ HOP [0] ACT 2 START @ 15:48:11 ─────────────────────
+2026-04-13_15:48:11 - INFO - [10_80_71_56_juniper_mx240] │  Action  : switchover RE0→RE1 (RE1 becomes Master)
+2026-04-13_15:48:11 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] Starting — hop_index=0, expected_new_master=re1
+2026-04-13_15:48:11 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 1 — Sending: request chassis routing-engine master switch
+2026-04-13_15:48:11 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 1 — command sent, got prompt response
+2026-04-13_15:48:11 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 2 — Waiting 5s, sending first 'yes'
+2026-04-13_15:48:16 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 2 — first 'yes' sent
+2026-04-13_15:48:16 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 3 — Waiting 5s, sending second 'yes'
+2026-04-13_15:48:21 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 3 — second 'yes' may have dropped (expected): Socket is closed
+2026-04-13_15:48:21 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 4 — Waiting 13s for new master to take over
+2026-04-13_15:48:36 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 5 — Reconnecting to 10.80.71.56
+2026-04-13_15:48:36 - INFO - Logout successful from 10.80.71.56
+2026-04-13_15:48:36 - INFO - [10_80_71_56_juniper_mx240] Disconnected from 10.80.71.56
+2026-04-13_15:48:36 - INFO - [10_80_71_56_juniper_mx240]:: [connect] Connecting to device
+2026-04-13_15:48:36 - DEBUG - [10_80_71_56_juniper_mx240]:: [connect] device_type=juniper, username=lab
+2026-04-13_15:48:36 - DEBUG - [10_80_71_56_juniper_mx240]:: [connect] Session log -> /home/colt/Documents/saketh_test/outputs/10_80_71_56_juniper_mx240_2026-04-13_session.txt
+2026-04-13_15:48:36 - INFO - [10_80_71_56_juniper_mx240]: Session log file exists -- /home/colt/Documents/saketh_test/outputs/10_80_71_56_juniper_mx240_2026-04-13_session.txt
+2026-04-13_15:48:43 - INFO - [10_80_71_56_juniper_mx240]:: [Upgrade.connect] Connected successfully
+2026-04-13_15:48:43 - INFO - [10_80_71_56_juniper_mx240]: [switchoverMaster] STEP 5 — Reconnected successfully
+2026-04-13_15:48:43 - INFO - [10_80_71_56_juniper_mx240]: [switchoverMaster] STEP 6 — Verifying chassis state
+2026-04-13_15:48:59 - INFO - [10_80_71_56_juniper_mx240]: [switchoverMaster] chassis output:
+Routing Engine status:
+  Slot 0:
+    Current state                  Backup
+    Election priority              Master (default)
+    Temperature                 45 degrees C / 113 degrees F
+    CPU temperature             68 degrees C / 154 degrees F
+    DRAM                      49096 MB (49152 MB installed)
+    Memory utilization           5 percent
+    5 sec CPU utilization:
+      User                       6 percent
+      Background                 0 percent
+      Kernel                     1 percent
+      Interrupt                  0 percent
+      Idle                      93 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7380
+    Start time                     2026-04-13 03:59:38 UTC
+    Uptime                         6 hours, 21 minutes, 35 seconds
+    Last reboot reason             0x2000:hypervisor reboot
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.29       0.35       0.39
+Routing Engine status:
+  Slot 1:
+    Current state                  Master
+    Election priority              Backup (default)
+    Temperature                 42 degrees C / 107 degrees F
+    CPU temperature             59 degrees C / 138 degrees F
+    DRAM                      49098 MB (49152 MB installed)
+    Memory utilization           7 percent
+    5 sec CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                    26 percent
+      Interrupt                  4 percent
+      Idle                      69 percent
+    1 min CPU utilization:
+      User                       6 percent
+      Background                 0 percent
+      Kernel                     9 percent
+      Interrupt                  0 percent
+      Idle                      85 percent
+    5 min CPU utilization:
+      User                       3 percent
+      Background                 0 percent
+      Kernel                     5 percent
+      Interrupt                  0 percent
+      Idle                      93 percent
+    15 min CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     2 percent
+      Interrupt                  0 percent
+      Idle                      96 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7430
+    Start time                     2026-04-13 10:13:15 UTC
+    Uptime                         8 minutes, 11 seconds
+    Last reboot reason             0x2000:hypervisor reboot
+    Load averages:                 1 minute   5 minute  15 minute
+                                       2.72       1.25       0.66
+
+2026-04-13_15:48:59 - INFO - [10_80_71_56_juniper_mx240]: [switchoverMaster] STEP 6 OK — re1 confirmed as Master
+2026-04-13_15:48:59 - INFO - [10_80_71_56_juniper_mx240] │  VERIFY OK: RE1=Master  RE0=Backup  (chassis state confirmed)
+2026-04-13_15:48:59 - INFO - [10_80_71_56_juniper_mx240] └─ HOP [0] ACT 2 COMPLETE @ 15:48:59 ────────────────────
+2026-04-13_15:48:59 - INFO - [10_80_71_56_juniper_mx240] ┌─ HOP [0] ACT 3 START @ 15:48:59 ─────────────────────
+2026-04-13_15:48:59 - INFO - [10_80_71_56_juniper_mx240] │  Target  : RE0 (Backup)
+2026-04-13_15:48:59 - INFO - [10_80_71_56_juniper_mx240] │  Image   : junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
+2026-04-13_15:48:59 - INFO - [10_80_71_56_juniper_mx240] │  Action  : install → reboot RE0 (10 min wait) → verify version
+2026-04-13_15:48:59 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] Starting — target_re=re0, hop_index=0, target_image=junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz, expected_os=22.2R3-S2.8
+2026-04-13_15:49:00 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] STEP 1 — Installing junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz on re0
+2026-04-13_15:49:00 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] Sending command: request vmhost software add /var/tmp/junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz re0 no-validate
+2026-04-13_15:49:00 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] Waiting up to 15 minutes for install to complete...
+2026-04-13_15:55:55 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] ─────────────── INSTALL OUTPUT (re0) ───────────────
+2026-04-13_15:55:55 - INFO -
+Pushing /var/tmp/junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz to re0:/var/tmp/junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
+Verified junos-vmhost-install-mx-x86-64-22.2R3-S2.8 signed by PackageDevelopmentECP256_2023 method ECDSA256+SHA256
+i40e NVM version is 7.00
+Proceeding with install
+Copied the config and other data to the aux disk.
+Transfer junos-host-upgrade.sh
+Transfer Done
+Transfer /packages/db/pkginst.96704/junos-vmhost-install*.tgz
+Transfer Done
+Transfer /packages/db/pkginst.96704/attributes
+Transfer Done
+Starting upgrade ...
+Preparing for upgrade...
+/junos/install/pkg-RR9/unpack/install/
+tar --directory=/junos/install/pkg-RR9/unpack/install/ -xvf /junos/install/install.tgz
+./
+./vmhost/
+./vmhost/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img.gz
+./vmhost/README
+./vmhost-pkgs-version
+./vm/
+./vm/note
+./vm/grub.cfg.ngre
+./vmhost-version
+./vmhost-version.sh
+./hostd/
+./hostd/jhost_core-1.0-2308171134.x86_64.rpm
+./hostd/vehostd-note.txt
+./hostd/vehostd-ovp-install.sh
+./chotu/
+./chotu/vmhost-chotu-install.sh
+./chotu/vmhost-chotu-grub-install.sh
+./junos/
+./junos/junos-mtre-install.sh
+./junos/junos-mtre-upgrade.sh
+./junos/junos-unified-backup.sh
+./scripts/
+./scripts/mk-mtre-upgrade.sh
+./scripts/mk-mtre-partition.sh
+./scripts/vmhost-platform-grub-install.sh
+./scripts/mount-usb-img.sh
+./scripts/tvp-platform-functions.sh
+./scripts/unified-disk-defines.sh
+./scripts/target-scripts/
+./scripts/target-scripts/mk-mtre-partition.sh
+./scripts/target-scripts/mtre-ssd-version.sh
+./scripts/target-scripts/mcelog.override
+./scripts/target-scripts/jmodutilsPost.service
+./scripts/target-scripts/simulate-halt.service
+./scripts/target-scripts/vmhost-misc.inc
+./scripts/target-scripts/post-tp-install-ops.sh
+./scripts/target-scripts/01boot_setup.sh
+./scripts/target-scripts/platform_specific_init
+./scripts/target-scripts/vmhost-fipsmode-functions.sh
+./scripts/target-scripts/S04modutilsPost.sh
+./scripts/target-scripts/tvp-platform-functions.sh
+./scripts/target-scripts/S08jhostrpminstall.sh
+./scripts/target-scripts/mk-mtre-downgrade.service
+./scripts/target-scripts/vmhost-partition.inc
+./scripts/target-scripts/unified-disk-defines.sh
+./scripts/target-scripts/biosrecovery
+./scripts/target-scripts/rpm.sh
+./scripts/target-scripts/rsyslog_config.sh
+./scripts/target-scripts/03boot_info.sh
+./scripts/target-scripts/savelog
+./scripts/target-scripts/failure_handler@.service
+./scripts/target-scripts/boardinfo
+./scripts/target-scripts/vmhost-kdump-configure
+./scripts/target-scripts/README.service
+./scripts/target-scripts/00read_only_root.sh
+./scripts/target-scripts/platform-functions.sh
+./scripts/target-scripts/vmhost-kdump-input.sh
+./scripts/target-scripts/unified-disk-functions.sh
+./scripts/target-scripts/vmhost-kdump.inc
+./scripts/target-scripts/01vehostd_setup.sh
+./scripts/target-scripts/jrootunion.service
+./scripts/target-scripts/config_br_mac.sh
+./scripts/target-scripts/i40e_installer.service
+./scripts/target-scripts/vmhost-fipsmode
+./scripts/target-scripts/jlvmrootrw_files_cleanup.sh
+./scripts/target-scripts/gcore
+./scripts/target-scripts/monit.override
+./scripts/target-scripts/jrootunion.sh
+./scripts/target-scripts/04CheckDisk.sh
+./scripts/target-scripts/S05rootunion.sh
+./scripts/target-scripts/vehostd.service
+./scripts/target-scripts/rasdaemon.service
+./scripts/target-scripts/vmhost_lvmpvscan.service
+./scripts/target-scripts/mtre-ssd-rollback.sh
+./scripts/target-scripts/S05ovprootrwS.sh
+./scripts/target-scripts/dhclient.override
+./scripts/target-scripts/mk-mtre-root-snapshot.sh
+./scripts/target-scripts/eth-lldp-stop.sh
+./scripts/target-scripts/011tvp_setup.sh
+./scripts/target-scripts/00junos_setup.sh
+./scripts/target-scripts/05fips-check.sh
+./scripts/target-scripts/vmhost-grub-update.sh
+./scripts/target-scripts/setup_bridges.sh
+./scripts/target-scripts/reboot.override
+./scripts/target-scripts/nextboot-downgrade.sh
+./scripts/target-scripts/vmhost-sb-bios.sh
+./scripts/target-scripts/mk-mtre-rollback.sh
+./scripts/target-scripts/platform_init_lts.override
+./scripts/target-scripts/watchdog.service
+./scripts/target-scripts/smartd.override
+./scripts/target-scripts/lsbinit-functions
+./scripts/target-scripts/vmhost-kdump-process.sh
+./scripts/target-scripts/common-functions.sh
+./scripts/target-scripts/01setup_environment.sh
+./scripts/target-scripts/S05rootunionS.sh
+./scripts/target-scripts/gcov-dump
+./scripts/target-scripts/mtre-ssd-snapshot.sh
+./scripts/target-scripts/rpm_installer_utils.sh
+./scripts/target-scripts/02start_services.sh
+./scripts/target-scripts/junos_create_unified.sh
+./scripts/target-scripts/eth_wedge_protection.sh
+./scripts/target-scripts/sysctl.conf
+./scripts/target-scripts/eth_mon.sh
+./scripts/target-scripts/gt-mtre-version.sh
+./scripts/target-scripts/mk-mtre-snapshot.sh
+./scripts/target-scripts/vmhost_ssh
+./scripts/target-scripts/mk-mtre-downgrade.sh
+./scripts/target-scripts/disk-functions.sh
+./scripts/target-scripts/xinetd.override
+./scripts/target-scripts/01bios_check.sh
+./scripts/target-scripts/eth-lldp-disable.sh
+./scripts/target-scripts/ssh.config.update
+./scripts/target-scripts/platform_init.override
+./scripts/target-scripts/rc.local
+./scripts/target-scripts/vmhost_unified.service
+./scripts/target-scripts/mgmt_port_shaper
+./scripts/target-scripts/mk-mtre-zeroize.sh
+./scripts/target-scripts/vmhost-kdump-usb-format.sh
+./scripts/target-scripts/monit-eapps.conf
+./scripts/target-scripts/junos-unified-current.sh
+./scripts/target-scripts/daemon_fail_check.service
+./scripts/target-scripts/jsntp.service
+./scripts/target-scripts/resild.service
+./scripts/target-scripts/vsmartd.service
+./scripts/target-scripts/mgmtif
+./scripts/target-scripts/riofeb.service
+./scripts/target-scripts/root_login
+./scripts/target-scripts/09persona_cleanup.sh
+./scripts/target-scripts/ht_config.sh
+./scripts/target-scripts/vmhost_version_get_major.sh
+./scripts/target-scripts/libvirtd.override
+./scripts/target-scripts/daemon_fail.sh
+./scripts/target-scripts/daemon_fail_check.timer
+./scripts/target-scripts/mtre-ssd-zeroize.sh
+./scripts/target-scripts/rc-local.override
+./scripts/target-scripts/mgmtif-policer
+./scripts/target-scripts/boardreset
+./scripts/target-scripts/vmhost-kdump-configure.override
+./scripts/target-scripts/S05ovprootrw.sh
+./scripts/target-scripts/downgrade_cleanup_file_list
+./scripts/target-scripts/mk-unified-junos-partition.sh
+./scripts/mk-part-mtre-install.sh
+./scripts/validate_pkg_for_the_sku.sh
+./scripts/boardinfo
+./scripts/platform-functions.sh
+./scripts/unified-disk-functions.sh
+./scripts/vmhost-platform-lc-install.sh
+./scripts/mtre-installer.sh
+./scripts/mtre-ssd-installer.sh
+./scripts/vmhost-i40e.sh
+./scripts/vmhost-sb-bios.sh
+./scripts/vmhost-platform-install.sh
+./scripts/common-functions.sh
+./scripts/mtre-ssd-upgrade.sh
+./scripts/grub.cfg.ngre
+./scripts/vmhost-systemd-install.sh
+./scripts/ddimage
+./scripts/ssd-ovp-installer.sh
+./scripts/boardreset
+junos/
+junos/junos-install-mx-x86-64-22.2R3-S2.8.img.gz
+./vmhost-core-x86-64-22.2R3-S2.8.tgz
+/junos/install/pkg-RR9/unpack/install//
+sh /junos/install/pkg-RR9/unpack/install///scripts/mtre-ssd-upgrade.sh /junos/install/pkg-RR9/unpack/install//
+Current root details,           Device sda, Label: jrootb_P, Partition: sda4
+Copying /junos/install/pkg-RR9/unpack/install///vmhost/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img.gz to tmp dir: /tmp/install-oO2WyT ...
+Testing /tmp/install-oO2WyT/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img.gz for compression ...
+Uncompressing Linux: /tmp/install-oO2WyT/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img.gz ...
+Image details
+=============
+    image: '/tmp/install-oO2WyT/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img'
+     size: 2584739840 bytes
+ modified: 2026-04-13 10:25:44.986840665 +0000
+     type: DOS/MBR boot sector; partition 1 : ID=0xe, active, start-CHS (0x0,32,33), end-CHS (0x10,113,33), startsector 2048, 262144 sectors; partition 2 : ID=0x83, start-CHS (0x10,113,34), end-CHS (0x13a,62,4), startsector 264192, 4784128 sectors
+
+NVM_version: 7.00
+DRV_version: 2.8.43
+Finding alternate root for upgrade
+Preserve Last Known good BIOS..
+Preserving Last Known Good
+Preserve /tmp/bootchk-efi_P-KzLJSS/EFI/Juniper/REH_L_MTR1.efi.candidate to /tmp/LKNWNGD-efi_P/REH_L_MTR1.efi.candidate
+Upgrading software on jrootp_P ...
+Inputs: jrootp_P p /dev/sda /tmp/install-oO2WyT/vmhost-x86_64-22.2R3-S2-20230706_0415_builder.img P /junos/install/pkg-RR9/unpack/install//
+
+Mounting images and device in preparation for upgrade...
+USBIMG_BOOT_OFFSET: 1048576, USBIMG_BOOT_SIZELIMIT: 134217728, USBIMG_ROOT_OFFSET: 135266304, USBIMG_ROOT_SIZELIMIT: 2449473536
+Cleaning target ROOTFS jrootp_P
+Copying ROOTFS files...
+INIT system is systemd
+Future vmhost version:7
+Copying systemd scripts
+PLATFORM is MX
+remove stale modified sshd_config...
+Upgrading administrative Junos context ...
+Testing /tmp/partdisk-vZQ5DE/jlvmjunosfs/Current.p/junos-install-mx-x86-64-22.2R3-S2.8.img.gz for compression ...
+Uncompressing Junos: /tmp/partdisk-vZQ5DE/jlvmjunosfs/Current.p/junos-install-mx-x86-64-22.2R3-S2.8.img.gz ...
+Done with Junos Upgrade
+Upgrading hostd content ...
+./
+./e1000e-3.8.4_install.sh
+./i2cd_install.sh
+./iqvlinux_install.sh
+./i40e_pkg_7.0-1.0-0.x86_64.rpm
+./jsntp_install.sh
+./vehostd_install.sh
+./tpm-upgrade-1.01.2168.00-1.x86_64.rpm
+./rasdaemon-0.5.6-1.x86_64.rpm
+./jdid_install.sh
+./igb-5.3.6_install.sh
+./igb-5.3.6-0.x86_64.rpm
+./common/
+./common/iqvlinux_install.sh
+./common/jsntp_install.sh
+./common/coredump-1.0-0.x86_64.rpm
+./common/lanconf64e_install.sh
+./common/jsntp-1.0-0.x86_64.rpm
+./common/vm-1.0-0.x86_64.rpm
+./common/lanconf64e-1.0-0.x86_64.rpm
+./common/coredump_install.sh
+./common/iqvlinux-1.2.0.8-0.x86_64.rpm
+./common/vm_install.sh
+./i40e_pkg-2.0-0.x86_64.rpm
+./jhost_core-1.0-2308171134.x86_64.rpm
+./libbind_install.sh
+./vmhost-version
+./lanconf64e_install.sh
+./vmhost-version.sh
+./libi2cdev-1.0-0.x86_64.rpm
+./libi2cdev_install.sh
+./bios_pkg_install.sh
+./vsmartd_install.sh
+./resild_install.sh
+./e1000e-3.8.4-0.x86_64.rpm
+./jdid_nonTVP-1.0-0.x86_64.rpm
+./tpm-upgrade_install.sh
+./vmhost-firmware-x86_64-22.2R3-S2-20230817_1125.builder.cd6ccefc3_builder.tar
+./i40e-2.8.43_install.sh
+./i40e_pkg_install.sh
+./re_fpga-1.0-0.x86_64.rpm
+./i2cd-1.0-0.x86_64.rpm
+./jdid-1.0-0.x86_64.rpm
+./coredump_install.sh
+./rasdaemon_install.sh
+./pfe_app_launcher_install.sh
+./re_fpga_install.sh
+./i40e-2.8.43-0.x86_64.rpm
+./pfe_app_launcher-1.0-0.x86_64.rpm
+./jdid_nonTVP_install.sh
+./vm_install.sh
+./bios_pkg-1.0-0.x86_64.rpm
+./resild-1.0-0.x86_64.rpm
+./vsmartd-1.0-0.x86_64.rpm
+./diagnostics-1.1-1.x86_64.rpm
+./diagnostics_install.sh
+aft-ulc-1.0-0-22.2R3-S2.8.x86_64.rpm
+bcm-1.0-0-22.2R3-S2.8.x86_64.rpm
+bcm-6.5-16-22.2R3-S2.8.x86_64.rpm
+fabric-1.0-0-22.2R3-S2.8.x86_64.rpm
+fabric-mx-10-m-1.0-0-22.2R3-S2.8.x86_64.rpm
+fabric-mx-10k2-m-1.0-0-22.2R3-S2.8.x86_64.rpm
+grpc-util-1.0-0-22.2R3-S2.8.x86_64.rpm
+ice-1.4.11-0-22.2R3-S2.8.x86_64.rpm
+ieps-1.2.0-0-22.2R3-S2.8.x86_64.rpm
+igb-5.3.4.4-0-22.2R3-S2.8.x86_64.rpm
+lclksyncd-1.0-0-22.2R3-S2.8.x86_64.rpm
+lcmd-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-acx-5448-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-acx-5448d-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-acx-5448m-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-ex-925x-m-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-mx-10-m-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-mx-10k2-m-1.0-0-22.2R3-S2.8.x86_64.rpm
+meta-data-qfx-1-f-1.0-0-22.2R3-S2.8.x86_64.rpm
+netproxy-1-1-22.2R3-S2.8.x86_64.rpm
+relpcfpga-1.0-0-22.2R3-S2.8.x86_64.rpm
+srx-re3-meta-data-1.0-0-22.2R3-S2.8.x86_64.rpm
+util-1.0-0-22.2R3-S2.8.x86_64.rpm
+diagnostics_install.sh
+lclksyncd_install.sh
+Creating mount points for JUNOSFS and VMFS: /junos, /vm
+Copying /tmp/partdisk-vZQ5DE/unpack/jhost_core-1.0-2308171134.x86_64.rpm to /tmp/partdisk-vZQ5DE/jrootfs/hostd ...
+Installing Hostd image jhost_core-1.0-2308171134.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/jhost_core-1.0-2308171134.x86_64.rpm
+########################################
+########################################
+Updating / installing...
+########################################
+Please wait while configuration is in progress...
+Installation successful...
+Done with hostd Install
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/vsmartd-1.0-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+adding module to kernel...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/resild-1.0-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+adding module to kernel...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/rasdaemon-0.5.6-1.x86_64.rpm
+########################################
+########################################
+Updating / installing...
+########################################
+Installing coredump image coredump-1.0-0.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/coredump-1.0-0.x86_64.rpm
+########################################
+########################################
+Updating / installing...
+########################################
+Done with coredump Install...
+Installing iqvlinux image iqvlinux-1.2.0.8-0.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/iqvlinux-1.2.0.8-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+Done with iqvlinux Install...
+Installing jsntp image jsntp-1.0-0.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/jsntp-1.0-0.x86_64.rpm
+########################################
+########################################
+Preparing jsntp install ...
+Updating / installing...
+########################################
+Finished jsntp install...
+Done with jsntp Install...
+Installing lanconf64e image lanconf64e-1.0-0.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/lanconf64e-1.0-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+Done with lanconf64e Install...
+Installing vm image vm-1.0-0.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/vm-1.0-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+Done with vm Install...
+Target kernel version: 5.2.60-rt15-LTS19
+sh /junos/install/pkg-RR9/unpack/install///scripts/vmhost-platform-install.sh /tmp/partdisk-vZQ5DE/unpack /tmp/partdisk-vZQ5DE/jrootfs /junos/install/pkg-RR9/unpack/install// /tmp/partdisk-vZQ5DE/jlvmjunosfs p
+MX
+Personality is mx
+sh /tmp/partdisk-vZQ5DE/unpack/tpm-upgrade_install.sh /tmp/partdisk-vZQ5DE/unpack /tmp/partdisk-vZQ5DE/jrootfs
+Installing TPM Upgrade image /tmp/partdisk-vZQ5DE/unpack/tpm-upgrade-1.01.2168.00-1.x86_64.rpm ...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs/
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/tpm-upgrade-1.01.2168.00-1.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+Installing /tmp/partdisk-vZQ5DE/unpack/tpm-upgrade-1.01.2168.00-1.x86_64.rpm ... done.\n
+Current Firmware Version
+Invalid TPM firmware version. Skipping firmware update.
+Target OS version is: 1
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/re_fpga-1.0-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs
+rpm -ih --force --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/i40e-2.8.43-0.x86_64.rpm
+########################################
+########################################
+Updating / installing...
+########################################
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs
+rpm -ih --replacefiles --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/i40e_pkg_7.0-1.0-0.x86_64.rpm
+########################################
+########################################
+Updating / installing...
+########################################
+NVM_version: 7.00
+DRV_version: 2.8.43
+Fortville NVM Firmware Version: 7.00
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs
+rpm -ih --force --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/igb-5.3.6-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+adding module to kernel...
+Using Target rootfs rpm to install
+In ROOTFS:/tmp/partdisk-vZQ5DE/jrootfs
+rpm -ih --force --prefix=/ --nodeps --dbpath=/var/lib/rpm /var/tmp/e1000e-3.8.4-0.x86_64.rpm
+########################################
+########################################
+preparing install ...
+Updating / installing...
+########################################
+adding module to kernel...
+Updating boot partition...
+sh /junos/install/pkg-RR9/unpack/install///scripts/vmhost-platform-grub-install.sh /tmp/partdisk-vZQ5DE/espfs/EFI/BOOT/grub.cfg.p /junos/install/pkg-RR9/unpack/install// jrootp_P 6 /tmp/partdisk-vZQ5DE/espfs/EFI/BOOT 19
+MX
+Upgrade complete.
+Restore Last Known good BIOS..
+Restoring Last Known Good
+Restore last known good from /tmp/LKNWNGD-efi_P/REH_L_MTR1.efi.candidate to /tmp/bootchk-efi_P-1hMG3E/EFI/Juniper/REH_L_MTR1.efi.candidate
+Cmos Write successfull
+Cmos Write successfull for Boot_retry
+Cmos Write successfull for Boot_retry
+eth-lldp-disable.sh already present
+eth-lldp-stop.sh already present
+mk-mtre-downgrade.sh already present
+downgrade_cleanup_file_list  already present
+0
+/tmp/partdisk-vZQ5DE/unpack/tpm-upgrade_install.sh: line 59: /usr/sbin/TPMFactoryUpd: No such file or directory
+... upgrade complete.
+A REBOOT IS REQUIRED TO LOAD THIS SOFTWARE CORRECTLY.
+Use the 'request vmhost reboot' command to reboot the system.
+
+2026-04-13_15:55:55 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] ────────────────────────────────────────────────────────────
+2026-04-13_15:55:55 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Starting — target_re=re0
+2026-04-13_15:55:55 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Sending: request vmhost reboot re0
+2026-04-13_15:56:00 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Reboot output:
+request vmhost reboot re0
+Reboot the vmhost ? [yes,no] (no) yes
+
+
+2026-04-13_15:56:00 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Sleeping 600s (10 min) for re0 to come back...
+2026-04-13_16:06:00 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Running post-reboot version check
+2026-04-13_16:06:01 - INFO - 10_80_71_56_juniper_mx240: [systemRebootDualRE] Version output:
+re0:
+--------------------------------------------------------------------------
+Hostname: EFFPER02
+Model: mx240
+Junos: 22.2R3-S2.8
+JUNOS OS Kernel 64-bit  [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS libs [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS time zone information [20230531.cf35cdf_builder_stable_12_222]
+JUNOS network stack and utilities [20230902.110149_builder_junos_222_r3_s2]
+JUNOS libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS libs compat32 [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS 32-bit compatibility [20230531.cf35cdf_builder_stable_12_222]
+JUNOS libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS runtime [20230902.110149_builder_junos_222_r3_s2]
+Junos vmguest package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS sflow mx [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py extensions [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py base [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS vmguest [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS crypto [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS boot-ve files [20230531.cf35cdf_builder_stable_12_222]
+JUNOS na telemetry [22.2R3-S2.8]
+JUNOS Security Intelligence [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx runtime [20230902.110149_builder_junos_222_r3_s2]
+JUNOS RPD Telemetry Application [22.2R3-S2.8]
+JUNOS Routing mpls-oam-basic [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing mpls-oam-advanced [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing lsys [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-internal [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-external [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing 32-bit Compatible Version [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing aggregated [20230902.110149_builder_junos_222_r3_s2]
+Redis [20230902.110149_builder_junos_222_r3_s2]
+JUNOS probe utility [20230902.110149_builder_junos_222_r3_s2]
+JUNOS common platform support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Openconfig [22.2R3-S2.8]
+JUNOS mtx network modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS L2 RSI Scripts [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SQL Sync Daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mtx Data Plane Crypto Support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Broadband Edge User Plane Apps [22.2R3-S2.8]
+Junos Remote Attestation package [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS appidd-mx application-identification daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS TPM2 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services URL Filter package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TLB Service PIC package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Telemetry [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TCP-LOG [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SSL [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SOFTWIRE [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Stateful Firewall [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RTCOM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RPM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services PCEF package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services NAT [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Mobile Subscriber Service Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services MobileNext Software package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Logging Report Framework package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services LL-PDF Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Jflow Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Deep Packet Inspection package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IPSec [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IDS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS IDP Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services HTTP Content Management package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services DNS Filter package (i386) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Crypto [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Captive Portal and Content Delivery Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services COS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS AppId Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Application Level Gateways [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services AACL Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SDN Software Suite [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Extension Toolkit [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Phone-home [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (wrlinux9) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX/EX92XX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (M/T Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (aft) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Juniper Malware Removal Tool (JMRT) [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS J-Insight [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jfirmware [20230518.103303_builder_junos_222_r3_s1]
+JUNOS Online Documentation [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jail runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS dsa dsa [22.2R3-S2.8]
+
+re1:
+--------------------------------------------------------------------------
+Hostname: EFFPER02
+Model: mx240
+Junos: 22.2R3-S2.8
+JUNOS OS Kernel 64-bit  [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS libs [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS time zone information [20230531.cf35cdf_builder_stable_12_222]
+JUNOS network stack and utilities [20230902.110149_builder_junos_222_r3_s2]
+JUNOS libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS libs compat32 [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS 32-bit compatibility [20230531.cf35cdf_builder_stable_12_222]
+JUNOS libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS runtime [20230902.110149_builder_junos_222_r3_s2]
+Junos vmguest package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS sflow mx [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py extensions [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py base [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS vmguest [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS crypto [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS boot-ve files [20230531.cf35cdf_builder_stable_12_222]
+JUNOS na telemetry [22.2R3-S2.8]
+JUNOS Security Intelligence [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx runtime [20230902.110149_builder_junos_222_r3_s2]
+JUNOS RPD Telemetry Application [22.2R3-S2.8]
+JUNOS Routing mpls-oam-basic [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing mpls-oam-advanced [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing lsys [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-internal [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-external [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing 32-bit Compatible Version [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing aggregated [20230902.110149_builder_junos_222_r3_s2]
+Redis [20230902.110149_builder_junos_222_r3_s2]
+JUNOS probe utility [20230902.110149_builder_junos_222_r3_s2]
+JUNOS common platform support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Openconfig [22.2R3-S2.8]
+JUNOS mtx network modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS L2 RSI Scripts [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SQL Sync Daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mtx Data Plane Crypto Support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Broadband Edge User Plane Apps [22.2R3-S2.8]
+Junos Remote Attestation package [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS appidd-mx application-identification daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS TPM2 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services URL Filter package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TLB Service PIC package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Telemetry [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TCP-LOG [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SSL [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SOFTWIRE [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Stateful Firewall [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RTCOM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RPM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services PCEF package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services NAT [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Mobile Subscriber Service Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services MobileNext Software package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Logging Report Framework package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services LL-PDF Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Jflow Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Deep Packet Inspection package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IPSec [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IDS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS IDP Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services HTTP Content Management package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services DNS Filter package (i386) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Crypto [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Captive Portal and Content Delivery Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services COS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS AppId Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Application Level Gateways [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services AACL Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SDN Software Suite [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Extension Toolkit [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Phone-home [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (wrlinux9) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX/EX92XX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (M/T Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (aft) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Juniper Malware Removal Tool (JMRT) [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS J-Insight [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jfirmware [20230518.103303_builder_junos_222_r3_s1]
+JUNOS Online Documentation [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jail runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS dsa dsa [22.2R3-S2.8]
+
+2026-04-13_16:06:01 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] STEP 3 — Verifying versions on all REs after re0 reboot
+2026-04-13_16:06:02 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] Version output:
+re0:
+--------------------------------------------------------------------------
+Hostname: EFFPER02
+Model: mx240
+Junos: 22.2R3-S2.8
+JUNOS OS Kernel 64-bit  [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS libs [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS time zone information [20230531.cf35cdf_builder_stable_12_222]
+JUNOS network stack and utilities [20230902.110149_builder_junos_222_r3_s2]
+JUNOS libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS libs compat32 [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS 32-bit compatibility [20230531.cf35cdf_builder_stable_12_222]
+JUNOS libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS runtime [20230902.110149_builder_junos_222_r3_s2]
+Junos vmguest package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS sflow mx [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py extensions [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py base [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS vmguest [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS crypto [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS boot-ve files [20230531.cf35cdf_builder_stable_12_222]
+JUNOS na telemetry [22.2R3-S2.8]
+JUNOS Security Intelligence [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx runtime [20230902.110149_builder_junos_222_r3_s2]
+JUNOS RPD Telemetry Application [22.2R3-S2.8]
+JUNOS Routing mpls-oam-basic [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing mpls-oam-advanced [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing lsys [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-internal [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-external [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing 32-bit Compatible Version [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing aggregated [20230902.110149_builder_junos_222_r3_s2]
+Redis [20230902.110149_builder_junos_222_r3_s2]
+JUNOS probe utility [20230902.110149_builder_junos_222_r3_s2]
+JUNOS common platform support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Openconfig [22.2R3-S2.8]
+JUNOS mtx network modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS L2 RSI Scripts [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SQL Sync Daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mtx Data Plane Crypto Support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Broadband Edge User Plane Apps [22.2R3-S2.8]
+Junos Remote Attestation package [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS appidd-mx application-identification daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS TPM2 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services URL Filter package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TLB Service PIC package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Telemetry [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TCP-LOG [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SSL [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SOFTWIRE [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Stateful Firewall [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RTCOM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RPM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services PCEF package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services NAT [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Mobile Subscriber Service Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services MobileNext Software package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Logging Report Framework package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services LL-PDF Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Jflow Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Deep Packet Inspection package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IPSec [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IDS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS IDP Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services HTTP Content Management package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services DNS Filter package (i386) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Crypto [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Captive Portal and Content Delivery Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services COS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS AppId Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Application Level Gateways [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services AACL Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SDN Software Suite [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Extension Toolkit [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Phone-home [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (wrlinux9) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX/EX92XX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (M/T Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (aft) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Juniper Malware Removal Tool (JMRT) [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS J-Insight [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jfirmware [20230518.103303_builder_junos_222_r3_s1]
+JUNOS Online Documentation [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jail runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS dsa dsa [22.2R3-S2.8]
+
+re1:
+--------------------------------------------------------------------------
+Hostname: EFFPER02
+Model: mx240
+Junos: 22.2R3-S2.8
+JUNOS OS Kernel 64-bit  [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS libs [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS time zone information [20230531.cf35cdf_builder_stable_12_222]
+JUNOS network stack and utilities [20230902.110149_builder_junos_222_r3_s2]
+JUNOS libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS libs compat32 [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS 32-bit compatibility [20230531.cf35cdf_builder_stable_12_222]
+JUNOS libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS runtime [20230902.110149_builder_junos_222_r3_s2]
+Junos vmguest package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS sflow mx [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py extensions [20230902.110149_builder_junos_222_r3_s2]
+JUNOS py base [20230902.110149_builder_junos_222_r3_s2]
+JUNOS OS vmguest [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS crypto [20230531.cf35cdf_builder_stable_12_222]
+JUNOS OS boot-ve files [20230531.cf35cdf_builder_stable_12_222]
+JUNOS na telemetry [22.2R3-S2.8]
+JUNOS Security Intelligence [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs compat32 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx runtime [20230902.110149_builder_junos_222_r3_s2]
+JUNOS RPD Telemetry Application [22.2R3-S2.8]
+JUNOS Routing mpls-oam-basic [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing mpls-oam-advanced [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing lsys [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-internal [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing controller-external [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing 32-bit Compatible Version [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Routing aggregated [20230902.110149_builder_junos_222_r3_s2]
+Redis [20230902.110149_builder_junos_222_r3_s2]
+JUNOS probe utility [20230902.110149_builder_junos_222_r3_s2]
+JUNOS common platform support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Openconfig [22.2R3-S2.8]
+JUNOS mtx network modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx modules [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx libs [20230902.110149_builder_junos_222_r3_s2]
+JUNOS L2 RSI Scripts [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SQL Sync Daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mtx Data Plane Crypto Support [20230902.110149_builder_junos_222_r3_s2]
+JUNOS daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS mx daemons [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Broadband Edge User Plane Apps [22.2R3-S2.8]
+Junos Remote Attestation package [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS appidd-mx application-identification daemon [20230902.110149_builder_junos_222_r3_s2]
+JUNOS TPM2 [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services URL Filter package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TLB Service PIC package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Telemetry [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services TCP-LOG [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SSL [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services SOFTWIRE [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Stateful Firewall [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RTCOM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services RPM [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services PCEF package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services NAT [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Mobile Subscriber Service Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services MobileNext Software package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Logging Report Framework package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services LL-PDF Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Jflow Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Deep Packet Inspection package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IPSec [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services IDS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS IDP Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services HTTP Content Management package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services DNS Filter package (i386) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Crypto [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Captive Portal and Content Delivery Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services COS [20230902.110149_builder_junos_222_r3_s2]
+JUNOS AppId Services [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services Application Level Gateways [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Services AACL Container package [20230902.110149_builder_junos_222_r3_s2]
+JUNOS SDN Software Suite [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Extension Toolkit [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Phone-home [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (wrlinux9) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX/EX92XX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (M/T Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (aft) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Packet Forwarding Engine Support (MX Common) [20230902.110149_builder_junos_222_r3_s2]
+JUNOS Juniper Malware Removal Tool (JMRT) [1.0.0+20230902.110149_builder_junos_222_r3_s2]
+JUNOS J-Insight [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jfirmware [20230518.103303_builder_junos_222_r3_s1]
+JUNOS Online Documentation [20230902.110149_builder_junos_222_r3_s2]
+JUNOS jail runtime [20230531.cf35cdf_builder_stable_12_222]
+JUNOS dsa dsa [22.2R3-S2.8]
+
+2026-04-13_16:06:02 - INFO - 10_80_71_56_juniper_mx240: [imageUpgradeDualRE] STEP 3 OK — re0 confirmed at expected_os=22.2R3-S2.8
+2026-04-13_16:06:02 - INFO - [10_80_71_56_juniper_mx240] │  VERIFY OK: RE0=22.2R3-S2.8  RE1=22.2R3-S2.8  (RE1 still Master)
+2026-04-13_16:06:02 - INFO - [10_80_71_56_juniper_mx240] └─ HOP [0] ACT 3 COMPLETE @ 16:06:02 ────────────────────
+2026-04-13_16:06:02 - INFO - [10_80_71_56_juniper_mx240] ┌─ HOP [0] ACT 4 START @ 16:06:02 ─────────────────────
+2026-04-13_16:06:02 - INFO - [10_80_71_56_juniper_mx240] │  Action  : switchover RE1→RE0 (RE0 restored as Master)
+2026-04-13_16:06:02 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] Starting — hop_index=0, expected_new_master=re0
+2026-04-13_16:06:02 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 1 — Sending: request chassis routing-engine master switch
+2026-04-13_16:06:02 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 1 — command sent, got prompt response
+2026-04-13_16:06:02 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 2 — Waiting 5s, sending first 'yes'
+2026-04-13_16:06:07 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 2 — first 'yes' sent
+2026-04-13_16:06:07 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 3 — Waiting 5s, sending second 'yes'
+2026-04-13_16:06:12 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 3 — second 'yes' may have dropped (expected): Socket is closed
+2026-04-13_16:06:12 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 4 — Waiting 13s for new master to take over
+2026-04-13_16:06:27 - INFO - 10_80_71_56_juniper_mx240: [switchoverMaster] STEP 5 — Reconnecting to 10.80.71.56
+2026-04-13_16:06:27 - INFO - Logout successful from 10.80.71.56
+2026-04-13_16:06:27 - INFO - [10_80_71_56_juniper_mx240] Disconnected from 10.80.71.56
+2026-04-13_16:06:27 - INFO - [10_80_71_56_juniper_mx240]:: [connect] Connecting to device
+2026-04-13_16:06:27 - DEBUG - [10_80_71_56_juniper_mx240]:: [connect] device_type=juniper, username=lab
+2026-04-13_16:06:27 - DEBUG - [10_80_71_56_juniper_mx240]:: [connect] Session log -> /home/colt/Documents/saketh_test/outputs/10_80_71_56_juniper_mx240_2026-04-13_session.txt
+2026-04-13_16:06:27 - INFO - [10_80_71_56_juniper_mx240]: Session log file exists -- /home/colt/Documents/saketh_test/outputs/10_80_71_56_juniper_mx240_2026-04-13_session.txt
+2026-04-13_16:06:33 - INFO - [10_80_71_56_juniper_mx240]:: [Upgrade.connect] Connected successfully
+2026-04-13_16:06:33 - INFO - [10_80_71_56_juniper_mx240]: [switchoverMaster] STEP 5 — Reconnected successfully
+2026-04-13_16:06:33 - INFO - [10_80_71_56_juniper_mx240]: [switchoverMaster] STEP 6 — Verifying chassis state
+2026-04-13_16:06:48 - INFO - [10_80_71_56_juniper_mx240]: [switchoverMaster] chassis output:
+Routing Engine status:
+  Slot 0:
+    Current state                  Master
+    Election priority              Master (default)
+    Temperature                 45 degrees C / 113 degrees F
+    CPU temperature             68 degrees C / 154 degrees F
+    DRAM                      49098 MB (49152 MB installed)
+    Memory utilization           7 percent
+    5 sec CPU utilization:
+      User                       2 percent
+      Background                 0 percent
+      Kernel                    24 percent
+      Interrupt                  4 percent
+      Idle                      70 percent
+    1 min CPU utilization:
+      User                       5 percent
+      Background                 0 percent
+      Kernel                     9 percent
+      Interrupt                  1 percent
+      Idle                      86 percent
+    5 min CPU utilization:
+      User                       1 percent
+      Background                 0 percent
+      Kernel                     2 percent
+      Interrupt                  0 percent
+      Idle                      96 percent
+    15 min CPU utilization:
+      User                       0 percent
+      Background                 0 percent
+      Kernel                     1 percent
+      Interrupt                  0 percent
+      Idle                      99 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7380
+    Start time                     2026-04-13 10:31:09 UTC
+    Uptime                         8 minutes, 6 seconds
+    Last reboot reason             0x2000:hypervisor reboot
+    Load averages:                 1 minute   5 minute  15 minute
+                                       1.71       0.81       0.44
+Routing Engine status:
+  Slot 1:
+    Current state                  Backup
+    Election priority              Backup (default)
+    Temperature                 42 degrees C / 107 degrees F
+    CPU temperature             59 degrees C / 138 degrees F
+    DRAM                      49098 MB (49152 MB installed)
+    Memory utilization           5 percent
+    5 sec CPU utilization:
+      User                      35 percent
+      Background                 0 percent
+      Kernel                    48 percent
+      Interrupt                  0 percent
+      Idle                      18 percent
+    Model                          RE-S-2X00x6
+    Serial ID                      CASF7430
+    Start time                     2026-04-13 10:13:15 UTC
+    Uptime                         25 minutes, 57 seconds
+    Last reboot reason             0x2000:hypervisor reboot
+    Load averages:                 1 minute   5 minute  15 minute
+                                       0.70       0.48       0.51
+
+2026-04-13_16:06:48 - INFO - [10_80_71_56_juniper_mx240]: [switchoverMaster] STEP 6 OK — re0 confirmed as Master
+2026-04-13_16:06:48 - INFO - [10_80_71_56_juniper_mx240] │  VERIFY OK: RE0=Master  RE1=Backup  (chassis state confirmed)
+2026-04-13_16:06:48 - INFO - [10_80_71_56_juniper_mx240] └─ HOP [0] ACT 4 COMPLETE @ 16:06:48 ────────────────────
+2026-04-13_16:06:49 - INFO - [10_80_71_56_juniper_mx240] Post-hop [0] RE versions: {'re0': '22.2R3-S2.8', 're1': '22.2R3-S2.8'}
+2026-04-13_16:06:49 - INFO - [10_80_71_56_juniper_mx240] ════════ HOP [0] COMPLETE @ 16:06:49 ════════ RE0=Master/22.2R3-S2.8  RE1=Backup/22.2R3-S2.8  (both REs upgraded)
+2026-04-13_16:06:49 - INFO - [10_80_71_56_juniper_mx240] DualRE Upgrade COMPLETE — All hops done, both REs at 22.2R3-S2.8, RE0=Master
+2026-04-13_16:06:49 - INFO - [10_80_71_56_juniper_mx240] Hop [0] succeeded — rollback chain now 2 entries
+2026-04-13_16:06:49 - INFO - [10_80_71_56_juniper_mx240] All 1 upgrade hop(s) successful
+2026-04-13_16:06:49 - INFO - [10_80_71_56_juniper_mx240] ── Upgrade COMPLETE — starting PostCheck
+2026-04-13_16:06:49 - INFO - [THREAD-134605318403776] [10_80_71_56_juniper_mx240] Postchecks started at 2026-04-13 16:06:49.652968
+2026-04-13_16:06:49 - INFO - [10_80_71_56_juniper_mx240] POST STEP 1: show version
+2026-04-13_16:06:49 - INFO - [10_80_71_56_juniper_mx240] get_show_version — phase=post, sending 'show version'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] [post] show_version parsed — hostname=EFFPER02  model=mx240  version=22.2R3-S2.8
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] POST STEP 1 show_version OK — version=22.2R3-S2.8
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] POST : executing show commands
+2026-04-13_16:06:50 - INFO - [load_commands] Loaded 39 commands for 'juniper_mx240'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] collect_outputs — 39 command(s), check_type=post
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services sessions | no-more'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] 'show services sessions | no-more' collected=False (0 chars)
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services nat pool brief | no-more'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] 'show services nat pool brief | no-more' collected=False (0 chars)
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services flows brief | no-more'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] 'show services flows brief | no-more' collected=False (0 chars)
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets cpu-usage | no-more'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets cpu-usage | no-more' collected=False (0 chars)
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets memory-usage | no-more'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets memory-usage | no-more' collected=False (0 chars)
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show services service-sets summary | no-more'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] 'show services service-sets summary | no-more' collected=False (0 chars)
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis routing-engine | no-more'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] 'show chassis routing-engine | no-more' collected=True (2711 chars)
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show arp no-resolve | no-more'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] 'show arp no-resolve | no-more' collected=True (593 chars)
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show lldp neighbors | no-more'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] 'show lldp neighbors | no-more' collected=True (176 chars)
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system uptime | no-more'
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] 'show system uptime | no-more' collected=True (301 chars)
+2026-04-13_16:06:50 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show ntp associations no-resolve | no-more'
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] 'show ntp associations no-resolve | no-more' collected=True (398 chars)
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis hardware | no-more'
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] 'show chassis hardware | no-more' collected=True (1058 chars)
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis fpc detail | no-more'
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] 'show chassis fpc detail | no-more' collected=True (1051 chars)
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis alarms | no-more'
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] 'show chassis alarms | no-more' collected=True (26 chars)
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system alarms | no-more'
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] 'show system alarms | no-more' collected=True (26 chars)
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show chassis environment | no-more'
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] 'show chassis environment | no-more' collected=True (2211 chars)
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system resource-monitor fpc | no-more'
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] 'show system resource-monitor fpc | no-more' collected=True (177 chars)
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show system processes extensive | match rpd | no-more'
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] 'show system processes extensive | match rpd | no-more' collected=True (2403 chars)
+2026-04-13_16:06:51 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show interface terse | no-more'
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] 'show interface terse | no-more' collected=True (6474 chars)
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show oam ethernet connectivity-fault-management interfaces extensive | no-more'
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] 'show oam ethernet connectivity-fault-management interfaces extensive | no-more' collected=True (100 chars)
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show vrrp summary | no-more'
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] 'show vrrp summary | no-more' collected=True (1632 chars)
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bfd session | no-more'
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] 'show bfd session | no-more' collected=True (87 chars)
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp neighbor | no-more'
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp neighbor | no-more' collected=True (24 chars)
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp session | no-more'
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp session | no-more' collected=True (171 chars)
+2026-04-13_16:06:52 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table inet.0 | no-more'
+2026-04-13_16:06:53 - INFO - [10_80_71_56_juniper_mx240] 'show route table inet.0 | no-more' collected=True (1040 chars)
+2026-04-13_16:06:53 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table inet.3 | no-more'
+2026-04-13_16:06:53 - INFO - [10_80_71_56_juniper_mx240] 'show route table inet.3 | no-more' collected=False (0 chars)
+2026-04-13_16:06:53 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route table mpls.0 | no-more'
+2026-04-13_16:06:53 - INFO - [10_80_71_56_juniper_mx240] 'show route table mpls.0 | no-more' collected=True (1852 chars)
+2026-04-13_16:06:53 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls interface | no-more'
+2026-04-13_16:06:53 - INFO - [10_80_71_56_juniper_mx240] 'show mpls interface | no-more' collected=True (99 chars)
+2026-04-13_16:06:53 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp | no-more'
+2026-04-13_16:06:53 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp | no-more' collected=True (546 chars)
+2026-04-13_16:06:53 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp p2mp | no-more'
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp p2mp | no-more' collected=True (168 chars)
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bgp summary | no-more'
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] 'show bgp summary | no-more' collected=True (2627 chars)
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show bgp neighbor | no-more'
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] 'show bgp neighbor | no-more' collected=True (12564 chars)
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show isis adjacency extensive | no-more'
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] 'show isis adjacency extensive | no-more' collected=False (0 chars)
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show route summary | no-more'
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] 'show route summary | no-more' collected=True (8093 chars)
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show rsvp session | match DN | no-more'
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] 'show rsvp session | match DN | no-more' collected=False (0 chars)
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show mpls lsp unidirectional | match Dn | no-more'
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] 'show mpls lsp unidirectional | match Dn | no-more' collected=True (305 chars)
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show ldp neighbor | no-more'
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] 'show ldp neighbor | no-more' collected=True (380 chars)
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show connections | no-more'
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] 'show connections | no-more' collected=True (30 chars)
+2026-04-13_16:06:54 - INFO - [10_80_71_56_juniper_mx240] Sending: 'show log messages | last 200 | no-more'
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] 'show log messages | last 200 | no-more' collected=True (25511 chars)
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] collect_outputs done — 39 entries stored
+2026-04-13_16:06:55 - ERROR - [10_80_71_56_juniper_mx240] parser returned empty result 'show chassis alarms | no-more':
+NoneType: None
+
+2026-04-13_16:06:55 - ERROR - [10_80_71_56_juniper_mx240] parser returned empty result 'show system alarms | no-more':
+NoneType: None
+
+2026-04-13_16:06:55 - ERROR - [10_80_71_56_juniper_mx240] parser failed for 'show vrrp summary | no-more':
+NoneType: None
+
+2026-04-13_16:06:55 - ERROR - [10_80_71_56_juniper_mx240] parser returned empty result 'show bfd session | no-more':
+NoneType: None
+
+2026-04-13_16:06:55 - ERROR - [10_80_71_56_juniper_mx240] parser returned empty result 'show rsvp neighbor | no-more':
+NoneType: None
+
+2026-04-13_16:06:55 - ERROR - [10_80_71_56_juniper_mx240] parser returned empty result 'show rsvp session | no-more':
+NoneType: None
+
+2026-04-13_16:06:55 - ERROR - [10_80_71_56_juniper_mx240] parser returned empty result 'show mpls interface | no-more':
+NoneType: None
+
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] POST : execute_show_commands OK
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] get_show_version — phase=post, sending 'show version'
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] [post] show_version parsed — hostname=EFFPER02  model=mx240  version=22.2R3-S2.8
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] POST Check: show version
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] get_show_version — phase=post, sending 'show version'
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] [post] show_version parsed — hostname=EFFPER02  model=mx240  version=22.2R3-S2.8
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] POST check - show_version OK — version=22.2R3-S2.8
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] : Taking Snapshot...
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE  — vendor: juniper
+2026-04-13_16:06:55 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — running request system snapshot
+2026-04-13_16:06:56 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — Gate A snapshot name: snap.20260413.103924
+2026-04-13_16:06:56 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — running show system snapshot
+2026-04-13_16:06:56 - INFO - [10_80_71_56_juniper_mx240] preBackupDiskDualRE — both gates passed: snapshot_name=snap.20260413.103924, creation_date=Apr 13 10:39:24 2026, junos_version=22.2R3-S2.8
+2026-04-13_16:06:56 - INFO - [10_80_71_56_juniper_mx240] POST STEP 3: enable_re_protect_filter stub — skipping
+2026-04-13_16:06:56 - INFO - [THREAD-134605318403776] [10_80_71_56_juniper_mx240] All post-checks complete
+2026-04-13_16:06:56 - INFO - [10_80_71_56_juniper_mx240] ── POST-CHECK COMPLETE
+2026-04-13_16:06:56 - INFO - [10_80_71_56_juniper_mx240] ── Comparison between PreCheck and PostCheck show commands starting ...
+2026-04-13_16:06:56 - INFO - [10_80_71_56_juniper_mx240] ── Comparison COMPLETE — 34 command(s) with changes
+2026-04-13_16:06:57 - INFO - [10_80_71_56_juniper_mx240] HTML report exported
+2026-04-13_16:06:57 - INFO - Logout successful from 10.80.71.56
+2026-04-13_16:06:57 - INFO - [10_80_71_56_juniper_mx240] Disconnected from 10.80.71.56
+2026-04-13_16:06:57 - INFO - [THREAD-134605318403776] [10_80_71_56_juniper_mx240] Pipeline finished at 2026-04-13 16:06:57.011521
+2026-04-13_16:06:57 - INFO - [10_80_71_56_juniper_mx240] ===== PIPELINE FINISHED =====
+(venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test/logging$
