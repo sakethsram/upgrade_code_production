@@ -628,6 +628,7 @@ class PreCheck:
                     "deleted_files": [],
                     "exception":     "",
                     "sufficient":    True,
+                    "avail_space_gb": round(float(avail_space), 2),
                 }
                 logger.info(f"[{self.vendor}_{self.model}] checkStorage — sufficient space: {result}")
                 return result
@@ -1075,4 +1076,3 @@ class PreCheck:
                 "computed":  None,
                 "match":     False,
             }
-

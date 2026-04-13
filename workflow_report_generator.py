@@ -297,6 +297,19 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
             elif not is_blank: failed += 1
 
             toggle, drawer = _image_drawer(data, prefix)
+            # build a one-liner remark: destination of first image
+            _img_parts = []
+            if data:
+                first_img = data[0]
+                dest_path = first_img.get("destination","") or ""
+                img_name  = first_img.get("image","") or ""
+                if img_name:
+                    _img_parts.append(f'<span class="mono" style="color:var(--muted2);">{_esc(img_name)}</span>')
+                if dest_path:
+                    _img_parts.append(f'<span class="mono" style="color:var(--muted2);">&#8594; {_esc(dest_path)}</span>')
+                if len(data) > 1:
+                    _img_parts.append(f'<span class="mono" style="color:var(--muted2);">+{len(data)-1} more</span>')
+            _img_remark = " &nbsp; ".join(_img_parts) or '<span class="remark-na">—</span>'
             pc = (f'<td class="phase-cell" rowspan="{count}" '
                   f'style="border-left:3px solid {color};">'
                   f'<span class="phase-lbl" style="color:{color};">{label}</span></td>'
@@ -308,7 +321,7 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
                 f'<td class="subtask-cell"><span class="mono">'
                 f'{PRE_TASK_TITLES.get(name, name)}</span> {toggle}{drawer}</td>'
                 f'<td class="status-cell">{_badge(agg)}</td>'
-                f'<td class="remark-cell"><span class="remark-na">—</span></td>'
+                f'<td class="remark-cell">{_img_remark}</td>'
                 f'</tr>'
             )
             continue
@@ -330,6 +343,19 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
             elif not is_blank: failed += 1
 
             toggle, drawer = _checksum_drawer(data, prefix)
+            # build a one-liner remark: first entry's computed checksum (truncated)
+            _ck_parts = []
+            if data:
+                first_ck = data[0]
+                computed = first_ck.get("computed","") or ""
+                match    = first_ck.get("match")
+                if computed:
+                    short_ck = computed[:16] + "…" if len(computed) > 16 else computed
+                    ck_clr   = "var(--ok)" if match is True else ("var(--err)" if match is False else "var(--muted2)")
+                    _ck_parts.append(f'<span class="mono" style="color:{ck_clr};">{_esc(short_ck)}</span>')
+                if len(data) > 1:
+                    _ck_parts.append(f'<span class="mono" style="color:var(--muted2);">+{len(data)-1} more</span>')
+            _ck_remark = " &nbsp;·&nbsp; ".join(_ck_parts) or '<span class="remark-na">—</span>'
             pc = (f'<td class="phase-cell" rowspan="{count}" '
                   f'style="border-left:3px solid {color};">'
                   f'<span class="phase-lbl" style="color:{color};">{label}</span></td>'
@@ -341,7 +367,7 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
                     f'<td class="subtask-cell"><span class="mono">'
                     f'{PRE_TASK_TITLES.get(name, name)}</span> {toggle}{drawer}</td>'
                     f'<td class="status-cell">{_badge(agg)}</td>'
-                    f'<td class="remark-cell"><span class="remark-na">—</span></td>'
+                    f'<td class="remark-cell">{_ck_remark}</td>'
                     f'</tr>'
             )
             continue
@@ -364,10 +390,11 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
 
         toggle = drawer = ""
         if name == "execute_show_commands":
-            cmds   = data.get("commands", [])
-            bid    = f"cmds-{prefix}-pre"
-            toggle = f'<button class="mini-btn" onclick="tgl(\'{bid}\')">Outputs ({len(cmds)})</button>'
-            drawer = _cmd_drawer(cmds, prefix, "pre")
+            cmds        = data.get("commands", [])
+            collected   = sum(1 for c in cmds if not c.get("exception"))
+            bid         = f"cmds-{prefix}-pre"
+            toggle      = f'<button class="mini-btn" onclick="tgl(\'{bid}\')">Outputs ({len(cmds)})</button>'
+            drawer      = _cmd_drawer(cmds, prefix, "pre")
 
         # task-specific remarks
         if name == "connect":
@@ -378,14 +405,28 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
                 parts.append(f'<span class="remark-ok">ping: {_esc(p)}</span>'
                               if p in ("up","true")
                               else f'<span class="remark-err">ping: {_esc(p)}</span>')
+            # prefix format is  "10_80_71_56_juniper_mx240"  — first 4 segments are IP octets
+            _ip_parts = prefix.split("_")
+            if len(_ip_parts) >= 4 and all(p.isdigit() for p in _ip_parts[:4]):
+                _host_ip = ".".join(_ip_parts[:4])
+                parts.append(f'<span class="mono" style="color:var(--muted2);">connected to {_esc(_host_ip)}</span>')
             if exc: parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
             remark = " &nbsp;·&nbsp; ".join(parts) or '<span class="remark-na">—</span>'
 
         elif name == "check_storage":
             parts = []
             deleted = data.get("deleted_files", [])
-            if deleted: parts.append('<span class="remark-ok">files cleaned</span>')
-            if data.get("sufficient") is False and status != "ok":
+            # dual-RE: re0_space / re1_space; single-RE: avail_space_gb
+            re0_sp  = data.get("re0_space")
+            re1_sp  = data.get("re1_space")
+            avail   = data.get("avail_space_gb")
+            if re0_sp is not None and re1_sp is not None:
+                parts.append(f'<span class="mono" style="color:var(--muted2);">RE0: {re0_sp} GB &nbsp;·&nbsp; RE1: {re1_sp} GB free</span>')
+            elif avail is not None:
+                parts.append(f'<span class="mono" style="color:var(--muted2);">{avail} GB free</span>')
+            if deleted:
+                parts.append(f'<span class="remark-ok">{len(deleted)} file(s) cleaned</span>')
+            if data.get("sufficient") is False and status not in ("ok", "low_space_cleaned"):
                 parts.append('<span class="remark-err">insufficient space</span>')
             if exc: parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
             remark = " &nbsp;·&nbsp; ".join(parts) or '<span class="remark-na">—</span>'
@@ -400,10 +441,18 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
         elif name == "backup_running_config":
             cfg  = data.get("config_file","") or data.get("log_file","")
             dest = data.get("destination","")
+            src  = data.get("source","") or cfg
             parts = []
-            if cfg:  parts.append(f'<span class="mono" style="color:var(--muted2);">{_esc(cfg)}</span>')
-            if dest: parts.append(f'<span class="mono" style="color:var(--muted2);">&#8594; {_esc(dest)}</span>')
-            if exc:  parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
+            if src and dest:
+                parts.append(
+                    f'<span class="mono" style="color:var(--muted2);">{_esc(src)}'
+                    f' &#8594; {_esc(dest)}</span>'
+                )
+            elif src:
+                parts.append(f'<span class="mono" style="color:var(--muted2);">{_esc(src)}</span>')
+            elif dest:
+                parts.append(f'<span class="mono" style="color:var(--muted2);">&#8594; {_esc(dest)}</span>')
+            if exc: parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
             remark = " ".join(parts) or '<span class="remark-na">—</span>'
 
         elif name == "show_version":
@@ -415,6 +464,17 @@ def _pre_rows(tasks: dict, prefix: str) -> tuple:
             if plat: parts.append(f'<span class="mono" style="color:var(--muted2);">{_esc(plat)}</span>')
             if ver:  parts.append(f'<span class="mono" style="color:var(--muted2);">v{_esc(ver)}</span>')
             if exc:  parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
+            remark = " &nbsp;·&nbsp; ".join(parts) or '<span class="remark-na">—</span>'
+
+        elif name == "execute_show_commands":
+            cmds      = data.get("commands", [])
+            collected = sum(1 for c in cmds if not c.get("exception"))
+            total_c   = len(cmds)
+            parts = []
+            if total_c:
+                clr = "var(--ok)" if collected == total_c else "var(--warn)"
+                parts.append(f'<span class="mono" style="color:{clr};">{collected}/{total_c} commands collected</span>')
+            if exc: parts.append(f'<span class="remark-err">{_esc(exc)}</span>')
             remark = " &nbsp;·&nbsp; ".join(parts) or '<span class="remark-na">—</span>'
 
         else:
