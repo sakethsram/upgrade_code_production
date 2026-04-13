@@ -1136,7 +1136,7 @@ class Upgrade:
     def run_upgrade_dualRE(self, conn, image_details, curr_os, curr_image, logger):
         device_results[self.device_key]["upgrade"]["status"] = "in_progress"
 
-        logger.info(f"[{self.device_key}] PRE-FLIGHT — Checking chassis routing-engine state")
+        # logger.info(f"[{self.device_key}] PRE-FLIGHT — Checking chassis routing-engine state")
 
         try:
             preflight_output = conn.send_command(
@@ -1144,7 +1144,7 @@ class Upgrade:
                 expect_string=r".*>",
                 read_timeout=60,
             )
-            logger.info(f"[{self.device_key}] PRE-FLIGHT chassis output:\n{preflight_output}")
+            # logger.info(f"[{self.device_key}] PRE-FLIGHT chassis output:\n{preflight_output}")
 
             re0_master = re.search(
                 r"Slot\s+0.*?Current state\s+Master",
