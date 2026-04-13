@@ -191,6 +191,8 @@ devices:
 
 # ─────────────────────────────────────────────────────────────────────────────
 # CISCO MX240  —  10.80.71.56
+# Upgrade: 23.4R2-S3.9 → 22.2R3-S2.8
+
 # ─────────────────────────────────────────────────────────────────────────────
 #  - host: "10.80.71.56"
 #    vendor: "juniper"
@@ -215,3 +217,43 @@ devices:
 #    cleanup_files:
 #     - juniper_mx240_2026-*
 #     - /var/tmp/juniper_mx240_2026-*
+
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# JUNIPER MX240  —  10.80.71.56
+# Upgrade: 22.2R3-S2.8  →  23.4R2-S3.9
+# ─────────────────────────────────────────────────────────────────────────────
+- host: "10.80.71.56"
+  vendor: "juniper"
+  model: "mx240"
+  device_type: "juniper"
+
+  # Current state (BEFORE upgrade)
+  curr_image: junos-vmhost-install-mx-x86-64-22.2R3-S2.8.tgz
+  curr_os: 22.2R3-S2.8
+
+  intermediate_release: False
+  smu_upgrade: False
+
+  image_storage: 2
+  upgrade_storage: 4
+
+  username: "lab"
+  password: "lab123"
+
+  # Upgrade target
+  imageDetails:
+    - image: junos-vmhost-install-mx-x86-64-23.4R2-S3.9.tgz
+      expected_os: 23.4R2-S3.9
+      checksum: eff137c3db585058eab9c8820cfb6c01
+
+  remote_backup_server: "colt@10.80.109.133"
+  remote_password: "kTRq8amH363r"
+
+  image_path: "/home/colt/backup/JUNOS/MX240"
+  smu_image_path: ""
+
+  cleanup_files:
+    - juniper_mx240_2026-*
+    - /var/tmp/juniper_mx240_2026-*
