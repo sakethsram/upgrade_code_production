@@ -299,4 +299,5 @@ AttributeError: 'NoneType' object has no attribute 'get'
 2026-04-13 14:48:19,357 - INFO - [10_80_71_56_juniper_mx240] Disconnected from 10.80.71.56
 2026-04-13 14:48:19,357 - INFO - [THREAD-133369182918336] [10_80_71_56_juniper_mx240] Pipeline finished at 2026-04-13 14:48:19.357675
 2026-04-13 14:48:19,357 - INFO - [10_80_71_56_juniper_mx240] ===== PIPELINE FINISHED =====
+(venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test$ ^C
 (venv) colt@colt-UCSC-C220-M7S:~/Documents/saketh_test$
