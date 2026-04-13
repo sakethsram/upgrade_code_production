@@ -234,7 +234,7 @@ def run_prechecks(conn, dev: dict, device_key: str, models: list, logger):
               else:
                 logger.info(f"[{device_key}] STEP 4 — single-RE model ({model_lc}): preBackupDisk()")
                 backup_disk = precheck.preBackupDisk(conn, logger)
-
+              #remark_data 1
               device_results[device_key]["pre"]["backup_active_filesystem"] = backup_disk
 
               if backup_disk.get("status") == "failed":
@@ -252,6 +252,7 @@ def run_prechecks(conn, dev: dict, device_key: str, models: list, logger):
             pre_check_timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
             filename            = f"{vendor_lc}_{model_lc}_{pre_check_timestamp}"
             backup              = precheck.preBackup(conn, filename, logger, device_key, models)
+            #remark_2
             device_results[device_key]["pre"]["backup_running_config"] = backup
 
             if not backup:
@@ -401,6 +402,7 @@ def run_upgrade(conn, device: dict, device_key: str, accepted_vendors: list, log
                 logger.error(f"[{device_key}] STORAGE failed for transfering image — {msg}")
                 device_results[device_key]["pre"]["check_storage"]["exception"] = msg
                 return False
+            #remark_3
             device_results[device_key]["pre"]["check_storage"] = storage
             logger.info(f"[{device_key}] storage OK")
 
