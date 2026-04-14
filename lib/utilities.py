@@ -285,7 +285,7 @@ def build_juniper_registries():
         ("juniper", "show services sessions | no-more"):                                               parse_show_services_sessions,
         ("juniper", "show services nat pool brief | no-more"):                                         parse_show_services_nat_pool_brief,
         ("juniper", "show services service-sets cpu-usage | no-more"):                                 parse_show_services_service_sets_cpu_usage,
-        ("juniper", "show services service-sets memory-usage | no-more"):                              parse_show_services_service_sets_memory_usage,
+        ("juniper", "show services service-sets memory-usage | no-more"):                              parse_show_services_service_sets_summary,
         ("juniper", "show services service-sets summary | no-more"):                                   parse_show_services_service_sets_summary,
         ("juniper", "show services flows brief | no-more"):                                            parse_show_services_flows_brief,
         ("juniper", "show bgp summary | no-more"):                                                     parse_show_bgp_summary,
