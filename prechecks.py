@@ -56,6 +56,7 @@ class PreCheck:
                     "snapshot_name": "",
                     "creation_date": "",
                     "junos_version": "",
+                    "remark":        "Gate A failed: snapshot not confirmed",
                 }
 
             snap_name_from_cmd = ""
@@ -90,6 +91,7 @@ class PreCheck:
                     "snapshot_name": snap_name_from_cmd,
                     "creation_date": "",
                     "junos_version": "",
+                    "remark":        f"Gate B failed: {snap_name_from_cmd} created but not verified",
                 }
 
             snapshot_name = snap_name_from_cmd
@@ -120,6 +122,7 @@ class PreCheck:
                 "snapshot_name": snapshot_name,
                 "creation_date": creation_date,
                 "junos_version": junos_version,
+                "remark":        f"Snapshot: {snapshot_name} · JunOS: {junos_version} · {creation_date}",
             }
 
         except Exception as e:
@@ -132,6 +135,7 @@ class PreCheck:
                 "snapshot_name": "",
                 "creation_date": "",
                 "junos_version": "",
+                "remark":        f"Exception: {str(e)}",
             }    
     # ─────────────────────────────────────────────────────────────────────────
     # pingDevice
@@ -406,7 +410,7 @@ class PreCheck:
             logger.warning(f"{len(upgrade_required)} FPD(s) require upgrade")
             
             if post_reload:
-                # If we’re already post-reload and still upgrades needed, stop here
+                # If we're already post-reload and still upgrades needed, stop here
                 return {"status": "failed", "exception": "FPDs still require upgrade after reload"}
 
 
@@ -558,6 +562,7 @@ class PreCheck:
                         "sufficient": False,
                         "re0_space":  round(re0_space, 2),
                         "re1_space":  round(re1_space, 2),
+                        "remark":     f"Low space after cleanup — RE0: {round(re0_space,2)}GB · RE1: {round(re1_space,2)}GB",
                     }
             else: 
                 if re0_low and re1_low: 
@@ -569,6 +574,7 @@ class PreCheck:
                         "sufficient": False,
                         "re0_space":  round(re0_space, 2),
                         "re1_space":  round(re1_space, 2),
+                        "remark":     f"Insufficient space — RE0: {round(re0_space,2)}GB · RE1: {round(re1_space,2)}GB",
                     }
                 
 
@@ -578,6 +584,7 @@ class PreCheck:
                 "sufficient": True,
                 "re0_space":  round(re0_space, 2),
                 "re1_space":  round(re1_space, 2),
+                "remark":     f"RE0: {round(re0_space,2)}GB · RE1: {round(re1_space,2)}GB free",
             }
             logger.info(f"[{self.device_key}] checkStorageDualRE — both REs OK: {result}")
             return result
@@ -819,6 +826,7 @@ class PreCheck:
                             "config_file": filename,
                             "log_file":    "",
                             "destination": dest,
+                            "remark":      f"Config SCP failed → {dest}",
                         }
 
                 # Step 2: Backup device log
@@ -850,6 +858,7 @@ class PreCheck:
                         "config_file": filename,
                         "log_file":    f"{filename}.tgz",
                         "destination": dest,
+                        "remark":      f"Log SCP failed → {dest}",
                     }
 
                 if not pre_backup_config or not pre_device_log:
@@ -859,6 +868,7 @@ class PreCheck:
                         "config_file": filename,
                         "log_file":    f"{filename}.tgz",
                         "destination": self.remote_server,
+                        "remark":      "Backup incomplete: config or log missing",
                     }
 
                 return {
@@ -867,6 +877,7 @@ class PreCheck:
                     "config_file": filename,
                     "log_file":    f"{filename}.tgz",
                     "destination": self.remote_server,
+                    "remark":      f"{filename} · {filename}.tgz → {self.remote_server}",
                 }
             
             if self.vendor == "cisco":
@@ -921,6 +932,7 @@ class PreCheck:
                 "config_file": "",
                 "log_file":    "",
                 "destination": "",
+                "remark":      f"Exception: {str(e)}",
             }
 
  
@@ -948,6 +960,7 @@ class PreCheck:
                     "exception":   f"SCP transfer failed for {target_image}",
                     "image":       target_image,
                     "destination": dest,
+                    "remark":      f"SCP failed: {target_image} → {dest}",
                 }
 
             logger.info(f"[{self.device_key}] transferImage — {target_image} transferred to {dest}")
@@ -956,6 +969,7 @@ class PreCheck:
                 "exception":   "",
                 "image":       target_image,
                 "destination": dest,
+                "remark":      f"{target_image} → {dest}",
             }
 
         except Exception as e:
@@ -965,6 +979,7 @@ class PreCheck:
                 "exception":   str(e),
                 "image":       "",
                 "destination": "",
+                "remark":      f"Exception: {str(e)}",
             }
 
     #----change LPTS------------
@@ -1049,6 +1064,7 @@ class PreCheck:
                     "expected":  expected_checksum,
                     "computed":  None,
                     "match":     False,
+                    "remark":    f"MD5 parse failed: {image}",
                 }
 
             computed = match.group(1).strip()
@@ -1063,6 +1079,7 @@ class PreCheck:
                 "expected":  expected_checksum,
                 "computed":  computed,
                 "match":     matched,
+                "remark":    f"{image}: MD5 match" if matched else f"{image}: MD5 MISMATCH (got {computed[:10]}…)",
             }
 
         except Exception as e:
@@ -1074,5 +1091,5 @@ class PreCheck:
                 "expected":  expected_checksum,
                 "computed":  None,
                 "match":     False,
+                "remark":    f"Exception: {str(e)}",
             }
- 
