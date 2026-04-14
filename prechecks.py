@@ -27,12 +27,11 @@ class PreCheck:
         self.device_key      = device_key
         self.accepted_vendors = device.get("accepted_vendors", [])
 
-    #---────────────────────────────────────────────────────────────────────
-    # pingDevice
-    # ─────────────────────────────────────────────────────────────────────────
+
     def preBackupDiskDualRE(self, conn, logger):
         try:
             logger.info(f"[{self.device_key}] preBackupDiskDualRE  — vendor: {self.vendor}")
+
 
             logger.info(f"[{self.device_key}] preBackupDiskDualRE — running request system snapshot")
             snapshot_output = conn.send_command(
@@ -40,16 +39,16 @@ class PreCheck:
                 expect_string=r'.*>',
                 read_timeout=900,
             )
-            # logger.info(
-            #     f"[{self.device_key}] preBackupDiskDualRE — snapshot output:\n{snapshot_output}"
-            # )
-
+            logger.info(
+                f"[{self.device_key}] preBackupDiskDualRE — snapshot output:\n{snapshot_output}"
+            )
+            
             if "NOTICE: Snapshot" not in snapshot_output:
                 msg = (
-                    f"[{self.device_key}] preBackupDiskDualRE — Gate A failed: "
+                    f"[{self.device_key}] preBackupDiskDualRE — Gate A failed: " # here GateA is confusing
                     f"'NOTICE: Snapshot' not found in snapshot command output"
                 )
-                logger.error(msg)
+                logger.warning(msg)
                 return {
                     "status":        "failed",
                     "exception":     msg,
@@ -57,10 +56,9 @@ class PreCheck:
                     "snapshot_name": "",
                     "creation_date": "",
                     "junos_version": "",
-                    "remark":        "Snapshot command ran but NOTICE string not found in output",
                 }
 
-            snap_name_from_cmd = "" 
+            snap_name_from_cmd = ""
             m = re.search(r"NOTICE:\s+Snapshot\s+(\S+)\s+created successfully", snapshot_output)
             if m:
                 snap_name_from_cmd = m.group(1)
@@ -75,17 +73,16 @@ class PreCheck:
                 expect_string=r'.*>',
                 read_timeout=60,
             )
-            # logger.info(
-            #     f"[{self.device_key}] preBackupDiskDualRE — show system snapshot output:\n"
-            #     f"{verify_output}"
-            # )
+            logger.info(
+                f"[{self.device_key}] preBackupDiskDualRE — show system snapshot output:\n"
+            )
 
             if "Configuration: yes" not in verify_output:
                 msg = (
                     f"[{self.device_key}] preBackupDiskDualRE — Gate B failed: "
                     f"'Configuration: yes' not found in show system snapshot output"
                 )
-                logger.error(msg)
+                logger.warning(msg) # log msg are confusing 
                 return {
                     "status":        "failed",
                     "exception":     msg,
@@ -93,14 +90,12 @@ class PreCheck:
                     "snapshot_name": snap_name_from_cmd,
                     "creation_date": "",
                     "junos_version": "",
-                    "remark":        f"Snapshot {snap_name_from_cmd} created but 'Configuration: yes' not confirmed",
                 }
 
             snapshot_name = snap_name_from_cmd
             m = re.search(r"Snapshot\s+(snap\.\S+?):", verify_output)
             if m:
                 snapshot_name = m.group(1)
-
 
             creation_date = ""
             m = re.search(r"Creation date:\s+(.+)", verify_output)
@@ -125,7 +120,6 @@ class PreCheck:
                 "snapshot_name": snapshot_name,
                 "creation_date": creation_date,
                 "junos_version": junos_version,
-                "remark":        f"Snapshot {snapshot_name} verified — JunOS {junos_version} ({creation_date})",
             }
 
         except Exception as e:
@@ -138,8 +132,10 @@ class PreCheck:
                 "snapshot_name": "",
                 "creation_date": "",
                 "junos_version": "",
-                "remark":        f"Exception during snapshot: {str(e)[:80]}",
-            }
+            }    
+    # ─────────────────────────────────────────────────────────────────────────
+    # pingDevice
+    # ─────────────────────────────────────────────────────────────────────────
     def pingDevice(self, logger, interval, max_wait, packet_size=5, count=2, timeout=2):
         logger.debug(
             f"{self.host}: [pingDevice] count={count}, packet_size={packet_size}, timeout={timeout}s"
@@ -152,7 +148,7 @@ class PreCheck:
                 "-W", str(timeout),
                 self.host
             ]
-
+            
             logger.info(f"{self.host}: Waiting for device via continuous ping...")
             result = 0
             while True:
@@ -161,79 +157,79 @@ class PreCheck:
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.DEVNULL
                 )
-
-                logger.info(f"{self.host}: Still waiting for ping...")
-                if result.returncode == 0:
-                    break
+ 
+                logger.info(f"[{self.device_key}]: Still waiting for ping...")
+                if result.returncode == 0: 
+                    break 
                 time.sleep(interval)
                 interval += interval
-
-
+     
+                
             reachable = result.returncode == 0
             if reachable:
-                logger.info(f"{self.host}: [pingDevice] Host is reachable (rc={result.returncode})")
+                logger.info(f"[{self.device_key}]: [pingDevice] Host is reachable (rc={result.returncode})")
             else:
-                logger.warning(f"{self.host}: [pingDevice] Host did not respond (rc={result.returncode})")
+                logger.warning(f"[{self.device_key}]: [pingDevice] Host did not respond (rc={result.returncode})")
             return reachable
         except Exception as e:
-            logger.error(f"{self.host}: Ping failed with error: {e}")
-            logger.info(f"{self.host}: Host is not reachable")
+            logger.warning(f"[{self.device_key}]: Ping failed with error: {e}")
+            logger.warning(f"[{self.device_key}]: Host is not reachable")
             return False
-
+    
     # ─────────────────────────────────────────────────────────────────────────
     # reconnect_and_verify
     # ─────────────────────────────────────────────────────────────────────────
     def reconnect_and_verify(self, logger, interval = 120, max_retries=6, wait_time=30):
-
+ 
         #continuous ping instead of blind sleep
         if not self.pingDevice(logger, interval, wait_time):
-            raise RuntimeError(f"{self.host}: Device never came back after reboot")
-
+            raise RuntimeError(f"[{self.device_key}]: Device never came back after reboot")
+ 
         # extra buffer for XR SSH
         logger.info(f"{self.host}: Waiting extra 120s for SSH readiness...")
         time.sleep(120)
-
+        
         device_key = f"{self.host}_{self.vendor}_{self.model}"
         disconnect(device_key, logger)
-
+ 
         for attempt in range(max_retries):
-            logger.info(f"{self.host}: Reconnect attempt {attempt + 1}/{max_retries}")
-
+            logger.info(f"[{self.device_key}]: Reconnect attempt {attempt + 1}/{max_retries}")
+ 
             conn = self.connect(logger)
-
+ 
             if conn:
                 try:
                     output = conn.send_command("show version")
-
+ 
                     if output:
-                        logger.info(f"{self.host}: SSH fully ready")
+                        logger.info(f"[{self.device_key}]: SSH fully ready")
                         return conn, output
-
+ 
                 except Exception as e:
-                    logger.warning(f"{self.host}: Command failed — {e}")
-
+                    logger.warning(f"[{self.device_key}]: Command failed — {e}")
+ 
             time.sleep(wait_time)
-
-        raise RuntimeError(f"{self.host}: SSH not ready after retries")
-
+ 
+        raise RuntimeError(f"[{self.device_key}]: SSH not ready after retries")
+        
     #----------------------------
     #Getting Active/Standby RSP
     #----------------------------
     def get_rsp_roles(self, conn, logger, device_key):
         try:
-
+            
             rsp_json = None
             commands = device_results[device_key]["pre"]["execute_show_commands"]["commands"]
 
-            for cmd in commands:
+            for cmd in commands: 
                 if cmd.get("cmd") == "show redundancy":
                     rsp_json = cmd.get("json")
                     break
-
+            
             if not rsp_json:
-              logger.error("show redundancy output not found in device_results")
+              logger.warning("show redundancy output not found in device_results")
               return False
-
+            
             ActiveNode  = rsp_json.get("ActiveNode")
             StandbyNode = rsp_json.get("StandbyNode")
 
@@ -259,11 +255,11 @@ class PreCheck:
                 logger.info(msg)
                 commands = [
                     "fpd auto-upgrade enable",
-                    "commit",
+                    "commit", 
                     "exit"
                 ]
                 # ---------------- XR MODE ----------------
-                xr_output = conn.send_command_timing("show running-config formal | include fpd", read_timeout=0, last_read=60)
+                xr_output = conn.send_command_timing("show running-config formal | include fpd", read_timeout=0, last_read=60) 
 
                 if "fpd auto-upgrade enable" in xr_output:
                     msg = f"{self.host}: Auto FPD already enabled in XR mode"
@@ -276,46 +272,46 @@ class PreCheck:
                     xr_fpd_enabled = True
 
                 # ---------------- ADMIN MODE ----------------
-                asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)
+                asr_models = next(d['asr9k'] for d in models if 'asr9k' in d) 
                 if self.model in asr_models:  # Club the admin and xr command. Create cmd lst on the go using the while
                     admin_output = conn.send_command_timing("admin show running-config | include fpd", read_timeout = 0, last_read = 60)
-
+    
                     if "fpd auto-upgrade enable" in admin_output:
                         msg = f"{self.host}: Auto FPD already enabled in Admin mode"
                         logger.info(msg)
                         admin_fpd_enabled = True
                     else:
-                        logger.warning(f"{self.host}: Enabling Auto FPD in Admin mode")
+                        logger.warning(f"[{self.device_key}]: Enabling Auto FPD in Admin mode")
                         conn.send_config_set(commands)
                         conn.exit_config_mode()
-                        admin_fpd_enabled = True
-
+                        admin_fpd_enabled = True 
+    
                 result = {
-                    "status": "ok",
-                    "xr_fpd_enabled": xr_fpd_enabled,
-                    "admin_fpd_enabled": admin_fpd_enabled,
-                    "exception": "",
+                    "status": "ok", 
+                    "xr_fpd_enabled": xr_fpd_enabled, 
+                    "admin_fpd_enabled": admin_fpd_enabled, 
+                    "exception": "", 
                     "verified": True
                 }
                 return result
-                # Club Validae FPDs and Enable
+                # Club Validae FPDs and Enable 
 
         except Exception as e:
             result = {
-                "status": "Failed",
-                "xr_fpd_enabled": xr_fpd_enabled,
-                "admin_fpd_enabled": admin_fpd_enabled,
-                "exception": str(e),
+                "status": "Failed", 
+                "xr_fpd_enabled": xr_fpd_enabled, 
+                "admin_fpd_enabled": admin_fpd_enabled, 
+                "exception": str(e), 
                 "verified": False
             }
             logger.exception(f"{self.host}: Auto FPD check failed")
-            return result
+            return result 
 
     #-------------
     #Validate FPD
     #-------------
 
-    def validateFPDs(self, conn, logger, device_key, post_reload=False):
+    def validateFPDs(self, conn, logger, device_key, phase, post_reload=False):
         """
         Verify and upgrade Cisco FPDs using stored command output.
         Logic:
@@ -324,25 +320,25 @@ class PreCheck:
         - Upgrade if versions differ
         """
         try:
-
+            
             msg = "Starting Cisco FPD version verification..."
             logger.info(msg)
-
+            
             #  Get stored output from device_results
-            commands = device_results[device_key]["pre"]["execute_show_commands"]["commands"]
+            commands = device_results[device_key][phase]["execute_show_commands"]["commands"]
             fpd_output = None
             fpd_json = None
-
+            
 
             for cmd in commands:
-
+                
                 if cmd.get("cmd") == "show hw-module fpd":
                     fpd_output = cmd.get("output")
                     fpd_json = cmd.get("json")
                     break
 
             if not fpd_output:
-                logger.error("show hw-module fpd output not found in device_results")
+                logger.warning("show hw-module fpd output not found in device_results")
                 return {
                     "status":     "failed",
                     "exception":  "show hw-module fpd output not found in device_results"
@@ -350,7 +346,7 @@ class PreCheck:
 
             # Parse output using existing parser
             fpd_list = fpd_json
-
+            
 
             if not fpd_list:
                 logger.warning("Parser returned no FPD data")
@@ -358,10 +354,10 @@ class PreCheck:
                     "status":     "failed",
                     "exception":  "Parser returned no FPD data"
                 }
-
+  
             # Extract FPD entries
             fpd_records = fpd_list.get("FPDs", [])
-
+           
             if not fpd_records:
               logger.warning("No FPD entries parsed")
               return {
@@ -372,9 +368,9 @@ class PreCheck:
             upgrade_required = []
 
             #  Compare versions
-
+            
             for fpd in fpd_records:
-
+                
                 location = fpd.get("Location")
                 fpd_name = fpd.get("FPDdevice")
                 running = fpd.get("FPDVersions").get("Running")
@@ -385,7 +381,7 @@ class PreCheck:
                     logger.warning(f"Skipping invalid entry: {fpd}")
                     continue
 
-
+                
                 if (atrStatus != "CURRENT" and (running != programmed)):
                   upgrade_required.append(fpd)
                   msg = (f"Upgrade needed → {location} {fpd_name} \n"
@@ -406,9 +402,9 @@ class PreCheck:
                         "status": "ok",
                         "exception": "Cisco FPD upgrade procedure completed"
                     }
-                return {"status": "ok", "exception": msg}
+                return {"status": "ok", "exception": "", "remark": msg}
             logger.warning(f"{len(upgrade_required)} FPD(s) require upgrade")
-
+            
             if post_reload:
                 # If we’re already post-reload and still upgrades needed, stop here
                 return {"status": "failed", "exception": "FPDs still require upgrade after reload"}
@@ -418,50 +414,52 @@ class PreCheck:
             for fpd in upgrade_required:
                 location = fpd.get("Location")
                 fpd_name = fpd.get("FPDdevice")
-
-
-
+                
+                
+                
                 cmd = f"upgrade hw-module location {location} fpd {fpd_name}"
                 logger.info(f"Executing: {cmd}")
 
                 conn.send_command(cmd, expect_string=r"#")
                 logger.info(f"Upgrade triggered for {location} {fpd_name}")
-                interval = 120
-
-                while True:
+                interval = 120 
+                
+                while True: 
                     cmd = f"show  hw-module fpd | in {fpd_name}"
-                    output = conn.send_command(cmd)
-                    if "current" in output.lower():
+                    output = conn.send_command(cmd) 
+                    if "current" in output.lower(): 
                         logger.info(f"{fpd_name} Upgraded successfully")
-                        break
+                        break 
                     time.sleep(interval)
                     interval += 120
 
-
+                
 
             # ---- Reload device ----
             logger.info("Reloading device...")
             cmd = ["reload", "\n", "\n"]
             conn.send_multiline_timing(cmd, read_timeout=0, last_read=20)
 #            conn.send_command("yes", expect_string=r"#", read_timeout=1200)
-
+            
             # Reconnect
             conn, output = self.reconnect_and_verify(logger)
             if not output:
                 msg = "Not able to connect to device"
                 return {"status": "failed", "exception": msg}
-            logger.info(f"{self.device_key} : Connected to device")
-
+            logger.info(f"[{self.device_key}] : Connected to device")
+    
             # Self-call for post-reload validation
             return self.validateFPDs(conn, logger, device_key, post_reload=True)
-
+                     
         except Exception as e:
             logger.error(f"FPD verification/upgrade failed: {str(e)}")
             return {
                 "status":     "failed",
                 "exception":  str(e)
             }
-    def checkStorageDualRE(self, conn, min_disk_gb, logger, cleanup=False):
+
+    # ─────────────────────────────────────────────────────────────────────────
+    def checkStorageDualRE(self, conn, min_disk_gb, logger, cleanup = False):
         try:
             logger.info(f"[{self.device_key}] checkStorageDualRE — vendor: {self.vendor}")
 
@@ -502,8 +500,8 @@ class PreCheck:
 
             re0_low = re0_space < min_disk_gb
             re1_low = re1_space < min_disk_gb
-
-            if cleanup:
+            
+            if cleanup: 
                 if re0_low:
                     logger.warning(
                         f"[{self.device_key}] checkStorageDualRE — RE0 low space "
@@ -519,7 +517,7 @@ class PreCheck:
                     logger.info(
                         f"[{self.device_key}] checkStorageDualRE — RE0 after cleanup: {re0_space:.2f} GB"
                     )
-
+    
                 if re1_low:
                     logger.warning(
                         f"[{self.device_key}] checkStorageDualRE — RE1 low space "
@@ -538,10 +536,10 @@ class PreCheck:
                     logger.info(
                         f"[{self.device_key}] checkStorageDualRE — RE1 after cleanup: {re1_space:.2f} GB"
                     )
-
+    
                 re0_ok = re0_space >= min_disk_gb
                 re1_ok = re1_space >= min_disk_gb
-
+    
                 if not re0_ok or not re1_ok:
                     failed_res = []
                     if not re0_ok:
@@ -553,27 +551,26 @@ class PreCheck:
                         + ", ".join(failed_res)
                         + f" (min required: {min_disk_gb} GB)"
                     )
-                    logger.error(msg)
+                    logger.warning(msg)
                     return {
                         "status":     "failed",
                         "exception":  msg,
                         "sufficient": False,
                         "re0_space":  round(re0_space, 2),
                         "re1_space":  round(re1_space, 2),
-                        "remark":     f"Still low after cleanup — RE0: {round(re0_space,2)}GB  RE1: {round(re1_space,2)}GB (min: {min_disk_gb}GB)",
                     }
-            else:
-                if re0_low and re1_low:
+            else: 
+                if re0_low and re1_low: 
                     msg = "Not enough storage to transfer the image. Please do the device cleanup"
                     logger.error(f"[{self.device_key}] : {msg}")
-                    return {
+                    return  {
                         "status":     "failed",
-                        "exception":  msg,
+                        "exception":  "",
                         "sufficient": False,
                         "re0_space":  round(re0_space, 2),
                         "re1_space":  round(re1_space, 2),
-                        "remark":     f"Insufficient — RE0: {round(re0_space,2)}GB  RE1: {round(re1_space,2)}GB (min: {min_disk_gb}GB)",
                     }
+                
 
             result = {
                 "status":     "ok",
@@ -581,7 +578,6 @@ class PreCheck:
                 "sufficient": True,
                 "re0_space":  round(re0_space, 2),
                 "re1_space":  round(re1_space, 2),
-                "remark":     f"RE0: {round(re0_space,2)}GB  RE1: {round(re1_space,2)}GB — both above {min_disk_gb}GB threshold",
             }
             logger.info(f"[{self.device_key}] checkStorageDualRE — both REs OK: {result}")
             return result
@@ -590,10 +586,11 @@ class PreCheck:
             msg = f"[{self.device_key}] checkStorageDualRE failed: {e}"
             logger.exception(msg)
             raise
+            
     def checkStorage(self, conn, min_disk_gb, logger, cleanup):
         try:
-            logger.info(f"[{self.vendor}_{self.model}] checkStorage — vendor: {self.vendor}")
-
+            logger.info(f"[{self.device_key}] checkStorage — vendor: {self.vendor}")
+            
             if self.vendor == "juniper":
 
                 storage_output = conn.send_command("show system storage", expect_string=r'.*>')
@@ -611,15 +608,15 @@ class PreCheck:
                 unit_to_gb = {"T": 1024, "G": 1, "M": 1 / 1024, "K": 1 / 1048576, "": 1}
                 avail_space = size_val * unit_to_gb.get(size_unit, 1)
                 logger.info(f"[{self.device_key}] checkStorage — {avail_space:.2f} GB available")
-
-            if self.vendor == "cisco":
+            
+            if self.vendor == "cisco": 
                 storage_output = conn.send_command_timing("show media", read_timeout = 0, last_read=30)
                 match=re.search(r"harddisk:\s+\S+\s+\S+\s+\S+\s+(\S+)", storage_output, re.M).group(1)
                 size_val   = match[:-1]
                 size_unit  = match[-1:]
                 unit_to_gb = {"T": 1024, "G": 1, "M": 1 / 1024, "K": 1 / 1048576, "": 1}
                 avail_space = size_val * unit_to_gb.get(size_unit, 1)
-                msg = f"[{self.vendor}_{self.model}] checkStorage — {avail_space} G available"
+                msg = f"[{self.device_key}] checkStorage — {avail_space} G available"
                 logger.info(msg)
 
             # Enough space
@@ -629,18 +626,17 @@ class PreCheck:
                     "deleted_files": [],
                     "exception":     "",
                     "sufficient":    True,
-                    "avail_space_gb": round(float(avail_space), 2),
                 }
-                logger.info(f"[{self.vendor}_{self.model}] checkStorage — sufficient space: {result}")
+                logger.info(f"[{self.device_key}] checkStorage — sufficient space: {result.get('status')}")
                 return result
 
-            if cleanup:
+            if cleanup: 
                 # ── LOW STORAGE → CLEANUP ─────────────────────────────────────────
-                logger.warning(f"[{self.vendor}_{self.model}] checkStorage — low space, running cleanup")
+                logger.warning(f"[{self.device_key}] checkStorage — low space, running cleanup")
                 files_to_delete = self.device.get("cleanup_files", [])
                 if not files_to_delete:
-                    msg = f"[{self.vendor}_{self.model}] checkStorage — cleanup_files empty, cannot free space"
-                    logger.error(msg)
+                    msg = f"[{self.device_key}] checkStorage — cleanup_files empty, cannot free space"
+                    logger.warning(msg)
                     return {
                         "status":        "failed",
                         "deleted_files": [],
@@ -650,16 +646,16 @@ class PreCheck:
 
                 deleted_files = []
                 for f in files_to_delete:
-                    if self.vendor == "juniper":
+                    if self.vendor == "juniper": 
                       cmd = [f"file delete {f}", "\n"]
 
-                    if self.vendor == "cisco":
+                    if self.vendor == "cisco": 
                       cmd = [
-                        f"delete harddisk:/{f}",
-                        "\n",
+                        f"delete harddisk:/{f}", 
+                        "\n", 
                       ]
-
-                    logger.info(f"[{self.vendor}_{self.model}] checkStorage — deleting {f}")
+                        
+                    logger.info(f"[{self.device_key}] checkStorage — deleting {f}")
                     conn.send_multiline_timing(cmd)
                     deleted_files.append(f)
 
@@ -669,8 +665,8 @@ class PreCheck:
                     "exception":     "",
                     "sufficient":    False,
                 }
-
-                if self.vendor == "cisco":
+                
+                if self.vendor == "cisco": 
                   cmd = [
                         "install deactivate superseded",
                         "\n",
@@ -679,9 +675,9 @@ class PreCheck:
                         "\n"
                   ]
                 conn.send_multiline_timing(cmd)
-                logger.info(f"[{self.vendor}_{self.model}] checkStorage — inactive packages deleted")
+                logger.info(f"[{self.device_key}] checkStorage — inactive packages deleted")
                 result = {
-                    "status":        "low_space_cleaned",
+                    "status":        "OK",
                     "deleted_files": deleted_files,
                     "inactive_packages": "deleted",
                     "exception":     "",
@@ -689,58 +685,62 @@ class PreCheck:
                 }
 
                 is_space = self.checkStorage(conn, min_disk_gb, logger, cleanup=False)
-                if is_space.get("status") == "ok":
+                if is_space.get("status") == "ok" or is_space: 
                     logger.info(f"[{self.device_key}] : Sufficient Space after cleanup ")
-                    return result
-
+                    return result 
+                
                 #storage recheck after deleting files
                 if float(avail_space) <= min_disk_gb:
-                  msg = f"[{self.vendor}_{self.model}] still low storage after cleanup"
+                  msg = f"[{self.device_key}] still low storage after cleanup"
                   logger.info(msg)
                   return False
 
-                msg = f"[{self.vendor}_{self.model}] checkStorage — cleanup done: {result}"
+                msg = f"[{self.device_key}] checkStorage — cleanup done: {result}"
                 logger.info(msg)
                 return result
-            else:
-                msg = f"[{self.vendor}_{self.model}] Not enough space in the device"
+            else: 
+                msg = f"[{self.device_key}] Not enough space in the device"
                 logger.info(msg)
                 return False
 
         except Exception as e:
-            msg = f"[{self.vendor}_{self.model}] checkStorage failed: {e}"
-            print(msg)
+            msg = f"[{self.device_key}] checkStorage failed: {e}"
             logger.exception(msg)
             raise
 
-
+ 
     #----------------scp function----------
-    def scpFile(self, conn, src, dest, logger):
+    def scpFile(self, conn, src, dest, logger, models):
         try:
             logger.info(f"[{self.device_key}] scpFile — {src} → {dest}")
-
+            
             if self.vendor == "juniper":
                 cmd = [
                     "start shell", "\n",
-                    f"scp -C {src} {dest}", "yes","\n",
+                    f"scp -C {src} {dest}", "yes",
                     self.remote_password, "\n",
                     "exit", "\n",
                 ]
             if self.vendor == "cisco":
-                if self.model == "asr9910" or self.model == "asr9006": # model in the list.
+                asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)  
+                ncs_models = next(d['ncs'] for d in models if 'ncs' in d)  
+                if self.model in asr_models:   
                     cmd = [
                         f"scp {src} {dest} source-interface MgmtEth 0/RSP0/CPU0/0",
                         self.remote_password
                     ]
-                if self.model == "ncs5501": # list in model and lowerc
+                if self.model in ncs_models: 
                     cmd = [f"scp {src} {dest}", self.remote_password]
-            output = conn.send_multiline_timing(cmd, read_timeout=0)
+            output = conn.send_multiline_timing(cmd, read_timeout=0, last_read = 20)
             if "No such file or directory" in output:
-                logger.error(f"[{self.device_key}] scpFile — no such file: {src}")
+                logger.warning(f"[{self.device_key}] scpFile — no such file: {src}")
+                return False
+            if "Failed to connect" in output: 
+                logger.warning(f"[{self.device_key}] scpFile - {output}")
                 return False
 
             if not output:
-                logger.error(f"[{self.device_key}] scpFile — no output returned")
+                logger.warning(f"[{self.device_key}] [READ_TIMEOUT] : Read operation timed out while waiting for device response")
                 return False
 
             time.sleep(5)
@@ -752,7 +752,7 @@ class PreCheck:
 
         except Exception as e:
             logger.error(f"[{self.device_key}] scpFile failed: {e}")
-            return False
+            return False 
 
     # ─────────────────────────────────────────────────────────────────────────
     def preBackupDisk(self, conn, logger):
@@ -810,7 +810,7 @@ class PreCheck:
                     logger.info(f"[{self.device_key}] preBackup — config saved, SCP to remote server")
                     src      = f"/var/home/lab/{filename}"
                     dest     = f"{self.remote_server}:/var/tmp/{filename}"
-                    if self.scpFile(conn, src, dest, logger):
+                    if self.scpFile(conn, src, dest, logger, models):
                         pre_backup_config = True
                     else:
                         return {
@@ -841,7 +841,7 @@ class PreCheck:
                 logger.info(f"[{self.device_key}] preBackup — logs archived, SCP to remote server")
                 src  = f"/var/tmp/{filename}.tgz"
                 dest = f"{self.remote_server}:/var/tmp/{filename}.tgz"
-                if self.scpFile(conn, src, dest, logger):
+                if self.scpFile(conn, src, dest, logger, models):
                     pre_device_log = True
                 else:
                     return {
@@ -868,22 +868,22 @@ class PreCheck:
                     "log_file":    f"{filename}.tgz",
                     "destination": self.remote_server,
                 }
-
+            
             if self.vendor == "cisco":
-                asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)
-                ncs_models = next(d['ncs'] for d in models if 'ncs' in d)
-
-                if self.model in ncs_models:
+                asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)  
+                ncs_models = next(d['ncs'] for d in models if 'ncs' in d) 
+                
+                if self.model in ncs_models: 
                     config_commands = [
                         f"copy running-config harddisk:{filename}-xr",
                         "\n"
                     ]
-
+                
                 if self.model in asr_models:
                     active_rsp, standby_rsp = self.get_rsp_roles(conn,logger, device_key)
                     logger.info(f"{device_key}: active RSP :{active_rsp}")
                     if not active_rsp:
-                        logger.error(f"{self.host}: Active RSP not found")
+                        logger.warning(f"{self.host}: Active RSP not found")
                         return False
                     config_commands = [
                         f"copy running-config harddisk:{filename}-xr",
@@ -892,7 +892,7 @@ class PreCheck:
                         "\n"
                     ]
                 backup_config = conn.send_multiline_timing(config_commands,cmd_verify = False)
-
+                
                 if not backup_config:
                     msg = f"{self.host}: Not able to save the file. Please look into to the preBakup()"
                     logger.info(msg)
@@ -903,7 +903,7 @@ class PreCheck:
                         "log_file":    f"{filename}.cfg",
                         "destination": "/harddisk:",
                     }
-
+                
                 return {
                     "status":      "ok",
                     "exception":   "",
@@ -923,26 +923,26 @@ class PreCheck:
                 "destination": "",
             }
 
-
+ 
     # ─────────────────────────────────────────────────────────────────────────
     def transferImage(self, conn, image_path, target_image, logger, models):
         try:
-
+            
             logger.info(f"[{self.device_key}] transferImage — {target_image}, vendor: {self.vendor}")
             src  = f"{self.remote_server}:{image_path}/{target_image}"
-
+            
             if self.vendor == "juniper":
                 dest = "/var/tmp/"
-            if self.vendor == "cisco":
-                asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)
+            if self.vendor == "cisco": 
+                asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)  
                 ncs_models = next(d['ncs'] for d in models if 'ncs' in d)
-
-                if self.model in asr_models:
+                
+                if self.model in asr_models: 
                     dest = "/harddisk:"
-                if self.model in ncs_models :
+                if self.model in ncs_models : 
                     dest = "/misc/disk1/"
-
-            if not self.scpFile(conn, src, dest, logger):
+                    
+            if not self.scpFile(conn, src, dest, logger, models):
                 return {
                     "status":      "failed",
                     "exception":   f"SCP transfer failed for {target_image}",
@@ -976,33 +976,31 @@ class PreCheck:
         Example: change SSH rate limit
         """
         try:
+            
             msg = f"[{self.device_key}] : Modifying LPTS policer"
             logger.info(msg)
-            print(msg)
-
-            #  Clear leftover buffer after show commands
-            conn.clear_buffer()
-
-            #  Enter config mode manually (XR-safe)
-            conn.send_command("configure terminal", expect_string=r"\(config\)#")
-
-            #  Apply LPTS command safely on IOS-XR
-            conn.send_command(
+            commands = [
                 "lpts pifib hardware police flow ssh known rate 50000",
-                expect_string=r"\(config\)#"
-            )
+                "commit",
+                "exit"
+            ]
 
-            #  Commit
-            conn.send_command("commit", expect_string=r"#")
-
-            #  Exit config mode
-            conn.send_command("end", expect_string=r"#")
-
-            msg = "LPTS modified successfully"
-            logger.info(msg)
+            output = conn.send_config_set(commands, read_timeout = 120, cmd_verify=False)
+            
+            
+            if not output: 
+                msg = f"[{self.device_key}] [READ_TIMEOUT] : Read operation timed out while waiting for device response"
+                logger.info(msg)
+                return {
+                    "status": "failed",
+                    "exception": msg, 
+                    "lpts rate": 50000
+                }
+                
+            logger.info(f"[{self.device_key}] : LPTS modified successfully")
             return {
                 "status": "ok",
-                "exception": "",
+                "exception": "", 
                 "lpts rate": 50000
             }
 
@@ -1030,17 +1028,17 @@ class PreCheck:
                 )
 
                 match = re.search(r"\.tgz\)\s*=\s*(\S+)", output)
-
-            if self.vendor == "cisco":
+                
+            if self.vendor == "cisco": 
                 command = f"show md5 file /harddisk:/{image}"
                 logger.info(f"[{self.device_key}]: Executing '{command}'")
 
                 output = conn.send_command(
-                    command,
-                    expect_string=r"#",
+                    command, 
+                    expect_string=r"#", 
                     read_timeout=120
                 )
-
+                
                 match = re.search(r'([a-fA-F0-9]{32})',output)
 
             if not match:
@@ -1077,3 +1075,4 @@ class PreCheck:
                 "computed":  None,
                 "match":     False,
             }
+ 

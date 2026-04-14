@@ -21,7 +21,7 @@ class Upgrade:
     def __init__(self, device_key: str, device: dict, accepted_vendors: list):
         self.device_key      = device_key
         self.device          = device
-        self.host            = device.get("host") 	
+        self.host            = device.get("host")
         self.vendor          = device.get("vendor")
         self.model = device.get("model")
         self.accepted_vendor = accepted_vendors
@@ -50,7 +50,7 @@ class Upgrade:
             logger.debug(f"[{self.device_key}]:: [connect] Session log -> {session_log_path}")
             if os.path.exists(session_log_path):
                 logger.info(f"[{self.device_key}]: Session log file exists -- {session_log_path}")
-
+              
             conn = ConnectHandler(
                 device_type = self.device.get("device_type"),
                 host        = self.host,
@@ -97,14 +97,14 @@ class Upgrade:
             f"[{self.device_key}]:: [reconnect_and_verify] Starting — "
             f"hop_index={hop_index}, max_retries={max_retries}, wait_time={wait_time}s"
         )
-
+        
         logger.info(f"[{self.device_key}]:: Starting ping check after reboot")
-
-        if not self.pingDevice(logger, interval, max_wait=1800):
+        
+        if not self.pingDevice(logger, interval, max_wait=2100):
             raise RuntimeError(f"{self.device_key}: Device never came back after reboot")
-
+            
         logger.info(f"[{self.device_key}]:: Device is reachable after reboot")
-
+        
         disconnect(self.device_key, logger)          # kill stale session
 
         for attempt in range(max_retries):
@@ -114,7 +114,7 @@ class Upgrade:
                 if conn:
                     output = conn.send_command("show version")
                     if output:
-                        logger.info(f"[{self.device_key}]:: SSH ready, got version output")
+                        logger.info(f"[{self.device_key}] : SSH ready, got version output")
 
                         # ── write per-hop connect result ──────────────────────
                         if hop_index >= 0:
@@ -163,11 +163,11 @@ class Upgrade:
     # ─────────────────────────────────────────────────────────────────────────
     # imageUpgrade
     # ─────────────────────────────────────────────────────────────────────────
-
+    
     def _write_hop(self,hop_index: int, update: dict):
         if hop_index >= 0:
             device_results[self.device_key]["upgrade"]["hops"][hop_index].update(update)
-
+            
     def imageUpgrade(self, conn, expected_os, target_image, hop_index, logger, models, xr_committed_pkg = "", admin_committed_pkg = ""):
         logger.info(
             f"[{self.device_key}]:: [imageUpgrade] Starting — "
@@ -196,7 +196,7 @@ class Upgrade:
                 cmd    = f"request vmhost software add /var/tmp/{target_image} no-validate"
                 logger.debug(f"[{self.device_key}]:: [imageUpgrade] Sending: {cmd} (read_timeout=600s)")
                 output = conn.send_command(cmd, read_timeout=600)
-                # print(f"[imageUpgrade] install output: {output}")
+                print(f"[imageUpgrade] install output: {output}")
 
                 if not output:
                     msg = f"{target_image} is not installed. Please check imageUpgrade()"
@@ -205,115 +205,114 @@ class Upgrade:
                     return conn, False
 
             if self.vendor == "cisco":
-                asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)
+                asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)  
                 ncs_models = next(d['ncs'] for d in models if 'ncs' in d)
-
+                
                 if self.model in ncs_models:
                     command = f"run mv /misc/disk1/{target_image} /misc/app_host/"
-
+                    
                     move_file = conn.send_command_timing(command, read_timeout=0, last_read=30)
-
-                    if "No space left on device" in move_file:
+                    
+                    if "No space left on device" in move_file: 
                         msg = f"[{self.device_key}]: error writing '/misc/app_host/ncs5500-goldenk9-x-7.7.2-NCS5501_772.iso': No space left on device"
-                        logger.error(msg)
+                        logger.error(msg) 
                         self._write_hop(hop_index, {"image": f"{target_image}", "status": "failed", "exception": msg, "md5_match": False})
                         return conn, False
-
+                    
                     output=conn.send_command_timing(f"install replace /misc/app_host/{target_image} commit force noprompt",read_timeout = 0, last_read = 450)
                     logger.info(f"upgrade: {output}")
-
-                if self.model in asr_models:
-
+                    
+                if self.model in asr_models: 
+                
                     try:
-                      cmd = "install commit"
+                      cmd = "install commit" 
                       logger.info(f"[{self.device_key}]: running 'install commit' to change the device state to committed state")
                       output = conn.send_command_timing(cmd, read_timeout = 0, last_read = 60)
-                      logger.info(f"[{self.device_key}]:: install commit output -> {output}")
-
-                      if not output:
-                        msg = f"[{self.device_key}]: Not able to change the device state"
-                        logger.error(msg)
-                        return conn, False
-                    except Exception as e:
+                      logger.info(f"[{self.device_key}]:: install commit output -> {output}") 
+                    
+                      if not output: 
+                        msg = f"[{self.device_key}] [READ_TIMEOUT] : Read operation timed out while waiting for device response"
+                        logger.warning(msg) 
+                        return conn, False 
+                    except Exception as e: 
                       msg = f"Not able to change the device state to committed state: {e}"
-                      logger.error(msg)
+                      logger.error(msg) 
                       return conn, False
-
+                    
                     logger.info(f"[{self.device_key}] : The device is in committed state")
-
+                    
                     output=conn.send_command_timing(f"install replace harddisk:/{target_image} commit noprompt",read_timeout = 0, last_read = 450)
-
+                    
                     logger.info(f"upgrade: {output}")
                     if not output:
-                      logger.error("[{self.device_key}] Not able to run the installation commands")
+                      logger.warning(f"[{self.device_key}] {target_image} is not installed. Please check imageUpgrade()")
                       return conn, False
-
+    
                     logger.info(f"{self.device_key}: Install command accepted, router will reload automatically")
-
+                
                 if not output:
                     msg = f"{target_image} is not installed. Please check imageUpgrade()"
-                    logger.error(msg)
+                    logger.warning(f"[{self.device_key}] {msg}")
                     self._write_hop(hop_index, {"image": f"{target_image}", "status": "failed", "exception": msg, "md5_match": False})
                     return conn, False
-
-
-
+                    
+                
+              
             logger.info(f"[{self.device_key}] : [imageUpgrade] Install completed, initiating reboot")
             if self.vendor == "juniper":
                 command = ["request vmhost reboot", "yes", "\n"]
                 logger.info(f"[{self.device_key}]:: Rebooting the system...")
                 output = conn.send_multiline_timing(command)
-                if not output:
+                if not output: 
                     logger.error(f"[{self.device_key}]: Not able to reboot the device")
                     reboot_system = False
-
+                    
             logger.info(f"[{self.device_key}]:: Waiting for reboot after upgrade")
 
             if reboot_system:
                 logger.info(f"[{self.device_key}]:: Device rebooted, waiting for SSH to come back")
                 conn, output = self.reconnect_and_verify(hop_index,logger)
-                # print(f"[imageUpgrade] post-reboot output: {output}")
+                print(f"[imageUpgrade] post-reboot output: {output}")
 
                 if self.vendor == "juniper":
                     version_pattern = re.search(r"Junos:\s*(?P<version>\S+)", output, re.IGNORECASE)
                 if self.vendor == "cisco":
-                    asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)
+                    asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)  
                     ncs_models = next(d['ncs'] for d in models if 'ncs' in d)
-                    #------ Committing the packages -----------------------#
+                    #------ Committing the packages -----------------------# 
                     try:
-                      cmd = "install commit"
+                      cmd = "install commit" 
                       logger.info(f"[{self.device_key}]: running 'install commit' to commit the {target_image} packages")
                       output = conn.send_command_timing(cmd, read_timeout = 0, last_read = 60)
-                      logger.info(f"[{self.device_key}]:: install commit output -> {output}")
-
-                      if not output:
+                      logger.info(f"[{self.device_key}]:: install commit output -> {output}") 
+                    
+                      if not output: 
                         msg = f"[{self.device_key}]: Not able to commit the SMU packages"
-                        logger.error(msg)
-                        return conn, False
-                    except Exception as e:
-                      msg = f"Not able to commit the SMU packages for {smu_image}: {e}"
-                      logger.error(msg)
+                        logger.warning(msg) 
+                        return conn, False 
+                    except Exception as e: 
+                      logger.error(f"[{self.device_key}] : Not able to commit the SMU packages for {smu_image}: {e}") 
                       return conn, False
-
+                      
                     if self.model in ncs_models:
-                        logger.info(f"The image is upgraded. Removing the file from /misc/app_host/" )
+                        logger.info(f"[{self.device_key}] : The image is upgraded. Removing the file from /misc/app_host/" )
                         remove_file = conn.send_command(f"run rm /misc/app_host/{target_image} ")
-
-                        if not remove_file:
-                            msg = f"Not able to delete the {target_image} file from /misc/app_host"
-                            logger.error(msg)
+                    
+                        if not remove_file: 
+                            msg = f"Not able to delete the {target_image} file from /misc/app_host" 
+                            logger.warning(f"[{self.device_key}] : Not able to delete the {target_image} file from /misc/app_host") 
                             self._write_hop(hop_index, {"image": f"{target_image}", "status": "failed", "exception": msg, "md5_match": False})
-
-                    #-------------- Validate device version ---------------#
+                    
+                    #-------------- Validate device version ---------------# 
                     xr_match, admin_match = self.validate_upgrade(conn, xr_committed_pkg, admin_committed_pkg, logger, summary = "active")
-
+                    
                     if xr_match and admin_match:
                       xr_version = xr_match.group("version")
                       logger.info(f"[{self.device_key}] version in XR mode: {xr_version}")
-
+                      
                       admin_version = admin_match.group("version")
                       logger.info(f"[{self.device_key}] version in ADMIN mode: {admin_version}")
-
+                      
                       if xr_version == admin_version:
                         version_pattern = xr_match
                       else:
@@ -322,14 +321,14 @@ class Upgrade:
                     else:
                       logger.error(f"[{self.device_key}]:: version not found in xr/admin output")
                       version_pattern = None
-
-
-                    #------------ Validate Commit packages ----------------------- #
-
+                    
+                    
+                    #------------ Validate Commit packages ----------------------- # 
+                    
                     pkg_committed = self.validate_upgrade(conn, xr_committed_pkg, admin_committed_pkg, logger)
-                    if not pkg_committed:
+                    if not pkg_committed: 
                       msg = f"[{self.device_key}]: not found committed packages "
-                      logger.error(msg)
+                      logger.error(msg) 
                       self._write_hop(hop_index, {"image": f"{target_image}", "status": "failed", "exception": msg, "smu_upgrade": False})
                       return conn, False
 
@@ -389,7 +388,7 @@ class Upgrade:
                 "-W", str(timeout),
                 self.host
             ]
-
+            
             logger.info(f"{self.device_key}: Waiting for device via continuous ping...")
             result = 0
             while interval < max_wait :
@@ -398,14 +397,14 @@ class Upgrade:
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.DEVNULL
                 )
-
+ 
                 logger.info(f"{self.device_key}: Still waiting for ping...")
-                if result.returncode == 0:
-                    break
+                if result.returncode == 0: 
+                    break 
                 time.sleep(interval)
                 interval += interval
-
-
+     
+                
             reachable = result.returncode == 0
             if reachable:
                 logger.info(f"{self.device_key}: [pingDevice] Host is reachable (rc={result.returncode})")
@@ -416,7 +415,7 @@ class Upgrade:
             logger.error(f"{self.device_key}: Ping failed with error: {e}")
             logger.info(f"{self.device_key}: Host is not reachable")
             return False
-
+ 
     #------------------------------------------------------------------------------------#
     #                              Applying DENY-ANY Policies                            #
     #------------------------------------------------------------------------------------#
@@ -428,12 +427,12 @@ class Upgrade:
             match = re.search(r"local AS number (\d+)", output)
             if match:
                 asn = match.group(1)
-                logger.info(f"[{self.device_key}]:: Detected BGP ASN -> {asn}")
+                logger.info(f"[{self.device_key}] : Detected BGP ASN -> {asn}")
                 return asn
-            logger.error(f"[{self.device_key}]:: Unable to detect BGP ASN")
+            logger.error(f"[{self.device_key}] : Unable to detect BGP ASN")
             return None
         except Exception as e:
-            logger.exception(f"[{self.device_key}]:: Failed to retrieve ASN: {e}")
+            logger.exception(f"[{self.device_key}] : Failed to retrieve ASN: {e}")
             return None
 
     def get_neighbors(self, conn, logger):
@@ -466,7 +465,7 @@ class Upgrade:
         try:
             asn = self.get_asn(conn, logger)
             if not asn:
-              logger.error(f"[{self.device_key}]:: Aborting DENY-ANY apply (ASN not found)")
+              logger.error(f"[{self.device_key}] : Aborting DENY-ANY apply (ASN not found)")
               return False
             ipv4_neighbors, ipv6_neighbors = self.get_neighbors(conn, logger)
             for nbr in ipv4_neighbors:
@@ -500,33 +499,31 @@ class Upgrade:
     #------------------------------------------------------------------------------------#
     #                              Setting Overload bit                                  #
     #------------------------------------------------------------------------------------#
-
+    
     def set_overload_bit(self, conn, logger, models):
         """Drain traffic before upgrade"""
         try:
-            asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)
+            asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)  
             ncs_models = next(d['ncs'] for d in models if 'ncs' in d)
-
+            
             if self.model in asr_models:
                 policy_check = conn.send_command_timing("show running-config route-policy DENY-ANY", read_timeout = 0, last_read = 30)
                 if "route-policy DENY-ANY" not in policy_check:
                     msg = "creating route-policy DENY-ANY"
                     logger.info(msg)
-                    print(msg)
                     policy_commands = [
                         "route-policy DENY-ANY",
                         "drop",
-                        "end-policy",
+                        "end-policy", 
                         "commit"
                     ]
                     conn.send_config_set(policy_commands)
                     conn.exit_config_mode()
-                msg="route-policy created"
-                logger.info(msg)
+                    logger.info(f"[{self.device_key}] : route-policy DENY-ANY created")
+                logger.info(f"[{self.device_key}] : route-policy DENY-ANY exists")
 
                 asn = self.get_asn(conn, logger)
-                print(f"ASN->{asn}")
-                logger.info(f"[{self.device_key}]:: Starting deny-any policy for ASN {asn}")
+                logger.info(f"[{self.device_key}] : Starting deny-any policy for ASN {asn}")
                 bgp_config = conn.send_command_timing( "show running-config router bgp | include neighbor-group PEER", read_timeout = 0, last_read=30)
                 if "neighbor-group PEER" in bgp_config:
                     peer_commands = [
@@ -538,27 +535,28 @@ class Upgrade:
                       "address-family ipv6 labeled-unicast",
                       "route-policy DENY-ANY out",
                       "route-policy DENY-ANY in",
-                      "commit"
+                      "commit",
+                      "end"
                     ]
                     conn.send_config_set(peer_commands)
-                    conn.exit_config_mode()
-#                    conn.send_command("commit")
-                    logger.info(f"[{self.device_key}]:: Applied DENY-ANY policy to PEER group")
-                    logger.info(f"[{self.device_key}]:: Waiting 5 minutes for traffic drain")
+                    
+                    logger.info(f"[{self.device_key}] : Applied DENY-ANY policy to PEER group")
+                    logger.info(f"[{self.device_key}] : Waiting 5 minutes for traffic drain")
                     time.sleep(300)
-
             isis_commands = [
+                "config",
                 "router isis COLT",
-                "set-overload-bit",
-                "commit"
+                "set-overload-bit", 
+                "commit", 
+                "end"
             ]
 
-            conn.send_config_set(isis_commands)
-            conn.exit_config_mode()
+            conn.send_multiline_timing(isis_commands, read_timeout = 120)
+#            conn.exit_config_mode()
 
             validateOLbit = 'sh isis instance COLT | in Overload'
             output = conn.send_command_timing(validateOLbit, read_timeout = 0, last_read = 30)
-            if "configured, set" not in output:
+            if "configured, set" not in output: 
                 msg = f"ISIS Overload bit is not SET"
                 logger.error(f"[{self.device_key}]: {msg}")
                 return {
@@ -580,7 +578,7 @@ class Upgrade:
     #------------------------------------------------------------------------------------#
     #                              SMU upgrade                                       #
     #------------------------------------------------------------------------------------#
-    def smu_add(self, conn, logger, smu_file): # use while loop for reload.
+    def smu_add(self, conn, logger, smu_file): # use while loop for reload. 
         """Add SMU package and extract install operation ID"""
         try:
             for attempt in range(1,6):
@@ -588,7 +586,7 @@ class Upgrade:
                 logger.info(f"[{self.device_key}]: Running -> {cmd} (Attempt {attempt}/5)")
                 output = conn.send_command_timing(cmd, read_timeout=0, last_read=120)
                 logger.debug(f"[{self.device_key}]: install add output:\n{output}")
-
+    
                 #  STILL IN PROGRESS / RETRY REQUIRED
                 if (
                   "still in progress" in output.lower()
@@ -597,7 +595,7 @@ class Upgrade:
                   logger.warning(f"[{self.device_key}]: install busy, retrying in 60s...")
                   time.sleep(60)
                   continue
-
+    
                 #  SUCCESS: extract install id
                 match = re.search(r"Install operation\s+(\d+)\s+finished successfully", output,re.IGNORECASE)
                 if match:
@@ -640,11 +638,11 @@ class Upgrade:
         except Exception as e:
             logger.error(f"[{self.device_key}]: SMU prepare failed -> {e}")
             return False, None
-
+    
     def smu_activate(self, conn, install_id, logger, models):
         try:
-            asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)
-
+            asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)  
+            
             if self.model in asr_models:
               cmd = f"install activate noprompt"
             else:
@@ -652,8 +650,8 @@ class Upgrade:
             logger.info(f"[{self.device_key}]: Running command -> {cmd}")
             output = conn.send_command_timing(cmd, read_timeout = 0, last_read = 20)
             logger.info(f"[{self.device_key}]:: Activate output -> {output}")
-
-            if "aborted" in output:
+            
+            if "aborted" in output: 
               logger.error(f"[{self.device_key}]: SMU activate aborted")
               return output, False
             return output, True
@@ -661,25 +659,25 @@ class Upgrade:
             logger.error(f"[{self.device_key}]:: SMU activate failed: {e}")
             return None, False
 
-
-
-
-    # --------- Running committed summary -------------------#
-    def validate_upgrade(self, conn, xr_committed_pkg, admin_committed_pkg, logger, summary="committed"):
-
-        """Validate the upgrade is successufull or not"""
-        try:
+    
+    
+    
+    # --------- Running committed summary -------------------# 
+    def validate_upgrade(self, conn, xr_committed_pkg, admin_committed_pkg, logger, summary="committed"): 
+    
+        """Validate the upgrade is successufull or not""" 
+        try: 
             msg = f"[{self.device_key}]: Validating the device upgrade "
-            logger.info(msg)
-            if summary.lower() == "committed":
+            logger.info(msg) 
+            if summary.lower() == "committed": 
                 logger.info(f"[{self.device_key}]: Running 'show install committed summary' in xr mode")
-
-                xr_comm_output = conn.send_command("show install committed summary") # 1 liner
-
-                if not xr_comm_output:
-                    logger.warning(f"[{self.device_key}] Not getting output of committed summary. Please check the command")
+                
+                xr_comm_output = conn.send_command("show install committed summary", expect_string=r"[#>]", read_timeout=120)
+                
+                if not xr_comm_output: 
+                    logger.warning(f"[{self.device_key}] Not getting output of committed summary. Please check the command") 
                     return False
-
+                    
                 retry_count = 0
                 max_retries = 5
                 while (
@@ -690,49 +688,49 @@ class Upgrade:
                         f"{self.device_key}: Install in progress... retry {retry_count + 1}/5 after 60s"
                     )
                     time.sleep(60)
-                    xr_comm_output = conn.send_command("show install committed summary")
+                    xr_comm_output = conn.send_command("show install committed summary", expect_string=r"[#>]", read_timeout=120)
                     retry_count += 1
-
-                for pkg in xr_committed_pkg:
+                
+                for pkg in xr_committed_pkg: 
                     if pkg in xr_comm_output:
-                        logger.info(f"[{self.device_key}] : {pkg} is committed" )
-                        continue
-
+                        logger.info(f"[{self.device_key}] : {pkg} is committed" ) 
+                        continue 
+                        
                     logger.warning(f"[{self.device_key}]: {pkg} is not committed. Upgrade is not succesfull")
                     return  False
-
+                
                 logger.info(f"[{self.device_key}]: Packages are committed in XR mode")
-
+                
                 #------admin check--------#
                 logger.info(f"[{self.device_key}]: Running 'admin show install committed summary' in admin mode")
-
-
+                
+                 
                 admin_comm_output = conn.send_command(
-                    "admin show install committed summary"
+                    "admin show install committed summary", expect_string=r"[#>]", read_timeout=120
                 )
-                if not admin_comm_output:
+                if not admin_comm_output: 
                     msg = f"Not getting output of committed summary. Please check the command"
-                    logger.warning(msg)
+                    logger.warning(msg) 
                     return False
-
+                
                 for pkg in admin_committed_pkg: # club the xr and admin
-                    if pkg in admin_comm_output:
+                    if pkg in admin_comm_output: 
                         msg = f"[{self.device_key}] : admin {pkg} is committed"
-                        logger.info(msg)
-                        continue
+                        logger.info(msg) 
+                        continue 
                     logger.warning(f"admin {pkg} is not committed. Upgrade is not succesfull")
                     return  False
                 logger.info(f"[{self.device_key}]: Packages are committed in Admin mode")
                 return True
-
+            
             if summary.lower() == "active":
-                logger.info(f"[{self.device_key}]: Running 'show install active summary' in xr mode")
+                logger.info(f"[{self.device_key}]: Running 'show install active summary' in xr mode") 
                 xr_output = conn.send_command("show install active summary", expect_string=r"[#>]", read_timeout=120)
-                if not xr_output:
+                if not xr_output: 
                     msg = "Not getting output of active summary. Please check the command"
-                    logger.warning(msg)
+                    logger.warning(msg) 
                     return False
-
+                    
                 retry_count = 0
                 max_retries = 5
                 while (
@@ -743,28 +741,28 @@ class Upgrade:
                         f"{self.device_key}: Install in progress... retry {retry_count + 1}/5 after 60s"
                     )
                     time.sleep(60)
-                    xr_output = conn.send_command("show install active summary")
+                    xr_output = conn.send_command("show install active summary", expect_string=r"[#>]", read_timeout=120)
                     retry_count += 1
-
+                    
                 xr_match = re.search(r"version\s*=\s*(?P<version>\S+)",xr_output,re.IGNORECASE)
-
-                if not xr_match:
+                
+                if not xr_match: 
                     msg = f"Not able to fetch the version from 'show install active summary'. Please check the regex"
-                    logger.error(msg)
+                    logger.error(msg) 
                     return False
-
+                    
                 #------admin check--------#
                 logger.info(f"[{self.device_key}]: Running 'admin show install active summary' in admin mode")
-
-
+                
+                 
                 admin_output = conn.send_command(
                     "admin show install active summary", expect_string=r"[#>]", read_timeout=120
                 )
-                if not admin_output:
+                if not admin_output: 
                     msg = f"Not getting output of active summary. Please check the command"
-                    logger.warning(msg)
+                    logger.warning(msg) 
                     return False
-
+                
                 while (
                     retry_count < max_retries
                     and ("Install operation is in progress" in admin_output)):
@@ -772,23 +770,23 @@ class Upgrade:
                         f"{self.device_key}: Install in progress... retry {retry_count + 1}/5 after 60s"
                     )
                     time.sleep(60)
-                    admin_output = conn.send_command("admin show install active summary")
+                    admin_output = conn.send_command("admin show install active summary", expect_string=r"[#>]", read_timeout=120)
                     retry_count += 1
-
+                    
                 admin_match = re.search(r"version\s*=\s*(?P<version>\S+)",admin_output,re.IGNORECASE)
                 logger.info(f"admin: {admin_match}")
-                if not admin_match:
+                if not admin_match: 
                     msg = f"Not able to fetch the version from 'show install active summary'. Please check the regex"
-                    logger.error(msg)
+                    logger.error(msg) 
                     return False
                 return xr_match, admin_match
-        except Exception as e:
+        except Exception as e: 
             msg = f"{self.device_key}: Upgrade validation failed with error -> {e}"
             print(msg)
             logger.exception(msg)
             return False
-
-
+      
+        
     def upgrade_smu(self, conn, smu_image, xr_committed_pkg, admin_committed_pkg, hop_index, logger, models):
         """Full SMU upgrade workflow"""
         try:
@@ -796,92 +794,93 @@ class Upgrade:
             msg = f"[{self.device_key}]: Starting SMU upgrade process"
             logger.info(msg)
             asr_models = next(d['asr9k'] for d in models if 'asr9k' in d)
-            is_activate = True
-
+            is_activate = True  
+            
             #------ Adding the SMU image -----------------------#
             status, install_id = self.smu_add(conn, logger, smu_image)
             if not status:
               msg = f"SMU add failed"
-              logger.error(f"[{self.device_key}]: SMU add failed")
+              logger.warning(f"[{self.device_key}]: smu_add() failed")
               self._write_hop(hop_index, {"image": smu_image.split(" /"), "status": "failed", "exception": msg, "md5_match": False})
               return conn, False
-
+              
             # ---------------- SMU PREPARE ----------------
             if self.model in asr_models:
               if install_id:
                 prep_status, prep_output = self.smu_prepare(conn, install_id, logger)
                 if not prep_status:
-                  logger.error(f"{self.device_key}: SMU prepare failed")
+                  logger.warning(f"{self.device_key}: smu_prepare() failed")
                   return conn, False
                 time.sleep(15)
-
-              if "already active" in prep_output:
+            
+              if "already active" in prep_output: 
                 reboot_system = False
                 is_activate = False
                 logger.info(f"[{self.device_key}] : No Need to run the activate command as all packages are already active")
-
+                
             #------ Activate the SMU image -----------------------#
-            if is_activate:
+            if is_activate: 
               output, is_smu_activate = self.smu_activate(conn,install_id, logger, models)
               if not is_smu_activate:
                 msg = f"SMU activate failed for {install_id} "
                 logger.error(f"[{self.device_key}]: SMU activate failed")
                 self._write_hop(hop_index, {"image": smu_image.split(" /"), "status": "failed", "exception": msg, "md5_match": False})
                 return conn, False
-
-              if "already active" in output:
+                
+              if "already active" in output: 
                 reboot_system = False
-
-
-            #------------ Reload the device -----------------------#
-
+              
+            
+            #------------ Reload the device -----------------------# 
+            
             if reboot_system:
-              #----------- Monitor the install active ---------------#
+              #----------- Monitor the install active ---------------# 
               cmd = "sh install request"
               while True:
                   output = conn.send_command(cmd, read_timeout=600)
-
-                  if "reload" in output.lower():
-                      logger.info("Device is reloading ....")
+                  
+                  if "reload" in output.lower():  
+                      logger.info(f"[{self.device_key}] : Device is reloading ....")
+                      time.sleep(120)
                       break
                   else:
-                      logger.info("Activating packages .... ")
+                      logger.info(f"[{self.device_key}] : Activating packages .... ")
                       time.sleep(60)  # wait before retrying
-
-              time.sleep(120)
-              logger.info(f"[{self.device_key}]:: Device rebooting.., waiting for SSH to come back")
+                  
+              
+              logger.info(f"[{self.device_key}]:: Device rebooting.., waiting for device to come back")
               conn, output = self.reconnect_and_verify(hop_index, logger)
-
-            else:
+              
+            else: 
               logger.info(f"[{self.device_key}] : Pakages are already activated. Skipping reload ...")
-
-            #------ Committing the packages -----------------------#
+            
+            #------ Committing the packages -----------------------# 
             try:
-              cmd = "install commit"
+              cmd = "install commit" 
               logger.info(f"[{self.device_key}]: running 'install commit' to commit the SMU packages")
               output = conn.send_command_timing(cmd, read_timeout = 0, last_read = 60)
-              logger.info(f"[{self.device_key}]:: install commit output -> {output}")
-
-              if not output:
+              logger.info(f"[{self.device_key}]:: install commit output -> {output}") 
+            
+              if not output: 
                 msg = f"Not able to commit the SMU packages"
-                logger.error(f"[{self.device_key}]: {msg}")
+                logger.error(f"[{self.device_key}]: {msg}") 
                 self._write_hop(hop_index, {"image": smu_image.split(" /"), "status": "failed", "exception": msg, "md5_match": False})
-                return conn, False
-            except Exception as e:
+                return conn, False 
+            except Exception as e: 
               msg = f"Not able to commit the SMU packages for {smu_image}: {e}"
-              logger.error(msg)
+              logger.error(msg) 
               self._write_hop(hop_index, {"image": smu_image.split(" /"), "status": "failed", "exception": str(e), "md5_match": False})
               return conn, False
-
-
-            # ----------- Verfiy the SMU Upgrade --------------------#
-            pkg_committed = self.validate_upgrade(conn, xr_committed_pkg, admin_committed_pkg, logger) # run 2 times seperate as xr and admin mode.
-            if not pkg_committed:
+              
+                          
+            # ----------- Verfiy the SMU Upgrade --------------------# 
+            pkg_committed = self.validate_upgrade(conn, xr_committed_pkg, admin_committed_pkg, logger) # run 2 times seperate as xr and admin mode. 
+            if not pkg_committed: 
               msg = f"upgrade_smu() failed"
               logger.error(f"[{self.device_key}]: {msg}")
-              self._write_hop(hop_index, {"image": smu_image.split(" /"), "status": "failed", "exception": msg, "md5_match": False})
-              return conn, False
-
+              self._write_hop(hop_index, {"image": smu_image.split(" /"), "status": "failed", "exception": msg, "md5_match": False}) 
+              return conn, False 
+              
             logger.info(f"[{self.device_key}]:: SMU upgrade completed successfully")
             self._write_hop(hop_index, {"image": smu_image.split(" /"), "status": "success", "exception": "", "md5_match": True})
             return conn, True
@@ -891,8 +890,8 @@ class Upgrade:
             self._write_hop(hop_index, {"image": smu_image.split(" /"), "status": "failed", "exception": str(e), "md5_match": False})
             logger.exception(msg)
             return conn, False
-
-
+            
+            
     #------------------------------------------------------------------------------------#
     #                              Dual RE upgrade - JUNOS                               #
     #------------------------------------------------------------------------------------#
@@ -922,7 +921,7 @@ class Upgrade:
                 "show version invoke-on all-routing-engines",
                 read_timeout=60,
             )
-            # logger.info(f"{self.device_key}: [systemRebootDualRE] Version output:\n{version_output}")
+            logger.info(f"{self.device_key}: [systemRebootDualRE] Version output:\n{version_output}")
 
             versions = self.extract_junos_versions(version_output)
 
@@ -962,9 +961,9 @@ class Upgrade:
 
             output = conn.send_command(cmd, read_timeout=900, expect_string=r".*>")
 
-            # logger.info(f"{self.device_key}: [imageUpgradeDualRE] ─────────────── INSTALL OUTPUT ({target_re}) ───────────────")
-            # logger.info(f"\n{output}")
-            # logger.info(f"{self.device_key}: [imageUpgradeDualRE] ────────────────────────────────────────────────────────────")
+            logger.info(f"{self.device_key}: [imageUpgradeDualRE] ─────────────── INSTALL OUTPUT ({target_re}) ───────────────")
+            logger.info(f"\n{output}")
+            logger.info(f"{self.device_key}: [imageUpgradeDualRE] ────────────────────────────────────────────────────────────")
 
             if not output:
                 msg = f"Install returned no output for {target_image} on {target_re}"
@@ -993,7 +992,7 @@ class Upgrade:
                 read_timeout=60,
             )
 
-            #logger.info(f"{self.device_key}: [imageUpgradeDualRE] Version output:\n{version_output}")
+            logger.info(f"{self.device_key}: [imageUpgradeDualRE] Version output:\n{version_output}")
 
             versions = self.extract_junos_versions(version_output)
 
@@ -1096,7 +1095,7 @@ class Upgrade:
                 expect_string=r".*>",
                 read_timeout=60,
             )
-            # logger.info(f"[{self.device_key}]: [switchoverMaster] chassis output:\n{chassis_output}")
+            logger.info(f"[{self.device_key}]: [switchoverMaster] chassis output:\n{chassis_output}")
 
             expected_slot = expected_new_master.replace("re", "").strip()
             master_match  = re.search(
@@ -1136,7 +1135,7 @@ class Upgrade:
     def run_upgrade_dualRE(self, conn, image_details, curr_os, curr_image, logger):
         device_results[self.device_key]["upgrade"]["status"] = "in_progress"
 
-        # logger.info(f"[{self.device_key}] PRE-FLIGHT — Checking chassis routing-engine state")
+        logger.info(f"[{self.device_key}] PRE - Checking chassis routing-engine state")
 
         try:
             preflight_output = conn.send_command(
@@ -1144,7 +1143,7 @@ class Upgrade:
                 expect_string=r".*>",
                 read_timeout=60,
             )
-            # logger.info(f"[{self.device_key}] PRE-FLIGHT chassis output:\n{preflight_output}")
+            logger.info(f"[{self.device_key}] PRE -  chassis output:\n{preflight_output}")
 
             re0_master = re.search(
                 r"Slot\s+0.*?Current state\s+Master",
@@ -1161,7 +1160,7 @@ class Upgrade:
                 re0_state = re.search(r"Slot\s+0.*?Current state\s+(\S+)", preflight_output, re.IGNORECASE | re.DOTALL)
                 re1_state = re.search(r"Slot\s+1.*?Current state\s+(\S+)", preflight_output, re.IGNORECASE | re.DOTALL)
                 msg = (
-                    f"PRE-FLIGHT FAILED — Expected RE0=Master, RE1=Backup. "
+                    f"PRE -  FAILED — Expected RE0=Master, RE1=Backup. "
                     f"Got RE0={re0_state.group(1) if re0_state else 'unknown'}, "
                     f"RE1={re1_state.group(1) if re1_state else 'unknown'}"
                 )
@@ -1170,7 +1169,7 @@ class Upgrade:
                 device_results[self.device_key]["upgrade"]["exception"] = msg
                 return conn, False
 
-            logger.info(f"[{self.device_key}] PRE-FLIGHT OK — RE0=Master, RE1=Backup")
+            logger.info(f"[{self.device_key}] PRE -  OK — RE0=Master, RE1=Backup")
 
             # ── CHANGE 1: Capture pre-upgrade versions of both REs and store them ──
             ver_output_pre = conn.send_command(
@@ -1181,7 +1180,7 @@ class Upgrade:
             logger.info(f"[{self.device_key}] Pre-upgrade RE versions: {pre_versions}")
 
         except Exception as e:
-            msg = f"PRE-FLIGHT chassis check exception: {e}"
+            msg = f"PRE -  chassis check exception: {e}"
             logger.exception(f"[{self.device_key}] {msg}")
             device_results[self.device_key]["upgrade"]["status"]    = "failed"
             device_results[self.device_key]["upgrade"]["exception"] = msg
@@ -1335,14 +1334,19 @@ class Upgrade:
     # ─────────────────────────────────────────────────────────────────────────────
     # extract_junos_versions
     # ─────────────────────────────────────────────────────────────────────────────
-    def extract_junos_versions(text):
-        lines = text.splitlines()
+    def extract_junos_versions(self, text):
+        """
+        Extract Junos versions for re0 and re1 from show version invoke-on all-routing-engines output.
+        Looks up to 4 lines after "re0:" / "re1:" for a line starting with "Junos:".
+        Returns dict: {"re0": version_string_or_None, "re1": version_string_or_None}
+        """
+        lines  = text.splitlines()
         result = {"re0": None, "re1": None}
 
         for re_label in ["re0:", "re1:"]:
             for i, line in enumerate(lines):
                 if line.strip() == re_label:
-                    for look_ahead in range(1, 5):
+                    for look_ahead in range(1, 5):   # check up to 4 lines ahead
                         if i + look_ahead < len(lines):
                             candidate = lines[i + look_ahead].strip()
                             if candidate.lower().startswith("junos:"):
@@ -1351,4 +1355,4 @@ class Upgrade:
                                 break
                     break
 
-        return result 
+        return result

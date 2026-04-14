@@ -285,12 +285,13 @@ def build_juniper_registries():
         ("juniper", "show services sessions | no-more"):                                               parse_show_services_sessions,
         ("juniper", "show services nat pool brief | no-more"):                                         parse_show_services_nat_pool_brief,
         ("juniper", "show services service-sets cpu-usage | no-more"):                                 parse_show_services_service_sets_cpu_usage,
-        ("juniper", "show services service-sets memory-usage | no-more"):                              parse_show_services_service_sets_summary,
+        ("juniper", "show services service-sets memory-usage | no-more"):                              parse_show_services_service_sets_memory_usage,
         ("juniper", "show services service-sets summary | no-more"):                                   parse_show_services_service_sets_summary,
         ("juniper", "show services flows brief | no-more"):                                            parse_show_services_flows_brief,
         ("juniper", "show bgp summary | no-more"):                                                     parse_show_bgp_summary,
         ("juniper", "show bgp neighbor | no-more"):                                                    parse_show_bgp_neighbor,
         ("juniper", "show chassis alarms | no-more"):                                                  parse_show_chassis_alarms,
+        ("juniper", "show version | no-more"):                                                                               mx_get_show_version,
     }
     return {
         (vendor, normalise(cmd)): fn
@@ -320,7 +321,7 @@ def build_cisco_registries():
         ("cisco", "show hw-module fpd"):                      show_hw_module_fpd,
         ("cisco", "show platform"):                           show_platform,
         ("cisco", "show media"):                              show_media,
-        ("cisco", "show version"):                            ncs_show_version,
+        ("cisco", "show version"):                            ncs_show_version, 
         ("cisco", "sh version"):                              show_asr_version,
         ("cisco", "show inventory"):                          show_inventory,
         ("cisco", "show install committed summary"):          show_install_committed_summary,
@@ -333,11 +334,11 @@ def build_cisco_registries():
         ("cisco", "sh l2vpn flexible-xconnect-service"):      show_l2vpn_flexible_xconnect_service,
         ("cisco", "show bgp l2vpn evpn advertised"):          show_bgp_l2vpn_evpn_advertised,
         ("cisco", "show controllers npu resources all location all"):   show_controllers_npu_resources_all_location,
-        ("cisco", "show bfd session detail"):                 show_bfd_session_detail,
+        ("cisco", "show bfd session detail"):                 show_bfd_session_detail,  
         ("cisco", "show bgp l2vpn evpn summary"):          show_bgp_l2vpn_evpn_summary,
         ("cisco", "show proc cpu"):                      show_proc_cpu,
         ("cisco", "show interfaces"):                      show_interfaces,
-
+        
     }
     return {
         (vendor, normalise(cmd)): fn
@@ -348,7 +349,7 @@ VENDOR_REGISTRY = {
     "juniper": build_juniper_registries(),
     "cisco":   build_cisco_registries()
 }
-
+ 
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -372,7 +373,7 @@ def collect_outputs(device_key: str, vendor: str, commands: list,
             print(f"[{device_key}] '{cmd}' — {len(output)} chars received")
         except Exception:
             exception_str = tb.format_exc()
-            log.error(f"[{device_key}] '{cmd}' send_command raised:\n{exception_str}")
+            log.exception(f"[{device_key}] [COMMAND_EXECUTION_FAILED] One or more commands failed while generating support information : '{cmd}' send_command raised:\n{exception_str}")
 
         stripped  = output.strip() if output else ""
         collected = len(stripped) > MIN_OUTPUT_CHARS
@@ -395,7 +396,7 @@ def parse_outputs(device_key: str, vendor: str, check_type: str,model: str ,log)
     device_name = f"{vendor}_{model}"
     registry = VENDOR_REGISTRY.get(vendor)
     if registry is None:
-        log.error(f"[{device_key}] No registry for vendor='{vendor}'")
+        log.error(f"[{device_key}] [REGISTRY_LOOKUP_FAILED]: Failed to find registry for ='{vendor}'")
         return False
 
     phase_key = "pre" if check_type == "pre" else "post"
@@ -420,7 +421,7 @@ def parse_outputs(device_key: str, vendor: str, check_type: str,model: str ,log)
         parser_fn = registry.get((vendor, norm_cmd))
         if parser_fn is None:
             entry["exception"] = "no parser registered"
-            log.error(f"[{device_key}] no parser registered '{cmd}':\n{tb.format_exc()}")
+            log.error(f"[{device_key}] [REGISTRY_LOOKUP_FAILED]: Failed to find parser for  '{cmd}':\n{tb.format_exc()}")
             all_ok = False
             continue
 
@@ -434,21 +435,21 @@ def parse_outputs(device_key: str, vendor: str, check_type: str,model: str ,log)
             result = parser_fn(output)
             if not result or (isinstance(result, dict) and all(not v for v in result.values())):
                 entry["exception"] = "parser returned empty result"
-                log.error(f"[{device_key}] parser returned empty result '{cmd}':\n{tb.format_exc()}")
+                log.error(f"[{device_key}] [REGISTRY_LOOKUP_FAILED]: parser returned empty result '{cmd}':\n{tb.format_exc()}")
                 all_ok = False
                 continue
             entry["json"]      = result
             entry["exception"] = ""
-            if "error" in result:
+            if "error" in result: 
                 entry["exception"] = result
-                log.error(f"[{device_key}] parser failed for '{cmd}':\n{tb.format_exc()}")
+                log.error(f"[{device_key}] [REGISTRY_LOOKUP_FAILED]: Failed to find parser for '{cmd}':\n{tb.format_exc()}")
                 all_ok = False
                 continue
 
         except Exception:
             entry["json"]      = {}
             entry["exception"] = f"parser failed for '{cmd}'"
-            log.error(f"[{device_key}] parser failed for '{cmd}':\n{tb.format_exc()}")
+            log.error(f"[{device_key}] [REGISTRY_LOOKUP_FAILED]: Failed to find parser for '{cmd}':\n{tb.format_exc()}")
             all_ok = False
             continue
 
@@ -507,7 +508,7 @@ def login_device(host, username, password, device_type, session_log_path, logger
     except NetmikoTimeoutException:
         logger.error(f"{host}: Connection timed out"); raise
     except NetmikoAuthenticationException:
-        logger.error(f"{host}: Authentication failed"); raise
+        logger.error(f"{host}: [AUTH_FAILURE] Authentication failed. Invalid credentials"); raise
     except SSHException as e:
         logger.error(f"{host}: SSH error: {e}"); raise
     except Exception as e:
@@ -532,9 +533,16 @@ def load_yaml(filename):
     try:
         file_path = os.path.join(os.getcwd(), "inputs", filename)
         with open(file_path, "r") as f:
-            return yaml.safe_load(f)
+            data = yaml.safe_load(f)
+            if not data: 
+                logger.warning("[EMPTY_FILE] : The file is empty and cannot be processed")
+                sys.exit(1)
+            logger.info("Loaded YAML file successfully: {filename}")
+            return data
+    except FileNotFoundError:
+        logger.exception(f"[FILE_NOT_FOUND] : The specified file could not be found : {filename} ")
     except Exception as e:
-        logger.error(f"Failed to load YAML {filename}: {e}")
+        logger.error(f"[YAML_LOAD_FAILED] : Loading YAML file failed due to invalid or unreadable content -> {filename}: {e}")
         raise
 
 
@@ -542,37 +550,42 @@ def load_yaml(filename):
 # export_device_summary
 # ─────────────────────────────────────────────────────────────────────────────
 def export_device_summary(device_key: str):
-    slot      = device_results.get(device_key, {})
-    printable = {k: v for k, v in slot.items() if k != "conn"}
+    try: 
 
-    with results_lock:
-        all_devices_summary[device_key] = printable
+        slot      = device_results.get(device_key, {})
+        printable = {k: v for k, v in slot.items() if k != "conn"}
 
-    output_dir = os.path.join(os.getcwd(), "config_jsons")
-    os.makedirs(output_dir, exist_ok=True)
-    timestamp    = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    device_info  = slot.get("device_info", {})
-    host         = device_info.get("host",   "unknown_ip")
-    vendor       = device_info.get("vendor", "unknown")
-    model        = device_info.get("model",  "unknown")
-    ip_clean     = host.replace(".", "_")
-    summary_file = os.path.join(output_dir, f"{ip_clean}_{vendor}_{model}_{timestamp}.json")
-    with open(summary_file, "w") as f:
-        json.dump(all_devices_summary, f, indent=2, default=str)
-    print(f"[EXPORT] Summary JSON saved -> {summary_file}")
-    print(
-        f"[LOGS] Device log : logging/{ip_clean}_{vendor}_{model}_*.log\n"
-        f"       Session log: outputs/{ip_clean}_{vendor}_{model}_*.log"
-    )
+        with results_lock:
+            all_devices_summary[device_key] = printable
 
-    reports_dir = os.path.join(os.getcwd(), "reports")
-    os.makedirs(reports_dir, exist_ok=True)
-    generated   = generate_html_report(all_devices_summary, output_dir=reports_dir)
-    html_name   = f"{ip_clean}_{vendor}_{model}_{timestamp}.html"
-    html_path   = os.path.join(reports_dir, html_name)
-    if generated and generated != html_path:
-        os.rename(generated, html_path)
-    print(f"[REPORT] {html_path}")
+        output_dir = os.path.join(os.getcwd(), "config_jsons")
+        os.makedirs(output_dir, exist_ok=True)
+        timestamp    = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        device_info  = slot.get("device_info", {})
+        host         = device_info.get("host",   "unknown_ip")
+        vendor       = device_info.get("vendor", "unknown")
+        model        = device_info.get("model",  "unknown")
+        ip_clean     = host.replace(".", "_")
+        summary_file = os.path.join(output_dir, f"{ip_clean}_{vendor}_{model}_{timestamp}.json")
+        with open(summary_file, "w") as f:
+            json.dump(all_devices_summary, f, indent=2, default=str)
+        print(f"[EXPORT] Summary JSON saved -> {summary_file}")
+        print(
+            f"[LOGS] Device log : logging/{ip_clean}_{vendor}_{model}_*.log\n"
+            f"       Session log: outputs/{ip_clean}_{vendor}_{model}_*.log"
+        )
+
+        reports_dir = os.path.join(os.getcwd(), "reports")
+        os.makedirs(reports_dir, exist_ok=True)
+        generated   = generate_html_report(all_devices_summary, output_dir=reports_dir)
+        html_name   = f"{ip_clean}_{vendor}_{model}_{timestamp}.html"
+        html_path   = os.path.join(reports_dir, html_name)
+        if generated and generated != html_path:
+            os.rename(generated, html_path)
+        print(f"[REPORT] {html_path}")
+    except Exception as e: 
+        logger.exception(f"[{device_key}] [INVALID_JSON] Invalid or malformed JSON input")
+        raise
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -627,7 +640,7 @@ def connect(device_key: str, dev: dict, logger):
         return conn
 
     except Exception as e:
-        logger.error(f"[{device_key}] Connection failed: {e}")
+        logger.error(f"[{device_key}] [CONNECTION_FAILURE] Unable to establish connection with the device: {e}")
         device_results[device_key]["pre"]["connect"]["status"]    = False
         device_results[device_key]["pre"]["connect"]["exception"] = str(e)
         return None
